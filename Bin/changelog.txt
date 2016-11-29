@@ -1,0 +1,926 @@
+SUBTITLE WORKSHOP VERSION HISTORY
+
+
+==========================================================================================================
+Changes in version 6.0b (build 131121) since version 6.0a (build 130825)
+==========================================================================================================
+
+* Bug fixed: Impossible to edit subtitles containing two-byte characters (Chinese, Japanese, Korean)
+
+==========================================================================================================
+Changes in version 6.0a (build 130825) since version 6.0 (build 130814)
+==========================================================================================================
+
+* Bug fixed: The input language changes automatically in various situations, especially when using a right-to-left language like Arabic or Hebrew.
+* Edit > Timings > Extend Length to previous shortcut changed to SHIFT+ALT+E in order to free the ALT+E combination used in the Polish keyboard.
+
+==========================================================================================================
+Changes in version 6.0 (build 130814) since version 2.51
+==========================================================================================================
+
+
+
+* GENERAL INTERFACE CHANGES:
+	--> TOOLBAR added - (show/hide from "View: Toolbar"). Note that the "Undo" and "Redo" buttons offer a dropdown list with the last Undo/Redo actions, so you can Undo/Redo multiple actions at once.
+	--> STATUSBAR added	- (show/hide from "View: Statusbar"). Displays the current subtitles format and the number of the currently selected subtitle(s). Left mouse button click on the number centers the Subtitles List on the first (or only) selected subtitle. Right mouse button click on the number centers the Subtitles List on the last (or only) selected subtitle.
+	--> FULL TAGS SUPPORT MODE (Multiple Tags Mode) added - currently only for the SubRip, MicroDVD, and Sub Station Alpha formats. To enable it, select "Multiple tags mode" in "Settings: Settings: General". The subtitles in the Video Preview Panel are also properly formatted when using the Multiple Tags Mode. Tags that can be used while editing are:
+		--> <b> and </b> - Bold text.
+		--> <i> and </i> - Italic text.
+		--> <u> and </u> - Underlined text.
+		--> <c:#RRGGBB> and </c> - Text color.
+		Always work with those tags in Subtitle Workshop. When saving the subtitle files, they are properly converted to the corresponding tags of the chosen format. Note that the MicroDVD format supports only tags for entire lines or subtitles, but not for separate words or characters.
+	--> TEXT STYLE BARS added - (show/hide them from "View: Text style bars"). They consist of style tags buttons. They appear above the "Text" and "Translation" fields. They have similar behaviour to that of the Microsoft Word buttons.
+	--> "PAUSE" editbox added - to display and set the pause between the current and the previous subtitle.	
+	--> "PAUSE" column added in the Subtitles List.
+	--> "DURATION" column added in the Subtitles List.	
+	--> When you right-click the column titles ("Num", "Show", "Hide", "Text", "Translation", "Duration", or "Pause") of the Subtitles List, a new Subtitles List Header Context Menu pops up that allows you to show/hide the different columns.
+	--> The columns positions are now automatically saved.
+	--> When the "Text" and "Translation" columns positions are swapped, the "Text" and "Translation" fields are automatically swapped as well.
+	--> When the "Show" column header in the Subtitles List is clicked, the "Sort" function ("Edit: Subtitles: Sort") is executed (subtitles are sorted by their Show Time).
+	--> When the "Text" or "Translation" column header in the Subtitles List is clicked, the widths of the "Text" and "Translation" columns become equal.
+	--> The values in the "Show", "Hide", "Duration", and "Pause" boxes can now be edited with the mouse scroll wheel, when you're inside those boxes. If you hold the CTRL key while scrolling, the decrease/increase value will be 10 times larger. If you hold the ALT key while scrolling, the decrease/increase value will be 2 times smaller. The increase/decrease step can be set in "Settings: Settings: General: Advanced". If you hold the SHIFT key while scrolling, the duration is not changed at all, but rather the subtitle is shifted in time (similar to using "Edit: Timings: Shift +N milliseconds" and "Edit: Timings: Shift -N milliseconds").
+	--> When the mouse cursor is over one of the time boxes ("Show", "Hide", "Duration", or "Pause"), the corresponding time value can now be set by using the mouse scroll wheel, without entering (clicking in) the box. Subtitle Workshop indicates this by underlining the time value in the corresponding box. Using the CTRL and ALT, keys to modify the step, or the SHIFT key to shift the subtitle is possible.
+	--> Pause, Show, Hide, and Duration values can now be changed in the Subtitles List with the mouse scroll wheel, when the corresponding cell is clicked and the left mouse button is held down while scrolling with the mouse scroll wheel. Using the CTRL and ALT, keys to modify the step is possible.
+	--> The following shortcuts are enabled for the Subtitles List:
+		--> SHIFT + mouse scroll wheel - shift the currently selected subtitle(s) in time (like using "Edit: Timings: Set delay" for the selected subtitles, but easier).
+		--> "S" + mouse scroll wheel - modify the Show Time of the currently selected subtitle(s).
+		--> "D" (or "E") + mouse scroll wheel - modify the Hide Time of the currently selected subtitle(s).
+		--> SAPCE - Mark or unmark the currently selected subtitle(s).
+		--> "B" (or "O") - Set/unset Bold tag for the currently selected subtitle(s).
+		--> "I" - Set/unset Italic tag for the currently selected subtitle(s).
+		--> "U" - Set/unset Underline tag for the currently selected subtitle(s).
+		--> "C" (or "Y") - Set/unset a Color tag (the last selected color in the color dialog) for the currently selected subtitle(s).
+		--> BACKSPACE - Remove all tags for the currently selected subtitle(s).
+		--> ENTER - Move the video to the Show Time of the focused subtitle. Also, start "in-place edition", if exactly one subtitle is selected and "in-place edition" is enabled. Also, save and exit "in-place edition".
+		--> F2 - Start "in-place edition" / Save and exit "in-place edition".
+		--> ESCAPE - Unselect all selected subtitles and leave only the focused subtitle selected. Or cancel edition in "in-place edition".
+		--> LEFT/RIGHT - Change the focused column.		
+		--> PageUP/PageDOWN - Change the current subtitle in "in-place edition".
+		--> TAB/SHIFT+TAB - Change the current column in "in-place edition".
+	--> Right-click selection can be enabled in the Subtitles List (from "Settings: Settings: Look: List: Right click selection").
+	--> "Insert subtitle", "Insert before", "Remove selected", and "Remove all tags" added to the Context Menu of the Subtitles List.
+	--> When a subtitle with Bad Values is selected, it's duration is now displayed as 00:00:00,000 instead of 23:XX;XX,XXX.
+	--> "OCR Scripts" checkbox added in the Left Panel for fast enabling/disabling of the OCR Script errors checking and fixing.
+	--> "Notes" field added to the Left Panel of Subtitle Workshop (show/hide it from "View: Show notes in left panel"). The notes are global for the entire program and not dependant on the current subtitle file(s). Set the charset of the "Notes" field in "Settings: Settings: Charsets: Notes charset".	
+	--> Accurate charset conversion when using Paste operations.
+	--> Select All, Cut, Copy, and Paste (and their shortcuts) now available for all textboxes, dropboxes, and other controls throughout Subtitle Workshop (e.g.: pressing CTRL+A ("Edit: Select all") in the "Text" or "Translation" fields selects the entire text in the filed now, not all subtitles in the Subtitles List).
+	--> The width of the Time Controls Area and Text Controls Area can now be resized via a new horizontal splitter located between them.
+	--> Four new time control buttons added in the Time Controls Area (show/hide from "View: Show time control buttons"). Each button has two functions - one when it's clicked with the left mouse button, and another when it's clicked with the right mouse button. The buttons' functions (their tooltips also indicate them) are as follows (left click function/right click function): "Move to Previous/Extend to Previous"; "Move to Next/Extend to Next"; "Set Default Pause/Set Default Pause, if Pause is too short"; "Set Auto Duration/Set Min Duration".
+	--> Now, when no subtitles are selected in the Subtitles List, the "Show", "Hide", "Duration", and "Pause" boxes, the time control buttons, the "Text" and "Translation" fields, and the style tags buttons are disabled.
+	--> Now, when two or more subtitles are selected in the Subtitles List, the values of the "Show", "Hide", "Duration", and "Pause" boxes are filled as follows: "Show" displays the Show Time of the first selected subtitle; "Hide" displays the Hide Time of the last selected subtitle; "Pause" displays the pause of the first selected subtitle; "Duration" displays the total duration of all subtitles (including the pauses between them).
+		--> When two or more subtitles are selected in the Subtitles List, setting the same duration value for all selected subtitles by the "Duration" box is now possible.
+		--> When two or more subtitles are selected in the Subtitles List, increasing/decreasing the duration of all selected subtitles is now possible by using the mouse scroll wheel on the "Duration" box. The same is also valid for the Show Time of all selected subtitles (using the "Show" box) and Hide Time of all selected subtitles (using the "Hide" box).
+	--> When typing in the "Text" or "Translation" fields, one Undo entry is now added for an entire word, instead of for every single letter. However, if nothing is typed in for more than 2 seconds, a new Undo entry will be added the next time text is typed in.
+	--> The program version number is displayed in the main window's caption.
+	--> The taskbar caption of Subtitle Workshop now displays the name of the file first.
+	--> Now, when a file is modified, that's indicated by an asterisk (*) in Subtitle Workshop's caption.
+	--> New Context Menu added for the "Text" and "Translation" fields. It contains the following items: "Cut", "Copy", "Paste", "Delete", "Select all", "Italic", "Bold", "Underline", "Set color", "Remove color tags", "Remove all tags".	
+	--> IN-PLACE EDITION:
+		--> The Translation and the Show Time and Hide Time values can now be edited with "in-place edition".
+		--> The Pause and Duration values can now be edited using "in-place edition".
+		--> Time values can now be modified with the mouse scroll wheel when using "in-place edition".		
+		--> When using "in-place edition", the popup edition boxes now have the same alignment as the corresponding cell in the Subtitles List.
+	--> System menu and Close button added to all modal windows.
+	--> The color value of the Color Tag Dialog is now automatically saved.
+
+
+* VIDEO PREVIEW PANEL:
+	--> Volume Control added - set the volume of the video.
+	--> "Mute/Unmute" button added - mute or unmute the volume of the video.
+	--> Full Screen Mode added. Toggle it with a left mouse button double click (if "Settings: Settings: Video preview: Enter Full Screen on double click" is enabled) or a middle mouse button single click on the Video Preview Panel, or through the new Video Preview Context Menu. In Full Screen Mode, the mouse cursor automatically hides in a few seconds if not used. While in Full Screen Mode, the video control buttons are in a hidden bar on the bottom of the screen. Move the mouse cursor to the bottom of the screen to display them, and move it away to hide them again. The "Settings: Settings: Video preview: Subtitles: Relative font size" option is recommended for Full Screen Mode. "Toggle Scroll List" is automatically turned on in Full Screen Mode (and if it was previously off, it is turned back off when you exit Full Screen Mode).
+	--> The following shortcuts are now available when the mouse cursor is over the Video Preview Panel:
+		--> MOUSE WHEEL UP - Increase volume.
+		--> MOUSE WHEEL DOWN - Decrease volume.
+		--> MOUSE LEFT BUTTON DOUBLE CLICK - Toggle Full Screen Mode (if "Settings: Settings: Video preview: Enter Full Screen on double click" is enabled).
+		--> MOUSE MIDDLE BUTTON CLICK - Toggle Full Screen Mode.
+	--> In Full Screen Mode, the following shortcuts are enabled:
+		--> SPACE - Mark/Unmark subtitle.
+		--> CTRL+SPACE - Play/Pause.
+		--> LEFT ARROW - Rewind.
+		--> RIGHT ARROW - Forward.
+		--> UP ARROW - Increase volume.
+		--> DOWN ARROW - Decrease volume.
+		--> ENTER - Exit Full Screen Mode.
+		--> ESCAPE - Exit Full Screen Mode.
+		--> "B" (or "O") - Set/unset Bold tag for the current subtitle.
+		--> "I" - Set/unset Italic tag for the current subtitle.
+		--> "U" - Set/unset Underline tag for the current subtitle.
+		--> "C" (or "Y") - Set/unset a Color tag (the last selected color in the color dialog) for the currently selected subtitle(s).
+		--> BACKSPACE - Remove all tags for the current subtitle.
+	--> The vertical position of the subtitles in the Video Preview Panel can now be changed by dragging the subtitles up and down with the mouse. The default position can be restored through the Video Preview Context Menu.
+	--> Video Preview Context Menu added - right click on the Video Preview Panel to display it.
+		--> "Open..." - equivalent to "Movie: Open...".
+		--> "Close" - equivalent to "Movie: Close".
+		--> "Zoom to X%" - zooms the video to the corresponding per cent.
+		--> "Enter Full Screen"/"Exit Full Screen" - enter/exit Full Screen Mode.
+		--> "Aspect ratio" - set the aspect ratio the video will be displayed in.
+			--> "Original" - set the original aspect ratio of the video file.
+			--> "4:3" - set a 4:3 aspect ratio.
+			--> "16:9" - set a 16:9 aspect ratio.
+			--> "1.85:1" - set a 1.85:1 aspect ratio.
+			--> "2.35:1" - set a 2.35:1 aspect ratio.
+		--> "Video renderer" added - equivalent to "Movie: Video renderer".
+		--> "Audio stream" - equivalent to "Movie: Audio stream".
+		--> "Show subtitles" - equivalent to "Movie: Show subtitles".
+		--> "Reset subtitles vertical position" - sets the default vertical position for the subtitles in the Video Preview Panel.
+		--> "Information..." - equivalent to "Movie: Information...".
+	--> Show Time and Hide Time values can now be set by clicking with the mouse on the Time Counter below the video. Clicking with the left mouse button will set the Show Time, clicking with the right mouse button will set the Hide Time. In addition, while the mouse button (left or right) is held down, the mouse scroll wheel can be used to further modify the corresponding (Show or Hide) time value.
+	--> If the SHIFT key is held when setting the Show Time/Hide Time via clicking on tha "Set Show Time"/"Set Hide Time" button or on the Time Counter, the Show Time/Hide Time will be set and then the subtitle will be shifted in time.
+	--> If more than one subtitles are selected when setting the Show Time/Hide Time via clicking on tha "Set Show Time"/"Set Hide Time" button or on the Time Counter, the Show Time of the first selected subtitle/the Hide Time of the last selected subtitle will be set and then all selected subtitles will be shifted in time accordingly.
+	--> The Video Preview Panel height ratio (in relation to the Subtitles List) is now kept and automatically saved.
+	--> When the mouse cursor is over the Volume Control, a tooltip with the current volume per cent is now displayed.
+	--> The Time Counter below the video now displays the video time at the current mouse cursor position, when the mouse cursor is moved over the Seekbar.
+	--> Now, when the video is paused, as the mouse cursor is moved over the Seekbar, the corresponding moment in the video is previewed.	
+	--> The Seekbar now contains color blocks for visual subtitle representation ("View: Visual subtitle representation" to show/hide them).		
+	--> Also see "Settings: Settings: Video preview" and "Settings: Settings: Video preview: Subtitles".
+
+
+* "FILE" MENU:
+	--> The "Save as" window can be resized now.
+	--> "Save Marking" added - save the subtitle marking in a SRF file (like in ViPlay). The SRF file is created in the same folder the current subtitles are in. The file is given the following name: <subtitle file name> + <subtitle file extension> + <.srf> (e.g. for C:\SubRip.sub, C:\SubRip.sub.srf is created). If a translation file is opened, a SRF file is saved for it too.
+
+
+* "VIEW" MENU (new menu):
+	--> "Show left panel" and "Show time controls" moved here from the "Settings" menu.
+	--> "Toolbar" - show/hide the new toolbar.
+	--> "Show notes in left panel" - show/hide the new "Notes" field in the Left Panel.
+	--> "Visual subtitle representation" - show/hide the color blocks for visual subtitle representation in the Video Preview Panel Seekbar.
+	--> "Columns" added - select which columns to be displayed in the Subtitles List (equivalent to the Subtitles List Header Context Menu).
+	--> "Show time control buttons" - show/hide the time control buttons in the Time Controls Panel.
+	--> "Text style bars" - show/hide the new style tags buttons.	
+	--> "Show lines count" - show/hide labels above the "Text" and "Translation" fields, displaying the number of lines in the current subtitle.
+	--> "Statusbar" - show/hide the new statusbar.
+
+
+* "EDIT" MENU:
+	--> "Insert symbol..." added - a window from which symbols can be inserted in the "Text" or "Translation" fields (or even in the "Notes" field), depending on which field is focused.
+	--> "Style" added - it contains the following items: "Italic", "Bold", "Underline", "Set color", "Remove color tags", "Remove all tags".
+	--> "Invert selection" added.	
+	"TIMINGS" MENU:
+		--> "Set duration limits...":
+			--> A new option "Increase at start if necessary" added - if the desired duration is not achieved by increasing the Hide value of the subtitle, the Show value is decreased. The subtitle will show up earlier, but it will eventually have the desired duration.
+		--> "Set delay":
+			--> Window modified - "+"/"-" dropdown box replaced with more convenient radio buttons. Mouse scroll wheel can be used to set the value. The PLUS and MINUS keys can be used to set "+"/"-".
+			--> A new option "From first selected until last subtitle" added - applies the delay for all subtitles from the first selected subtitle until the last subtitle.			
+		--> "Extend length" renamed to "Extend length to next".
+		--> "Extend length to previous" added - set the Start time of the current subtitle just after the End time of the previous one (similar to "Extend length").
+		--> "Shift to next" added - shifts the selected subtitle(s) to the next subtitle.
+		--> "Shift to previous" added - shifts the selected subtitle(s) to the previous subtitle.		
+		--> "Automatic Durations":
+			--> A new option "Increase at start if necessary" added - if the desired duration is not achieved by increasing the Hide value of the subtitle, the Show value is decreased. The subtitle will show up earlier, but it will eventually have the desired duration.
+		--> "Set Pauses" added - sets the pauses between subtitles. Set the pause value and the applied method in the window that pops up.
+		--> "Round Time Values..." added - rounds all the time values to a selected value.
+		--> A new ("CPS") method added in "Automatic Durations".
+	"TEXTS" MENU:
+		--> "Smart Line Adjust" added - works like the old "Smart Line Adjust" (now called "Fast smart line adjust"), but has some additional settings - it can break the text on dialogue dashes and punctuation marks ("Break on punctuation marks" method); it can be set not to unbreak subtitles with the "Don't unbreak subtitles that are not too long" option (e.g. this: "Hello.|How are you?" will NOT be changed to "Hello. How are you?"); it can be set not to modify normal subtitles with the "Adjust only long subs and subs with more than 2 lines" option (e.g. this: "What do you think|for my new lovely collection?" will NOT be changed to "What do you think for my|new lovely collection?"), which preserves the original look of those subtitles and doesn't break their readability. If the "Always try to find a better breaking point" option (for the "Break on punctuation marks" method) is checked, Subtitle Workshop will always try to find a better break point; if it's not checked - Subtitle Workshop will try to find a better break point only if the previous break point is not a punctuation mark already.
+		--> "Unbreak subtitles" added - works like the old "Unbreak subtitles" (now called "Fast unbreak subtitles"), but has some additional settings - you can set a maximum line lenght ("Don't unbreak if line length exceeds"), and set it not to unbreak subtitles with dialogue ("Don't unbreak subtitles with "-" on second line").
+		--> Old "Smart line adjust" renamed to "Fast smart line adjust".
+		--> Old "Unbreak subtitles" renamed to "Fast unbreak subtitles".
+	"SUBTITLES" MENU:
+		--> "Auto Combine Subtitles" added - a new function to automatically combine short subtitles. You can set which subtitles should be considered for combining by setting a maximum duration and a minimum CPS. The most important option is the "Punctuation marks detection" - when this option is turned on, the function will combine only lines of the same person (judging by the punctuation marks), so you won't have to add dialogue dashes afterwards. If you don't care whether the lines of different characters are divided by dialogue dashes or not (not recommended), turn it off.
+			--> "Combine if duration is less than" - combine only subtitles that have a duration less than this value.
+			--> "Combine if CPS is greater than" - combine only subtitles that have more CPS than this value.
+			--> "Don't combine if pause is greater than" - don't combine two subtitles, if the pause between them is greater than this value.
+			--> "Punctuation marks detection" - combine only lines of the same character (judging by the punctuation marks: e.g. if the first subtitle ends on a comma or on no punctuation mark, the second subtitle is a line of the same character; if the first subtitle ends on a dot, a question mark or an exclamation mark, the second subtitle MIGHT be a line of a different character, so the two subtitles won't be combined).
+			--> "Combined subtitles maximum duration" - when the two subtitles are combined, the resulting subtitle's duration shouldn't exceed that value.
+			--> "Decrease duration if necessary with no more than" - if the above value is exceeded, decrease the duration a bit (set how much with this value) and check again.
+			--> "Combined subtitles maximum line length" - maximum line length of the combined subtitle.
+		--> "Delete dots at the beginning" added - deletes dots in the beginning of every subtitle (unlike "Delete unnecessary links" it doesn't delete the dots in the end of the subtitles and doesn't consider them at all).
+		--> "Delete unnecessary links":
+			--> It now detects more dots types (not just three, but two or more than three dots), and also ignores spaces between them.
+		--> "Jump to next marked" added - jump to the next marked subtitle.
+		--> "Jump to previous marked" added - jump to the previous marked subtitle.
+
+
+* "TOOLS: INFORMATION AND ERRORS" MENU:	
+	--> "Show CPS boxes" added - show/hide CPS Infoboxes for each subtitle. See the changes in "Tools: Information and errors: Settings: Advanced" for more information.
+	--> "Jump to next error":
+		--> It can now jump from the last error to the first.
+	--> "Jump to previous error" added.
+	"INFORMATION AND ERRORS..." WINDOW (extended with multiple new functions and indicators):
+		--> The Info&Errors Window is no longer modal (can stay opened at all times). All the information in it is automatically refreshed when changes occur in the Main Window if the "Tools: Information and Errors: Settings: Automatically recheck errors" is checked (currently this slows down the speed of Subtitle Workshop a little bit, so only keep the "Information and Errors" window opened when really necessary).
+		--> The Info&Errors Window can be resized now, and the Info&Errors List columns' widths resize automatically.
+		--> The Info&Errors List can now be sorted by every column.
+		--> The total number of errors and fixed errors are now in a separate label, always visible.
+		--> New "E" (Errors), "W" (Warnings), "F" (Fixed), and "CI" (Custom info) buttons added - they show or hide the corresponding type of information in the Info&Errors List.
+		--> New "<" and ">" buttons added - they jump to the previous / next row in the Info&Errors List.
+		--> New "Select" button added - selects all subtitles in the Main Window that are currently in the Info&Errors List.
+		--> New "+ Select" button added - adds to the current selection in the Main Window all subtitles that are currently in the Info&Errors List.
+		--> New "- Select" button added - removes from the current selection in the Main Window all subtitles that are currently in the Info&Errors List.
+		--> New "Export to file" button added - exports the Info&Errors List content to a text file.
+		--> ERROR TYPES AREA (new area):
+			--> This area can be shown/hidden with the new "Error types" button.
+			--> This area contains a list of all error types and how many of each of them the current subtitle file contains.
+			--> The checkbox in front of each error type will show/hide all instances of this error type in the Info&Errors List. The "All" button checks them all, the "None" button unchecks them all, and the "Inverse" button makes an inverse selection.
+			--> The current state of the checkboxes can be saved in an Error Types Set under an assigned name. This way it is easy to switch between different sets of states. The desired name of the Error Types Set must be entered in the dropdown box and the ENTER key or the "Save error types set" button must be pressed to save an Error Types Set. An Error Types Set can be loaded by selecting it from the dropdown box. An Error Types Set can be deleted by loading it and then clicking on the "Delete error types set" button.
+		--> CUSTOM INFO AREA (new area):
+			--> This area can be shown/hidden with the new "Custom info" button.
+			--> Here, different specific rules can be set to look for certain subtitles. The subtitles that fit those rules will be displayed in the Info&Errors List as "Custom info" types of rows, and with a description containing the rule or the rule's caption.
+			--> There are no Custom info fields at first. Add a new field with the "+" button or with its dropdown menu. The following Custom info rule types are available:
+				a) "Composite custom info" (default when you press the "+" button): look for subtitles that fit several rules simultaneously:
+					--> When a "Composite custom info" is added, a new window - the Composite Custom Info Window - appears where all the Composite custom info's sub-rules can be set. Enter the name of the Composite custom info in the "Caption" field. With a Composite custom info, Subtitle Workshop can look for subtitles that fit several rules simultaneously. Those rules can be the same as the other Custom info rule types ("Duration", "Line length", "Line count", "Pause", "CPS", and "Text" - see their description below). Add new subrules with the "+" button.
+						Example: To find all subtitles that have two lines and a duration less than 1.5 seconds, add a "Composite custom info" with the "+" button. Enter a name for this rule in the "Caption" field. Click on the "+" button in the Composite Custom Info Window below and add a "Subtitles duration information" subfield, and after its "<" sign enter the number 1500. Click on the "+" button again and add a "Subtitles lines count information" subfield and after its ">" sign enter the number 1, after its "<" sign enter the number 3, and from the dropdown select "AND". This way Subtitle Workshop will be looking for subtitles with a duration < 1500 ms, having more than one and less than three (exactly two) lines. Click the "Ok" button to finish editing the Composite custom info.
+					--> The "Composite custom info" type fields contain an "Edit" button - when clicked, the Composite Custom Info Window appears.
+				b) "Subtitles duration information":
+					--> This field type has two textboxes (for two rule values: ">" - greater than, and "<" - less than) - enter the desired number (in milliseconds) in them. You can also select a logical connection between the rules from the dropdown box ("AND" - look for subtitles fitting both conditions; "OR" - look for subtitles fitting at least one of the conditions). You can enter only one value and leave the other field and the dropdown box empty if you wish.
+					Example 1: To look for all subtitles with a duration of less than 1 second, add a "Duration information" type of field with the "+" button, and enter the number 1000 after the "<" sign, and press the ENTER key.
+					Example 2: To look for subtitles with a duration between 6 and 7 seconds, add another "Duration information" type of field with the "+" button, and enter 6000 after ">", and 7000 after "<", select the "AND" logical connection from the dropdown, and press the ENTER key.
+					Example 3: To look for subtitle with a duration that is either less than 6 seconds or greater than 7 seconds, add another "Duration information" type of field with the "+" button, and enter 7000 after ">", and 6000 after "<",select the "OR" logical connection from the dropdown, and press the ENTER key.
+				c) "Subtitles line length information":
+					--> It has the same fields as the "Duration" field type and works the same way, but for subtitles line length (in characters).
+				d) "Subtitles line count information":
+					--> It has the same fields as the "Duration" field type and works the same way, but for subtitles lines count (in lines).
+				e) "Subtitles pause information":
+					--> It has the same fields as the "Duration" field type and works the same way, but for subtitles pause (in milliseconds).
+				f) "Subtitles CPS information":
+					--> It has the same fields as the "Duration" field type and works the same way, but for subtitles CPS (in characters per second).
+				g) "Subtitles text information":
+					--> This type of field contains a textbox for the text you're looking for in a subtitle and a dropdown that sets the type of the search that will be performed for that text. The text search types are:
+					a) Contains (Case sensitive) - The rule is to look for subtitles that contain the entered text. The search will be case sensitive.
+					b) Contains (Case insensitive) - The rule is to look for subtitles that contain the entered text. The search will not be case sensitive.
+					c) Does not contain (Case sensitive) - The rule is to look for subtitles that do not contain the entered text. The search will be case sensitive.
+					d) Does not contain (Case insensitive) - The rule is to look for subtitles that do not contain the entered text. The search will not be case sensitive.
+					e) Matches regular expression - This option indicates that the entered text will be treated as a regular expression. Regular expressions are explained in Subtitle Workshop's Help in 5.5.4 Syntax of Regular Expressions.
+					f) Matches regular expression (ignore tags) - like e), but all tags in the subtitles are ignored.
+					Example: To find all subtitles containing the word "ship", whether it is written with small letters or with one or more capital letters, select "Contains (Case insensitive)" from the dropdown and enter the text "ship" in the textbox.
+				A new custom info field is added in the Custom Infos List, when you add one of the custom info rules types.
+			-->	There's a checkbox in front of each custom info field to enable or disable that rule (show/hide subtitles in the Info&Errors List that fit that rule).
+			--> The "Delete" button of a field deletes that field.
+			--> The number of the subtitles that fit the rule will be displayed on the left of the "Delete" button of the field.			
+			--> The "All", "None", and "Inverse" buttons work in the same fashion as the "All", "None", and "Inverse" buttons in the Error Types Area.
+			--> The "Save custom info set" and "Delete custom info set" buttons, and the custom info set dropdown box can be used to save sets of Custom info fields, just like the Error types sets in the Error Types Area.		
+			--> There is a vertical slider above the Custom Info Area, that can be used to resize the height of the Custom Info Area.		
+	"VARIOUS INFORMATION..." WINDOW:
+		--> The window is no longer modal (can stay opened at all times). However note that the information in it is NOT automatically refreshed after each change in the Main Window of Subtitle Workshop and must be refreshed manually.
+		--> New "Refresh info" button added - refresh the various information.
+		--> New information is shown in the "Information" page:
+			--> Longest duration - the number of the subtitle with the longest duration and its duration.
+			--> Shortest duration - the number of the subtitle with the shortest duration and its duration.
+			--> Longest Pause - the number of the subtitle with the longest pause in relation to its previous subtitle and the duration of that pause.
+			--> Shortest Pause - the number of the subtitle with the shortest pause in relation to its previous subtitle and the duration of that pause.
+			--> Longest Line - the number of the subtitle with the longest line and how many characters that line is.
+			--> Shortest Line - the number of the subtitle with the shortest line and how many characters that line is.
+			--> Most CPS - the number of the subtitle with the most characters per second and how many exactly they are.
+			--> Least CPS - the number of the subtitle with the least characters per second and how many exactly they are.
+			--> Average CPS - the average number of characters per second for the currently opened subtitle file (a great indicator for the quality of the subtitles).
+	"SETTINGS..." WINDOW:
+		--> New error types added:
+			--> "Unnecessary tags" - checks for: repeated tags (e.g. <i><i>); empty tags (e.g. <i></i>); opening tags after closing tags (e.g. </i><i>). Those errors can also be automatically corrected (See "Tools: Information and Errors: Settings: Fix").
+			--> "Dash on first line" - check for a dash on the first line of subtitles with more than one line (e.g. the Bulgarian standard for dialogue in subtitles is to have a dash only on the second line). Those errors can also be automatically corrected (See "Tools: Information and Errors: Settings: Fix").
+				--> "Only if there is no "-" on second line" - a suboption to look only for multiline subtitles starting with a dash, but without other dashes (i.e. without dialogue) - e.g. suitable for English subtitles where dashes are used on both lines of a dialogue.
+			--> "Too many CPS" - Check for a maximum allowed number of characters per second - a good way to evaluate the readability of the subtitles. Those errors can be marked with a very useful special CPS infobox above the subtitle text in the Main Window. Look for the changes in "Tools: Information and errors: Settings: Advanced" for more information.
+			--> "Too short pause" - check for too short pauses between subtitles. The minimal pause is set in "Tools: Information and errors: Settings: Advanced".
+			--> "Dialogue on one line" - check for dialogue on one line (in fact for a dash after a dot, a question mark or exclamation mark), something that isn't allowed in some standards. Those errors can also be automatically corrected (See "Tools: Information and Errors: Settings: Fix").	
+		"GENERAL" TAB:
+			--> The "Set color..." button and the "Bold", "Italic", and "Underline" checkboxes are removed (see the new "Mark" tab).
+			--> "Automatically recheck errors" added - perform AUTOMATIC ERROR RECHECK after EVERY action (change) in Subtitle Workshop!
+				--> "Do not recheck on Pascal scripts" - rechecking errors on Pascal scripts might be slow - this turns it off.
+				--> "Recheck all once after a Pascal script executes" - recheck all errors after each Pascal script execution. This is recommended in most cases.
+				--> "Recheck on each change made by a Pascal script (might be slow)" - might be slow, so only use it for scripts that don't make many modifications.
+			--> "Indicate too long lines in Text and Translation labels" added - indicate too long lines in selected subtitle by changing the text and background color of the Text and Translation labels.
+			--> "Indicate too short duration in Duration box" added - indicate too short duration in selected subtitle by changing the text and background color of the "Duration" box.
+			--> "Indicate too long duration in Duration box" added - indicate too long duration in selected subtitle by changing the text and background color of the "Duration" box.
+			--> "Indicate too short pause in Pause box" added - indicate too short pause by changing the text and background color of the "Pause" box.
+			--> "Indicate overlapping subtitles in Pause box" added - indicate overlapping subtitles by changing the text and background color of the "Pause" box.
+			--> "Indicate bad values in Show and Hide boxes" added - indicate bad values in selected subtitle by changing the text and background color of the "Duration", "Show" and "Hide" boxes.
+			--> "Indicate subtitles over two lines in lines counter label" added - indicate more than two lines in selected subtitle by changing the text and background color of the lines counter label.
+		"ADVANCED" TAB:
+			--> "Too short pause" added - the minimum pause between two subtitles allowed. This value is used when checking for the "Too short pause" error.			
+			--> "Characters per second (CPS)" area added:
+				--> "Too many CPS" - the maximum number of characters per second allowed. This value is used when checking for the "Too many CPS" error.
+				--> "Normal CPS box colors" added - the text and background colors of the CPS Infobox when the CPS does not exceed the maximum CPS allowed. Those colors are used when "Tools: Information and errors: Show CPS boxes" is on.
+				--> "Too much CPS box colors" - the text and background colors of the CPS Infobox when the CPS exceeds the maximum CPS allowed.
+				--> "Display percentage in CPS box" - the CPS Infoboxes will contain the percentage of the currently used number of characters per second out of the allowed maximum (e.g. if the maximum is 15 CPS, a subtitle with duration of 2 seconds, will use 100% if it contains 30 characters, or 80% if it contains 24 characters, or 50% if it contains 15 characters, or 200% if it contains 60 characters, etc.).
+				--> "Display current CPS in CPS box" - the CPS Infobox will contain the subtitles current CPS (its number of characters divided by its duration).
+				--> "Display minimum time in CPS box" - the CPS Infobox will contain the minimum duration allowed (for the current number of characters) that will keep the subtitle's CPS within the allowed maximum.
+				--> "Display maximum characters in CPS box" - the CPS Infobox will contain the maximum number of characters allowed (for the current duration) that will keep the subtitle's CPS within the allowed maximum.
+		"MARK" TAB (new tab): configure a new Advanced Error Marking System for unique marking of each type of error:	
+			--> "General: Mark errors in main form's list" should be checked for the Advanced Error Marking System to work.
+			--> To set styles:
+				1) Select which columns to be marked for the error (N="Num", P="Pause", S="Show", H="Hide", D="Duration", T="Text").
+				2) Select the text style of the marking of the error (B="Bold", I="Italic", U="Underline", S="Strikethrough").
+				3) Select the text and background colors for the selected (in step 1) columns for the error in the two color boxes on the right (first box is the text color, second box is the background color).
+			--> Unchecked error types won't be marked at all.
+			--> "Default error marking" will be applied for all checked errors with no selected columns (i.e. don't select any columns for an error type to mark it with this default style).
+			--> The "Set Default Styles" button sets the default Advanced Error Marking System set of styles.
+			--> Currently, the order the errors are marked in the Main Window is the following: 1. The errors with the default marking are marked. 2. The errors with unique marking are marked in the order they appear in the "Mark" tab.
+
+
+* "MOVIE" MENU:
+	--> "Open":
+		--> It now supports "All files (*.*)".
+		--> It now supports many more format extensions.
+	--> "Playback rate":
+		--> "150%" added.
+	--> "Video renderer" added - select a video renderer.
+		--> "Default" - select default video renderer.
+		--> "VMR9" - select VMR9 video renderer.
+	--> "Audio stream" added - select from multiple audio streams of the current video file:
+		--> "None" - turn off all audio streams.
+		--> <audio-stream-number>. <audio-stream-title> - select an audio stream.
+
+
+* "SETTINGS" MENU:
+	"SETTINGS" WINDOW:
+		"GENERAL" PAGE:
+			--> "Tags mode" added:
+				--> "No interaction with tags" - the same as before.
+				--> "Multiple tags mode" - the new full tags support mode (recommended).
+				--> "Single tags mode" - the old tags mode.
+				--> "Auto delete tags" - remove all tags when loading and saving subtitle files.
+		"GENERAL: ADVANCED" PAGE:
+			--> "Default subtitle duration" added - the duration a newly added subtitle will have.
+			--> "Default subtitle pause" added - the pause between two subtitles (used when a new subtitle is added and in timing adjustment related functions).
+			--> "Increase step (time)" added - this is the increase/decrease step value for the "Show", "Hide", "Duration" and "Pause" boxes in Time Mode.
+			--> "Increase step (frames)" added - this is the increase/decrease step value for the "Show", "Hide", "Duration" and "Pause" boxes in Frame Mode.		
+			--> "Keep min duration" added - set a minimum duration that Subtitle Workshop should try to keep for every subtitle when timings are modified. Currently this is applied when the Show/Hide/Pause values are manually changed, when the "Set Start Time" and "Set Final Time" buttons are used, and when "Edit: Texts: Divide lines..." or "Edit: Texts: Fast divide lines" is used.
+				--> "but don't allow overlaps" added - don't allow overlaps when trying to keep the minimum duration.
+			--> "Automatically round time values to:" added - set a value that Subtitle Workshop should automatically round all time values to. Currently this is applied when the "Set Show Time", "Set Hide Time", and "Move subtitle" buttons/menus are used, and when "Edit: Texts: Divide lines..." or "Edit: Texts: Fast divide lines" is used.
+			--> "Round time values on subtitle load" added - if enabled, Subtitle Workshop will round all time values when a subtitle file is opened.
+		"FILE TYPES" PAGE:
+			--> "Add "Open with Subtitle Workshop" to shell context menu" added - adds "Open with Subtitle Workshop" to the context menu that pops up when you right-click a file in Windows. This works only for 32-bit Windows.
+		"SAVE" PAGE:
+			--> "Ask to save new subtitles" added - turn on or off the prompt to save new unsaved files.
+			--> "Save empty subtitles" added - if enabled, when saving subtitle files, instead of deleting all empty subtitles, Subtitle Workshop will save them with the text "- empty subtitle -". When the file is later opened in Subtitle Workshop again, the text in those lines will be automatically deleted and they'll become empty again.
+		"VIDEO PREVIEW" PAGE:
+			--> "Vertical video align" added - align the video vertically in the middle of the Video Preview Panel.
+			--> "Enter full screen on double click" added - enable/disable Full Screen toggle with a left mouse button double click. Disabling it might be useful when playing/pausing the video with a left mouse click is used a lot, to avoid unnecessary Full Screen toggle.
+			--> "Play video on load" added - specifies whether to play the video file automatically when it's loaded or not.
+			--> "Setting Show and Hide times" added:
+				--> "Shift Show value" - the amount of additional time shift (in relation to the current moment of the video), when the Show value of a subtitle is set with the "Set Show Time" button. Negative values can be used. A value of zero means the Show Time will be equal to the current moment of the video.
+				--> "Shift Hide value" - the amount of additional time shift (in relation to the current moment of the video), when the Hide value of a subtitle is set with the "Set Hide Time" button. Negative values can be used. A value of zero means the Hide Time will be equal to the current moment of the video.
+		"VIDEO PREVIEW: SUBTITLES" PAGE:
+			--> Subtitle transparency color box added - used when "Force using regions" is on. Default transparent color changed from pink to almost-black gray ($010101). Never set this color to the same color as the subtitle text color, the background color, the border color, or the shadow color!
+			--> "Align left when subtitles contain a new line starting with "-"" added - display subtitles containing dialogue with left alignment (but still in the center of the screen, of course).
+			--> "Relative font size" added - make the font size relative to the Video Preview Panel size.
+			--> "Keep subtitle on video" added - align the subtitles to the bottom of the video, instead of to the bottom of the Video Preview Panel.
+			--> "Try antialiasing" added - antialiasing for TrueType fonts when it is not enabled in Windows. "Force using regions" must be off.
+			--> Subtitles border color selector added (on the right of the Border width box).
+			--> Subtitles shadow color selector added (on the right of the Shadow width box).		
+		"LOOK: PROGRAM" PAGE:
+			--> "Highlight tags in "Text" and "Translation" fields" added - when enabled, all tags in the "Text" and "Translation" fields appear in the color of the box on the right. Click that box to change the color.
+			--> "Smart main window and subtitle list resize" added - 1) When the columns of the Subtitles List are resized, the width of the Main Window of the program is automatically adjusted so that there are no horizontal scrollbars in the Subtitles List. 2) When Translator Mode is entered or exited, and when the Left Panel is shown or hidden, the width of the Main Window of the program is automatically adjusted.
+			--> "Resize subtitle list columns when resizing form" added - when the Main Window of the program is resized, the Text and Translation columns of the Subtitles List are resized so that there are no horizontal scrollbars in the Subtitles List.		
+		"LOOK: LIST" PAGE:
+			--> "Mark untranslated subtitles with background" added - select a color for the background of untranslated subtitles.
+			--> "Right click selection" - enable row selection with a right mouse button click.
+			--> "Row height" added - adjust the height of the rows in the Subtitles List (in pixels).
+			--> "Text margin" added - adjust the margin inside the cells of the Subtitles List (in pixels).
+			--> "Selection" area added:
+				--> "Text" - text color of selected row(s).
+				--> "Color" - background color of selected row(s).
+				--> "Transparency" - selection transparency (100% means fully transparent, 0% means fully opaque).
+			--> "Columns" area added:
+				--> "Align":
+					--> "Num" - text alignment of the Num column.
+					--> "Pause" - text alignment of the Pause column.
+					--> "Show" - text alignment of the Show column.
+					--> "Hide" - text alignment of the Hide column.
+					--> "Duration" - text alignment of the Duration column.
+					--> "Text" - text alignment of the Text column.
+					--> "Translation" - text alignment of the Translation column.
+				--> "Display style" - all the dropdowns have two options: "Compact" and "Full". Selecting "Full" means the value will be fully rendered (e.g. "00:00:03,500"). Selecting "Compact" means leading zeroes will be omitted (e.g. "00:00:03,500" will be rendered as "3,500").		
+		"LOOK: MENU" PAGE: this page is removed and its items moved to "Look: Program".
+		"LOOK: MARKING" PAGE (new page):
+			--> "Marking with color" - set the text color of marked subtitles.
+			--> "Marking with background" - set the background color of marked subtitles.
+			--> "Columns to mark" - which columns should be marked:
+				--> "Mark Column "Num".
+				--> "Mark Column "Pause".
+				--> "Mark Column "Show".
+				--> "Mark Column "Hide".
+				--> "Mark Column "Duration".
+				--> "Mark Column "Text".
+			--> "Marking priority" - priority compared to Error Marking:
+				--> "Low (before error marking)" - Subtitle Workshop will mark marked subtitles first, then the errors.
+				--> "High (after error marking)" - Subtitle Workshop will mark errors first, then the marked subtitles.
+			--> "Marked subtitle color in video preview" - the text color marked subtitles will be displayed with in the Video Preview Panel subtitles.
+			--> "Marking file" - .srf files settings:
+				--> "Save marking file only manually" - .srf file can be saved only manually from "File: Save Marking".
+				--> "Ask each time to save marking file" - Prompt to save marking in a .srf file before closing the subtitles.
+				--> "Automatically save marking file on subtitle save" - save the marking in a .srf when the subtitles are saved.
+				--> "Automatically load marking file" - if there's a .srf file with the same name as the subtitle file opened, it's automatically loaded. The program will look for files with the following names: <subtitle file name> + <subtitle file extension> + <.srf>. If not found then it looks for <subtitle file name> + <.srf>.
+	"OUTPUT SETTINGS" WINDOW:
+		--> "Always show Output Settings when saving" option added for all formats - when checked, the Output Settings window will always appear when saving the corresponding format.
+		--> "ADVANCED SUBSTATION ALPHA" added.
+		--> "ADVANCED SUBTITLES" added.		
+		--> "SUBSTATION ALPHA":
+			--> Default encoding, colors and outline/shadow size changed.
+			--> New settings added in the "Others" tab: "Play resolution X", "Play resolution Y", "Collisions", and "Timer"
+	"LANGUAGE" MENU:
+		--> "Refresh language files" added - refresh all language files with missing keys and default English values. Use this function before you start updating your language file.
+
+
+* "HELP" MENU:
+	"ABOUT SUBTITLE WORKSHOP" WINDOW:
+		"INFORMATION" PAGE:
+			--> A list of all formats (and their extensions) supported by Subtitle API displayed when "<N> supported formats" is clicked.
+		"LICENSE" PAGE added.
+	
+
+* OTHER CHANGES:
+	--> Subtitle API updated to version 1.15 - it supports the new Multiple Tags Mode, adds a few new formats, and fixes issues with some old formats
+	--> Language files updated: English, Russian, Bulgarian.
+	--> Help files updated: English, Russian, Bulgarian.
+	--> PASCAL SCRIPTS:
+		--> The number of Pascal Script shortcuts is increased to 20 (shortcuts are set in the "shortcuts.key" file).
+		--> New Pascal Script functions added:
+			--> procedure GoToLineNumber(const Line: Integer); - selects and scrolls into view the line with a number Line.
+			--> function GetSWVersion(): String; - returns Subtitle Workshop's current version.
+			--> function GetAPIVersion(): String; - return SubtitleAPI's current version.
+			--> function GetOrgFilename(): String; - returns the original file's name (including its extension).
+			--> function GetOrgFilepath(): String; - returns the original file's path (both drive and directory, including the final backslash).
+			--> function GetTransFilename(): String; - returns the translation file's name (including its extension).
+			--> function GetTransFilepath(): String; - returns the translation file's path (both drive and directory, including the final backslash).
+			--> function GetMovieFilename(): String; - returns the movie file's name (including its extension).
+			--> function GetMovieFilepath(): String; - returns the movie file's path (both drive and directory, including the final backslash).
+			--> function GetVideoPosTime(): String; - returns the current position of the video (hh:mm:ss,zzz).
+			--> function GetVideoPosFrames(): String; - returns the current position of the video (in frames).
+		--> More info displayed on Pascal Script crash.
+		--> Command line parameter to run a Pascal Script added: SubtitleWorkshop.exe "/SCRIPT(Input_File/Output_File/Input_FPS/Pascal_script)".
+	--> OCR SCRIPTS:
+		--> "Parasite subtitles.ocr" script added - detects subtitles, containing only grunts, shouts, sighs, and similar sound representations like "argh", "hmm", "uhh", "whoa", "whoo-hoo", "whoops" etc.
+		--> "Default.ocr" script:
+			--> "I" (uppercase "i") and "l" (lowercase "L") OCR errors detection improved
+			--> Dot after punctuation marks ("?.", "!.", ":.") OCR errors detection added
+			--> Unnecessary spaces fixes removed	
+	--> TAGS:
+		--> Support added for the following tags: <font color=XXXXXX>, <font color=#XXXXXX>, <font color="XXXXXX">, and <font color="#XXXXXX">.
+		--> <B>, <I>, and <U> tags (capitalized) are now supported.
+	--> MAIN WINDOW"
+		--> There's less flickering when you resize the Main Window now.
+		--> Shortcut files can be now dragged and dropped in Subtitle Workshop.
+		--> The mouse cursor now turns into an hourglass when time-consuming operations are executed.
+		--> When switching Subtitle Workshop's interface language, and when changing the Translation Charset, the "- Untranslated subtitle -" text of all untranslated subtitles is switched to the corresponding text of the selected language for untranslated subtitles, if the selected Translation Charset is appropriate.
+	--> ERRORS, MARKING, FIXING:
+		--> Untranslated subtitles (subs with "- Untranslated subtitle -" text) that have style tags (<b>, <i>, <u>, <c:#XXXXXX>) are also considered untranslated now.	
+		--> Subtitles having "Bad Values" are no longer marked as subtitles having "Too short duration".	
+		--> When removing text before colon, if there's a dash before the colon it will not be removed now (e.g. "Sir?|- PICARD: Engage!" will be converted to "Sir?|- Engage!" instead of "Sir?|Engage!").
+		--> The ""-" in subtitles with one line" error is now detected even if there are spaces in front of the dash.
+		--> Errors that consider dialogue dashes (like "Dash on first line", "Dash in subtitles with one line", and "Dialogue on one line") now detect a total of four different dashes: "-" (0045 - normal dash / figure dash), "–" (0150 - en dash), "—" (0151 - em dash), "­" (0173).
+		--> OCR Scripts can now be used only to find items by not defining a ReplaceBy value in the ERROR tag.
+	--> FUNCTIONS:
+		--> "Edit: Texts: Divide lines..." and "Edit: Texts: Fast divide lines" automatically remove dialogue dashes now.
+		--> "Edit: Texts: Divide lines..." and "Edit: Texts: Fast divide lines" new smart algorithm for dividing single-lined subtitles added (division is made after a dialogue dash or a punctuation mark if possible).
+		--> "Edit: Texts: Divide lines..." and "Edit: Texts: Fast divide lines" now copy tags to both newly created subtitles.
+		--> "Edit: Texts: Divide lines..." and "Edit: Texts: Fast divide lines" now show a warning message and don't execute, if the duration of the subtitle to be divided is really short.
+		--> "Edit: Texts: Fast divide lines" now sets Automatic durations to both new subtitles, based on the new texts' lengths.	
+		--> "Edit: Texts: Fast divide lines" now works when more than one subtitles are selected.
+		--> "Edit: Subtitles: Combine subtitles" (and "Edit: Subtitles: Auto combine subtitles") now automatically remove the "- Untranslated subtitle -" text, when combining a translated subtitle with an untranslated subtitle in Translator Mode.
+		--> "Edit: Subtitles: Combine subtitles" now puts all tags in the beginning of the combined subtitle and cleans unnecessary tags, when Single Tags Mode (Settings: Settings: Tags mode) is selected.
+		--> "Edit: Texts: Smart line adjust..." and "Edit: Texts: Fast smart line adjust" now also fix wrong tag positions and empty lines.
+		--> "Edit: Texts: Fast smart line adjust" now tries to break on punctuation marks; it also offers up to 3 variations when "Settings: Settings: Advanced: Fast smart line adjust: Toggle breakpoint" is enabled.	
+		--> "Edit: Texts: Fast smart line adjust" now only modifies the Text or the Translation (when only one subtitle is selected), depending on the focused field - "Text" or "Translation" - or on the focused column in the Subtitles List.
+		--> "Edit: Texts: Fast smart line adjust" now doesn't toggle variants when multiple subtitles are selected.
+		--> The translation is now copied to every new line, when using an effect from "Edit: Subtitles: Effects".
+		--> Functions that look for dialogue dashes (like "Unbreak subtitles", "Smart Line Adjust", and "Delete unnecessary links") now detect a total of four different dashes: "-" (0045 - normal dash / figure dash), "–" (0150 - en dash), "—" (0151 - em dash), "­" (0173).		
+	--> MISC:
+		--> "Undo" of "Input FPS" and "FPS" changes now returns the exact previous timing values.	
+		--> When associating file types with Subtitle Workshop in "Settings: Settings: File types", unassociated file types are automatically associated with their previously associated program now.	
+		--> Closing the "Settings: Settings" window and the "Tools: Information and errors: Settings" window doesn't take that much time now (faster settings saving).		
+		--> If only one instance of Subtitle Workshop is allowed, when trying to launch a second one, the first one is now brought to front.
+		--> Other small changes.
+
+
+* FIXED BUGS:
+	--> Menu titles not properly displayed when the program language is changed in "Settings: Language".
+	--> The "Always on top" option in "Settings: Settings: General" is not saved.
+	--> The save prompt window for new subtitle files appears multiple times if not closed, causing an error.
+	--> Total number of symbols not properly displayed in Text and Translation labels when the subtitles contain tags.
+	--> Unclosed tags like "<c:#XXXXXX" (no ">" in the end), cause Subtitle Workshop to crash when those subtitles are previewed in the Video Preview Panel.
+	--> After the error marking color is changed in "Tools: Information and errors: Settings", the Subtitles List is not properly repainted.
+	--> <b> (bold) and <u> (underline) tags can't be removed by using the Context Menu of the Subtitles List - instead, the <i> tags are always removed.
+	--> The bottom left border of the subtitle in the Video Preview Panel is cut out.
+	--> The top right end of some letters in italics in the subtitle in the Video Preview Panel is cut out.
+	--> When turning the border or the shadow on and off in "Settings: Settings: Video Preview: Subtitles", the subtitle sample is not refreshed accordingly.
+	--> Clicking the empty space at the bottom of the "Tools: Information and errors: Various information" window causes an error.
+	--> Undoing "Edit: Subtitles: Combine subtitles" does not return the proper Final time of the first of the combined subtitles.
+	--> Automatically saving the work as a .bak file ("Settings: Settings: Save: Save as backup") does not make a backup file of the Translation File.
+	--> When the subtitles background color for the Video Preview Panel is changed in "Settings: Settings: Video preview: Subtitles", after opening a new subtitle file, the background color is restored to the previous one.
+	--> When opening a .srf file that contains a subtitle number higher than the number of the current last subtitle, an error occurs.
+	--> Some minor problems in the "Edit: Texts: Divide Lines" window.
+	--> The "Spaces before custom characters" errors are marked as "Spaces AFTER custom characters" errors.
+	--> Undoing "Edit: Texts: Set Maximum Line Length" in Translator Mode doesn't work correctly.
+	--> Undoing fixed overlapping doesn't work correctly.
+	--> Undoing fixed repeated subtitles doesn't work correctly.
+	--> Changing the Input FPS of a new unsaved file causes an error.
+	-->	"Edit: Timing: Automatic durations" doesn't calculate the durations correctly.
+	--> When opening a "Plain text", the previously opened file is not saved and not correctly closed.
+	--> When changing Subtitle Workshop's interface language, the texts of the Text and Translation fields is modified and become unreadable.
+	--> Applying "Edit: Text: Fast Divide Lines" to single-line subtitles creates two empty subtitles.
+	--> Double click on a row from the Subtitles List sometimes doesn't move the video to the corresponding moment (after you close a subtitle in Translator Mode, then turn off Translator Mode, then open new subtitles).
+	--> "In place edition" does not allow editing of the timing values, though it should.
+	--> The encoding of the subtitles in the Video Preview Panel sometimes changes after using the "Settings: Settings" window.
+	--> Undoing deletion a character in a group of three or more subsequent IDENTICAL characters doesn't work properly (e.g. Undo the deletion of one "y" from the word "Kashyyyk").		
+	--> When joining two subtitle files ("Tools: Join subtitles..."), if the name of the new file contains a dot (.), it will be saved without an extension.
+	--> Pressing the DEL key in the Subtitles List (Delete subtitle) when no subtitles are selected causes an error.
+	--> When the video is paused, the current time displayed in the time counter below the video is not exact, but a little bit behind.
+	--> Undoing a character deletion, or Redoing a character input doesn't restore the "Text" or "Translation" caret (blinking cursor) position properly.
+	--> SAMI background color does not change properly in "Settings: Output settings".
+	--> Tags not ignored when determining whether to enable the "Edit: Texts: Divide lines" and "Edit: Texts: Fast divide lines" menus or not.
+	--> Undoing "Edit: Texts: "Fast unbreak subtitles" in Translator Mode doesn't restore the original translation.
+	--> The background of the Subtitles in the Video Preview Panel is rendered transparent when "Settings: Settings: Video preview: Subtitles: Force using regions" option is enabled, even when the "Settings: Settings: Video preview: Subtitles: Try transparent background" option is disabled.
+	--> When jumping to next/previous error or to next/previous marked, or using "Search: Search...: Replace all", or inserting a new line, if more than one subtitles have been selected, not all of them are properly deselected.
+	--> "Edit: Subtitles: Effects: Type effect" doesn't handle tags properly.
+	--> The video altered playback rates of 200%, 300%, and 400% don't work properly when the "Altered playback" button in the Video Preview Panel is pressed.
+	--> The charset of font example panels in "Settings: Output settings" doesn't change accordingly.
+	--> When using the MOVE SUBTITLE button, the values of the "Show", "Hide", "Duration", and "Pause" boxes are not refreshed.
+	--> "Edit: Redo" is not disabled after using "Edit: Texts: Set maximum line length".
+	--> "Edit: Texts: Fast divide lines" doesn't set the subtitle file as modified.
+	--> When changing times using "in-place edition", the subtitle file is not set as modified.
+	--> Pressing the ENTER key when changing the Text using "in-place edition" causes an error or doesn't set the new text/translation.
+	--> When using "in-place edition", the edit boxes that popup don't always fill the corresponding cell properly.	
+	--> The text in the Subtitles List becomes empty when the "Default" charset is being used.
+	--> The Subtitle in the Video Preview Panel doesn't show up immediately when "Movie: Show subtitles" is turned on after it was turned off.
+	--> Clicking on the "Calculate" button in the "Extras" tab of the Various Information Window when the length of the longest subtitle is 0 (all subtitles are empty), causes Subtitle Workshop to crash.
+	--> If only one instance of Subtitle Workshop is allowed, when trying to open a subtitle file and Subtitle Workshop is already running, the file is sometimes not opened at all.
+	--> Output settings are not loaded when using command line parameters.
+	--> When setting "Backward and forward time" in "Settings: Settings: Video Preview", if the full number is not written (blanks are left - '_'), an error occurs.
+	--> When opening a .srf file that references a subtitle file that does not exist, an incorrect error message is dislpayed (The file "<file name>" is a bad subtitle or an unsupported format.) and then an error occurs.
+	--> In Translator Mode, loading a "Plain text" is not possible (always leads to error).
+	-->	In Translator Mode, after loading a .srf file, an error occurs.
+	--> Other small bugs.
+
+
+
+==========================================================================================================
+Changes in version 2.51 (01/03/2004):
+==========================================================================================================
+
+	* Fixed: bug with XP style menus.
+	* Fixed: now it is possible to modify time writing it and pressing enter in the main controls while you are in frames mode.
+	* Fixed: bug with OCR scripts parser and multiple lines comments.
+	* Fixed: overlapping fixing in some cases.
+	* Fixed: now you can remove tags with the popup menu even if "No interaction with tags" option is enabled.
+	* Fixed: times in simple adjust changed when you switched tabs.
+	* Fixed: "Add new sync point" now works fine in frames mode.
+	* Fixed: strange bug detecting too long lines in some cases.
+	* Fixed: bug with custom formats.
+	* Fixed: bug with "Time expander/reducer".
+	* Fixed: other little bugs.
+
+==========================================================================================================
+Changes in version 2.50 (19/02/2004):
+==========================================================================================================
+
+	* Added: multilevel undo/redo! It is now possible to undo all the modifications made by Subtitle Workshop!
+	* Added: new advanced system to synchronize subtitles, ideal for non constant desynchronizations. It lets you select multiple subtitle-video points (not just two) and adjust the subtitle.
+	* Added: Pascal scripts feature! Now if you code in Pascal you can code custom code scripts to use in Subtitle Workshop. You can do lots of things, like if scripts were plug-ins!
+	* Added: nice feature to "Join subtitles" that allows you to join subtitles taking movie fragments as a reference, so you don't have to mess with timings after joining the subtitles.
+	* Added: support for Adobe Encore DVD format (no Unicode support yet, you must save the ANSI file Subtitle Workshop generates as Unicode in Notepad or any text editor with Unicode support).
+	* Added: support for "Ulead DVD Workshop 2.0" format.
+	* Added: "Time expander" was changed to "Time expander/reducer", allowing you to do the exact opposite of the previous expander.
+	* Added: now it is possible to load sound files in video preview.
+	* Added: now you can choose whether to display a combobox in main form listing all OCR scripts or not.
+	* Added: possibility of saving a Media Startup File - ASX (Windows Media Player) or SMIL (Real Player).
+	* Added: more playback rate speeds.
+	* Added: now if you double click the item that informs you of the longest line in Various information, the window closes and the main subtitles list scrolls to the subtitle.
+	* Added: "Use in-place edition" option, so that you can edit a subtitle's text/time only selecting it on the list and pressing F2.
+	* Added: "WordChars" property to OCR scripts so it works better for many languages.
+	* Added: now when you save project, original and translated files are saved too.
+	* Changed: time edit controls, bugs were fixed and now they look different.
+	* Changed: all things previously referring to "Slow motion" now refer to "Alter Playback Rate".
+	* Improved: now if you try to overwrite a file using "Join subtitles" a warning message is displayed.
+	* Improved: overlapping fix precision increased from 1 to 35 milliseconds.
+	* Fixed: minor problems with "Space after custom characters".
+	* Fixed: now it is impossible to apply text effects over a blank subtitle.
+	* Fixed: in "Movie information", when the file is smaller than 1 MB size is now informed correctly.
+	* Fixed: bug with confirmation message for "Delete text before colon".
+	* Fixed: bugs with "No interaction with tags" option.
+	* Fixed: strange bug when Subtitle Workshop was trying to save a backup of the subtitle and you were in "Save as" dialog.
+	* Fixed: important bugs with OCR scripts (thanks to Zvezdan Dimitrijevic).
+	* Cool new icon, submitted by <<[KoRNkID]>>.
+
+==========================================================================================================
+Changes in version 2.03 (04/10/2003):
+==========================================================================================================
+
+	* Improved: video preview buttons (code inside - now they don't work with regions anymore).
+	* Fixed: "Access violation" when you double clicked in "Rew" and "Forward" buttons in video preview.
+	* Fixed: "Access violation" when fixing some hearing impaired subtitles.
+	* Fixed: bug when reading some SubViewer 2 subtitle files.
+
+==========================================================================================================
+Changes in version 2.03 (04/10/2003):
+==========================================================================================================
+
+	* Added: amazing power to the OCR Scripts because of the possibility of using Regular Expressions!
+	* Added: customizable shortcuts! Now you may adapt Subtitle Workshop to what you most like easily setting your own shortcuts from a separated text file.
+	* Added: possibility to shift subtitle forwards or backwards a configurable amount of time (default 100 milliseconds).
+	* Added: Subtitles/Effects menu to make effects with the subtitle, for now "Type effect" and "Flash" (fast, medium, slow).
+	* Added: support for more subtitle formats: FAB Subtitler, MAC DVD Studio Pro, MPSub, Inscriber CG, OVR Script and Panimation.
+	* Added: "Fast divide lines" to quickly divide a subtitle into two, calculating automatic durations and without entering "Divide lines" dialog.
+	* Added: optional "Lines without letters" detection and removal in Information and Errors.
+	* Added: optional "- " detection and removal in subtitles with one line in Information and Errors.
+	* Added: "No interaction with tags" option, so Subtitle Workshop will do nothing when it reads tags from every subtitle file, and it will not delete them. Useful if you would like to work with full tags support (which Subtitle Workshop does not support yet).
+	* Added: "Show left panel" option in Settings menu.
+	* Added: "Show time controls" option in Settings menu.
+	* Added: three more options in "Automatic durations" (Apply new duration in all cases, only if new duration is greater/smaller than original).
+	* Added: "Use automatic duration" option for Divide lines.
+	* Added: now Subtitle Workshop is better designed to work with various OCR Scripts, a menu has been added so user can choose between multiple OCR scripts.
+	* Added: "Show confirmations in main form on fix" option in Information and Errors settings.
+	* Added: "Movie/Information..." menu to show information about the movie.
+	* Added: now you can load a movie even if some streams can't be rendered (eg. audio or video codec is missing).
+	* Added: in "Convert case", the "Only first letter of first word" option has been added under "Sentence type", so that you can uppercase only first letter of a sentence and leave all other words like they are.
+	* Changed: order of the time controls in main form. Now "Show" is next to "Hide" and "Duration" is below.
+	* Improved: in "Various information" the details given are now for original and translated file separately.
+	* Improved: now if you load a video file with multiple audio streams, you will only hear number one (not all at the same time as before).
+	* Improved: now if a subtitle contains multiple errors, Subtitle Workshop will inform you about all of them.
+	* Improved: "Move subtitle" button (video preview controls) now works for all the selected subtitles.
+	* Improved: "Smart line adjust" now works better with French language.
+	* Improved: "Space before characters" doesn't add space nor detect the characters if they are in the beginning of a line.
+	* Improved: hearing impaired subtitles removal.
+	* Improved: functions to add space before/after custom characters. Now they include better composed words detection and work better under some particular situations.
+	* Improved: "Autosearch for movie" feature now works with video files extensions different to ".avi".
+	* Fixed: bug when splitting subtitles in advanced mode, at end of videos (eg. when splitting in three parts, part two was first part + second part instead of second part only).
+	* Fixed: now it is possible to save a plain text file after loading and modifying it.
+	* Fixed: "Fix punctuation" now takes into account the semicolon (";").
+	* Fixed: minor bug with "-" sign and "Fix punctuation" feature.
+	* Fixed: "Overflow" error in some rare cases when FPS of a movie wasn't detected correctly.
+	* Fixed: small problem when saving subtitles in SAMI format without entering Output Settings.
+	* Fixed: bug when loading some MicroDVD files.
+	* Fixed: bug when reading files in Spruce DVDMaestro format.
+	* Fixed: bug when saving files in Spruce Subtitle File format.
+	* Fixed: incompatibility with MaestroSBT styles reading in SSA output.
+	* Fixed: bug when reading invalid DivXG400 FPS Info tags from MicroDVD files.
+	* Removed: useless "Set" button in main form.
+	* Small additions, changes and little improvements.
+
+==========================================================================================================
+Changes in version 2.01 (01/05/2003):
+==========================================================================================================
+
+	* Added: "Automatic durations" to automatically calculate the duration of the subtitles using a simple formula.
+	* Added: put the mouse in the main list over a subtitle that contains an error and you'll get a tooltip specifying exactly what type of error it has.
+	* Added: now it is possible to fix errors only in the selected subtitles.
+	* Added: now it is possible to directly load a Subtitle Report File (*.srf) generated by ViPlay.
+	* Added: possibility to mark subtitles for later review (and of course, unmark them).
+	* Added: now the program remembers whether you are displaying original or translated subtitle over the video when in translator mode.
+	* Added: in Information and Errors now you can detect too long/short durations and too long lines. The values are configurable.
+	* Added: detection and removal of spaces between numbers.
+	* Added: "Move subtitle" button in video preview controls, which moves the subtitle's start time without altering duration.
+	* Added: "Jump to previous subtitle" and "Jump to next subtitle" buttons in video preview controls.
+	* Added: "Fix one unit overlap at load" option in Information and Errors settings.
+	* Added: "Various information" displays a lot of information about the subtitle file.
+	* Added: "Calculate best font size for playback" in "Various information".
+	* Added: "Toggle breakpoint" option for Smart Line Adjust.
+	* Added: "Save as backup" option to save automatically every X minutes.
+	* Added: [Alt]+[Enter] shortcut to simulate subtitle double click.
+	* Improved: "Delete unnecessary links" function.
+	* Changed: the time counter in video preview.
+	* Changed: the information retrieved when pressing "Check" in Information and Errors was moved to "Various information".
+	* Fixed: important bug that made some people see the main window truncated.
+	* Fixed: if you are in translator mode and displaying translation, when you exit translator mode Subtitle Workshop will display original again.
+	* Fixed: bug when simple splitting a subtitle.
+	* Fixed: bug when removing a part of a hearing impaired subtitle.
+	* Fixed: bugs in "Space after/before custom characters".
+	* Removed: "Load file after using save as..." option, now always load the file.
+
+==========================================================================================================
+Changes in version 2.00 (12/04/2003):
+==========================================================================================================
+
+* General changes
+	* Totally rewritten from scratch improving all parts of the code.
+	* Speed of all operations was *highly* improved, making Subtitle Workshop the fastest application available!
+	* Modified the list where the subtitles are displayed.
+	* Now you can switch between interfaces!
+	* Added: Spell Check using Microsoft Word's engine, so it should work with every installed language.
+	* Added: Advanced Split, now it is possible to split a subtitle in an indefinite number of parts equal in time, in lines, or at the end of multiple videos.
+	* Added: now the caption of the buttons in the message boxes can be translated.
+	* Added: "Insert before" to insert a subtitle before the selected one.
+	* Added: up & down buttons to modify times with the mouse.
+	* Added: the "Text" and "Translation" label now also display the number of characters in the selected subtitle's text and/or translation (whole subtitle and each line).
+	* Added: support for mouse wheel in the main list of subtitles.
+	* Added: now you can Drag & Drop video files into Subtitle Workshop (detection of videos is based on extension).
+	* Added: much better handling when saving read only files.
+	* Modified: "New subtitle" doesn't longer use a form.
+	* Modified: now when you don't want to use the automatic format recognition you just have to select the right filter in the open dialog.
+	* Fixed: now the program finally works perfectly when using large fonts!
+	* Lots of minor changes and small bug fixes.
+* Reading engine
+	* Totally rewritten (and extremely fast).
+	* Now the program is based in URUSoft Subtitle API, thus it now supports around 50 subtitle formats! Support for new formats and fixes in the engine can easily be achieved by downloading an updated DLL file!
+	* Added: now you can load plain text files (selecting the very last filter in the open dialog) and set the times yourself. This is useful for example if you have the lyrics of a song and a video clip and want to make them match.
+	* Added: now it reads and writes DivXG400 FPS Info tag from MicroDVD files.
+	* Added: Subtitle Workshop now supports color tags for MicroDVD and ViPlay Subtitle File formats.
+	* Fixed: bugs when saving some formats.
+	* Fixed: Spruce subtitle file format is now read and saved with the correct time format.
+	* Improved: Philips SVCD format reading and writing.
+* Video related
+	* Modified: Video preview was highly improved and is now in main window to ease subtitle editing job.
+	* Added: now Video preview automatically removes VMR from the filter graph so subtitles can be transparent in Windows XP.
+	* Added: "Mark as first dialog" and "Mark as last dialog" buttons to forward the times of first and last dialogs to the "Adjust subtitles" feature.
+	* Added: "Add FPS From AVI" doesn't use DirectX anymore, thus it only work with AVI files now.
+	* Added: "playback rate" for video preview (50%, 60%, 70%, 80%, 90% and original speed (100%)).
+	* Added: opening a video now takes the frame rate from it automatically.
+	* Added: now when you click on the video (or in the subtitles over the video) the video plays or pauses.
+* Information and errors
+	* Highly enhanced functions strictly designed to get speed and a high grade of efficiency.
+	* Added: very powerful text scripts (HTML style syntax) to define custom OCR errors.
+	* Now it is possible to mark errors in the main list with customizable color and font style.
+	* Added: possibility to check errors (and mark them) on load subtitle.
+	* Added: possibility to fix errors on load subtitle.
+	* Added: check & fix "Repeated character".
+	* Added: check & fix "Repeated subtitles".
+	* Added: "Spaces after custom characters" and "Spaces before custom characters", adds a space (if not already present) before/after customizable characters.
+	* Added: "Delete text before colon" now has a sub-option, "Only if text is in capital letters".
+	* Added: now "Fix overlapping" acts more smartly, cutting the shortest subtitle or if the difference in the length of the subtitles is less than 5 chars, set proper duration for both.
+	* Added: now it is possible to choose what unnecessary spaces to remove.
+	* Added: "Recheck errors" and "Fix errors" commands in main form accessible by shortcuts.
+	* Added: "Jump to next error" command in main form.
+	* Improved: empty subtitles detection (now detects a subtitle with no letters as an empty one).
+* Translator mode
+	* Modified: "Translate subtitles" is now in main window, has been highly improved and is now called "Translator mode".
+	* Added: Load/Save translation project, so that loading one file loads original/translated/movie file automatically.
+	* Added: now in translator mode you can specify original and translated font charsets, so you can have each text column in the list with languages that use a different alphabet.
+	* Added: Swap original/translated.
+* Subtitle editing
+	* Added: popup menu when you right-click the list. It lets you easily add/remove tags (bold, italic, underline) to/from all the selected subtitles. It also let's you edit color tag.
+	* Added: Cut/Copy/Paste subtitles from the list.
+	* Added: now when you enter tags in a subtitle and have an option in settings enabled, the appropriate font style & color is applied to the subtitle in the list so you can have a clearer view of it.
+	* Added: now if you leave the mouse cursor over the list for 5 seconds and you are in translator mode, Subtitle Workshop tells you how many untranslated lines there are.
+* Timings related
+	* Added: now you can adjust subtitles using two points of the subtitle file and two points of the video.
+	* Added: other method to adjust subtitles, "Adjust to synchronized subtitles". You just click a menu and everything is done automatically.
+	* Added: "Time expander" feature, to expand the final time of certain subtitles under certain conditions.
+	* Added: "Read times from file" feature.
+	* Added: "Extend duration", useful to extend the duration of all the selected subtitles to the start time of next subtitle.
+* Text related
+	* Added: "Convert case" - with 5 different conversions mode: "Sentence type" (with optional "..." detection), "lowercase", "UPPERCASE", "Title Type", "iNVERSE tYPE".
+	* Added: "Smart line adjusting" - constrains subtitles bigger than two lines into two and set proper line length for subtitles.
+	* Added: "Combine subtitles" - combines two or more subtitles into one.
+	* Added: "Unbreak subtitles", which makes all selected subtitles to be in one line.
+	* Added: "Divide lines" to easily divide a subtitle with more than one line into two subtitles.
+	* Added: "Set maximum line length" feature - splits the subtitle in N number of lines so that each of the lines is shorter than a maximum specified length.
+	* Added: "Read texts from file" feature.
+	* Added: "Delete unnecessary links" menu, which eliminates "..." from the beginning of a subtitle and from the end of the previous, only if the end of that subtitle is "...".
+	* Modified: "Reverse text" now only reverses text of the selected subtitles.
+* Settings
+	* Added: "Video preview" section and "Video preview/Subtitles" which enables you to completely configure the look of the subtitles.
+	* Added: "Autosearch for movie" with suffix detection.
+	* Added: "Force working in time mode" option.
+	* Added: "Interpret invalid files as plain text" option.
+	* Added: "Apply style to subtitles" option.
+	* Added: "Mark untranslated subtitles with color" option and customizable color.
+	* Added: "Show horizontal scrollbar" option.
+	* Changed: now Subtitle Workshop doesn't alter extensions when you press Ok button unless you really modify the associated extensions.
+* Join subtitles
+	* Added: now subtitle files added can be sorted by dragging them with the mouse.
+	* Added: now you are able to select different frame rate for each frame-based subtitle file.
+	* Changed: redesigned partially.
+* Batch convert
+	* Changed: redesigned partially.
+	* "Exhaustive format check" option has been added (uncheck it and you get great speed, check it and you get 100% security the file can be loaded).
+	* Added: now it generates a log (*.log) file, including all the details of the conversion.
+	* Added: now you are able to choose different frame rate for each frame-based subtitle file.
+* Other changes
+	* Added: now when you enter Search & Replace in translator mode, a combo box appears where you can define the charset of the text you are going to find.
+	* Added: "Preserve case on replace" in Search & Replace.
+	* Added: more configurable parameters in SSA Output Settings, and fixed some bugs.
+	* Changed: "Duration limits" was redesigned.
+	* Changed: some things with command line parameters.
+	* Fixed: stuff with FPS and Input FPS.
+	* Fixed: slight bug when splitting subtitles at the end of a video.
+	* Removed: options nobody used :).
+
+==========================================================================================================
+Changes in version 1.06 (01/01/2003):
+==========================================================================================================
+
+	* Added: Video Preview, now you can watch subtitles over the video in Subtitle Workshop.
+	* Added: support for Philips SVCD Designer, Sonic Scenarist, Spruce DVDMaestro and Spruce Subtitle File formats, now Subtitle Workshop supports 26 subtitle formats.
+	* Added: "Translate subtitle" form, it has two lists, one with the original subtitle and other with the translated subtitle. It was designed in order to make translation easier.
+	* Added: "Fix OCR Errors" (user has own table for replacements, so it doesn't just fix predefined OCR errors but all what you want to replace).
+	* Added: "Check for new version", which enables you to see if there is a new version and if there is, see it's news.
+	* Added: now you can select which formats to show when "Save as".
+	* Added: now you can select to show custom formats placed on the "CustomFormats" folders when "Save as".
+	* Added: support for tags in the ViPlay Subtitle File format.
+	* Added: "Reverse text" function.
+	* Added: "Sort" function. It sorts the subtitles according to their start time.
+	* Added: now you can specify {swFrameStart} and {swFrameEnd} in your custom formats. In this way you can save the time in formats like hh:mm:ss,zzz:FRAMES.
+	* Added: "Confirm when deleting a subtitle" option.
+	* Added: now you can jump to previous line pressing [Ctrl]+[Enter].
+	* Added: "Set duration limits" now remembers last entered values.
+	* Improved: Custom Export Format.
+	* Changed: Information and Errors and it's settings were totally redesigned.
+	* Changed: program settings were redesigned.
+	* Fixed: some bugs in "Search & Replace".
+	* Fixed: bug when saving secondary, tertiary and shadow colors in SubStation Alpha's output settings.
+	* Fixed: bug when splitting SubRip files. The index of the subtitle in the second file was not updated properly.
+	* Fixed: bug when joining subtitles (there was a problem while settings the extension of the resulting file).
+	* Fixed: bugs with the interface when you used large fonts (now it doesn't get truncated anymore).
+
+==========================================================================================================
+Changes in version 1.05 (09/11/2002):
+==========================================================================================================
+
+	* Added: custom export format, which enables you to save subtitle files in format that Subtitle Workshop doesn't support. You can create your own formats or simple text files in a minute!
+	* Added: now when you write a time, you don't longer have to write the ":" and "," (Subtitle Workshop will do that automatically).
+	* Added: now the program supports working with tags in SAMI, SubRip, SubStation Alpha and MicroDVD formats (tags are only valid for the whole subtitle, not just a part of it).
+	* Added: a better error handling, now when you get an exception you will be given more details.
+	* Added: Go to line number feature in main form.
+	* Added: "Register extensions on start" option.
+	* Added: now you can load a subtitle file specifying the format in which you are going to load it (use it if the automatic recognition doesn't work).
+	* Added: "Select text after pressing [Shift]+[Enter]" option.
+	* Added: now the Information and Errors section also tells you which is the subtitle with the longest line in the file.
+	* Added: the results in Information and Errors are not deleted until you close the subtitle file.
+	* Added: now you can choose to work with duration, final time or both.
+	* Changed: "Output settings" was totally redesigned. Now it supports more formats and you can customize more things.
+	* Changed: main menu was reorganized. Also, "Select all" menu was added.
+	* Changed: now Information and Errors does an automated check when you open it (there's no need to click the "Check" button).
+	* Fixed: the Zero function didn't set the "Modified" flag.
+	* Fixed: time problems with some subtitle formats.
+	* Fixed: a bug when splitting frame based subtitles when "Recalculate time values" was checked.
+	* Fixed: "Access violation" in Information and Errors when there was only one blank subtitle.
+	* Fixed: bugs when reading and saving TMPlayer files.
+	* Totally recoded and HIGHLY improved the SAMI reading engine. It should now work with all types of files.
+	* Improved the SubRip subtitles reading (now subtitles with errors can be successfully read).
+	* Improved the MicroDVD subtitles reading.
+	* Improved JACOSub compatibility.
+	* Improved the TMPlayer subtitles reading. Now it reads all types of TMPlayer subtitles.
+	* Some minor changes and improvements.
+
+==========================================================================================================
+Changes in version 1.04a (21/09/2002):
+==========================================================================================================
+
+	* Fixes the problem that some people had when loading subtitles or creating new ones.
+
+==========================================================================================================
+Changes in version 1.04 (14/09/2002):
+==========================================================================================================
+
+	* Added: support for three subtitle formats: DKS Subtitle Format, MPlayer and MPlayer 2
+	* Added: "Output settings". Here you can change the font, color, alignment, etc. that Subtitle Workshop should write, when saving a file in SAMI, SubStation Alpha or SubViewer 2.0 formats.
+	* Added: command line support (silent mode).
+	* Added: "Allow more than one instance running" option.
+	* Added: "Load file after using "Save as..."" option.
+	* Added: some icons in the menus for a better look.
+	* Added: progress bar for Search & Replace.
+	* Added: match whole words for Search & Replace.
+	* Added: "Recalculate time values" option for split and join subtitles.
+	* Added: now you can limit the amount of recent files (0 if you don't want the "Recent files" menu).
+	* Added: now you can close every dialog pressing the [Esc] key.
+	* Added: now you can choose the default format that Subtitle Workshop will use in the Settings window
+	* Added: now the messages in Information and Errors have a "Cancel" button (if you press it the whole filtering process will be cancelled).
+	* Added: "Remove unnecessary spaces" option in Information and Errors now also removes spaces in front of punctuation marks (" .").
+	* Added: "Replace dots" (replaces 4 or more consecutive dots to only three followed by a space when necessary) in Information and Errors.
+	* Added: now Subtitle Workshop warns you if a subtitle is over two lines, at the Information and Errors window.
+	* Added: now you can set the initial time of a subtitle to zero and the final time equal to it's duration by selecting it and pressing [Ctrl]+[Z]. This can also be done with multiple subtitles.
+	* Added: File/Exit menu.
+	* Added: Spanish help file!
+	* Changed: the SAMI reading engine has been rewritten and it should be highly improved, allowing much more versatility.
+	* Changed and added some key shortcuts.
+	* Changed: now the "Language" menu is hidden if no language files are found.
+	* Fixed: now Subtitle Workshop warns you if only a part of a hearing-impaired subtitle is deleted.
+	* Fixed: some other minor bug fixes.
+
+==========================================================================================================
+Changes in version 1.03 (21/07/2002):
+==========================================================================================================
+
+	* Added: support for two more subtitle formats: IAuthor and SubSonic (thanks to AML for helping).
+	* Added: adjust subtitles.
+	* Added: Search & Replace.
+	* Added: Duration Limits (maximum and minimum duration are here).
+	* Added: remember last used folder.
+	* Added: "Find next" menu.
+	* Added: progress bar in massive convert window.
+	* Added: remove hearing-impaired subtitles, remove unnecessary spaces and delete everything before ":" options at the information and errors window.
+	* Now Subtitle Workshop displays the name of the opened file in the title bar, instead of it's format.
+	* Now you can manually type the directory in the Massive Convert window instead of using browse button (the directory will be created if it doesn't exist).
+	* Now you can easily enter custom FPS's clicking the FPS pull down menu, writing it and pressing the [enter] key.
+	* Now Subtitle Workshop works fine with every decimal separator possible (not only ",")
+	* Fixed strange bug when selecting more than one subtitle.
+	* Fixed all the bugs in the split section.
+	* Fixed all the bugs in the join section.
+	* Fixed a lot of incompatibility issues in SAMI and SubStation Alpha files
+	* Re-ordered the language file and removed obsolete things
+
+==========================================================================================================
+Changes in version 1.02 (10/06/2002):
+==========================================================================================================
+
+	* Added clear list option in the recent files menu.
+	* Added Look section in the settings window. You can choose the font to use in the program, it's size, to use the OfficeXP-Style menu in the main window and to use it with gradient or not.
+	* Added external preview, which allows you to preview the subtitle file you are handling with your favorite movie player (must support command line!).
+	* Changed some things in the format recognizing system and fixed some bugs when opening SubStation Alpha files.
+
+==========================================================================================================
+Changes in version 1.01 (11/05/2002):
+==========================================================================================================
+
+Subtitle Workshop 1.01 (11/05/2002):
+	* The current subtitle information dialog is replaced by the Information and errors window.
+	* Now Subtitle Workshop is able to fix errors in subtitles.
+	* Fixed a bug when saving a SubViewer 2 subtitle file.
+	* Now you can select the name of the files at the split section.
+	* Now when you search for a text, the program will scroll in the list of subtitles automatically.
+	* Added options to ask to save the work on close subtitle/exit and to save work automatically every X minutes.
+
+==========================================================================================================
+Subtitle Workshop 1.00 (09/04/2002):
+==========================================================================================================
+
+	* First version.

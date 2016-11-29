@@ -1,0 +1,1136 @@
+;   Subtitle Workshop 2.51
+;   ChineseBIG5 language file
+;
+;   Author: koko
+;   E-mail: kokokoko@giga.net.tw
+;
+
+[General]
+Translator=koko
+Font Charset=136
+AllFiles=©Ò¦³¤w¤ä´©ÀÉ®×
+Help=Manual.html
+FPS=¨C¬í¼v®æ
+PlainText=¯Â¤å¦r
+STP=¦r¹õÂ½Ä¶±M®×
+SRF=¦r¹õ³ø§iÀÉ®×
+AllTheFiles=All files
+
+[Standard buttons]
+01=½T©w(&O)
+02=¨ú®ø(&C)
+03=ÂsÄý(&B)
+04=®M¥Î(&A)
+05=µ²§ô(&X)
+06=¬O(&Y)
+07=¤£(&N)
+
+[Main Form]
+01=¼Ò¦¡:
+02=®É¶¡ («ØÄ³)
+03=¼v®æ
+04=¿é¤J¨C¬í¼v®æ:
+05=¨C¬í¼v®æ:
+06=§@·~©ó:
+07=«ùÄò®É¶¡|³Ì«á®É¶¡|¨âªÌ
+08=¸¹½X
+09=Åã¥Ü
+10=ÁôÂÃ
+11=¤å¦r
+12=Â½Ä¶
+13=%d ­Ó¥¼Â½Ä¶¦C
+14=«ùÄò®É¶¡:
+15=%s (%s ­Ó¦r¤¸):
+16=- ¥¼Â½Ä¶¦r¹õ -
+17=Lines:
+18=Notes:
+19=Pause
+20=%d subtitles selected / %d
+21=#%d / %d
+
+[Main menu header]
+01=ÀÉ®×
+02=½s¿è
+03=·j´M
+04=¤u¨ã
+05=¹q¼v
+06=³]©w
+07=»¡©ú
+08=View
+
+[Main menu/File]
+01=·s¦r¹õ...
+02=¸ü¤J¦r¹õ...
+03=³ÌªñªºÀÉ®×
+04=²M°£²M³æ
+05=¸ü¤J
+06=±M®×...
+07=­ì©l
+08=Â½Ä¶
+09=Àx¦s
+10=­ì©l¬°...
+11=Â½Ä¶¬°...
+12=¥t¦s·sÀÉ...
+13=Ãö³¬
+14=µ²§ô
+15=Save marking
+
+[Main menu/Edit]
+01=´_­ì
+02=­«°µ
+03=´¡¤J¦r¹õ
+04=´¡¤J©ó¤§«e
+05=²¾°£¿ï¨úªº
+06=°Å¤U
+07=½Æ»s
+08=¶K¤W
+09=¥þ¿ï
+10=Invert selection
+11=Insert symbol...
+
+[Main menu/Edit/Timings]
+01=®É¶¡°t¦X
+02=³]©w«ùÄò®É¶¡­­¨î...
+03=³]©w¿ð©µ...
+04=½Õ¾ã
+05=½Õ¾ã¦r¹õ...
+06=½Õ¾ã¬°¤w¦P¨B¦r¹õ
+07=®É¶¡¥[¤j/´î¤Ö
+08=©µ¦ùªø«×¨ì¤U¤@¦r¹õ¶}©l
+09=¦Û°Ê¦a«ùÄò®É¶¡
+10=±qÀÉ®×Åª¨ú®É¶¡°t¦X
+11=ÅÜ´« %s ²@¬í
+12=Extend length to previous
+13=Set pauses...
+14=Shift to next
+15=Shift to previous
+16=Round time values...
+
+[Main menu/Edit/Texts]
+01=¤å¦r
+02=ºë©úªº¦C½Õ¾ã
+03=¤j¤p¼gÂà´«...
+04=¤£¤¤Â_ªº¦r¹õ
+05=¤À³Î¦r¹õ...
+06=§Ö³t¤À³Î¦C
+07=³]©w³Ì¤j¦Cªø...
+08=±qÀÉ®×Åª¨ú¤å¦r
+09=Fast smart line adjust
+10=Fast unbreak subtitles
+
+[Main menu/Edit/Subtitles]
+01=¦r¹õ
+02=¦X¨Ö¦r¹õ
+03=®ÄªG
+04=¿é¤J®ÄªG
+05=°{Ã{
+06=§Ö³t°{Ã{
+07=¤¤³t°{Ã{
+08=ºC³t°{Ã{
+09=¥Ñ¥k¨ì¥ª
+10=¤Ï¦V¤å¦r
+11=­×¥¿¼ÐÂI²Å¸¹
+12=±Æ§Ç
+13=§R°£¤£»Ý­nªº³sµ²
+14=¼Ð°O¿ï¨úªº¦r¹õ
+15=¨ú®ø¼Ð°O¿ï¨úªº¦r¹õ
+16=Auto combine subtitles...
+17=Delete dots at the beginning
+18=Jump to next marked
+19=Jump to previous marked
+
+[Main menu/Edit/Translation]
+01=Â½Ä¶
+02=Â½Ä¶¼Ò¦¡
+03=¥æ´«
+
+[Main menu/Search]
+01=·j´M...
+02=§ä¤U¤@­Ó
+03=·j´M¨Ã¨ú¥N...
+04=²¾¦Ü¦C¸¹...
+
+[Main menu/Tools]
+01=«÷¦rÀË¬d
+02=¾ã§åÂà´«...
+03=¤À³Î¦r¹õ...
+04=¦X¨Ö¦r¹õ...
+05=¸ê°T©M¿ù»~
+06=¸ê°T©M¿ù»~...
+07=¦UºØ¸ê°T...
+08=OCR «ü¥O½X
+09=Åã¥Ü©ó¥Dªí³æ
+10=³]©w...
+11=­«·sÀË¬d¿ù»~
+12=­×¥¿©Ò¦³¿ù»~
+13=­×¥¿¿ù»~ (¿ï¨úªº¦r¹õ)
+14=¸õ¦Ü¤U¤@¿ù»~
+15=±q AVI ¥[¤J¨C¬í¼v®æ
+16=¥~³¡¹wÄý
+17=SAMI »y¨¥Â^¨ú
+18=Pascal «ü¥O½X
+19=Jump to previous error
+20=Show CpS boxes
+
+[Main menu/Movie]
+01=¶}±Ò...
+02=Ãö³¬
+03=¸ê°T...
+04=µø°T¹wÄý¼Ò¦¡
+05=Åã¥Ü¦r¹õ
+06=Åã¥Ü´CÅé±Ò°ÊÀÉ®×
+07=Audio stream
+08=None
+09=Video renderer
+10=Default
+11=VMR9
+
+[Main menu/Movie/Playback]
+01=¼½©ñ
+02=¼½©ñ/¼È°±
+03=°±¤î
+04=­ËÂà
+05=«e¶i
+06=­ËÂà 5 ¬í
+07=«e¶i 5 ¬í
+08=¼½©ñ²v
+
+[Main menu/Movie/Subtitles]
+01=¦r¹õ
+02=¹q¼v¦r¹õ
+03=³]©w¶}©l®É¶¡
+04=³]©w³Ì«á®É¶¡
+05=¶}©l¦r¹õ
+06=µ²§ô¦r¹õ
+
+[Main menu/Movie/Synchronization]
+01=¦P¨B
+02=²Ä¤@­Ó¦P¨BÂI
+03=³Ì«á¦P¨BÂI
+04=¥[¤J¦P¨BÂI
+
+[Main menu/Movie/Display]
+01=Åã¥Ü
+02=­ì©l
+03=Â½Ä¶
+
+[Main menu/Settings]
+01=¿é¥X³]©w...
+02=»y¨¥
+03=Åã¥Ü¥ªµøµ¡
+04=Åã¥Ü®É¶¡±±¨î
+05=¨Ï¥Î¾A·í¦ì¸m½s¿è
+06=Refresh language files
+07=Files refreshed
+08=keys
+
+[Main menu/Help]
+01=Ãö©ó %s...
+02=ÀË¬d·sª©¥»
+
+[Popup Menu]
+01=±×Åé
+02=²ÊÅé
+03=©³½u
+04=³]©w¦â±m
+05=²¾°£¦â±m¼ÐÅÒ
+06=Remove all tags
+07=Delete
+08=Style
+
+[Video preview hints]
+01=¼½©ñ/¼È°± (%s)
+02=°±¤î (%s)
+03=¤Á´«±²°Ê²M³æ
+04=¸õ¦Ü¤W¤@¦r¹õ
+05=¸õ¦Ü¤U¤@¦r¹õ
+06=­ËÂà (%s)
+07=«e¶i (%s)
+08=ÅÜ§ó¼½©ñ²v
+09=²¾°Ê¦r¹õ (%s)
+10=³]©w¶}©l®É¶¡ (%s)
+11=³]©w³Ì«á®É¶¡ (%s)
+12=¶}©l¦r¹õ (%s)
+13=µ²§ô¦r¹õ (%s)
+14=¼Ð°O¬°²Ä¤@­Ó¦P¨BÂI (%s)
+15=¼Ð°O¬°³Ì«á¦P¨BÂI (%s)
+16=¥[¤J¦r¹õ/µø°T¦P¨BÂI (%s)
+17=Volume: %d%%
+18=Mute/Unmute
+
+[Save as]
+01=¥t¦s·sÀÉ
+02=ÂùÀ»¿é¥X®æ¦¡:
+03=¦Û­q®æ¦¡
+04=©Ò¦³®æ¦¡
+
+[Custom formats]
+01=¦Û­q®æ¦¡
+02=¸ê°T
+03=ÀÉ¦W:
+04=°ÆÀÉ¦W:
+05=·s¦C¦r¤¸:
+06=®É¶¡
+07=¼v®æ
+08=µ²ºc:
+09=¨C¬í¼v®æ:
+10=¸ü¤J±M®×
+11=Àx¦s±M®×
+12=²¾°£¤W¤@­Ó¦Û­q®æ¦¡
+13=Àx¦s!
+14=¦Û­q®æ¦¡±M®×
+
+[Settings Form]
+01=³]©w
+02=½Õ¾ãµ{¦¡²ÕºA
+03=¤@¯ë
+04=¶i¶¥
+05=¦r¤¸¶°
+06=®æ¦¡
+07=ÀÉ®×Ãþ«¬
+08=Àx¦s
+09=µø°T¹wÄý
+10=¦r¹õ
+11=¥~³¡¹wÄý
+12=¥~Æ[
+13=µ{¦¡
+14=²M³æ
+15=¿ï³æ
+16=³Ì¤W¼hÅã¥Ü
+17=¤¹³\°õ¦æ¤@­Ó¥H¤Wªº¨BÆJ
+18=§R°£¦r¹õ®É­n½T»{
+19=ª½Ä¶µL®ÄªºÀÉ®×¬°¯Â¤å¦r
+20=¦Û°Ê·j´M¹q¼v
+21=±j­¢§@·~©ó®É¶¡¼Ò¦¡
+22=¤Ï¦V¤å¦r®Éºû«ù¦Cªº¶¶§Ç
+23=¿ï¨ú¸õ¦Ü¤U¤@¦Cªº¤å¦r
+24=¿ï¨ú¸õ¦Ü¤W¤@¦Cªº¤å¦r
+25=¤£­n»P¼ÐÅÒ¥æ¤¬§@¥Î
+26=§@·~©ó¼Ë¦¡¼ÐÅÒ
+27=³ÌªñÀÉ®×ªº­­¨î:
+28=ºë©úªº¦C½Õ¾ã
+29=¨â¦C¦pªGªø©ó:
+30=¦r¤¸
+31=¤Á´«¤¤Â_ÂI
+32=¤À³Î¦C
+33=¤¤Â_¦C©ó¤§«á:
+34=¦Û°Ê¦aºë©úªº¦C½Õ¾ã
+35=³Ì¤j¦Cªø:
+36=ÅÜ´«®É¶¡:
+37=²@¬í
+38=Åã¥Ü©ó¥Dªí³æ
+39=­ì©l¦r¤¸¶°:
+40=Â½Ä¶¦r¤¸¶°:
+41=¹w³]®æ¦¡:
+42="¥t¦s·sÀÉ" ®É­nÅã¥Üªº®æ¦¡:
+43=Åã¥Ü¦Û­q®æ¦¡
+44=¥þ¿ï(&A)
+45=¤£¿ï(&Z)
+46=±Ò°Ê®Éµn¿ý°ÆÀÉ¦W
+47=ÃöÁp¨ì¤j³¡¥÷¤w¤ä´©¦r¹õ°ÆÀÉ¦W
+48=µ²§ôµ{¦¡/Ãö³¬¦r¹õ®É´£¥ÜÀx¦s
+49=¦Û°ÊÀx¦s§@·~¨C¹j
+50=¤ÀÄÁ.
+51=Àx¦s¬°³Æ¥÷
+52=¿é¥X³]©w...
+53=ÂùÀ»¤@­Ó¦r¹õ®É:
+54=­n¸õ¦Üªº¬í¼Æ:
+55=«ö¤U Shift ¨ÃÂùÀ»¤@­Ó¦r¹õ®É:
+56=»EµJ¤å¦r²°
+57=¸õ¦Üµø°T¤¤¦r¹õªº¶}©l®É¶¡
+58=µø°T¤¤¦r¹õªì©l¤Æ«e­n¸õ¦Ü¬í¼Æ
+59=­ËÂà©M«e¶i®É¶¡:
+60=¬í.
+61=¹w³]ªºÅÜ§ó¼½©ñ²v:
+62=Ã¸»sÃä½u
+63=Ã¸»s³±¼v
+64=¹Á¸Õ³z©ú­I´º
+65=±j­¢¨Ï¥Î¦a°Ï (¥i¯à¸ûºC)
+66=¦r«¬...
+67=¦â±m...
+68=­I´º...
+69=Ãä½u¼e«×:
+70=³±¼v¼e«×:
+71=¼Ë¥»
+72=µø°T¼½©ñ¾¹°õ¦æÀÉ:
+73=°»´úÃöÁpªºµ{¦¡
+74=¨C¦¸´£¥Ü¤@­Ó¤£¦Pªºµø°T
+75=¥Ã»·¥Hµø°T´ú¸Õ:
+76=Àx¦s¼È®É¦r¹õ¥H®æ¦¡:
+77=­ì©l®æ¦¡
+78=¦Û­q®æ¦¡:
+79=­n¶Ç°e¨ìµø°T¼½©ñ¾¹ªº?¼Æ:
+80=VIDEO_FILE ¥Nªí§A­n´ú¸Õ¦r¹õªºµø°TÀÉ®×. SUBT_FILE ¬O¼È®É¦r¹õÀÉ®×­n¶Ç°e¨ìµø°T¼½©ñ¾¹ªº°Ñ¼Æ. §A¥i¥[¤J¨ä¥¦°Ñ¼Æ, ¨Ò¦p full screen, µ¥µ¥.
+81=¥Î©óµ{¦¡ªº¦r«¬:
+82=¦r«¬¤j¤p:
+83="¤å¦r" Äæ¦ì¹ï»ô:
+84=¾a¥ª|¾a¥k|¸m¤¤
+85=Åã¥Ü®æ½u
+86=®M¥Î¼Ë¦¡¨ì¦r¹õ
+87=¥H¦â±m¼Ð°O¥¼Â½Ä¶ªº¦r¹õ:
+88=Åã¥Ü¤ô¥­±²°Ê¦C
+89=¨Ï¥Î Office XP ¼Ë¦¡¿ï³æ
+90=¨Ï¥Îº¥¼h¿ï³æ
+91=Tags mode:
+92=Multiple tags mode
+93=Single tags mode (the old mode)
+94=Auto delete tags
+95=Default subtitle duration:
+96=Default subtitle pause:
+97=Increase step (time):
+98=Increase step (frames):
+99=frames
+100=Keep min duration of:
+101=but don''t allow overlaps
+102=Automatically round time values to:
+103=Round time values on subtitle load
+104=Notes charset:
+105=Add "Open with Subtitle Workshop" to shell context menu
+106=Ask to save new subttiles
+107=Save empty subtitles
+108=Vertical video center align
+109=Enter full screen on double click
+110=Setting Show and Hide times
+111=Shift Show value:
+112=Shift Hide value:
+113=Align left when subtitles contain a new line starting with "-"
+114=Relative font size
+115=Keep subtitle on video
+116=Try antialiasing (Force using regions must be off)
+117=Smart main window and subtitle list resize
+118=Resize subtitle list columns when resizing form
+119=Mark untranslated subtitles with background:
+120=Right click selection
+121=Row height:
+122=Text margin:
+123=Selection
+124=Text:
+125=Color:
+126=Transparency:
+127=Columns
+128=Align:
+129=Display style:
+130=Full
+131=Compact
+132=Marking with color:
+133=Marking with background:
+134=Columns to mark:
+135=Mark column "%s"
+136=Marking priority:
+137=Low (before error marking)
+138=High (after error marking)
+139=Marked subtitle color in video preview:
+140=Marking file
+141=Do not save marking file
+142=Ask each time to save marking file
+143=Automatically save marking file on subtitle save
+144=Automatically load marking file
+145=Marking
+146=Play video on load
+147=Visual subtitle representation color:
+148=Hilight tags in "Text" and "Translation" fields:
+
+[Output settings]
+01=¿é¥X³]©w
+02=ºÏºÐ ID:
+03=DVD ¼ÐÃD:
+04=»y¨¥:
+05=§@ªÌ:
+06=ºô¯¸:
+07=¸ê°T:
+08=±ÂÅv:
+09=¦r¹õ:
+10=­I´º:
+11=¼Ë¥»
+12=³]©w¦r«¬(&S)
+13=¹ï»ô:
+14=¾a¥ª
+15=¸m¤¤
+16=¾a¥k
+17=¼v®æ²v:
+18=©ñ¤U¼v®æ
+19=¦â±m 0 (­I´º):
+20=¦â±m 1 (¦r«¬):
+21=¦â±m 2 (½ü¹ø):
+22=¦â±m 3 (¤Ï§O¦W):
+23=¦â½L¦â±m n?
+24=¹ï¤ñ
+25=¼ÐÃD:
+26=«ü¥O½X:
+27=¤Æ§©
+28=¨ä¥¦
+29=Ãä½u¼Ë¦¡:
+30=½ü¹ø + ©ñ¤U³±¼v
+31=¤£³z©ú²°
+32=¦â±m
+33=¥D­n:
+34=¦¸­n:
+35=²Ä¤T:
+36=³±¼v:
+37=¥ªÃä¬É:
+38=¥kÃä¬É:
+39=««ª½Ãä¬É:
+40=½ü¹ø:
+41=¹ï»ô:
+42=½s½X:
+43=¨Ó·½:
+44=µ{¦¡:
+45=¸ô®|:
+46=¿ð©µ:
+47=¥úºÐ­y¹D:
+48=µù¸Ñ:
+49=TMPlayer ®æ¦¡
+50=TMPlayer+ ®æ¦¡
+51=TMPlayer ¦h¦C®æ¦¡
+
+[Duration limits]
+01=«ùÄò®É¶¡­­¨î
+02=³]©w³Ì¤jªº«ùÄò®É¶¡
+03=²@¬í
+04=³]©w³Ì¤pªº«ùÄò®É¶¡
+05=* ¼W¥[®É¶¡·|¾É­P­«Å|
+06=Increase at start if necessary
+
+[Set delay]
+01=³]©w¿ð©µ
+02=©ó©Ò¦³¦r¹õ
+03=©ó¿ï¨úªº¦r¹õ
+04=From first selected until last subtitle
+
+[Adjust subtitles]
+01=½Õ¾ã¦r¹õ
+02=Â²©ö
+03=¶i¶¥
+04=²Ä¤@­Ó»¡¸Ü¦C:
+05=³Ì«á¤@­Ó»¡¸Ü¦C:
+06=±qÀÉ®×¸ü¤J
+07=Àx¦s¨ìÀÉ®×
+08=¦C #
+09=ÂÂ®É¶¡
+10=·s®É¶¡
+11=¥[¤J(&A)
+12=±q´CÅé¥[¤J(&M)
+13=²¾°£(&R)
+14=¦pªG®É¶¡¦bÂI½d³ò¥~:
+15=©µ¦ù
+16=¦^¨ì­ì©l®É¶¡ (¤£­nÅÜ§ó)
+17=¦^¨ì¥N´Àªº¾FªñÂI
+18=½Õ¾ã!(&A)
+19=¿é¤J·s¦P¨BÂI
+20=ÂÂ®É¶¡:
+21=·s®É¶¡:
+
+[Time expander/reducer]
+01=®É¶¡¥[¤j/´î¤Ö
+02=¥[¤j«ùÄò®É¶¡
+03=´î¤Ö«ùÄò®É¶¡
+04=¥[¤j/´î¤Ö«ùÄò®É¶¡:
+05=¬í
+06=¼v®æ
+07=¥u¦b¦r¹õªø©ó:
+09=¦r¤¸
+10=¥u¦b«ùÄò®É¶¡ªø©ó:
+11=¥u¦b«ùÄò®É¶¡µu©ó:
+12=§«¤î­«Å|
+13=©ó©Ò¦³¦r¹õ
+14=©ó¿ï¨úªº¦r¹õ
+
+[Automatic durations]
+01=¦Û°Ê¦a«ùÄò®É¶¡
+02=²@¬í
+03=¨C¦r¤¸
+04=¨C¦r
+05=¨C¦C
+06=¥þ³¡®M¥Î·s«ùÄò®É¶¡
+07=¥u®M¥Î©ó·s«ùÄò®É¶¡¤j©ó­ì©lªÌ®É
+08=¥u®M¥Î©ó·s«ùÄò®É¶¡¤p©ó­ì©lªÌ®É
+09=©Ò¦³¦r¹õ
+10=¥u¦b¿ï¨úªº¦r¹õ
+11=Method
+12=Characters
+13=per second
+14=Increase at start if necessary
+15=Maximum increase at start (0 = no limit):
+16=milliseconds
+
+[Convert case]
+01=Âà´«¤j¤p¼g
+02=¥y¤lÃþ«¬.
+03=¥u¦³²Ä¤@­Ó¦rªº²Ä¤@­Ó¦r¥À¤j¼g
+04="..." °»´ú
+05=¤p¼g
+06=¤j¼g
+07=¼ÐÃDÃþ«¬
+08=¤Ï¦VÃþ«¬
+09=©Ò¦³¦r¹õ
+10=¥u¦b¿ï¨úªº¦r¹õ
+
+[Divide lines]
+01=¤À³Î¦C
+02=©ó¦C¸¹«á¤À³Î:
+03=¨Ï¥Î¦Û°Ê¦a«ùÄò®É¶¡
+04=Åã¥Ü:
+05=ÁôÂÃ:
+06=«ùÄò:
+07=ª½±µÄ~Äò
+08=%s ­Ó¦r¤¸
+09=¤À³Î!(&D)
+
+[Search & Replace]
+01=·j´M©M¨ú¥N
+02=·j´M
+03=­n·j´Mªº¤å¦r:
+04=·j´M!(&S)
+05=¨ú¥N¥H:
+06=§ä¤U¤@­Ó(&N)
+07=¨ú¥N(&R)
+08=¥þ³¡¨ú¥N(&A)
+09=¸û¦h(&M) >
+10=¸û¤Ö(&L) <
+11=¤j¤p¼g»Ý¬Û²Å
+12=¥þ¦r¶·¬Û²Å
+13=¨ú¥N®É«O¯d¤j¤p¼g
+14=·j´M¤å¦r©ó:
+15=©Ò¦³¦r¹õ
+16=±q¿ï¨úªº¶µ¥Ø
+17=¦r¤¸¶°:
+
+[Go to line]
+01=²¾¦Ü¦C¸¹
+02=¿é¤J¦C¸¹:
+
+[Batch convert]
+01=¾ã§åÂà´«
+02=¥H´X­Ó¨BÆJÂà´«¦h­ÓÀÉ®×®æ¦¡¬°³æ¤@ÀÉ®×®æ¦¡.
+03=< ¤W¤@¨B((&B)
+04=¤U¤@¨B(&N) >
+05=Âà´«(&O)
+06=µ²§ô(&E)
+07=Ãö³¬(&C)
+08=¥þ³¡(&A)
+09=µL(&N)
+10=°ÆÀÉ¦W:
+11=·j´M¸ô®|:
+12=¥]§t¤l¸ê®Æ§¨
+13=º«©³ªº®æ¦¡ÀË¬d
+14=¿é¥X¸ê®Æ§¨:
+15=¿é¥X®æ¦¡:
+16=¹w³]¨C¬í¼v®æ:
+17=ÀÉ¦W
+18=®æ¦¡
+19=¨C¬í¼v®æ
+20=¤j¤p
+21=¥[¤J(&A)
+22=²¾«ù(&R)
+23=²M°£(&L)
+24=§¹¦¨!. °Ñ¦Ò°O¿ý¥i¨ú±o©ú²Ó:
+25=Àx¦s...
+26=ÀË¬dÀÉ®× %s
+
+[Batch convert log]
+01=%s %s - ¾ã§åÂà´«°O¿ý
+02=²£¥Í©ó %s
+03=¿é¥X®æ¦¡: %s
+04=­nÂà´«ªºÁ`¦@ÀÉ®×¼Æ¥Ø: %d
+05=¹Á¸Õ¸ü¤J "%s"...
+06=ÀÉ®×¦¨¥\¦a¸ü¤J!
+07=ÀÉ®× "%s" ¤w¦s¦b, ¨ú¥N¤¤...
+08=ÀÉ®×¦¨¥\¦aÀx¦s¨ì "%s"'
+09=ÀÉ®× "%s" ¤w¦s¦b¦ý§AÁÙ¨S±Ò¥Îµ{¦¡¨ú¥N¥¦
+10=¸ü¤JÀÉ®×¿ù»~, µLªkÀx¦s!
+11=Á`¦@Âà´«§¹¦¨: %u
+12=Á`¦@®É¶¡: %s
+13=©Ò¦³ÀÉ®×¤w¦¨¥\¦aÂà´«
+14=Âà´«¬Y¨ÇÀÉ®×¦³¿ù»~, °Ñ¦Ò¤U¦C¨ú±o©ú²Ó
+
+[Split]
+01=¤À³Î¦r¹õ...
+02=Â²³æ
+03=¶i¶¥
+04=¿ï¨úªº¶µ¥Ø
+05=¶µ¥Ø¸¹½X:
+06=«ü©wªº®É¶¡:
+07=«ü©wªº¼v®æ:
+08=µø°Tµ²§ô:
+09=©R¦W
+10=³¡¥÷ %d:
+11=ÀÉ¦W
+12=ªø«×
+13=¦C
+14=¦U³¡¥÷ªº®É¶¡¬Û¦P
+15=¦U³¡¥÷ªº¦C¼Æ¬Û¦P
+16=¦bµø°Tµ²§ô
+17=³¡¥÷ªº¼Æ¥Ø:
+18=¦Û°Ê©R¦W³¡¥÷:
+19=¿é¥X¸ê®Æ§¨:
+20=¿é¥X®æ¦¡:
+21=­«·s­pºâ®É¶¡­È
+22=ÂùÀ»¥i¿ï¨ú¹q¼v
+23=¤À³Î!(&S)
+
+[Join]
+01=¦X¨Ö¦r¹õ...
+02=¥H¶¶§Ç¥[¤J§A­n¦X¨Öªº¦r¹õÀÉ®×:
+03=ÀÉ¦W
+04=®æ¦¡
+05=¨C¬í¼v®æ
+06=¤j¤p
+07=¹q¼v¤ùÂ_ (¿ï¶µ¦¡)
+08=¥[¤J(&A)
+09=²¾°£(&R)
+10=²M°£(&L)
+11=³]©w¹q¼v¤ùÂ_(&S)
+12=²M°£¹q¼v¤ùÂ_(&L)
+13=¿é¥X®æ¦¡:
+14=¿é¥X¨C¬í¼v®æ:
+15=¦X¨Ö¨ÃÀx¦s«á¸ü¤JÀÉ®×
+16=­«·s­pºâ®É¶¡­È
+17=¦X¨Ö!(&J)
+
+[Information and errors]
+01=¸ê°T©M¿ù»~
+02=ÀË¬d!
+03=­×¥¿¿ù»~!
+04=³]©w(&S)
+05=½T»{¨C¤@§R°£
+06=¦r¹õ
+07=Ãþ«¬
+08=´y­z
+09=¿ù»~
+10=Äµ§i
+11=¸ê°T
+13=¤w­×¥¿
+14=Á`¦@¿ù»~: %d
+15=­×¥¿¿ù»~: %d
+16=¥]§t¨S¦³¦r¥Àªº¦C
+17=ªÅ¦r¹õ
+18=»P¤W¤@¦r¹õ­«Å|
+19=Ãaªº­È
+20=¤Óªøªº«ùÄò®É¶¡
+21=¤Óµuªº«ùÄò®É¶¡
+22=¤Óªøªº¦C
+23=¶W¹L¨â¦C
+24=Å¥Ä±·l®`
+25=¦b ":" «e­±¦³¨Ç¤å¦r
+26=¤£»Ý­nªº¥yÂI
+27=¥]§t¤@­Ó¸T¤îªº¦r¤¸
+28=­«½Æªº¦r¤¸
+29=­«½Æªº¦r¹õ
+30=OCR ¿ù»~
+31=¤@¦C¦r¹õ¶}ÀY¥H "-"
+32=¦Û­q¦r¤¸«á¨S¦³ªÅ®æ
+33=¦Û­q¦r¤¸«e¨S¦³ªÅ®æ
+34=¤£»Ý­nªºªÅ®æ
+35=¤w¼Ð°O¦r¹õ
+36=§R°£¨S¦³¦r¥Àªº¦C
+37=ªÅ¦r¹õ¤w§R°£
+38=­×¥¿­«Å|
+39=­×¥¿Ãaªº­È
+40=¶W¹L¨â¦Cªº¦r¹õ¤w½Õ¾ã
+41=²¾°£Å¥Ä±·l®`ªº¦r¹õ
+42=Å¥Ä±·l®`³¡¥÷¤w§R°£
+43=²¾°£ ":" «e­±ªº¤å¦r
+44=²¾°£¤£»Ý­nªº¥yÂI
+45=¦r¹õ¦³¤@­Ó¸T¤îªº¦r¤¸¨Ã¤w§R°£
+46=­×¥¿­«½Æªº¦r¤¸
+47=­×¥¿­«½Æªº¦r¹õ
+48=­×¥¿ OCR ¿ù»~
+49=§R°£¦r¹õ¤¤ "-" ªº¤@¦C
+50=¥[¤JªÅ®æ©ó¦Û­q¦r¤¸«á
+51=¥[¤JªÅ®æ©ó¦Û­q¦r¤¸«e
+52=²¾°£¤£»Ý­nªºªÅ®æ
+53=ÂùÀ»¥i¸õ¦Ü¥Dªí³æªº¦C
+67=E
+68=W
+69=F
+70=CI
+71=Select
+72=+ Select
+73=- Select
+74=Select subtitles
+75=Add to selected subtitles
+76=Remove from selected subtitles
+77=All
+78=None
+79=Inverse
+80=Select all
+81=Select none
+82=Invert selection
+83=Error types sets
+84=Save error types set
+85=Delete error types set
+86=Error types
+87=Custom info
+88=Show/hide errors
+89=Show/hide warnings
+90=Show/hide fixed
+91=Show/hide custom info
+92=Show/hide Error types panel
+93=Show/hide Custom info panel
+65=Custom info
+66=Displayed: %d
+54=Unnecessary tags
+56=Dash on first line
+58=Too many CpS
+60=Too short pause
+62=Dialogue on one line
+55=Removed unnecessary tags
+57=Removed dash on first line
+59=Fixed too much CpS
+61=Fixed too short pause
+63=Fixed dialogue on one line
+94=Export to file
+95=Text file
+96=char
+97=sec
+98=fr
+99=cps
+
+[Information and errors Settings]
+01=³]©w
+02=¤@¯ë
+03=¶i¶¥
+04=ÀË¬d
+05=­×¥¿
+06=¤£»Ý­nªºªÅ®æ
+07=­×´_®É¦b¥Dªí³æÅã¥Ü½T»{
+08=¦b¥Dªí³æªº²M³æ¼Ð°O¿ù»~
+09=³]©w¦â±m...
+10=²ÊÅé
+11=±×Åé
+12=©³½u
+13=¼Ð°O¿ù»~©ó¸ü¤Jªº¦r¹õ
+14=­×¥¿¿ù»~©ó¸ü¤Jªº¦r¹õ
+15=¸ü¤J®É­×¥¿¤@­Ó³æ¦ìªº­«Å|
+16=OCR «ü¥O½X:
+17=½s¿è(&E)
+18=¥i­«½Æªº¦r¤¸:
+19=¸T¤îªº¦r¤¸:
+20=®e§Ô­«½Æªº¦r¹õ:
+21=²@¬í.
+22=¦r¤¸«áªºªÅ®æ:
+23=¦r¤¸«eªºªÅ®æ:
+24=¤Óªøªº«ùÄò®É¶¡:
+25=¤Óµuªº«ùÄò®É¶¡:
+26=¤Óªøªº¦C:
+27=¦r¤¸.
+28=¨S¦³¦r¥Àªº¦C
+29=ªÅ¦r¹õ
+30=­«Å|¦r¹õ
+31=Ãaªº­È
+32=¤Óªøªº«ùÄò®É¶¡
+33=¤Óµuªº«ùÄò®É¶¡
+34=¤Óªøªº¦C
+35=¦r¹õ¶W¹L¨â¦C
+36=Å¥Ä±·l®`¦r¹õ
+37=«_¸¹ (":") «eªº¤å¦r
+38=¥u·í¤å¦r¬O¤j¼g¦r¥À®É
+39=¤£»Ý­nªº¥yÂI
+40=¸T¤îªº¦r¤¸
+41=­«½Æªº¦r¤¸
+42=­«½Æªº¦r¹õ
+43=OCR ¿ù»~
+44=¦r¹õ¤¤ "- " ªº¤@¦C
+45=¦Û­q¦r¤¸«áªºªÅ¥Õ
+46=¦Û­q¦r¤¸«eªºªÅ¥Õ
+47=¤£»Ý­nªºªÅ®æ
+48=ÀË¬d:
+49=­×¥¿:
+50=¦b¶}©l©Mµ²§ôªº Enters ©MªÅ®æ
+51=Enters ¤§¶¡ªºªÅ®æ (¥ª©M¥k)
+52=Âù­¿ªÅ®æ©MªÅ¦C
+53=¼ÐÂI²Å¸¹«eªºªÅ®æ
+54=¦b "? ©M "?  «áªºªÅ®æ
+55=¦b "?" ©M "!" «eªºªÅ®æ
+56=¼Æ¦r¶¡ªºªÅ®æ
+57=Too short pauses
+58="- " on first line
+59=Only if there is no "- " on second line
+60=Dialogue on one line
+61=Unnecessary tags
+62=Too many characters per second
+63=Mark too much CpS with CpS boxes
+64=Default errorr marking
+65=Set Default Styles
+66=Mark column "Num"
+67=Mark column "Pause"
+68=Mark column "Show"
+69=Mark column "Hide"
+70=Mark column "Duration"
+71=Mark column "Text"
+72=Mark as Bold
+73=Mark as Italic
+74=Mark as Underline
+75=Mark as Strikethrough
+76=Mark the text color
+77=Mark the background color
+78=Mark
+79=Automatically recheck errors
+80=Do not recheck on Pascal scripts
+81=Recheck all once after a Pascal script executes
+82=Recheck on each change made by a Pascal script (might be slow)
+83=Indicate too long lines in Text and Translation labels
+84=Indicate too short duration in Duration box
+85=Indicate too long duration in Duration box
+86=Indicate too short pause in Pause box
+87=Indicate overlapping subtitles in Pause box
+88=Indicate bad values in Show and Hide boxes
+89=Indicate subtitles over two lines in lines counter labels
+90=Text color
+91=Background color
+92=Too short pause under:
+93=Characters per second (CpS)
+94=Too many CpS over:
+95=characters per second
+96=Normal CpS box colors:
+97=Too many CpS box colors:
+98=Display percantage in CpS box
+99=Display current CpS in CpS box
+100=Display minimum time in CpS box
+101=Display maximum characters in CpS box
+
+[Various information]
+01=¦UºØªº¸ê°T
+02=¸ê°T
+03=ÃB¥~
+04=­ì©lÀÉ®×
+05=Â½Ä¶ÀÉ®×
+06=¥Ø«e®æ¦¡:
+07=ÀÉ®×:
+08=¤j¤p:
+09=Á`¦@¦r¹õ¼Æ¥Ø:
+10=Á`¦@¦C¼Æ:
+11=Á`¦@¦r¼Æ:
+12=Á`¦@¦r¥À¼Æ¥Ø:
+13=¤@¦Cªº¦r¹õ:
+14=¨â¦Cªº¦r¹õ:
+15=¶W¹L¨â¦Cªº¦r¹õ:
+16=³Ìªøªº¦C:
+17=¦b¦r¹õ %d ¦³ %d ­Ó¦r¤¸
+18=¼½©ñªº³Ì¨Î¦r«¬¤j¤p
+19=¸ÑªR¼e«×:
+20=±q AVI
+21=¦r«¬¦WºÙ:
+22=²ÊÅé
+23=±×Åé
+24=­pºâ
+25=Shortest line:
+26=Longest pause:
+27=Shortest pause:
+28=In subtitle %d, %d,%.3d seconds
+29=In subtitle %d, %d milliseconds
+30=Most CpS:
+31=Least CpS:
+32=In subtitle %d, %d cps
+33=Average CpS:
+34=Longest duration:
+35=Shortest duration:
+36=Refresh info
+
+[SAMI Language Extractor]
+01=SAMI »y¨¥Â^¨ú
+02=SAMI ÀÉ®×:
+03=¿é¥X¸ê®Æ§¨:
+04=¿ï¨úªº»y¨¥±N³QÂ^¨ú:
+05=Ãþ§O
+06=»y¨¥
+07=¦Û°Ê¥þ³¡°»´ú
+08=¤â°Ê¥[¤J
+09=Â^¨ú!
+10=¥[¤J»y¨¥
+11=¿é¤J»Ý­nªº»y¨¥ªºÃþ§O¦WºÙ:
+12=½Ðµy­Ô...
+
+[About form]
+01=Ãö©ó %s
+02=¸ê°T
+03=­PÁÂ
+04=ª©¥»: %S
+05=%s ª©¥»: %s
+06=%d ¤£¦P¤ä´©®æ¦¡
+07=¦pªG§A³ßÅw³o­Ó³nÅé, §Ú­Ì§Æ±æ§A¯à®½´ÚÃÙ§U. ÂI¿ï³o¸Ì¥i®½´ÚÃÙ§U.
+08=½s¼g¥Ñ
+09=ÃB¥~½s¼g
+10=09
+11=%s µ{¦¡
+12=Â½Ä¶¤H­û
+13=Beta ´ú¸ÕªÌ
+14=¹w³]¹Ï¥Ü¨Ì
+15=­n§ó·s½Ð¨ì:
+16=License
+
+[Error messages]
+01=µLªkªì¨Ï¤Æ¦r¹õ API. ½Ð¤U¸ü DLL "%s" ±q %s ¨Ã½Æ»s¥¦¨ì "%s" ¸ê®Æ§¨.
+02=¤U¦C¿ù»~ (%s) ¬O²£¥Í©óª«¥ó %s (%s):||"%s"||½Ð¼gµ¹ %s §iª¾³o­Ó¿ù»~µo¥Í®É§A©Ò°µªº°Ê§@.||«ö¤U½T©w¥iÄ~Äò, ¦Ó«ö¤U¨ú®ø¥iµ²§ôµ{¦¡.
+03=ÀÉ®× "%s" ¬O¤@­ÓÃaªº¦r¹õ©Î¤@­Ó¤£¤ä´©ªº®æ¦¡.
+04=ÀÉ®× "%s" ¤£¦b %s ®æ¦¡©Î¤£¬O¤@­Ó¦³®Äªº¦r¹õÀÉ®×.
+05="%s" ¤£¬O¤@­Ó¦³®Äªºµø°TÀÉ®×.
+06=¤£¬O¤@­Ó¦³®Äªº¦C¸¹.
+07=³Ì¤Ö­n¿ï¨ú¤@­Ó­n·j´Mªº°ÆÀÉ¦W.
+08=·j´M¸ô®|¤£¦s¦b.
+09=¶µ¥Ø¸¹½X¤£¬O¤@­Ó¦³®Äªº¶µ¥Ø.
+10=½Ð¥[¤J¨â­Ó©Î¥H¤Wªº¦r¹õ.
+11=³s½u¨ì¦øªA¾¹¥¢±Ñ!.
+12=µLªk±q "%s" ²¾°£°ßÅªÄÝ©Ê.||¥i¯à¬O¦b¤@­Ó¼g¤J«OÅ@ªººÏºÐ¾÷.
+13=¹Á¸Õ³s±µ Microsoft Word ¿ù»~!.
+14=½Ð¥ý¿ï¨ú¤W¤@³¡¥÷ªºµø°T!.
+15=¿ï¨ú¤@­Ó¦³®Äªº¿é¥X¸ê®Æ§¨.
+16=³Ì¤Ö­n¿ï¨ú¤@ºØ­nÂ^¨úªº»y¨¥.
+17="%s" ¤£¬O¤@­Ó¦³®Äªº SAMI ÀÉ®×.
+18=¦b²M³æ¿ï¨ú¤@­Ó¦r¹õ³¡¥÷.
+19=¦pªG§A¿ï¨ú¤@­Ó¹q¼v¤ùÂ_¬°¦r¹õªº¤@³¡¥÷, §A¥²»Ý¿ï¨ú¤@­Ó¹q¼v¤ùÂ_©ó¦r¹õªº©Ò¦³³¡¥÷ (·íµM, ³Ì«á³¡¥÷°£¥~).
+20=§A­n¦³¨â­Ó©Î¥H¤WªºÂI.
+21=Incorrect regular expression in Custom info %s
+22=Custom Info %d was disabled.|Fix the regular expression to enable it.
+23=Subtitle duration too short!
+24=Error: can not execute script.
+25=Error: can not compile script.
+26=Save subtitles first
+
+[Question messages]
+01=ÀÉ®× "%s" ¤wÅÜ§ó.||§A­nÀx¦sÅÜ§ó¶Ü?.
+02=ÀÉ®× "%s" ¤w¦s¦b.||§A­n¨ú¥N¥¦¶Ü?.
+03=­ì©lÀÉ®× ("%s") ¤wÅÜ§ó.||§A­nÀx¦sÅÜ§ó¶Ü?.
+04=Â½Ä¶ÀÉ®×  ("%s") ¤wÅÜ§ó.||§A­nÀx¦sÅÜ§ó¶Ü?.
+05=¿ï¨úªº¦r¹õ§Y±N§R°£.||§A­n¶i¦æ¶Ü?.
+06=Point 1 ¦r¹õ: %s|Point 1 ¹q¼v: %s||Point 2 ¦r¹õ: %s|Point 2 ¹q¼v: %s||­n¦P¨B¦r¹õ¶Ü?
+07=µø°T¼½©ñ¾¹''ªº¥i°õ¦æÀÉ©|¥¼«ü©w©Î¤£¦s¦b.||§A­n²ÕºA¥~³¡¼½©ñ¾¹¶Ü?.
+08=§ä¨ì¤@­Ó·sª©¥»!.||§A­n¬ÝÅÜ§ó²M³æ¶Ü?.
+09=§A­nÀx¦sÀÉ®×ªºÄÝ©Ê¬O°ßÅªªº.||­n¹Á¸ÕÀx¦s¶Ü?.
+10=Do you want to save the marking in a file?
+
+[Information messages]
+01=§ä¤£¨ì "%s" ªº§ó¦h¨BÆJ.
+02=¨S¦³¥i¥Îªº·sª©¥».
+03=«÷¦rÀË¬d§¹¦¨.||%d ­Ó¤wÅÜ§ó.
+04=¤Ó¦h³¡¥÷. ­«³]¤¤...
+05=¥u§ä¨ì¤@ºØ»y¨¥.||¦pªGÀÉ®×¥]§t§ó¦h»y¨¥, ¥[¤J§A­n¦b¤@­Ó¤å¦r½s¿è¾¹¤â°Ê¶}±ÒÀÉ®×ªº¤@ºØ»y¨¥, µM«á·j´M¥¿½TªºÃþ§O¦WºÙ.
+06=§ä¤£¨ì "¼Ë¦¡" ¶}©l©M/©ÎÃö³¬¼ÐÅÒ!.||¥i¯à¦]¬°³o­Ó­ì¦], ³o­ÓÀÉ®×¤£¥]§t¤@ºØ¥H¤Wªº»y¨¥.|¦pªG¥¦ªº½T¥]§t, ½Ð¹Á¸Õ¤â°Ê¥[¤J¨Ã·j´M»Ý­nªº»y¨¥ªºÃþ§O¦WºÙ.
+07=¼½©ñªº³Ì¾A¦X¦r«¬¤j¤p¬O: %d
+08=Á`¦@¨ú¥N: %d
+09=ÀÉ®×¦WºÙ: %s|¤j¤p: %s|¨C¬í¼v®æ: %s|«ùÄò®É¶¡: %s|Á`¦@¼v®æ: %d|¸ÑªR«×: %dx%d|FourCC: %s
+10=¹q¼vªº¬Y¨Ç¸ê®Æ¬yµLªk¥¿½T¦a¦¨¹³. ¥i¯à¦]¬°¿ò¥¢­µ°T©Îµø°T½s¸Ñ½X.
+11=¤£»Ý­n³]©w¬ÛÃö¨ì³Ì«á¦r¹õªº¹q¼v¤ù¬q.
+12=A sudden error occured:|"%s"
+
+[Information and errors messages]
+01=48
+02=49
+03=50
+04=³¡¥÷©ó¦r¹õ¸¹½X %d:||"%s" §Y±N³Q§R°£, ¦]¦¹¦r¹õ±N:||"%s"||§A­n¶i¦æ¶Ü?.
+05=¦r¹õ¸¹½X %d:||"%s" ¬O¤@¦C¦r¹õ¨Ã¶}ÀY¥H "-".||§A­n§R°£¶}ÀYªº "-" ¶Ü?.
+
+[Main menu/View]
+01=Toolbar
+02=Text style bars
+03=Statusbar
+04=Columns
+05=Show notes in left panel
+06=Show time control buttons
+07=Show lines count
+08=Visual subtitle representation
+
+[Video Popup Menu]
+01=Enter full screen
+02=Exit full screen
+03=Zoom to %d%%
+04=Reset subtitle vertical position
+
+[Time control buttons hints]
+01=Shift to previous/Extend to previous
+02=Shift to next/Extend to next
+03=Set default pause/Set default pause, if pause is too short
+04=Set ato duration/Set min duration
+
+[Auto combine subtitles]
+01=Auto combine subtitles
+02=milliseconds
+03=Combine if duration is less than (0 = no limit):
+04=Combine if CpS is greater than (0 = no limit):
+05=characters per second
+06=Don't combine if pause is greater than (0 = no limit):
+07=Punctuation marks detection
+08=Combined subtitles maximum duration (0 = no limit):
+09=Decrease duration if necessary, with no more than:
+10=Combined subtitles maximum lines length (0 = no limit):
+11=characters
+12=For all the subtitles
+13=For the selected subtitles
+
+[Set pauses]
+01=Set pauses
+02=Pauses value:
+03=Shorten duration of:
+04=First subtitle only
+05=Second subtitle only
+06=Both subtitles equally
+07=The subtitle with less CpS
+08=For all the subtitles
+09=For the selected subtitles
+
+[Round time values]
+01=Round time values
+02=Round to:
+03=milliseconds
+04=For all the subtitles
+05=For the selected subtitles
+
+[Smart line adjust]
+01=Smart line adjust
+02=Two lines if longer than:
+03=characters
+04=Break method:
+05=Equal lines
+06=Break on punctuation marks
+07=Don''t unbreak subtitles that are not too long
+08=Adjust only long subs and subs with more than 2 lines
+09=For all the subtitles
+10=For the selected subtitles
+11=Always try to find a better breaking point
+
+[Unbreak subtitles]
+01=Unbreak subtitles
+02=Characters limit
+03=No limit
+04=Don''t unbreak if line length exceeds:
+05=characters
+06=Don''t unbreak subtitles with "—" on second line
+07=For all the subtitles
+08=For the selected subtitles
+
+[Custom info]
+01=Add custom info
+02=Composite custom info
+03=Subtitles duration information
+04=Subtitles line lenght information
+05=Subtitles lines count information
+06=Subtitles pause information
+07=Subtitles CpS information
+08=Subtitles text information
+09=Custom info sets
+10=Save custom info set
+11=Delete custom info set
+12=There is no custom info. Click the "+" button to add new custom info.
+13=Caption
+14=Duration
+15=Lines length
+16=Lines count
+17=Pause
+18=CpS
+19=Text
+20=Composite info
+21=ms
+22=chars
+23=lines
+24=cps
+25=AND
+26=OR
+27=Contains (Case sensitive)
+28=Contains (Case insensitive)
+29=Does not contain (Case sensitive)
+30=Does not contain (Case insensitive)
+31=Matches regular expression
+32=Matches regular expression (tags ignored)
+33=Delete
+34=Edit
+

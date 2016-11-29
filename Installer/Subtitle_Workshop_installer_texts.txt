@@ -1,0 +1,21 @@
+Main files
+Manual
+Custom formats
+Language files
+Shortcuts
+Start Menu
+Desktop
+Quick Launch
+
+Installs Subtitle Workshop's core files.
+Installs the manual in the selected languages.
+Installs custom format examples.
+Installs all available user interface language files.
+Creates shortcuts.
+Creates shortcuts in the start menu.
+Creates a shortcut on the desktop.
+Creates a shortcut in the Quick Launch toolbar.
+
+English
+Bulgarian
+Russian

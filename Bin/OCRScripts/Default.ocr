@@ -1,0 +1,134 @@
+<!----------------------------------------------->
+<!--     Subtitle Workshop OCR Script file     -->
+<!--       Copyright © 2001-2004 URUSoft       -->
+<!--    Copyright © 2013 Andrey Spiridonov     -->
+<!--        http://subworkshop.sf.net/         -->
+<!--                                           -->
+<!-- Last modified: 08.08.2013                 -->
+<!--                                           -->
+<!-- Default values:                           -->
+<!--                                           -->
+<!-- UseRE = True (use Regular Expressions)    -->
+<!-- UseREOnlyToFind = True (put the part that -->
+<!-- is not a RE between parenthesis!)         -->
+<!--                                           -->
+<!-- If UseRE is set to false then you can use -->
+<!-- the following parameters, otherwise they  -->
+<!-- will be ignored:                          -->
+<!--                                           -->
+<!--    CaseSensitive  (Default = False)       -->
+<!--    WholeWord      (Default = False)       -->
+<!--    PreserveCase   (Default = False)       -->
+<!-- ----------------------------------------- -->
+<!-- Regular Expressions make the OCR Scripts  -->
+<!-- extremely powerful. For details on their  -->
+<!-- use, refer to "Subtitle Workshop Manual"  -->
+<!-- or download a help file in the available  -->
+<!-- languages from:                           -->
+<!--        http://www.regexpstudio.com/       -->
+<!----------------------------------------------->
+
+<SWOCR WordChars="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_ñÑáéíóúÁÉÍÓÚäëïöü">
+	
+	<!-- The most common OCR error - I (uppercase i) and l (lowercase L) mistakes -->
+	
+	<!-- Roman numerals -->
+	<ERROR Find="\b[VXLCDM]*(lll)\b" ReplaceBy="III">
+	<ERROR Find="[^.?!—–-][^']\b[IVXLCDM]*(ll)I{0,1}\b" ReplaceBy="II">
+	<ERROR Find="^(ll)\b" ReplaceBy="II">	
+	<ERROR Find="\b[IVXLCDM]*(l)[IVX]*\b" ReplaceBy="I">
+	
+	<!-- Replace "II" with "ll" at the end of a lowercase word -->
+	<ERROR Find="[a-zá-ú](II)" ReplaceBy="ll">
+	<!-- Replace "II" with "ll" at the beginning of a lowercase word -->
+	<ERROR Find="(II)[a-zá-ú]" ReplaceBy="ll">
+	<!-- Replace "I" with "l" in the middle of a lowercase word -->
+	<ERROR Find="[a-zá-ú](I)[a-zá-ú]" ReplaceBy="l">
+	<!-- Replace "I" with "l" at the end of a lowercase word -->
+	<ERROR Find="[a-zá-ú](I)\b" ReplaceBy="l">
+	<!-- Replace "l" with "I" in the middle of an uppercase word -->
+	<ERROR Find="[A-ZÁ-Ú](l)[A-ZÁ-Ú]" ReplaceBy="I">
+	<!-- Replace "l" with "I" at the end of an uppercase word -->
+	<ERROR Find="[A-ZÁ-Ú]{2,}(l)" ReplaceBy="I">	
+	
+	<!-- Replace a single "l" with "I" -->
+	<ERROR Find="\b(l)\b" ReplaceBy="I">	
+	
+	<!-- Replace "I'II"/"you'II" etc. with "I'll"/"you'll" etc. -->
+	<ERROR Find="[A-ZÁ-Úa-zá-ú]'(II)\b" ReplaceBy="ll">
+	<!-- Replace "I 'II" with "I'll" or "I' II" with "I'll" - rare cases with a space before or after the apostrophe -->
+	<ERROR Find="[A-ZÁ-Úa-zá-ú]('\sII|\s'II)\b" ReplaceBy="'ll">	
+	
+	<!-- "I" at the beginning of a word before lowercase vowels is most likely an "l" -->
+	<ERROR Find="\b(I)[oaeiuyá-ú]" ReplaceBy="l">
+	<!-- "I" after an uppercase letter at the beginning and before a lowercase letter is most likely an "l" -->
+	<ERROR Find="\b[A-ZÁ-Ú](I)[a-zá-ú]" ReplaceBy="l">
+	<!-- "I" at the end after an uppercase vowel might be an "l" -->
+	<!-- <ERROR Find="[AEOUÁÉÓÚ](I)\b" ReplaceBy="l"> -->
+	<!-- "l" at the beginning before a consonant different from "l" is most likely an "I" -->
+	<ERROR Find="\b(l)[^aeiouyàá-úl]" ReplaceBy="I">
+	
+	<!-- Fixes for "I" at the beginning of the word before lowercase vowels -->	
+	<!-- The name "Ian" -->
+	<ERROR Find="\b(lan)\b" ReplaceBy="Ian">
+	<!-- The name "Iowa" -->
+	<ERROR Find="\b(lowa)\b" ReplaceBy="Iowa">
+	<!-- The word "Ill" -->
+	<ERROR Find="[.?!-]\s?(III)\b" ReplaceBy="Ill">
+	<ERROR Find="^(III)\b." ReplaceBy="Ill">
+	<!-- The word "Ion" and its derivatives -->
+	<ERROR Find="\b(l)on\b." ReplaceBy="I">
+	<ERROR Find="\b(l)oni" ReplaceBy="I">
+	<!-- The word "Iodine" and its derivatives -->
+	<ERROR Find="\b(l)odi" ReplaceBy="I">
+	<ERROR Find="\b(l)odo" ReplaceBy="I">
+	
+	
+	<!-- Other OCR errors -->
+
+	<!-- Fix zero and capital 'o' ripping mistakes -->
+	<ERROR Find="[0-9](O)" ReplaceBy="0">
+	<ERROR Find="[0-9](\.O)" ReplaceBy=".0">
+	<ERROR Find="[0-9](,O)" ReplaceBy=",0">
+	<ERROR Find="[A-Z](0)" ReplaceBy="O">
+	<ERROR Find="\b(0)[A-Za-z]" ReplaceBy="O">
+	
+	<!-- ?. !. :. -->
+	<ERROR UseRE="False" Find="?." ReplaceBy="?">
+	<ERROR UseRE="False" Find="!." ReplaceBy="!">
+	<ERROR UseRE="False" Find=":." ReplaceBy=":">
+	
+	<!-- Replace ",,," (2 or more) with "..." -->
+	<ERROR UseREOnlyToFind="False" Find=",{2,}" ReplaceBy="...">
+
+	<!-- Standardize apostrophe signs -->
+	<ERROR Find="[´`“”]" ReplaceBy="'">
+	<!-- Fix double apostrophies ("\x22" is '"') -->
+	<ERROR UseREOnlyToFind="False" Find="''" ReplaceBy="\x22">
+	<!-- Fix double quotes ("\x22" is '"') -->
+	<ERROR UseREOnlyToFind="False" Find="\x22{2,}" ReplaceBy="\x22">
+
+
+	<!-- Spaces fixes -->
+	
+	<!-- "1 :", "2 :" ... "n :" to "n:" (this is handle by Subtitle Workshop when unnecessary spaces before punctuation marks are detected) -->
+	<!-- <ERROR Find="\d( :)" ReplaceBy=":"> -->
+	
+	<!-- Spaces after aphostrophes, eg. "I' d" to "I'd", "I' LL" to "I'LL", "Hasn 't" and "Hasn' t", etc. -->
+	<ERROR Find="(?i)[A-ZÁ-Úa-zá-ú]('\s|\s')(ll|ve|s|m|d|t)\b" ReplaceBy="'">
+	
+	<!-- Smart space after dot(s) (this is now all handled by Subtitle Workshop internally, if you place the dot (.) character in the "Space after characters" list) -->
+	<!-- Add space after a single dot -->
+	<!-- <ERROR Find="[a-zá-úñä-ü](\.)[^(\s\n\.\?\!)]" ReplaceBy=". "> -->
+	<!-- Add space after the last of two or more consecutive dots (e.g. "...") -->
+	<!-- <ERROR Find="(\.\.)[^(\s\n\.\?\!)]" ReplaceBy=".. "> -->
+	<!-- Remove space after two or more consecutive dots (e.g. "...") at the beginning of the line -->
+	<!-- <ERROR UseREOnlyToFind="False" Find="^(\.{2,} )" ReplaceBy="..."> -->
+
+	
+	<!-- Others -->
+	
+	<!-- Replace "--" (2 or more) with "..." -->
+	<ERROR UseREOnlyToFind="False" Find="-{2,}" ReplaceBy="...">		
+	
+</SWOCR>

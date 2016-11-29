@@ -1,0 +1,1137 @@
+;   Subtitle Workshop 2.51
+;   Bahasa Melayu - Malay language file
+;   Not checked for completeness, grammar or logic yet ;)
+;   Author: WKSoo
+;   E-mail: wksoo68@hotmail.com
+;   Web: http://www.urusoft.net
+
+[General]
+Translator=WK Soo
+Font Charset=0
+AllFiles=Semua fail yang disokong
+Help=Manual.html
+FPS=FPS
+PlainText=Plain text
+STP=Subtitle Translation Project
+SRF=Subtitle Report File
+AllTheFiles=All files
+
+[Standard buttons]
+01=&Ok
+02=&Batal
+03=&Imbas
+04=&Apply
+05=K&eluar
+06=&Ya
+07=&Tidak
+
+[Main Form]
+01=Sinkroni mengikut:
+02=Masa
+03=Kerangka
+04=FPS input:
+05=FPS baru:
+06=Kerja dengan:
+07=Tempoh|Masa terakhir|Kedua-dua
+08=Baris
+09=Papar
+10=Padam
+11=Teks
+12=Terjermahan
+13=%d barisan tidak diterjermah
+14=Tempoh:
+15=%s (%s aksara):
+16=- Sarikata tak terjermah -
+17=Lines:
+18=Notes:
+19=Pause
+20=%d subtitles selected / %d
+21=#%d / %d
+
+[Main menu header]
+01=Fail
+02=Sunting
+03=Cari
+04=Alatan
+05=Filem
+06=Setting
+07=Bantuan
+08=View
+
+[Main menu/File]
+01=Sarikata baru...
+02=Buka fail sarikata...
+03=Fail terakhir
+04=Padam senarai
+05=Muat
+06=Projek...
+07=Asal
+08=Diterjermah
+09=Simpan
+10=Asal sebagai...
+11=Penterjermahan sebagai ...
+12=Simpan sebagai...
+13=Tutup fail
+14=Keluar program
+15=Save marking
+
+[Main menu/Edit]
+01=Undo
+02=Buat semula
+03=Masukkan sarikata
+04=Masuk sebelum
+05=Keluarkan sebelum
+06=Potong
+07=Salin
+08=Tampal
+09=Pilih semua barisan
+10=Invert selection
+11=Insert symbol...
+
+[Main menu/Edit/Timings]
+01=Tempoh
+02=Set had tempoh...
+03=Set lengahan...
+04=Laraskan
+05=Laraskan sarikata...
+06=Laraskan ke sarikata segerak
+07=Panjang/Kurangkan masa
+08=Panjangkan masa
+09=Tempoh automatik
+10=Baca tempoh dari fail
+11=Anjak %s milisaat
+12=Extend length to previous
+13=Set pauses...
+14=Shift to next
+15=Shift to previous
+16=Round time values...
+
+[Main menu/Edit/Texts]
+01=Teks
+02=Pelarasan baris bijak
+03=Tukar aksara...
+04=Gabungkan sarikata
+05=Bahagikan barisan...
+06=Pembahagian barisan laju
+07=Set had panjang barisan...
+08=Baca teks dari fail
+09=Fast smart line adjust
+10=Fast unbreak subtitles
+
+[Main menu/Edit/Subtitles]
+01=Sarikata
+02=Gabungkan sarikata
+03=Kesan khas
+04=Kesan menaip
+05=Denyar (Pulse/Flash)
+06=Denyar laju
+07=Denyar sederhana
+08=Denyar perlahan
+09=Kanan-ke-kiri
+10=Teks berbalik
+11=Baiki tandabaca
+12=Isih
+13=Padam sambungan tak perlu
+14=Tandakan sarikata terpilih
+15=Nyahtanda sarikata terpilih
+16=Auto combine subtitles...
+17=Delete dots at the beginning
+18=Jump to next marked
+19=Jump to previous marked
+
+[Main menu/Edit/Translation]
+01=Guna mod penterjermahan
+02=Mod terjermahan
+03=Tukar kedudukan lajur
+
+[Main menu/Search]
+01=Cari...
+02=Cari seterusnya
+03=Cari && ganti...
+04=Pergi ke barisan...
+
+[Main menu/Tools]
+01=Periksa ejaan (bergantung kpd perisian)
+02=Penukaran kelompok...
+03=Bahagikan sarikata...
+04=Sambung sarikata...
+05=Maklumat dan ralat
+06=Maklumat dan ralat...
+07=Maklumat tambahan...
+08=Skrip OCR
+09=Tunjuk dalam halaman utama
+10=Setting...
+11=Periksa semula ralat
+12=Baiki semua ralat
+13=Baiki ralat (sarikata terpilih)
+14=Pergi ke ralat seterusnya
+15=Dapatkan FPS dari AVI
+16=Program pratonton luaran
+17=Penyari bahasa SAMI
+18=Skrip Pascal
+19=Jump to previous error
+20=Show CpS boxes
+
+[Main menu/Movie]
+01=Buka fail filem...
+02=Tutup fail filem
+03=Maklumat...
+04=Mod pratonton video
+05=Tunjukkan sarikata
+06=Simpan fail permulaan media
+07=Audio stream
+08=None
+09=Video renderer
+10=Default
+11=VMR9
+
+[Main menu/Movie/Playback]
+01=Mainbalik
+02=Main/Jeda
+03=Henti
+04=Balik
+05=Mara
+06=Balik 5 saat
+07=Mara 5 saat
+08=Kadar mainbalik
+
+[Main menu/Movie/Subtitles]
+01=Sarikata
+02=Pindah sarikata
+03=Set masa mula
+04=Set masa tamat
+05=Mula sarikata
+06=Tamat sarikata
+
+[Main menu/Movie/Synchronization]
+01=Penyegerakan/Sinkronisasi
+02=Tanda sinkronisasi pertama
+03=Tanda sinkronisasi terakhir
+04=Masukkan tanda sinkronisasif
+
+[Main menu/Movie/Display]
+01=Papar
+02=Asal
+03=Terjermahan
+
+[Main menu/Settings]
+01=Setting output...
+02=Bahasa (Language)
+03=Tunjukkan panel kiri
+04=Tunjukkan kawalan masa
+05=Gunakan versi "in-place"
+06=Refresh language files
+07=Files refreshed
+08=keys
+
+[Main menu/Help]
+01=Tentang %s...
+02=Periksa untuk versi baru
+
+[Popup Menu]
+01=Italik
+02=Mukataip tebal
+03=Mukataip bergaris
+04=Pilih warna
+05=Padamkan petanda warna
+06=Remove all tags
+07=Delete
+08=Style
+
+[Video preview hints]
+01=Main/Jeda (%s)
+02=Henti (%s)
+03=Toggle senarai tatalan
+04=Lompat ke sarikata sebelumnya
+05=Lompat ke sarikata seterusnya
+06=Putar balik (%s)
+07=Mara (%s)
+08=Ubah kadar mainbalik
+09=Pindah sarikata (%s)
+10=Set masa mula (%s)
+11=Set masa akhir (%s)
+12=Mula sarikata (%s)
+13=Tamat sarikata (%s)
+14=Tanda sebagai titik sinkronisasi pertama (%s)
+15=Tanda sebagai titik sinkronisasi akhir (%s)
+16=Masukkan titik sinkronisasi sarikata/video (%s)
+17=Volume: %d%%
+18=Mute/Unmute
+
+[Save as]
+01=Simpan sebagai
+02=Klik 2 kali pada hasilan format:
+03=Format tersendiri
+04=Semua format
+
+[Custom formats]
+01=Format tersendiri/custom
+02=Maklumat
+03=Nama:
+04=Sambungan:
+05=Aksara barisan baru:
+06=Masa
+07=Kerangka
+08=Struktur:
+09=FPS:
+10=Muat projek
+11=Simpan projek
+12=Gunakan format tersendiri/custom terakhir
+13=Simpan!
+14=Projek format tersendiri/custom
+
+[Settings Form]
+01=Setting
+02=Ubah konfigurasi perisian
+03=Umum
+04=Lebih maju
+05=Set aksara
+06=Format
+07=Jenis fail
+08=Simpan
+09=Pratonton video
+10=Sarikata
+11=Pratonton luaran
+12=Tengok
+13=Program
+14=Senarai
+15=Menu
+16=Sentiasa di atas
+17=Benarkan lebih dari satu larian program ini
+18=Sahkan apabila padam sarikata
+19=Tafsirkan fail tidak sah sebagai teks biasa
+20=Carian auto untuk filem
+21=Paksa penggunaan dalam mod masa
+22=Kekalkan turutan barisan apabila membalikan teks
+23=Pilih teks apabila lompat ke barisan seterusnya
+24=Pilih teks apabila lompat ke barisan sebelumnya
+25=Tiada interaksi dengan petanda
+26=Gunakan tanda gaya
+27=Had bilangan fail dibuka
+28=Pelarasan barisan bijak
+29=2 barisan jika melebihi:
+30=aksara
+31=Toggle tanda asing
+32=Bahagikan barisan
+33=Bahagikan barisan selepas:
+34=Laraskan barisan secara automatik
+35=Had maksima barisan:
+36=Masa anjakkan:
+37=milisaat
+38=Paparkan dalam halaman utama
+39=Set aksara asal:
+40=Set aksara terjermahan:
+41=Format lalai:
+42=Jenis format bila "Simpan sebagai".
+43=Tunjukkan format tersendiri
+44=Pilih semu&a
+45=Pilih ko&song
+46=Daftar sambungan pada permulaan
+47=Hubungkan dengan sarikata yang disokong
+48=Tanya untuk simpan bila keluar program/tutup sarikata
+49=Simpan kerja secara automatik setiap
+50=minit.
+51=Simpan sebagai sandaran
+52=Setting output...
+53=Klik 2 kali pada sarikata:
+54=Saat untuk lompat:
+55=SHIFT+Klik 2 kali pada sarikata:
+56=Focus text box
+57=Mara ke masa sarikata dalam video
+58=Mara N saat(s) sebelum sarikata dalam video
+59=Masa putar balik dan mara:
+60=saat.
+61=Nilai kadar mainbalik terubah lalai:
+62=Lukiskan pinggir
+63=Lukiskan bayangan
+64=Cuba latarbelakang lutsinar
+65=Paksa penggunaan kawasan (mungkin lambat)
+66=Mukataip...
+67=Warna...
+68=Latarbelakang...
+69=Lebar pinggir:
+70=Lebar bayang:
+71=CONTOH
+72=Fail larian pemain video:
+73=Kesan program tersekutu
+74=Tanya untuk video berbeza setiap kali
+75=Sentiasa uji dengan video:
+76=Simpan sarikata sementara dalam format:
+77=Fomat asal
+78=Format tersendiri:
+79=Parameter untuk dihantar ke pemain video:
+80=VIDEO_FILE mewakili fail video yang akan diuji dengan sarikata. SUBT_FILE adalah parameter dalam fail sarikata sementara yang akan dihantar ke pemain video. Anda boleh tambah parameter lain, cth. skrin penuh dsbg.
+81=Mukataip dalam perisian:
+82=Saiz mukataip:
+83=Ruangan "Text" and "Translation" sejajar:
+84=Kiri|Kanan|Tengah
+85=Tunjuk garisan pemetakan
+86=Gunakan stail keatas sarikata
+87=Tandakan sarikata tak diterjermah dengan warna:
+88=Tunjukkan palang tatalan mendatar
+89=Gunakan menu stail Office XP
+90=Gunakan menu bergradien
+91=Tags mode:
+92=Multiple tags mode
+93=Single tags mode (the old mode)
+94=Auto delete tags
+95=Default subtitle duration:
+96=Default subtitle pause:
+97=Increase step (time):
+98=Increase step (frames):
+99=frames
+100=Keep min duration of:
+101=but don''t allow overlaps
+102=Automatically round time values to:
+103=Round time values on subtitle load
+104=Notes charset:
+105=Add "Open with Subtitle Workshop" to shell context menu
+106=Ask to save new subttiles
+107=Save empty subtitles
+108=Vertical video center align
+109=Enter full screen on double click
+110=Setting Show and Hide times
+111=Shift Show value:
+112=Shift Hide value:
+113=Align left when subtitles contain a new line starting with "-"
+114=Relative font size
+115=Keep subtitle on video
+116=Try antialiasing (Force using regions must be off)
+117=Smart main window and subtitle list resize
+118=Resize subtitle list columns when resizing form
+119=Mark untranslated subtitles with background:
+120=Right click selection
+121=Row height:
+122=Text margin:
+123=Selection
+124=Text:
+125=Color:
+126=Transparency:
+127=Columns
+128=Align:
+129=Display style:
+130=Full
+131=Compact
+132=Marking with color:
+133=Marking with background:
+134=Columns to mark:
+135=Mark column "%s"
+136=Marking priority:
+137=Low (before error marking)
+138=High (after error marking)
+139=Marked subtitle color in video preview:
+140=Marking file
+141=Do not save marking file
+142=Ask each time to save marking file
+143=Automatically save marking file on subtitle save
+144=Automatically load marking file
+145=Marking
+146=Play video on load
+147=Visual subtitle representation color:
+148=Hilight tags in "Text" and "Translation" fields:
+
+[Output settings]
+01=Setting output
+02=ID Disk:
+03=Tajuk DVD:
+04=Bahasa:
+05=Pengarang:
+06=Web:
+07=Maklumat:
+08=Lesen:
+09=Sarikata:
+10=Latarbelakang:
+11=CONTOH
+12=&Set mukataip
+13=Jajaran:
+14=Kiri
+15=Tengah
+16=Kanan
+17=Kadar kerangka:
+18=Kerangka terbuang
+19=Warna 0 (latarbelakang):
+20=Warna 1 (mukataip):
+21=Warna 2 (garis bentuk):
+22=Warna 3 (penyahalias):
+23=Palet warna n*:
+24=Kontras
+25=Tajuk:
+26=Skrip:
+27=Rupawajah
+28=Lain-lain
+29=Stail pinggiran:
+30=Garis bentuk + bayangan
+31=Kotak legap
+32=Warna
+33=Dasar:
+34=Sekunder:
+35=Tertier:
+36=Bayang
+37=Jidar/margin kiri:
+38=Jidar/margin kanan:
+39=Jidar/margin menegak:
+40=Outline:
+41=Alignment:
+42=Pengekodan:
+43=Sumber:
+44=Progam:
+45=Laluan fail:
+46=Lengahan:
+47=Track CD:
+48=Ulasan:
+49=Format TMPlayer
+50=Format TMPlayer
+51=Format TMPlayer Multiline
+
+[Duration limits]
+01=Had tempoh
+02=Set tempoh maksima
+03=Milisaat
+04=Set tempoh minima
+05=* Peningkatan masa tidak akan menyebabkan penindihan
+06=Increase at start if necessary
+
+[Set delay]
+01=Set lengahan
+02=Untuk semua sarikata
+03=Untuk sarikata terpilih
+04=From first selected until last subtitle
+
+[Adjust subtitles]
+01=Laraskan sarikata
+02=Asas
+03=Lanjutan
+04=Barisan pertuturan pertama:
+05=Barisan pertuturan terakhir:
+06=Muat dari fail
+07=Simpan ke fail
+08=# Barisan
+09=Masa lama
+10=Masa baru
+11=T&ambah
+12=Tambah dari &media
+13=Kelua&rkan
+14=Jika masa diluar batasan:
+15=Ekstrapolasi
+16=Kembalikan masa asal (tiada perubahan)
+17=Kembalikan anjakan titik jiran
+18=L&araskan!
+19=Masukkan titik sinkronisasi baru
+20=Masa lama:
+21=Masa baru:
+
+[Time expander/reducer]
+01=Pengalih masa
+02=Panjangkan tempoh
+03=Kurangkan tempoh
+04=Alihkan tempoh
+05=Saat
+06=Kerangka
+07=Hanya jika sarikata melebihi:
+09=aksara
+10=Hanya jika tempoh melebihi:
+11=Hanya jika tempoh kurang daripada:
+12=Elakkan penindihan
+13=Untuk semua sarikata
+14=Sarikata terpilih sahaja
+
+[Automatic durations]
+01=Tempoh automatik
+02=Milisaat
+03=setiap aksara
+04=setiap perkataan
+05=setip baris
+06=Gunakan tempoh baru dalam semua kes
+07=Hanya jika tempoh baru lebih dari yang asal
+08=Hanya jika tempoh baru kurang dari yang asal
+09=Semua sarikata
+10=Sarikata terpilih sahaja
+11=Method
+12=Characters
+13=per second
+14=Increase at start if necessary
+15=Maximum increase at start (0 = no limit):
+16=milliseconds
+
+[Convert case]
+01=Tukar aksara
+02=Hanya untuk
+03=huruf pertama dari perkataan pertama
+04=mengesan "..." dalam ayat
+05=guna huruf kecil sahaja
+06=GUNA HURUF BESAR SAHAJA
+07=Mirip Tajuk Besar
+08=sONGSANGKAN hURUF
+09=Semua sarikata
+10=Sarikata terpilih sahaja
+
+[Divide lines]
+01=Bahagikan barisan
+02=Bahagikan barisan selepas barisan:
+03=Gunakan tempoh automatik
+04=Tunjukkan:
+05=Sembunyikan:
+06=Tempoh:
+07=Sambung secara terus
+08=%s aksara
+09=&Bahagi!
+
+[Search & Replace]
+01=Cari dan ganti
+02=Cari
+03=Teks untuk dicari
+04=&Cari!
+05=Ganti dengan:
+06=Cari seterusnya
+07=&Ganti
+08=Gantikan semu&a
+09=&Lebih >
+10=&Kurang <
+11=Peka terhadap jenis huruf
+12=Padankan semua perkataan
+13=Kekalkan jenis huruf apabila diganti
+14=Cari teks dalam:
+15=Semua sarikata
+16=Dari pilihan
+17=Set aksara:
+
+[Go to line]
+01=Ke barisan nombor:
+02=Masukkan nombor barisan:
+
+[Batch convert]
+01=Penukaran kelompok
+02=Tukar beberapa fail ke format tunggal dalam beberapa langkah.
+03=< &Balik
+04=Seterus&nya >
+05=Tukar
+06=&Keluar
+07=&Tutup
+08=&Semua
+09=&Tiada
+10=Sambungan:
+11=Laluan pencarian:
+12=Termasuk subfolder
+13=Pemeriksaan format menyeluruh
+14=Direktori output:
+15=Format output:
+16=FPS lalai:
+17=Nama fail
+18=Format
+19=FPS
+20=Saiz
+21=T&ambah
+22=Kelua&rkan
+23=Pa&dam
+24=Selesai! Lihat log untuk maklumat terperinci
+25=Simpan...
+26=Sedang periksa fail %s
+
+[Batch convert log]
+01=%s %s - Rekod pertukaran kelompok
+02=Dijana pada %s
+03=Format output: %s
+04=Bilangan fail untuk ditukar: %d
+05=Sedang cuba muat "%s"...
+06=Fail berjaya dimuat!
+07=Fail "%s" wujud, akan diganti...
+08=Fail berjaya disimpan di "%s"'
+09=Fail "%s" wujud tetapi anda tidak membenarkan program mengantikannya
+10=Tidak dapat muat fail, tidak boleh disimpan!
+11=Jumlah penukaran: %u
+12=Jumlah masa: %s
+13=Kesemua fail berjaya ditukar
+14=Timbul kesilapan apabila menukar beberapa fail, lihat dibawah untuk maklumat selanjutnya
+
+[Split]
+01=Bahagikan sarikata...
+02=Asas
+03=Lanjutan
+04=Pilih perkara
+05=Perkara nombor:
+06=Masa diberi:
+07=Kerangka diberi:
+08=Akhir video:
+09=Penamaan
+10=Bahagian %d:
+11=Namafail
+12=Panjang
+13=Barisan
+14=Bahagian sekata mengikut masa
+15=Bahagian sekata mengikut bilangan baris
+16=Pada akhir video
+17=Bilangan bahagian:
+18=Auto-name the parts:
+19=Direktori output:
+20=Format output:
+21=Kira semula nilai masa
+22=Klik 2 kali untuk pilih filem
+23=&Split!
+
+[Join]
+01=Gabungkan sarikata
+02=Tambahkan fail sarikata yang ingin digabung (mengikut turutan):
+03=Nama fail
+04=Format
+05=FPS
+06=Saiz
+07=Cebisan filem (Opsyen)
+08=T&ambah
+09=Kelua&rkan
+10=&Padam
+11=&Set cebisan filem
+12=Pa&dam cebisan filem
+13=Format output:
+14=FPS output:
+15=Muat fail setelah digabung dan disimpan
+16=Kira semula nilai masa
+17=&Gabung!
+
+[Information and errors]
+01=Maklumat dan ralat
+02=Periksa!
+03=Baiki ralat!
+04=&Setting
+05=Sahkan semua pemadaman
+06=Sarikata
+07=Jenis
+08=Pemerihalan
+09=Ralat
+10=Amaran
+11=Maklumat
+13=Dibaiki
+14=Jumlah ralat : %d
+15=Ralat dibaiki: %d
+16=Mengandungi barisan tanpada aksara
+17=Sarikata kosong
+18=Bertindih dengan sarikata sebelumnya
+19=Nilai tidak sah
+20=Tempoh terlalu lama
+21=Tempoh terlalu singkat
+22=Barisan terlalu panjang
+23=Melebihi 2 barisan
+24=Cacat pendengaran
+25=Mempunyai teks sebelum tanda colon ":"
+26=Tanda noktah tidak perlu
+27=Mengandungi askara larangan
+28=Aksara berulang
+29=Sarikata berulang
+30=Ralat OCR
+31=Satu baris sarikata bermula dengan "-"
+32=Tiada ruang selepas aksara tersendiri
+33=Tiada ruang sebelum aksara tersendiri
+34=Ruang yang tidak perlu
+35=Sarikata ditanda
+36=Barisan kosong dipadam
+37=Sarikata kosong dipadam
+38=Penindihan dibaiki
+39=Nilai ralat dibaiki
+40=Sarikata dilaraskan supaya tidak melebihi 2 barisan
+41=Sarikata untuk cacat pendengaran dibuang
+42=Bahagian untuk cacat pendengaran telah dipadam
+43=Teks sebelum tanda colon ":" dibuang
+44=Noktah tambahan dibuang
+45=Aksara larangan dipadam
+46=Aksara berulang dibaiki
+47=Sarikata berulang dibaiki
+48=Ralat OCR dibaiki
+49="-" dipadam dari sarikata yang muat dalam 1 barisan
+50=Ruangan ditambah selepas aksara tersendiri
+51=Ruangan ditambah sebelum aksara tersendiri
+52=Ruangan tambahan dipadam
+53=Klik 2 kali untuk lompat ke barisan dalam halaman utama
+67=E
+68=W
+69=F
+70=CI
+71=Select
+72=+ Select
+73=- Select
+74=Select subtitles
+75=Add to selected subtitles
+76=Remove from selected subtitles
+77=All
+78=None
+79=Inverse
+80=Select all
+81=Select none
+82=Invert selection
+83=Error types sets
+84=Save error types set
+85=Delete error types set
+86=Error types
+87=Custom info
+88=Show/hide errors
+89=Show/hide warnings
+90=Show/hide fixed
+91=Show/hide custom info
+92=Show/hide Error types panel
+93=Show/hide Custom info panel
+65=Custom info
+66=Displayed: %d
+54=Unnecessary tags
+56=Dash on first line
+58=Too many CpS
+60=Too short pause
+62=Dialogue on one line
+55=Removed unnecessary tags
+57=Removed dash on first line
+59=Fixed too much CpS
+61=Fixed too short pause
+63=Fixed dialogue on one line
+94=Export to file
+95=Text file
+96=char
+97=sec
+98=fr
+99=cps
+
+[Information and errors Settings]
+01=Setting
+02=Umum
+03=Lanjutan
+04=Periksa untuk
+05=Baiki
+06=Ruangan tak perlu
+07=Tunjukkan pengesahan dalam halaman utama apabila dibaiki
+08=Tandakan ralat pada senarai halaman utama
+09=Set warna...
+10=Mukataip tebal
+11=Italik
+12=Mukataip bergaris
+13=Tandakan ralat apabila muat sarikata
+14=Baiki ralat apabila muat sarikata
+15=Baiki penindihan apabila muat
+16=Skrip OCR:
+17=&Edit
+18=Aksara boleh ulang:
+19=Aksara dibenarkan:
+20=Tolerance for repeated sarikata:
+21=milisaat.
+22=Ruangan selepas aksara:
+23=Ruangan sebelum aksara:
+24=Tempoh terlalu lama:
+25=Tempoh terlalu singkat:
+26=Barisan terlalu panjang:
+27=aksara.
+28=Barisan tanpa aksara
+29=Sarikata Kosong
+30=Sarikata bertindih
+31=Nilai ralat
+32=Tempoh terlalu lama
+33=Tempoh terlalu singkat
+34=Barisan terlalu panjang
+35=sarikata melebihi 2 barisan
+36=Sarikata untuk cacat pendengaran
+37=Teks sebelum tanda colon ":"
+38=Hanya jika teks dalam huruf besar
+39=Tidak perlu noktah
+40=Aksara larangan
+41=Aksara berulang
+42=Sarikata berulang
+43=Ralat OCR
+44="- " dalam sarikata yg muat satu barisan
+45=Ruangan selepas aksara tersendiri
+46=Ruangan sebelum aksara tersendiri
+47=Tidak perlu ruang
+48=Periksa untuk:
+49=Baiki:
+50='Enter' dan ruangan di permulaan dan akhir
+51=Ruangan anrata 'enter' (di kiri dan kanan)
+52=Dwiruangan dan 'enter'
+53=Ruangan di depan tanda baca
+54=Ruang selepas "¿" dan "¡"
+55=Ruang sebelum "?" dan "!"
+56=Ruang antara nombor
+57=Too short pauses
+58="- " on first line
+59=Only if there is no "- " on second line
+60=Dialogue on one line
+61=Unnecessary tags
+62=Too many characters per second
+63=Mark too much CpS with CpS boxes
+64=Default errorr marking
+65=Set Default Styles
+66=Mark column "Num"
+67=Mark column "Pause"
+68=Mark column "Show"
+69=Mark column "Hide"
+70=Mark column "Duration"
+71=Mark column "Text"
+72=Mark as Bold
+73=Mark as Italic
+74=Mark as Underline
+75=Mark as Strikethrough
+76=Mark the text color
+77=Mark the background color
+78=Mark
+79=Automatically recheck errors
+80=Do not recheck on Pascal scripts
+81=Recheck all once after a Pascal script executes
+82=Recheck on each change made by a Pascal script (might be slow)
+83=Indicate too long lines in Text and Translation labels
+84=Indicate too short duration in Duration box
+85=Indicate too long duration in Duration box
+86=Indicate too short pause in Pause box
+87=Indicate overlapping subtitles in Pause box
+88=Indicate bad values in Show and Hide boxes
+89=Indicate subtitles over two lines in lines counter labels
+90=Text color
+91=Background color
+92=Too short pause under:
+93=Characters per second (CpS)
+94=Too many CpS over:
+95=characters per second
+96=Normal CpS box colors:
+97=Too many CpS box colors:
+98=Display percantage in CpS box
+99=Display current CpS in CpS box
+100=Display minimum time in CpS box
+101=Display maximum characters in CpS box
+
+[Various information]
+01=Maklumat lain
+02=Maklumat
+03=Tambahan
+04=Fail asal
+05=Fail terjermahan
+06=Format sementara:
+07=Fail:
+08=Saiz:
+09=Jumlah sarikata:
+10=Jumlah barisan:
+11=Jumlah perkataan:
+12=Jumlah aksara:
+13=sarikata dalam satu barisan:
+14=sarikata dalam 2 barisan:
+15=sarikata melebihi 2 barisan:
+16=Barisan terpanjang:
+17=Dalam sarikata %d dengan %d aksara
+18=Saiz mukataip paling sesuai untuk mainbalik
+19=Lebar resolusi:
+20=Dari AVI
+21=Nama mukataip:
+22=Mukataip tebal
+23=Italik
+24=Kira
+25=Shortest line:
+26=Longest pause:
+27=Shortest pause:
+28=In subtitle %d, %d,%.3d seconds
+29=In subtitle %d, %d milliseconds
+30=Most CpS:
+31=Least CpS:
+32=In subtitle %d, %d cps
+33=Average CpS:
+34=Longest duration:
+35=Shortest duration:
+36=Refresh info
+
+[SAMI Language Extractor]
+01=Penyari/pengekstrak bahasa SAMI
+02=Fail SAMI:
+03=Direktori output:
+04=Bahasa dipilih akan diekstrak:
+05=Kelas
+06=Bahasa
+07=Pengesanan auto untuk semua
+08=Masukkan secara manual
+09=Ekstrak!
+10=Tambah bahasa
+11=Masukkan nama kelas untuk bahasa:
+12=Sila tunggu...
+
+[About form]
+01=Tentang %s
+02=Maklumat
+03=Kredit
+04=Versi: %s
+05=%s versi: %s
+06=%d format berlainan disokong
+07=Jika anda berpendapat bahawa perisian ini berguna, kami harap untuk mendapat sumbangan anda untuk meneruskan
+perkembangan. Klik disini untuk menyumbang.
+08=Diaturcara oleh
+09=Pengaturcaraan tambahan oleh
+10=%s oleh
+11=%s programming
+12=Penterjemah
+13=Penguji beta
+14=Ikon lalai oleh
+15=Untuk pembaharuan, sila kunjungi:
+16=License
+
+[Error messages]
+01=Tidak dapat memulakan 'API' sarikata. Sila muatturun fail library DLL "%s" dari %s dan masukkan ke dalam direktori "%s".
+02=Ralat berikutnya (%s) timbul dari objek %s (%s):||"%s"||Sila maklumkan kepada %s tentang aktiviti yang dijalankan semasa ralat ini timbul.||Klik OK untuk tersukan, dan CANCEL untuk tamatkan program.
+03=Fail "%s" rosak ataupun dalam format yang tidak diketahui.
+04=Fail "%s" tidak dalam format %s ataupun bukan fail sarikata sebenar.
+05="%s" bukan fail video sah.
+06=Nombor barisan tidak sah.
+07=Pilih sekurang-kurangnya satu sambungan untuk cari.
+08=Laluan carian tidak wujud.
+09=Nombor perkara bukan perkara yang sah.
+10=Masukkan 2 atau lebih sarikata.
+11=Tidak dapat sambung ke pelayan!.
+12=Tidak dapat padam atribut baca-sahaja dari "%s".||Mungkin ia berada pada pemacu yang baca-sahaja.
+13=Kesilapan berlaku apabila membuka Microsoft Word!.
+14=Pilih video untuk bahagian sebelumnya terlebih dahulu!.
+15=Pilih direktori sah untuk output.
+16=Pilih satu bahasa untuk disari.
+17="%s" bukan fail SAMI yang sah.
+18=Pilih bahagian sarikata dalam senarai
+19=Jika anda pilih cebisan filem untuk sebahagian sarikata, anda dikehendaki memilih cebisan untuk bahagian sarikata lain juga (kecuali bahagian terakhir).
+20=Anda perlukan dua atau lebih tanda lagi.
+21=Incorrect regular expression in Custom info %s
+22=Custom Info %d was disabled.|Fix the regular expression to enable it.
+23=Subtitle duration too short!
+24=Error: can not execute script.
+25=Error: can not compile script.
+26=Save subtitles first
+
+[Question messages]
+01=Fail "%s" telah diubah.||Simpan?.
+02=Fail "%s" wujud.||Gantikan fail ini?.
+03=Fail asal ("%s") telah diubah.||Simpan?.
+04=Fail terjermahan ("%s") telah diubah.||Simpan?.
+05=Sarikata dipilih akan dipadam.||Teruskan?.
+06=Tanda 1 Sarikata: %s|Tanda 1 Filem: %s||Tanda 2 Sarikata: %s|Tanda 2 Filem: %s||Laraskan sinkroni sarikata?
+07=Program larian pemain video belum dimasukkan atau tidak dijumpai.||Mahukan anda set pemain luaran yang baru?.
+08=Versi baru dijumpai!.||Mahukah anda lihat perubahan terbaru?.
+09=Fail yang disimpan hanya boleh dibaca sahaja (read-only).||Cuba simpan?.
+10=Do you want to save the marking in a file?
+
+[Information messages]
+01=Tidak jumpa larian tambahan "%s".
+02=Tiada versi baru.
+03=Pemeriksaan ejaan selesai.||%d pertukaran dibuat.
+04=Terlalu banyak bahagian. Reset...
+05=Hanya satu bahasa dijumpai.||Jika fail mempunyai lebih dari satu bahasa, masukkannya secara manual dengan membuka fail tersebut untuk mendapatkan nama kelas yang betul
+06=Tanda permulaan dan/atau akhir "STYLE" tidak ditemui!.||Mungkin ini disebabkan fail tidak mempunyai lebih dari satu bahasa.||Jika ada, anda boleh cari secara manul untuk nama kelas bahasa-bahasa yang diingini.
+07=Saiz mukataip paling sesuai adalah: %d
+08=Jumlah penggantian: %d
+09=Nama fail: %s|Saiz: %s|FPS: %s|Tempoh: %s|Jumlah kerangka: %d|Resolusi: %dx%d|Kod FourCC: %s
+10=Sebilangan aliran dalam fail tidak dapat dibuka kerana mungkin kodek audio/video yang diperlukan tidak dipasang.
+11=Tidak wajib untuk set bahagian filem yang bersesuaian dengan sarikata terakhir.
+12=A sudden error occured:|"%s"
+
+[Information and errors messages]
+01=Sarikata bernombor %d adalah kosong dan akan dipadamkan.||Teruskan?.
+02=Sarikata bernumbor %d:||"%s" menggunakan aksara larangan dan akan dipadamkan.||Teruskan?.
+03=Sarikata bernumbor %d:||"%s" akan dipadamkan.||Teruskan?.
+04=Sebahagian sarikata bernombor %d:||"%s" akan dipadamkan untuk menjadi:||"%s"||Teruskan?.
+05=Sarikata bernombor %d:||"%s" adalah sarikata berbaris tunggal tetapi mula dengan "-".||Adakah anda ingin padam "-" dari permulaannya?.
+
+[Main menu/View]
+01=Toolbar
+02=Text style bars
+03=Statusbar
+04=Columns
+05=Show notes in left panel
+06=Show time control buttons
+07=Show lines count
+08=Visual subtitle representation
+
+[Video Popup Menu]
+01=Enter full screen
+02=Exit full screen
+03=Zoom to %d%%
+04=Reset subtitle vertical position
+
+[Time control buttons hints]
+01=Shift to previous/Extend to previous
+02=Shift to next/Extend to next
+03=Set default pause/Set default pause, if pause is too short
+04=Set ato duration/Set min duration
+
+[Auto combine subtitles]
+01=Auto combine subtitles
+02=milliseconds
+03=Combine if duration is less than (0 = no limit):
+04=Combine if CpS is greater than (0 = no limit):
+05=characters per second
+06=Don't combine if pause is greater than (0 = no limit):
+07=Punctuation marks detection
+08=Combined subtitles maximum duration (0 = no limit):
+09=Decrease duration if necessary, with no more than:
+10=Combined subtitles maximum lines length (0 = no limit):
+11=characters
+12=For all the subtitles
+13=For the selected subtitles
+
+[Set pauses]
+01=Set pauses
+02=Pauses value:
+03=Shorten duration of:
+04=First subtitle only
+05=Second subtitle only
+06=Both subtitles equally
+07=The subtitle with less CpS
+08=For all the subtitles
+09=For the selected subtitles
+
+[Round time values]
+01=Round time values
+02=Round to:
+03=milliseconds
+04=For all the subtitles
+05=For the selected subtitles
+
+[Smart line adjust]
+01=Smart line adjust
+02=Two lines if longer than:
+03=characters
+04=Break method:
+05=Equal lines
+06=Break on punctuation marks
+07=Don''t unbreak subtitles that are not too long
+08=Adjust only long subs and subs with more than 2 lines
+09=For all the subtitles
+10=For the selected subtitles
+11=Always try to find a better breaking point
+
+[Unbreak subtitles]
+01=Unbreak subtitles
+02=Characters limit
+03=No limit
+04=Don''t unbreak if line length exceeds:
+05=characters
+06=Don''t unbreak subtitles with "—" on second line
+07=For all the subtitles
+08=For the selected subtitles
+
+[Custom info]
+01=Add custom info
+02=Composite custom info
+03=Subtitles duration information
+04=Subtitles line lenght information
+05=Subtitles lines count information
+06=Subtitles pause information
+07=Subtitles CpS information
+08=Subtitles text information
+09=Custom info sets
+10=Save custom info set
+11=Delete custom info set
+12=There is no custom info. Click the "+" button to add new custom info.
+13=Caption
+14=Duration
+15=Lines length
+16=Lines count
+17=Pause
+18=CpS
+19=Text
+20=Composite info
+21=ms
+22=chars
+23=lines
+24=cps
+25=AND
+26=OR
+27=Contains (Case sensitive)
+28=Contains (Case insensitive)
+29=Does not contain (Case sensitive)
+30=Does not contain (Case insensitive)
+31=Matches regular expression
+32=Matches regular expression (tags ignored)
+33=Delete
+34=Edit
+

@@ -1,0 +1,1136 @@
+;   Subtitle Workshop 2.51
+;   Croatian language file
+;
+;   Author: ZOX a.k.a Tihomir
+;   E-mail: ZOX_@SoftHome.net
+;
+
+[General]
+Translator=ZOX a.k.a Tihomir
+Font Charset=238
+AllFiles=Svi podržani fileovi
+Help=Manual.html
+FPS=FPS
+PlainText=Èisti tekst
+STP=Projekt prevoðenja titla
+SRF=Izvješæe titla
+AllTheFiles=All files
+
+[Standard buttons]
+01=&Ok
+02=&Odustani
+03=&Traži
+04=&Prihvati
+05=&Izlaz
+06=&Da
+07=&Ne
+
+[Main Form]
+01=Prikaz:
+02=Vrijeme
+03=Frame
+04=Ulazna brzina FPS:
+05=FPS:
+06=Radi sa:
+07=Trajanje|Krajnje vrijeme|Oba
+08=Broj
+09=Poèetak
+10=Kraj
+11=Sadržaj
+12=Prijevod
+13=%d neprevedene linije
+14=Trajanje:
+15=%s (%s znakova):
+16=- Neprevedeni titl -
+17=Lines:
+18=Notes:
+19=Pause
+20=%d subtitles selected / %d
+21=#%d / %d
+
+[Main menu header]
+01=Datoteka
+02=Prepravi
+03=Traži
+04=Alati
+05=Film
+06=Ugaðanja
+07=Pomoæ
+08=View
+
+[Main menu/File]
+01=Novi titl...
+02=Uèitaj titl...
+03=Korišteni titlovi
+04=Obriši listu
+05=Uèitaj
+06=Projekt...
+07=Original
+08=Preveden
+09=Spremi
+10=Original kao...
+11=Prevedeni kao...
+12=Spremi kao...
+13=Zatvori
+14=Izaði
+15=Save marking
+
+[Main menu/Edit]
+01=Undo
+02=Redo
+03=Umetni titl
+04=Umetni prije
+05=Obriši oznaèeno
+06=Izreži
+07=Kopiraj
+08=Prebaci
+09=Oznaèi sve
+10=Invert selection
+11=Insert symbol...
+
+[Main menu/Edit/Timings]
+01=Vremena
+02=Postavi limit prikazivanja...
+03=Postavi trajanje...
+04=Podesi
+05=Podesi titlove...
+06=Podesi po sinkroniziranim titlovima
+07=Produživanje/skraæivanje vremena
+08=Poveæaj trajanje
+09=Automatsko trajanje
+10=Proèitaj vremena iz datoteka
+11=Poveæaj %s millisekundi
+12=Extend length to previous
+13=Set pauses...
+14=Shift to next
+15=Shift to previous
+16=Round time values...
+
+[Main menu/Edit/Texts]
+01=Tekstovi
+02=Pametno ugaðanje
+03=Vrste konvertiranja...
+04=Neprekinti titlovi
+05=Podijeli linije...
+06=Brza podjela linija
+07=Postavo maksimalnu dužinu linje..
+08=Proèitaj tekst iz datoteke
+09=Fast smart line adjust
+10=Fast unbreak subtitles
+
+[Main menu/Edit/Subtitles]
+01=Titlovi
+02=Kombiniraj titlove
+03=Efekti
+04=Tipovi efekata
+05=Blinkanje
+06=Brzo blinkanje
+07=Srednje blinkanje
+08=Sporo blinkanje
+09=S desna na lijevo
+10=Preokreni tekst
+11=Popravi interpunkciju
+12=Sortiraj
+13=Obriši nepotrebne linkove
+14=Zapamti oznaèene titlove
+15=Vrati oznaèene titlove
+16=Auto combine subtitles...
+17=Delete dots at the beginning
+18=Jump to next marked
+19=Jump to previous marked
+
+[Main menu/Edit/Translation]
+01=Prijevod
+02=Mod prevoðenja
+03=Zamjeni
+
+[Main menu/Search]
+01=Traži...
+02=Traži sljedeæe
+03=Traži && Zamjeni...
+04=Idi na liniju broj...
+
+[Main menu/Tools]
+01=Provjera
+02=Grupno knvertiranje...
+03=Podijeli titl...
+04=Spoji titl...
+05=Informacije i pogreške
+06=Informacije i pogreške...
+07=Dodatne informacije...
+08=OCR Skripte
+09=Prikaži u glavnom prozoru
+10=Ugaðanja...
+11=Ponovno provjera
+12=Popravi sve greške
+13=Popravi greške (oznaèeni titlovi)
+14=Idi na sljedeæu pogrešku
+15=Dodaj FPS iz AVI
+16=Vanjsko gledanje
+17=SAMI raspakiravanje jezika
+18=Pascal skripte
+19=Jump to previous error
+20=Show CpS boxes
+
+[Main menu/Movie]
+01=Otvori...
+02=Zatvori
+03=Informacije...
+04=Video pregled
+05=Prikaži titlove
+06=Snimi poèetnu multimedijalnu datoteku
+07=Audio stream
+08=None
+09=Video renderer
+10=Default
+11=VMR9
+
+[Main menu/Movie/Playback]
+01=Playback
+02=Play/Pauza
+03=Stop
+04=Nazad
+05=Naprijed
+06=Vrati 5 sekundi
+07=Naprijed 5 sekundi
+08=Brzina gledanja
+
+[Main menu/Movie/Subtitles]
+01=Titlovi
+02=Premjesti titl
+03=Podesi poèetno vrijeme
+04=Podesi krajnje vrijeme
+05=Poèetak titla
+06=Kraj titla
+
+[Main menu/Movie/Synchronization]
+01=Sinkronizacija
+02=Prva toèak sinkronizacije
+03=Zadnja toèka sinkronizacije
+04=Dodaj sinkronizacijsku toèku
+
+[Main menu/Movie/Display]
+01=Prikaz
+02=Original
+03=Prijevod
+
+[Main menu/Settings]
+01=Izlazna ugaðanja...
+02=Jezik
+03=Pokaži lijevi panel
+04=Pokaži vremenske kontrole
+05=Koristi ureðivanje na mjestu
+06=Refresh language files
+07=Files refreshed
+08=keys
+
+[Main menu/Help]
+01=O %s...
+02=Provjeri novu inaèicu
+
+[Popup Menu]
+01=Zakošeno
+02=Podebljano
+03=Podcrtano
+04=Postavi boju
+05=Ukloni boju
+06=Remove all tags
+07=Delete
+08=Style
+
+[Video preview hints]
+01=Play/Pauza (%s)
+02=Stop (%s)
+03=Scroll lista
+04=Idi na prošli titl
+05=Idi na iduæi titl
+06=Nazad (%s)
+07=Naprijed (%s)
+08=Promijeni brzinu
+09=Premjesti titl (%s)
+10=Podesi poèetno vrijeme (%s)
+11=Podesi krajnje vrijeme (%s)
+12=Start titla (%s)
+13=Kraj titla (%s)
+14=Oznaèi kao prvu toèku sinkronizacije (%s)
+15=Oznaèi kao zadnju toèku sinkronizacije (%s)
+16=Dodaj sinkronizacijsku toèku (%s)
+17=Volume: %d%%
+18=Mute/Unmute
+
+[Save as]
+01=Snimi kao
+02=Dvostruki klik na izlazi format:
+03=Specifièni format
+04=Svi formati
+
+[Custom formats]
+01=Specifièni formati
+02=Informacije
+03=Ime:
+04=Ekstenzija:
+05=Nova linija znakova:
+06=Vrijeme
+07=Frameovi
+08=Struktura:
+09=FPS:
+10=Uèitaj projekat
+11=Snimi projekat
+12=Upamti zadnji format
+13=Snimi!
+14=Specifièni format projekat
+
+[Settings Form]
+01=Ugaðanja
+02=Modificiraj konfiguraciju programa
+03=Opæe
+04=Napredno ugaðanje
+05=Znakovi
+06=Formati
+07=Vrsta file-a
+08=Snimi
+09=Video pregled
+10=Titlovi
+11=Vanjsko gledanje
+12=Izgled
+13=Program
+14=List
+15=Meni
+16=Uvijek iznad drugih prozora
+17=Dozvoli da ide više od jednog
+18=Potvrdi brisanje
+19=Pokaži pogreške kao tekst
+20=Samopretraga za filmom
+21=Rad u vremenskom modu
+22=Zadrži redosljed linija pri obrnutom tekstu
+23=Oznaèi tekst pri skoku na sljedeæu liniju
+24=Oznaèi tekst pri skoku na prethodnu liniju
+25=Bez interakcije sa tagovima
+26=Radi sa stilskim tagovima
+27=Ogranièenja trenutne datoteke:
+28=Pametno poravnavanje
+29=Ako su dvije linije duže od:
+30=Znakovi
+31=Toggle breakpoint
+32=Podjela linija
+33=Podjeli liniju poslije:
+34=Automatsko poravnavanje
+35=Maksimalna dužina linije:
+36=Velièina vremena:
+37=millisekunde
+38=Pokaži u glavnoj formi
+39=Originalni karakterset:
+40=Prevedeni karakterset:
+41=Osnovni format:
+42=Prikaži formate pri  "Snimi kao":
+43=Pokaži moguæe formate
+44=Oznaèi &sve
+45=Poništi s&ve
+46=Registriraj ekstenziju na startu
+47=Pridruži veæini podržanih oblika titlova
+48=Pitaj za snimanje pri izlasku iz programa/gašenju titla
+49=Automatski snimi titl svakih
+50=minuta.
+51=Spremi kao kopiju
+52=Izlazna ugaðanja...
+53=Dvostruki klik na titl:
+54=Sekundi preskoèi:
+55=Shift-dvostruki klik na titl:
+56=Fokusiraj text box
+57=Postavi vrijeme titlova u videu
+58=Idi N sekundi prije titla u videu
+59=Nazad i naprijed vrijeme:
+60=sekundi.
+61=Poèetna izmijenjena brzina:
+62=Nacrtaj liniju
+63=Nacrtaj sjenu
+64=Pokušaj transparentnu pozadinu
+65=Forsiraj regije (možda bude sporo)
+66=Font...
+67=Boja...
+68=Pozadina...
+69=Linija:
+70=Sjenka:
+71=PRIMJER
+72=Program video playera:
+73=Potraži pridruženi program
+74=Uvijek pitaj za video datoteku
+75=Uvijek uporedi sa videom:
+76=Snimi privremene titlove u oblik zapisa:
+77=Originalni format
+78=Moguæi format:
+79=Parameteri koje treba poslati video playeru:
+80=VIDEO_FILE predstavlja file u kojem æete testirati titl. SUBT_FILE je parametar u kojem æe privremeni titl biti poslan video playeru.
+81=Vrsta slova koju æe koristiti program:
+82=Velièina slova:
+83="Text" i "Translation" polja poravnata:
+84=Lijevo|Desno|Sredina
+85=Prikaži mrežu
+86=Prihvati stil za titl
+87=Oznaèi neprevedeni titl sa bojom:
+88=Prikaz horizontalnog scrollbara
+89=Upotrijebi Office XP stil menija
+90=Rastuæi meni
+91=Tags mode:
+92=Multiple tags mode
+93=Single tags mode (the old mode)
+94=Auto delete tags
+95=Default subtitle duration:
+96=Default subtitle pause:
+97=Increase step (time):
+98=Increase step (frames):
+99=frames
+100=Keep min duration of:
+101=but don''t allow overlaps
+102=Automatically round time values to:
+103=Round time values on subtitle load
+104=Notes charset:
+105=Add "Open with Subtitle Workshop" to shell context menu
+106=Ask to save new subttiles
+107=Save empty subtitles
+108=Vertical video center align
+109=Enter full screen on double click
+110=Setting Show and Hide times
+111=Shift Show value:
+112=Shift Hide value:
+113=Align left when subtitles contain a new line starting with "-"
+114=Relative font size
+115=Keep subtitle on video
+116=Try antialiasing (Force using regions must be off)
+117=Smart main window and subtitle list resize
+118=Resize subtitle list columns when resizing form
+119=Mark untranslated subtitles with background:
+120=Right click selection
+121=Row height:
+122=Text margin:
+123=Selection
+124=Text:
+125=Color:
+126=Transparency:
+127=Columns
+128=Align:
+129=Display style:
+130=Full
+131=Compact
+132=Marking with color:
+133=Marking with background:
+134=Columns to mark:
+135=Mark column "%s"
+136=Marking priority:
+137=Low (before error marking)
+138=High (after error marking)
+139=Marked subtitle color in video preview:
+140=Marking file
+141=Do not save marking file
+142=Ask each time to save marking file
+143=Automatically save marking file on subtitle save
+144=Automatically load marking file
+145=Marking
+146=Play video on load
+147=Visual subtitle representation color:
+148=Hilight tags in "Text" and "Translation" fields:
+
+[Output settings]
+01=Izlazna ugaðanja
+02=Disk ID:
+03=DVD Naslov:
+04=Jezik:
+05=Autor:
+06=Web:
+07=Info:
+08=Licenca:
+09=Titl:
+10=Pozadina:
+11=PRIMJER
+12=&Postavi font
+13=Poravnanje:
+14=Lijevo
+15=Sredina
+16=Desno
+17=Br frejmova:
+18=Izbaèeni frame
+19=Boja 0 (pozadina):
+20=Boja 1 (Font):
+21=Boja 2 (okvir):
+22=Boja 3 (antialiasing):
+23=Paleta boja n°:
+24=Kontrast
+25=Naslov:
+26=Skripta:
+27=Izgled
+28=Ostalo
+29=Stil linije:
+30=Okvir + sjenka
+31=Neprovidan box
+32=Boja
+33=Primarno:
+34=Sekundarno:
+35=Tercijerno:
+36=Sjenka:
+37=Lijeva margina:
+38=Desna margina:
+39=Okomita margina:
+40=Okvir:
+41=Poravnavanje:
+42=Kod teksta:
+43=Izvor:
+44=Program:
+45=Putanja:
+46=Trajanje:
+47=CD Traka:
+48=Komentar:
+49=49
+50=TMPlayer+ Format
+51=TMPlayer Višelinijski Format
+
+[Duration limits]
+01=Limit trajanja
+02=Postavi maximum trajanja
+03=Millisekundi
+04=Postavi minimum trajanja
+05=* Smanjenje vremena neæe prouzrokovati preklapanje
+06=Increase at start if necessary
+
+[Set delay]
+01=Postavi trajanje
+02=Za sve titlove
+03=Za oznaèene titlove
+04=From first selected until last subtitle
+
+[Adjust subtitles]
+01=Uskladi titl
+02=Jednostavni
+03=Napredni
+04=Prvo izgovorena linija:
+05=Posljednje izgovorena linija:
+06=Uèitaj iz datoteke
+07=Spremi u datoteku
+08=Titl #
+09=Staro vrijeme
+10=Novo vrijeme
+11=Dod&aj
+12=Ukloni iz &videa
+13=U&kloni
+14=Ako je vrijeme izvan raspona:
+15=Ekstrapoliraj
+16=Vrati izvorno vrijeme (ne mijenjaj)
+17=Vrati pomak susjedne toèke
+18=&Uskladi!
+19=Unesi novu sinkronizacijsku toèku
+20=Staro vrijeme:
+21=Novo vrijeme:
+
+[Time expander/reducer]
+01=Produženje/smanjenje vremena
+02=Produženje trajanja
+03=Skraæivanje trajanja
+04=Produživanje/skraæivanje trajanja:
+05=Sekundi
+06=Frameovi
+07=Samo ako je titl duži od:
+09=znakovi
+10=Samo ako je trajanje duže od:
+11=Samo ako je titl kraæi od:
+12=Sprijeèi preklapanje
+13=Za sve titlove
+14=Za sve izabrane titlove
+
+[Automatic durations]
+01=Automatsko trajanje
+02=Milisekundi
+03=po znaku
+04=po rijeèi
+05=po liniji
+06=Prihvati novo trajanje u svim sluèajevima
+07=Samo ako je novo trajanje veæe nego original
+08=Samo ako je novo trajanje manje nego original
+09=Svi titlovi
+10=Samo oznaèeni titlovi
+11=Method
+12=Characters
+13=per second
+14=Increase at start if necessary
+15=Maximum increase at start (0 = no limit):
+16=milliseconds
+
+[Convert case]
+01=Konvertiranje
+02=Tip reèenice.
+03=Samo prvo slovo prve rijeèi
+04="..." detekcija
+05=mala slova
+06=VELIKA SLOVA
+07=Prva slova velika
+08=Obrnuto
+09=Svi titlovi
+10=Samo izabrani titlovi
+
+[Divide lines]
+01=Podjela linija
+02=Podijeli liniju poslije:
+03=Koristi automatsko trajanje
+04=Pokaži:
+05=Sakrij:
+06=Trajanje:
+07=Nastavi odmah
+08=%s znakova
+09=&Podijeli!
+
+[Search & Replace]
+01=Traži i zamjeni
+02=Traži
+03=Text to find:
+04=&Traži!
+05=Zamjeni sa:
+06=Naði &sljedeæe
+07=&Zamjeni
+08=Zamjeni &sve
+09=&Više >
+10=&Manje <
+11=Velièina slova
+12=Kao cijela rijeè
+13=Pazi pri zamjeni na
+14=Traži text u:
+15=Svi titovi
+16=Od oznaèenog
+17=Znakovi:
+
+[Go to line]
+01=Idi na liniju broj
+02=Upiši broj linije:
+
+[Batch convert]
+01=Grupno konvertiranje
+02=Konvertiraj više file-ova u jedan u nekoliko koraka.
+03=< &Prošli
+04=&Slijedeæi >
+05=K&onvertiraj
+06=&Izlaz
+07=&Zatvori
+08=&Sve
+09=&Nijedan
+10=Extenzije:
+11=Putanja traženja:
+12=Ukljuèujuæi poddirektorije
+13=Iscrpna provjera
+14=Izlazni direktorij:
+15=Izlazni format:
+16=Default FPS:
+17=Ime filea
+18=Format
+19=FPS
+20=Velièina
+21=&Dodaj
+22=&Ukloni
+23=B&riši
+24=Gotovo!. Pogledaj log file za detalje:
+25=Spremi...
+26=Provjera file-a %s
+
+[Batch convert log]
+01=%s %s - Log grupne konverzije
+02=Gotovo %s
+03=Izlazni format: %s
+04=Ukupno filova za konverziju: %d
+05=Pokušavanje uèitavanja "%s"...
+06=Datoteka uspješno uèitana!
+07=Datoteka "%s" veæ postoji, zamjeni...
+08=Datoteka uspješno spremljena u "%s"'
+09=Datoteka "%s" veæ postoji i niste dozvolili da ju program zamjeni
+10=Greška pri uèitavanju, nemoguæe spremiti!
+11=Ukupno konvertiranja: %u
+12=Ukupno vrijeme: %s
+13=Konvertiranje svih file-ova uspješno
+14=Postoje greške pri konvertiranju nekih file-ova, vidi detalje ispod
+
+[Split]
+01=Podjeli titl...
+02=Jednostavno
+03=Napredno
+04=Oznaèi
+05=Broj toèke:
+06=Zadano vrijeme:
+07=Zadani frame:
+08=Kraj videa:
+09=Naziv
+10=Dio %d:
+11=Ime filea
+12=Dužina
+13=Linija
+14=Dio jednak u vremenu
+15=Dio jednak u vremenu u linijama
+16=Na kraju videa
+17=Broj dijelova:
+18=Automatsko imenovanje dijelova:
+19=Izlazni direktorij:
+20=Izlazni format:
+21=Preraèunaj vremenske vrijednosti
+22=Dvostruki klik za selektiranje filma
+23=&Podijeli!
+
+[Join]
+01=Sastavi titlove...
+02=Dodaj titl koji želiš sastaviti (po redosljedu):
+03=Ime datoteke
+04=Format
+05=FPS
+06=Velièina
+07=Dio filma (opcionalno)
+08=&Dodaj
+09=&Ukloni
+10=B&riši
+11=Po&stavi dio filma
+12=&Pobriši dio filma
+13=Izlazni format:
+14=Izlazni FPS:
+15=Uèitaj file poslije sastavljanja i snimanja
+16=Preraèunaj vremenske vrijednosti
+17=&Sastavi!
+
+[Information and errors]
+01=Informacije i pogreške
+02=Provjeri!
+03=Popravi greške!
+04=&Ugaðanja
+05=Potvrdi svako brisanje
+06=Titl
+07=Tip
+08=Opis
+09=Pogreška
+10=Upozorenje
+11=Info
+13=Popravljeno
+14=Ukupno pogrešaka: %d
+15=Popravljeno pogrešaka: %d
+16=Sadrži linije bez slova
+17=Isprazni titl
+18=Preklapanje sa prošlim titlom
+19=Loše vrijednosti
+20=Predugo trajanje
+21=Prekratko trajanje
+22=Preduge linije
+23=Preko dvije linije
+24=Loše podešeni zvukovi
+25=Ima prij eteksta (":")
+26=Nepotrebne toèke
+27=Sadrži zabranjeni znak
+28=Ponovljeni znak
+29=Ponovljeni titl
+30=OCR pogreška
+31=Jedna linija titla poèinje sa "-"
+32=Nema razmaka poslije odreðenog slova
+33=Nema razmaka prije odreðenog slova
+34=Nepotrebni razmaci
+35=Oznaèeni titl
+36=Pobrisane linije bez slova
+37=Prazan titl je obrisan
+38=Popravljeno preklapanje
+39=Popravljene loše vrijednosti
+40=Redovi sa preko dvije linije su poprvljeni
+41=Uklonjeni redovi za osobe ošteæenog sluha
+42=Dijelovi za osobe ošteæenog sluha su obrisani
+43=Obrisan tekst prije (":")
+44=Obrisane nepotrebne toèke
+45=Imao je zabranjen znak i obrisan je
+46=Popravljena ponovljena slova
+47=Popravljeni ponovljeni titlovi
+48=Popravljena OCR pogreška
+49=Pobrisano "-" u titlu sa jednom linijom
+50=Dodan razmak poslije odreðenog slova
+51=Dodan razmak prije odreðenog slova
+52=Obrisani nepotrebni razmaci
+53=Double-click to jump to line on main form
+67=E
+68=W
+69=F
+70=CI
+71=Select
+72=+ Select
+73=- Select
+74=Select subtitles
+75=Add to selected subtitles
+76=Remove from selected subtitles
+77=All
+78=None
+79=Inverse
+80=Select all
+81=Select none
+82=Invert selection
+83=Error types sets
+84=Save error types set
+85=Delete error types set
+86=Error types
+87=Custom info
+88=Show/hide errors
+89=Show/hide warnings
+90=Show/hide fixed
+91=Show/hide custom info
+92=Show/hide Error types panel
+93=Show/hide Custom info panel
+65=Custom info
+66=Displayed: %d
+54=Unnecessary tags
+56=Dash on first line
+58=Too many CpS
+60=Too short pause
+62=Dialogue on one line
+55=Removed unnecessary tags
+57=Removed dash on first line
+59=Fixed too much CpS
+61=Fixed too short pause
+63=Fixed dialogue on one line
+94=Export to file
+95=Text file
+96=char
+97=sec
+98=fr
+99=cps
+
+[Information and errors Settings]
+01=Podešavanja
+02=Opæe
+03=Napredno
+04=Provjeri
+05=Popravi
+06=Nepotreban prostor
+07=Show confirmations in main form on fix
+08=Oznaèi greške u glavnom spisu
+09=Podesi boju...
+10=Podebljano
+11=Zakošeno
+12=Podcrtano
+13=Oznaèi greške pri uèitavanju titla
+14=Sredi greške pri uèitavanju titla
+15=Popravi jedno preklapanje i uèitaj
+16=OCR Skripta:
+17=&Uredi
+18=Ponovljena slova:
+19=Zabranjena slova:
+20=Tolerancija za ponovljene znakove:
+21=millisekundi.
+22=Razmak poslije slova
+23=Razmak prije slova:
+24=Predugo trajanje:
+25=Prekratko trajanje:
+26=Preduga linija:
+27=znakovi.
+28=Linije bez slova
+29=Prazan red
+30=Prekrivanje titlova
+31=Loše vrijednosti
+32=Predugo trajanje
+33=Prekratko trajanje
+34=Preduge linije
+35=Titlovi sa preko dvije linije
+36=Titl za osobe ošteæenog sluha
+37=Tekst prije (":")
+38=Samo ako je tekst sa velikim slovima
+39=Nepotrebne toèke
+40=Zabranjeni znakovi
+41=Ponovljena znakovi
+42=Ponovljena znakovi
+43=OCR greške
+44="- " u titlovima sa jednom linijom
+45=Razmaci poslije custom slova
+46=Razmaci prije custom slova
+47=Nepotreban prostor
+48=Provjeri:
+49=Popravi:
+50=Upis i razmak na poèetku i kraju
+51=Razmaci izmeðu upisa (lijevo i desno)
+52=Dvostruki razmaci i upisi
+53=Razmaci ispred taèke
+54=Razmaci poslije "¿" i "¡"
+55=Razmaci prije "?" i "!"
+56=Razmaci izmeðu brojeva
+57=Too short pauses
+58="- " on first line
+59=Only if there is no "- " on second line
+60=Dialogue on one line
+61=Unnecessary tags
+62=Too many characters per second
+63=Mark too much CpS with CpS boxes
+64=Default errorr marking
+65=Set Default Styles
+66=Mark column "Num"
+67=Mark column "Pause"
+68=Mark column "Show"
+69=Mark column "Hide"
+70=Mark column "Duration"
+71=Mark column "Text"
+72=Mark as Bold
+73=Mark as Italic
+74=Mark as Underline
+75=Mark as Strikethrough
+76=Mark the text color
+77=Mark the background color
+78=Mark
+79=Automatically recheck errors
+80=Do not recheck on Pascal scripts
+81=Recheck all once after a Pascal script executes
+82=Recheck on each change made by a Pascal script (might be slow)
+83=Indicate too long lines in Text and Translation labels
+84=Indicate too short duration in Duration box
+85=Indicate too long duration in Duration box
+86=Indicate too short pause in Pause box
+87=Indicate overlapping subtitles in Pause box
+88=Indicate bad values in Show and Hide boxes
+89=Indicate subtitles over two lines in lines counter labels
+90=Text color
+91=Background color
+92=Too short pause under:
+93=Characters per second (CpS)
+94=Too many CpS over:
+95=characters per second
+96=Normal CpS box colors:
+97=Too many CpS box colors:
+98=Display percantage in CpS box
+99=Display current CpS in CpS box
+100=Display minimum time in CpS box
+101=Display maximum characters in CpS box
+
+[Various information]
+01=Razne informacije
+02=Informacije
+03=Dodaci
+04=Originalna datoteka
+05=Prevedena datoteka
+06=Trenutni format:
+07=Datoteka:
+08=Velièina:
+09=Ukupan broj titlova:
+10=Ukupan broj linija:
+11=Ukupan broj znakova:
+12=Ukupan broj slova:
+13=Titlovi s jednom linijom:
+14=Titlovi s dvije linije:
+15=Titlovi s preko dvije linije:
+16=Najduža linija:
+17=U titlu %d sa %d znakova
+18=Najbolji font za playback
+19=Rezolucija:
+20=Iz AVI
+21=Ime fonta:
+22=Podebljano
+23=Zakošeno
+24=Izraèunaj
+25=Shortest line:
+26=Longest pause:
+27=Shortest pause:
+28=In subtitle %d, %d,%.3d seconds
+29=In subtitle %d, %d milliseconds
+30=Most CpS:
+31=Least CpS:
+32=In subtitle %d, %d cps
+33=Average CpS:
+34=Longest duration:
+35=Shortest duration:
+36=Refresh info
+
+[SAMI Language Extractor]
+01=SAMI raspakiravanje jezika
+02=SAMI datoteka:
+03=Izlazni direktorij:
+04=Oznaèeni jezici æe biti raspakirani:
+05=Razred
+06=Jezik
+07=Automatski detektiraj sve
+08=Dodaj ruèno
+09=Raspakiraj!
+10=Dodaj jezik
+11=Upišite ime željenog jezika:
+12=Molim prièekajte...
+
+[About form]
+01=O %s
+02=Informacije
+03=Nagrade
+04=Verzija: %s
+05=%s verzija: %s
+06=%d razlièiti podržani formati
+07=Ako vam se sviða ovaj program cijenili bismo vašu donaciju. Pritisnite ovdje za doniranje.
+08=Programirao
+09=Dodatno programiranje
+10=%s
+11=%s programer
+12=Ostali prevodioci
+13=Beta testeri
+14=Glavnu ikonu izradio
+15=Za nabavku najnovije verzije posjetite:
+16=License
+
+[Error messages]
+01=Nemoguænost inicijalizacije API titla. Molim vas preuzmite DLL "%s" iz %s i kopirajte u "%s" direktorij.
+02=Ova greška (%s) je stigla iz objekta %s (%s):||"%s"||Molim vas napišite %s šta ste radili kada se ova greška pojavila.||Pritisnite Ok za nastavak, ili Otkaži za prekid programa.
+03=Datoteka "%s" je loša ili je nepodržan format.
+04=File "%s" nije %s format ili nije ispravan titl file.
+05="%s" nije ispravan video file.
+06=Nije ispravan broj linije.
+07=Selektiraj najmanje jednu ekstenziju koja se traži.
+08=Putanja k tome ne postoji.
+09=Broj stavke nije ispravan broj.
+10=Molim vas dodajte dva ili više titlova.
+11=Nemoguæe pristupiti serveru!.
+12=Nije moguæe ukloniti read-only atribut iz "%s".||Vjerovatno se nalazi na zaštiæenom driveu.
+13=Greška pri pokušaju spajanja sa Microsoft Wordom!.
+14=Oznaèi video za prethodni dio prvo!.
+15=Izaberi valjan izlazni direktorij.
+16=Odaberi barem jedan jezik to extract.
+17="%s" nije ispravna SAMI datoteka.
+18=Oznaèi dio titla u popisu.
+19=Ako oznaèite dio filma za jedan dio titlova morate oznaèit druge za ostale titlove (osim za posljednji dio titlova).
+20=Oznaèi još najmanje dvije toèke.
+21=Incorrect regular expression in Custom info %s
+22=Custom Info %d was disabled.|Fix the regular expression to enable it.
+23=Subtitle duration too short!
+24=Error: can not execute script.
+25=Error: can not compile script.
+26=Save subtitles first
+
+[Question messages]
+01=Datoteka "%s" je izmjenjena.||Želite li da saèuvate izmjene?.
+02=Datoteka "%s" veæ postoji.||Želite li da ju zamjenim?.
+03=Originalna datoteka ("%s") je izmjenjena.||Želite li da saèuvate izmjene?.
+04=Prevedena datoteka  ("%s") je izmjenjena.||Želite li da saèuvate izmjene?.
+05=Oznaèeni titl æe biti obrisan.||Želite li da nastavite?.
+06=Toèka 1 Titl: %s|Toèka 1 Film: %s||Toèka 2 Titl: %s|Toèka 2 Film: %s||Sinkroniziraj titl?
+07=Video players exe nije odreðen ili ne postoji.||Želite li konfigurirati eksterni player?.
+08=Pronaðena je nova verzija!.||Želite li da vidite listu novina?.
+09=Datoteka koju pokušavate spremiti je read-only.||Svakako pokušaj spremiti?.
+10=Do you want to save the marking in a file?
+
+[Information messages]
+01=Nema više sluèajeva "%s".
+02=Nema novije verzije.
+03=Provjera pravopisa završena.||%d izmjena(e) napravljene.
+04=Previše dijelova. Resetiranje...
+05=Samo je jedan jezik pronaðen.||Ako datoteka sadrži više jezika, dodaj ih ruèno otvaranjem datoteke u tekst editoru i traženjem ispravnog.
+06=Couldn't locate "STYLE" start and/or close tag!.||Probably because of that reason, this file doesn't contain more than one language.|If it does, try to add manually searching for the class name of the desired language(s).
+07=Namješten font za video pregled je: %d
+08=Ukupno zamjena: %d
+09=Ime datoteke: %s|Velièina: %s|FPS: %s|Trajanje: %s|Ukupno slièica: %d|Rezolucija: %dx%d|FourCC: %s
+10=Neki dijelovi filma nisu renderirani toèno. Najvjerojatnije nema audio ili video codeca.
+11=Nije nužno izabrati dio filma za zadnji blok titlova.
+12=A sudden error occured:|"%s"
+
+[Information and errors messages]
+01=Red broj %d je prazan i biti æe obrisan.||Da li to dozvoljavate?49=Red broj %d:||"%s" ima zabranjene znakove i bit æe obrisan.||Da li dozvoljavate?
+02=49
+03=Red broj %d:||"%s" æe biti obrisan.||Da li dozvoljavate?
+04=Dio titla broj %d:||"%s" æe biti obrisan, tako da æe titl biti:||"%s"||Želite li nastaviti?.
+05=Titl broj %d:||"%s" je jednolinijski titl i poèinje sa "-".||Želite li obrisati "-" na poèetku?.
+
+[Main menu/View]
+01=Toolbar
+02=Text style bars
+03=Statusbar
+04=Columns
+05=Show notes in left panel
+06=Show time control buttons
+07=Show lines count
+08=Visual subtitle representation
+
+[Video Popup Menu]
+01=Enter full screen
+02=Exit full screen
+03=Zoom to %d%%
+04=Reset subtitle vertical position
+
+[Time control buttons hints]
+01=Shift to previous/Extend to previous
+02=Shift to next/Extend to next
+03=Set default pause/Set default pause, if pause is too short
+04=Set ato duration/Set min duration
+
+[Auto combine subtitles]
+01=Auto combine subtitles
+02=milliseconds
+03=Combine if duration is less than (0 = no limit):
+04=Combine if CpS is greater than (0 = no limit):
+05=characters per second
+06=Don't combine if pause is greater than (0 = no limit):
+07=Punctuation marks detection
+08=Combined subtitles maximum duration (0 = no limit):
+09=Decrease duration if necessary, with no more than:
+10=Combined subtitles maximum lines length (0 = no limit):
+11=characters
+12=For all the subtitles
+13=For the selected subtitles
+
+[Set pauses]
+01=Set pauses
+02=Pauses value:
+03=Shorten duration of:
+04=First subtitle only
+05=Second subtitle only
+06=Both subtitles equally
+07=The subtitle with less CpS
+08=For all the subtitles
+09=For the selected subtitles
+
+[Round time values]
+01=Round time values
+02=Round to:
+03=milliseconds
+04=For all the subtitles
+05=For the selected subtitles
+
+[Smart line adjust]
+01=Smart line adjust
+02=Two lines if longer than:
+03=characters
+04=Break method:
+05=Equal lines
+06=Break on punctuation marks
+07=Don''t unbreak subtitles that are not too long
+08=Adjust only long subs and subs with more than 2 lines
+09=For all the subtitles
+10=For the selected subtitles
+11=Always try to find a better breaking point
+
+[Unbreak subtitles]
+01=Unbreak subtitles
+02=Characters limit
+03=No limit
+04=Don''t unbreak if line length exceeds:
+05=characters
+06=Don''t unbreak subtitles with "—" on second line
+07=For all the subtitles
+08=For the selected subtitles
+
+[Custom info]
+01=Add custom info
+02=Composite custom info
+03=Subtitles duration information
+04=Subtitles line lenght information
+05=Subtitles lines count information
+06=Subtitles pause information
+07=Subtitles CpS information
+08=Subtitles text information
+09=Custom info sets
+10=Save custom info set
+11=Delete custom info set
+12=There is no custom info. Click the "+" button to add new custom info.
+13=Caption
+14=Duration
+15=Lines length
+16=Lines count
+17=Pause
+18=CpS
+19=Text
+20=Composite info
+21=ms
+22=chars
+23=lines
+24=cps
+25=AND
+26=OR
+27=Contains (Case sensitive)
+28=Contains (Case insensitive)
+29=Does not contain (Case sensitive)
+30=Does not contain (Case insensitive)
+31=Matches regular expression
+32=Matches regular expression (tags ignored)
+33=Delete
+34=Edit
+

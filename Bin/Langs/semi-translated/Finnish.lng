@@ -1,0 +1,1151 @@
+;   Subtitle Workshop 2.51
+;   Suomen kielitiedosto
+;
+;   K‰‰nt‰j‰   : pertko
+;   S‰hkˆposti : pertko@hotmail.com
+;   Internet   : http://www.urusoft.net
+
+[General]
+Translator=pertko
+Font Charset=0
+AllFiles=Kaikki tuetut tiedostot
+Help=Manual.html
+FPS=FPS
+PlainText=Pelkk‰ teksti
+STP=Tekstitys k‰‰nˆs projekti
+SRF=Tekstitys raporttitiedosto
+AllTheFiles=All files
+
+[Standard buttons]
+01=Ok
+02=Peruuta
+03=Valitse
+04=K‰yt‰
+05=Poistu
+06=Kyll‰
+07=Ei
+
+[Main Form]
+01=Muoto:
+02=Aika
+03=Kehykset
+04=Tuleva FPS:
+05=FPS:
+06=Toimia kanssa:
+07=Kesto|Loppuaika|Molemmat
+08=Numero
+09=N‰yt‰
+10=Piilota
+11=Teksti
+12=K‰‰nt‰minen
+13=%d K‰‰nt‰m‰ttˆm‰t rivit
+14=Kesto:
+15=%s (%s kirjainmerkki‰):
+16=- K‰‰nt‰m‰tˆn teksti -
+17=Lines:
+18=Notes:
+19=Pause
+20=%d subtitles selected / %d
+21=#%d / %d
+
+[Main menu header]
+01=Tiedosto
+02=Muokkaa
+03=Etsi
+04=Tyˆkalut
+05=Elokuva
+06=Asetukset
+07=Apua
+08=View
+
+[Main menu/File]
+01=Uusi teksti...
+02=Lataa teksti...
+03=Aikaisemmat tiedostot
+04=Tyhjenn‰ lista
+05=Lataa
+06=Projekti...
+07=Alkuper‰inen
+08=K‰‰nnetty
+09=Tallenna
+10=Alkuper‰inen nimell‰...
+11=K‰‰nnetty nimell‰...
+12=Tallenna nimell‰...
+13=Sulje
+14=Poistu
+15=Save marking
+
+[Main menu/Edit]
+01=Kumoa
+02=Tee uudelleen
+03=Lis‰‰ teksti
+04=Lis‰‰ ennen
+05=Poista valitut
+06=Leikkaa
+07=Kopioi
+08=Liit‰
+09=Valitse kaikki
+10=Invert selection
+11=Insert symbol...
+
+[Main menu/Edit/Timings]
+01=Ajoitukset
+02=Aseta kestorajoitus...
+03=Aseta viive...
+04=Sovita
+05=Sovita tekstit...
+06=Sovita synkronoidut tekstit
+07=Aika laajennin
+08=Pidenn‰ pituus
+09=Automaattinen kestorajoitus
+10=Lue ajoitukset tiedostosta
+11=Siirr‰ %s millisekuntia
+12=Extend length to previous
+13=Set pauses...
+14=Shift to next
+15=Shift to previous
+16=Round time values...
+
+[Main menu/Edit/Texts]
+01=Tekstit
+02=ƒlyk‰s rivis‰‰tˆ
+03=Muuntaminen...
+04=Pid‰ teksti katkeamattomana
+05=Erottele repliikit...
+06=Nopea repliikkien erottelu
+07=Aseta maksimi rivipituus...
+08=Lue tekstit tiedostosta
+09=Fast smart line adjust
+10=Fast unbreak subtitles
+
+[Main menu/Edit/Subtitles]
+01=Tekstitykset
+02=Yhdist‰ tekstit
+03=Tehosteet
+04=Kirjain tehoste
+05=V‰lke
+06=Nopea v‰lke
+07=Tavallinen v‰lke
+08=Hidas v‰lke
+09=Oikealta vasempaan
+10=K‰‰nteinen teksti
+11=Korjaa v‰limerkit
+12=Lajittele
+13=Poista tarpeettomat linkit
+14=Merkitse valitut tekstit
+15=Poista merkint‰ valituista teksteist‰
+16=Auto combine subtitles...
+17=Delete dots at the beginning
+18=Jump to next marked
+19=Jump to previous marked
+
+[Main menu/Edit/Translation]
+01=K‰‰nt‰minen
+02=K‰‰nnˆs tila
+03=Vaihda
+
+[Main menu/Search]
+01=Etsi...
+02=Etsi seuraava
+03=Etsi && korvaa...
+04=Mene rivi numeroon...
+
+[Main menu/Tools]
+01=Kieliasun tarkistus
+02=Sarja muunnos...
+03=Jaa teksti...
+04=Liit‰ tekstit...
+05=Tietoja ja virheit‰
+06=Tietoja ja virheit‰...
+07=Erilaiset tiedot...
+08=OCR kuvaus
+09=N‰yt‰ p‰‰ikkuna
+10=Asetukset...
+11=Uudelleentarkista virheet
+12=Korjaa kaikki virheet
+13=Korjaa virheet(valitut tekstit)
+14=Hypp‰‰ seuraavaan virheeseen
+15=Lis‰‰ FPS AVI:sta
+16=Ulkoinen esikatselu
+17=SAMI kieli purku
+18=
+19=Jump to previous error
+20=Show CpS boxes
+
+[Main menu/Movie]
+01=Avaa...
+02=Sulje
+03=Tietoa...
+04=Video esikatselutila
+05=N‰yt‰ tekstitykset
+06=Tallenna median k‰ynnistys tiedostoksi
+07=Audio stream
+08=None
+09=Video renderer
+10=Default
+11=VMR9
+
+[Main menu/Movie/Playback]
+01=Toisto
+02=Toista/Tauko
+03=Seis
+04=Takaisin
+05=Eteenp‰in
+06=Takaisin 5 sekuntia
+07=Eteenp‰in 5 sekuntia
+08=Toistonopeus
+
+[Main menu/Movie/Subtitles]
+01=Tekstit
+02=Siirr‰ teksti
+03=Aseta aloitusaika
+04=Aseta loppuaika
+05=Aloita teksti
+06=P‰‰t‰ teksti
+
+[Main menu/Movie/Synchronization]
+01=Synkronointi
+02=Ensimm‰inen ajastuskohta
+03=Viimeinen ajastuskohta
+04=Lis‰‰ ajastuskohta
+
+[Main menu/Movie/Display]
+01=N‰yttˆ
+02=Alkuper‰inen
+03=K‰‰nnˆs
+
+[Main menu/Settings]
+01=Vienti asetukset...
+02=Kieli
+03=N‰yt‰ vasen paneeli
+04=N‰yt‰ aikas‰‰timet
+05=K‰yt‰ paikaallaan editointia
+06=Refresh language files
+07=Files refreshed
+08=keys
+
+[Main menu/Help]
+01=Tietoa %s...
+02=Tarkista uusi versio
+
+[Popup Menu]
+01=Kursivoitu
+02=Lihavoitu
+03=Alleviivattu
+04=Aseta v‰ri
+05=Poista v‰rimerkint‰
+06=Remove all tags
+07=Delete
+08=Style
+
+[Video preview hints]
+01=Toista/Tauko (%s)
+02=Seis (%s)
+03=Tilanvaihto vierit‰ teksti mukana
+04=Hypp‰‰ edelliseen tekstiin
+05=Hypp‰‰ seuraavaan tekstiin
+06=Takaisin (%s)
+07=Eteenp‰in (%s)
+08=Hidastettu esitys
+09=Siirr‰ teksti (%s)
+10=Aseta aloitusaika (%s)
+11=Aseta loppuaika (%s)
+12=Aloita teksti (%s)
+13=P‰‰t‰ teksti (%s)
+14=Merkitse ensimm‰inen ajastuskohta (%s)
+15=Merkitse viimeinen ajastuskohta (%s)
+16=Lis‰‰ teksti/video kohdistuspiste(%s)
+17=Volume: %d%%
+18=Mute/Unmute
+
+[Save as]
+01=Tallenna nimell‰
+02=Tuplaklikkaa vientimuotoa:
+03=Mukautetut muodot
+04=Kaikki muodot
+
+[Custom formats]
+01=Mukautetut muodot
+02=Informaatio
+03=Nimi:
+04=Laajennus:
+05=Uusi rivimerkki:
+06=Aika
+07=Kehykset
+08=Rakenne:
+09=FPS:
+10=Luo projekti
+11=Tallenna projekti
+12=Muista viimeisin mukautettu muoto
+13=Tallenna!
+14=K‰yt‰nnˆn alustus projekti
+
+[Settings Form]
+01=Asetukset
+02=Muuta ohjelman kokoonpanoa
+03=Yleinen
+04=Lis‰asetus
+05=Kirjaimet
+06=Muodot
+07=Tiedostotyypit
+08=Tallenna
+09=Video esikatselu
+10=Tekstitykset
+11=Ulkoinen esikatselu
+12=Tyyli
+13=Ohjelma
+14=Luettelointi
+15=Valikot
+16=Aina p‰‰llimm‰isen‰
+17=Sallii enemm‰n kuin yhden toiminnon kerrallaan
+18=Kysy vahvistus kun poistetaan teksti‰
+19=Tulkitse ep‰kelvot tiedostot tyhjin‰ tekstein‰
+20=Automaattinen elokuvan etsint‰
+21=Pakota tyˆskentely aika muodossa
+22=Pid‰ j‰rjestys riveiss‰ milloin k‰‰nnet‰‰n teksti‰
+23=Valitse teksti hyp‰t‰ksesi seuraavaan riviin
+24=Valitse teksti hyp‰t‰ksesi edelliseen riviin
+25=Ei yhteisvaikutusta merkinnˆiss‰
+26=Tyˆst‰ merkityn tyylin kanssa
+27=Viimeksi avattujen tiedostojen rajoitus:
+28=ƒlyk‰s rivis‰‰tˆ
+29=Kaksi rivi‰ jos pidempi kuin:
+30=kirjainta
+31=Tilanvaihto katkaisukohta
+32=Erottele rivit
+33=Katkaise rivi j‰lkeen:
+34=S‰‰d‰ rivit automaattisesti
+35=Maksimi rivipituus:
+36=Vaihda aika:
+37=millisekuntia
+38=N‰yt‰ p‰‰ikkunassa
+39=Alkuper‰iset kirjaimet:
+40=K‰‰nnetyt kirjaimet:
+41=Oletus muoto:
+42=N‰yt‰ tallennusmuodot kun "Tallennetaan nimell‰":
+43=N‰yt‰ mukautetut muodot
+44=Valitse kaikki
+45=Ei mit‰‰n
+46=Rekisterˆi laajennus k‰ynnistyksess‰
+47=Valitse p‰‰tteet jota eniten k‰yt‰t ohjelman kanssa
+48=Kysy tallennusta kun poistut/suljet tekstin
+49=Tallenna tyˆsi automaattisesti joka
+50=minuutti.
+51=Tallenna varmistus nimell‰
+52=Vienti asetukset...
+53=Kun tuplaklikataan teksti‰:
+54=Sekuntia ajassa:
+55=Shift -n‰pp‰in pohjassa tuplaklikataan teksti‰:
+56=Kohdista tekstilaatikko
+57=Mene tekstien aikaan videossa
+58=Mene N sekuntia ennen teksti‰ videossa
+59=Takaisin ja eteenp‰in ajassa:
+60=sekuntia.
+61=Oletus hidastettu esitys:
+62=Piirr‰ rajat
+63=Piirr‰ varjo
+64=Kokeile l‰pin‰kyv‰‰ taustaa
+65=Pakota k‰ytt‰m‰‰n aluetta (voi olla hidas)
+66=Fontti...
+67=V‰ri...
+68=Tausta...
+69=Rajan leveys:
+70=Varjon leveys:
+71=MALLI
+72=Valitse k‰ytett‰v‰ Video-ohjelma:
+73=Valitse j‰rjestelm‰n oletus
+74=Kysy k‰ytettev‰ ohjelma joka kerta
+75=Testaa aina videon kanssa:
+76=Tallenna v‰liaikaiset tekstit p‰‰tteell‰:
+77=Alkuper‰inen muoto
+78=Mukautettu muoto:
+79=Videosoittimeen annettavat k‰skyt/muuttujat:
+80=Videotiedosto jossa sin‰ voit testata tekstityksi‰. SUBT_FILE on parametri jossa v‰liaikainen tekstitiedostosto l‰hetet‰‰n videosoittimeen. Sin‰ voi lis‰t‰ muita parametrej‰, esimerkiksi /FS for full screen   (n‰yt‰ koko n‰ytˆss‰), ym.
+81=Fontti jota k‰yt‰t ohjelmalla:
+82=Fontin koko:
+83="Teksti" ja "K‰‰nnˆs" kentt‰ kohdistus:
+84=Vasen|Oikea|Keski
+85=N‰yt‰ ristikon viivat
+86=K‰yt‰ tyyli‰ teksteiss‰
+87=Merkitse k‰‰nt‰m‰ttˆm‰t tekstit v‰rill‰:
+88=N‰yt‰ vaakatason liukus‰‰din
+89=K‰yt‰ Office XP tyyli‰
+90=K‰yt‰ vaihtoehtoista p‰‰valikkoa
+91=Tags mode:
+92=Multiple tags mode
+93=Single tags mode (the old mode)
+94=Auto delete tags
+95=Default subtitle duration:
+96=Default subtitle pause:
+97=Increase step (time):
+98=Increase step (frames):
+99=frames
+100=Keep min duration of:
+101=but don''t allow overlaps
+102=Automatically round time values to:
+103=Round time values on subtitle load
+104=Notes charset:
+105=Add "Open with Subtitle Workshop" to shell context menu
+106=Ask to save new subttiles
+107=Save empty subtitles
+108=Vertical video center align
+109=Enter full screen on double click
+110=Setting Show and Hide times
+111=Shift Show value:
+112=Shift Hide value:
+113=Align left when subtitles contain a new line starting with "-"
+114=Relative font size
+115=Keep subtitle on video
+116=Try antialiasing (Force using regions must be off)
+117=Smart main window and subtitle list resize
+118=Resize subtitle list columns when resizing form
+119=Mark untranslated subtitles with background:
+120=Right click selection
+121=Row height:
+122=Text margin:
+123=Selection
+124=Text:
+125=Color:
+126=Transparency:
+127=Columns
+128=Align:
+129=Display style:
+130=Full
+131=Compact
+132=Marking with color:
+133=Marking with background:
+134=Columns to mark:
+135=Mark column "%s"
+136=Marking priority:
+137=Low (before error marking)
+138=High (after error marking)
+139=Marked subtitle color in video preview:
+140=Marking file
+141=Do not save marking file
+142=Ask each time to save marking file
+143=Automatically save marking file on subtitle save
+144=Automatically load marking file
+145=Marking
+146=Play video on load
+147=Visual subtitle representation color:
+148=Hilight tags in "Text" and "Translation" fields:
+
+[Output settings]
+01=Vienti asetukset
+02=Levy ID:
+03=DVD otsikko:
+04=Kieli:
+05=Tekij‰:
+06=Internet:
+07=Tietoa:
+08=Lisenssi:
+09=Tekstitys:
+10=Tausta:
+11=MALLI
+12=&Aseta fontti
+13=Tasaus:
+14=Vasen
+15=Keski
+16=Oikea
+17=Kehystaajuus:
+18=Pienenn‰ kehyst‰
+19=V‰ri 0 (tausta):
+20=V‰ri 1 (fontti):
+21=V‰ri 2 (‰‰riviiva):
+22=V‰ri 3 (ep‰tasaisuudet):
+23=V‰rivalikoima n∞:
+24=Kontrasti
+25=Otsikko:
+26=Skripti:
+27=Kosmeettinen
+28=Muut
+29=Rajaus tyyli:
+30=ƒ‰riviivat + pistevarjostus
+31=L‰pin‰kym‰tˆn
+32=V‰ri
+33=Ensisijainen:
+34=Toissijainen:
+35=Kolmassijainen:
+36=Varjostus:
+37=Vasen marginaali:
+38=Oikea marginaali:
+39=Pystysuora margina:
+40=ƒ‰riviivat:
+41=Kohdistus:
+42=Koodaus:
+43=L‰hde:
+44=Ohjelma:
+45=Polku:
+46=Viive:
+47=CD raita:
+48=Huomautus:
+49=Tmplayer alustus
+50=Tmplayer+ alustus
+51=Tmplayer monirivi alustus
+
+[Duration limits]
+01=Kesto rajoituksia
+02=Aseta enimm‰is kestoik‰
+03=Millisekunti
+04=Aseta v‰himm‰is kestoik‰
+05=* Ajanlis‰ys ei aiheuta p‰‰llek‰isyyksi‰
+06=Increase at start if necessary
+
+[Set delay]
+01=Aseta viive
+02=Kaikki tekstit
+03=Valitut tekstit
+04=From first selected until last subtitle
+
+[Adjust subtitles]
+01=S‰‰d‰ tekstit
+02=Yksinkertainen
+03=Edistynyt
+04=Ensimm‰inen puhuttu rivi:
+05=Viimeinen puhuttu rivi:
+06=Lataa tiedostosta
+07=Tallenna tiedostoon
+08=Rivi #
+09=Vanha aika
+10=Uusi aika
+11=Lis‰‰
+12=Lis‰‰ mediasta
+13=Poista
+14=Jos aika on vaikutusalueen ulkopuolella
+15=Extrapolaroi
+16=Palaa alkuper‰iseen aikaan (ei muutoksia)
+17=Palaa l‰hinp‰‰n siirtym‰pisteeseen
+18=Sovita!
+19=Anna uusi tahdistuspiste
+20=Vanha aika:
+21=Uusi aika:
+
+[Time expander/supistin]
+01=Aika laajennin/supistin
+02=Laajenna kestoaikaa
+03=Supista kestoaikaa
+04=Laajenna/supista kestoaikaa
+05=sekuntia
+06=Kehyst‰
+07=Ainoastaan jos teksti on pidempi kuin:
+09=kirjainta
+10=Ainoastaan jos kestoaika on pidempi kuin:
+11=Ainoastaan jos kestoaika on lyhyempi kuin
+12=Ehk‰ise p‰‰llek‰isyys
+13=Kaikkiin teksteihin
+14=Valittuihin teksteihin
+
+[Automatic durations]
+01=Automaattinen kestorajoitus
+02=Millisekunti
+03=kirjainmerkki‰ kohti
+04=sanaa kohti
+05=rivi‰ kohti
+06=K‰yt‰ uutta kestorajoitusta kaikkien kohdalla
+07=Ainoastaan jos uusi kestoaika on suurempi kuin alkuper‰inen
+08=Ainoastaan jos uusi kestoaika on pienempi kuin alkuper‰inen
+09=Kaikki tekstit
+10=Valitut tekstit ainoastaan
+11=Method
+12=Characters
+13=per second
+14=Increase at start if necessary
+15=Maximum increase at start (0 = no limit):
+16=milliseconds
+
+[Convert case]
+01=Muuntaminen
+02=Lauseen tyyppi.
+03=Vain alkukirjaimen ensimm‰inen sana
+04="..." huomautus
+05=Pienet kirjaimet
+06=ISOT KIRJAIMET
+07=Otsikko
+08=K‰‰nteinen
+09=Kaikki tekstit
+10=Valitut tekstit ainoastaan
+
+[Divide lines]
+01=Erottele repliikit
+02=Erottele j‰lkeen rivinumeron:
+03=K‰yt‰ automaattista kestorajoitusta
+04=N‰yt‰:
+05=Piilota:
+06=Kesto:
+07=Jatka v‰littˆm‰sti
+08=%s kirjainmerkki‰
+09=Erottele!
+
+[Search & Replace]
+01=Etsi ja Korvaa
+02=Etsi
+03=Etsi teksti‰:
+04=Etsi!
+05=Korvaa tekstill‰:
+06=Etsi seuraava
+07=Korvaa
+08=Korvaa kaikki
+09=Lis‰asetus >
+10=Kiinni<
+11=Tapauskohtainen
+12=Paljon kokonaisia sanoja
+13=S‰ilyt‰ tapaus vaihdossa
+14=Etsi tekstist‰:
+15=Koko teksti
+16=Valitusta kohdasta
+17=Kirjaimet:
+
+[Go to line]
+01=Siirry riville numero
+02=Anna rivin numero:
+
+[Batch convert]
+01=Sarja muunnos
+02=Muuta monenlaisia tiedostoja yhteen muotoon.
+03=< Takaisin
+04=Seuraava>
+05=Muunna
+06=Poistu
+07=Sulje
+08=Kaikki
+09=Ei mit‰‰n
+10=Laajennus:
+11=Etsi polku:
+12=Sis‰llyt‰ alikansiot
+13=Perinpohjainen muodon tarkistus
+14=Tallennus hakemisto:
+15=Tallennus p‰‰te:
+16=Oletus FPS:
+17=Tiedostonimi
+18=Muoto
+19=FPS
+20=Koko
+21=Lis‰‰
+22=Poista
+23=Tyhjenn‰
+24=Valmis!. N‰ytet‰‰n yksityiskohdat:
+25=Tallenna...
+26=Tarkistetaan tiedosto %s
+
+[Batch convert log]
+01=%s %s - Sarjamuunnon loki
+02=Luotu %s
+03=Tallennus muoto: %s
+04=Tiedostoja muunnettu: %d
+05=Yritetty luoda "%s"...
+06=Tiedosto onnistuneesti luotu!
+07=Tiedosto "%s" on olemassa, korvataan...
+08=Tiedosto onnistuneesti tallennettu "%s"'
+09=Tiedosto "%s" on olemassa ja et ole mahdollistanut ohjelmaa korvaamaan sit‰
+10=Virhe tiedoston lataa,isessa, ei voida tallentaa!
+11=Muunnoksia tehty: %u
+12=Kokonaisaika: %s
+13=Kaikki tiedostot muunnettu onnistuneesti
+14=Virheit‰ muunnettaessa muutamia tiedostoja, katso yksityiskohdat
+
+[Split]
+01=Jaa teksti...
+02=Helppo
+03=Edistynyt
+04=Valitusta kohdasta
+05=Numerosta:
+06=Tietty aika:
+07=Tietty kehys:
+08=Videon loppu:
+09=Nime‰minen
+10=Osa %d:
+11=Tiedostonimi
+12=Pituus
+13=Rivit
+14=Osat yht‰l‰isi‰ ajan kanssa
+15=Osat yht‰l‰isi‰ rivien kanssa
+16=Videon loppuun
+17=Osien numerot:
+18=Auto-nime‰minen osille:
+19=Vienti hakemisto:
+20=Vienti muoto:
+21=Recalculatteen ajan arvo
+22=Tuplaklikkaa valitseaksesi elokuvan
+23=&Jaa!
+
+[Join]
+01=Liit‰ teksti...
+02=Lis‰‰ teksti tiedostot mitk‰ haluat liitt‰‰ (kohdalleen):
+03=Tiedostonimi
+04=Muoto
+05=FPS
+06=Koko
+07=Elokuva fragmentti (valinnainen)
+08=Lis‰‰
+09=Poista
+10=Tyhjenn‰
+11=Aseta elokuva fragmentti
+12=Tyhjenn‰ elokuva fragmentti
+13=Tallennusmuoto:
+14=Tallennus FPS:
+15=Luo tiedosto liitt‰misen ja tallentamisen j‰lkeen
+16=Recalculatteen ajan arvo
+17=Liit‰!
+
+[Information and errors]
+01=Tietoja ja virheit‰
+02=Tarkista!
+03=Korjaa virheit‰!
+04=Asetukset
+05=Varmista jokainen poistaminen
+06=Teksti
+07=Tyyppi
+08=Kuvaus
+09=Virhe
+10=Varoitus
+11=Tietoa
+13=Korjattu
+14=Virheet yhteens‰: %d
+15=Korjatut virheet: %d
+16=Sis‰lt‰‰ rivit ilman kirjoitusta
+17=Tyhj‰ teksti
+18=P‰‰llek‰in edellisen tekstin kanssa
+19=Huonot arvot
+20=Liian pitk‰ kestoik‰
+21=Liian lyhyt kestoik‰
+22=Liian pitk‰ rivi(t)
+23=Yli kaksi repliikki‰
+24=Huonokuntoinen teksti
+25=On teksti‰ ennen kaksoispistett‰(":")
+26=Turhia pisteit‰
+27=Sis‰lt‰‰ kielletyn kirjainmerkin
+28=Toistuva kirjainmerkki
+29=Toistuva teksti
+30=OCR virhe
+31=Tekstitys alkaa merkill‰ "-"
+32=Ei v‰lej‰ kirjainmerkin j‰lkeen
+33=Ei v‰lej‰ ennen kirjainmerki‰
+34=Turhia tiloja
+35=Merkitty teksti
+36=Poistettu rivit joissa ei kirjoitusta
+37=Tyhj‰ teksti on poistettu
+38=P‰‰llek‰isyys korjattu
+39=Huonot arvot korjattu
+40=Teksti jossa yli kaksi repliikki‰ on oikaistu
+41=Huonokuntoinen teksti poistettu
+42=Huonokuntoinen osa poistettu
+43=Teksti poistettu ennen kaksoispistett‰ (":")
+44=Turhat pisteet poistettu
+45=Kielletty kirjainmerkki on poistettu
+46=Korjattu toistuva kirjainmerkki
+47=Korjattu toistuva teksti
+48=OCR virheet korjattu
+49=Poistettu "-" tekstist‰
+50=Lis‰tty v‰li kirjaimerkin j‰lkeen
+51=Lis‰tty v‰li ennen kirjainmerkki‰
+52=Turhat tilat poistettu
+53=Tuplaklikkaa siirty‰ksesi riviin p‰‰ikkunassa
+67=E
+68=W
+69=F
+70=CI
+71=Select
+72=+ Select
+73=- Select
+74=Select subtitles
+75=Add to selected subtitles
+76=Remove from selected subtitles
+77=All
+78=None
+79=Inverse
+80=Select all
+81=Select none
+82=Invert selection
+83=Error types sets
+84=Save error types set
+85=Delete error types set
+86=Error types
+87=Custom info
+88=Show/hide errors
+89=Show/hide warnings
+90=Show/hide fixed
+91=Show/hide custom info
+92=Show/hide Error types panel
+93=Show/hide Custom info panel
+65=Custom info
+66=Displayed: %d
+54=Unnecessary tags
+56=Dash on first line
+58=Too many CpS
+60=Too short pause
+62=Dialogue on one line
+55=Removed unnecessary tags
+57=Removed dash on first line
+59=Fixed too much CpS
+61=Fixed too short pause
+63=Fixed dialogue on one line
+94=Export to file
+95=Text file
+96=char
+97=sec
+98=fr
+99=cps
+
+[Information and errors Settings]
+01=Asetukset
+02=Yleinen
+03=Edistynyt
+04=Tarkista
+05=Korjaa
+06=Turhat tilat
+07=N‰yt‰ vahvistus p‰‰ikkunassa korjatuissa
+08=Merkitse virheet p‰‰ikkunan listaan
+09=Aseta v‰ri...
+10=Lihavoitu
+11=Kursivoitu
+12=Alleviivattu
+13=Merkitse virheet ladattaessa teksti
+14=Korjaa virheet ladattaessa teksti
+15=Korjaa yhden jakson p‰‰llek‰isyysladattaessa teksti
+16=OCR kuvaus:
+17=Muokkaa
+18=Toistuvat kirjainmerkit:
+19=Kielletyt kirjainmerkit:
+20=Aikapoikkeama toistuvissa teksteiss‰:
+21=millisekuntia.
+22=V‰li j‰lkeen kirjainmerkin:
+23=V‰li ennen kirjainmerkki‰:
+24=Liian pitk‰ kestoik‰:
+25=Liian lyhyt kestoik‰:
+26=Liian pitk‰ rivi:
+27=kirjainmerkki‰.
+28=Rivit ilman kirjaimia
+29=Tyhj‰t tekstit
+30=P‰‰llek‰iset tekstit
+31=Huonot arvot
+32=Liian pitk‰ kestoik‰
+33=Liian lyhyt kestoik‰
+34=Liian pitk‰ rivi
+35=Tekstit jossa yli kaksi repliikki‰
+36=Huonokuntoiset tekstit
+37=Teksti ennen kaksoispistett‰ (":")
+38=Vain jos teksti on isoja kirjaimia
+39=Turhat pisteet
+40=Kielletyt kirjainmerkit
+41=Toistuvat kirjainmerkit
+42=Toistuvat tekstit
+43=OCR virheet
+44="- " jos rivin ensimm‰inen merkki
+45=Tilat j‰lkeen mukautettujen kirjainmerkkien
+46=Tilat ennen mukautettujen kirjainmerkkien
+47=Turhat tilat
+48=Tarkista:
+49=Korjaa:
+50=Kirjoitukset ja v‰lit alussa ja lopussa
+51=V‰lit kirjoitusten v‰liss‰ (vasen ja oikea)
+52=Tuplav‰lit ja kirjoitukset
+53=V‰lit pilkutusten edess‰
+54=V‰lit j‰lkeen "ø" ja "°"
+55=V‰lit ennen "?" ja "!"
+56=Tilat numeroiden v‰liss‰
+57=Too short pauses
+58="- " on first line
+59=Only if there is no "- " on second line
+60=Dialogue on one line
+61=Unnecessary tags
+62=Too many characters per second
+63=Mark too much CpS with CpS boxes
+64=Default errorr marking
+65=Set Default Styles
+66=Mark column "Num"
+67=Mark column "Pause"
+68=Mark column "Show"
+69=Mark column "Hide"
+70=Mark column "Duration"
+71=Mark column "Text"
+72=Mark as Bold
+73=Mark as Italic
+74=Mark as Underline
+75=Mark as Strikethrough
+76=Mark the text color
+77=Mark the background color
+78=Mark
+79=Automatically recheck errors
+80=Do not recheck on Pascal scripts
+81=Recheck all once after a Pascal script executes
+82=Recheck on each change made by a Pascal script (might be slow)
+83=Indicate too long lines in Text and Translation labels
+84=Indicate too short duration in Duration box
+85=Indicate too long duration in Duration box
+86=Indicate too short pause in Pause box
+87=Indicate overlapping subtitles in Pause box
+88=Indicate bad values in Show and Hide boxes
+89=Indicate subtitles over two lines in lines counter labels
+90=Text color
+91=Background color
+92=Too short pause under:
+93=Characters per second (CpS)
+94=Too many CpS over:
+95=characters per second
+96=Normal CpS box colors:
+97=Too many CpS box colors:
+98=Display percantage in CpS box
+99=Display current CpS in CpS box
+100=Display minimum time in CpS box
+101=Display maximum characters in CpS box
+
+[Various information]
+01=Erilaiset tiedot
+02=Tieto
+03=Lis‰t
+04=Alkuper‰inen tiedosto
+05=K‰‰nnetty tiedosto
+06=Nykyinen muoto:
+07=Tiedosto:
+08=Koko:
+09=Tekstie kokonaism‰‰r‰:
+10=Rivien kokonaism‰‰r‰:
+11=Sanojen kokonaism‰‰r‰ :
+12=Kirjainten kokonaism‰‰r‰:
+13=Tekstit jossa yksi rivi:
+14=Tekstit jossa kaksi rivi‰:
+15=Tekstit jossa enemm‰n kuin kaksi rivi‰:
+16=Pisin rivi:
+17=Tekstiss‰ %d on %d kirjainmerkki‰
+18=Paras fontin koko toistoon
+19=Resoluution leveys:
+20=AVI:sta
+21=Fontin nimi:
+22=Lihavoitu
+23=Kursivoitu
+24=Laskea
+25=Shortest line:
+26=Longest pause:
+27=Shortest pause:
+28=In subtitle %d, %d,%.3d seconds
+29=In subtitle %d, %d milliseconds
+30=Most CpS:
+31=Least CpS:
+32=In subtitle %d, %d cps
+33=Average CpS:
+34=Longest duration:
+35=Shortest duration:
+36=Refresh info
+
+[SAMI Language Extractor]
+01=SAMI Kieli purku
+02=SAMI tiedosto:
+03=Vienti hakemisto:
+04=Valitut kielet tulee puretuksi:
+05=Luokka
+06=Kieli
+07=Automaattinen havaitseminen
+08=Lis‰‰ manuaalisesti
+09=Pura!
+10=Lis‰‰ kieli
+11=Syˆt‰ luokan nimi haluttu kieli:
+12=Odota hetki...
+
+[About form]
+01=Tietoa %s
+02=Tiedot
+03=Alkutekstit
+04=Versio: %s
+05=%s versio: %s
+06=%d tuettua muotoa
+07=Jos pid‰t t‰st‰ ohjelmasta toivomme sinun lahjoittavan rahaa ohjelman tekijoille. Klikkaa t‰st‰.
+08=Ohjelma
+09=Ylim‰‰r‰inen ohjelmointi
+10=%s teki
+11=%s ohjelmointi
+12=K‰‰nt‰j‰t
+13=Betatestaajat
+14=P‰ivitykset:
+15=For updates visit:
+16=License
+
+[Error messages]
+01=Ei voida alustaa teksti API. Lataa DLL "%s" %s:st‰ ja kopioi se "%s" hakemistoon.
+02=Seuraavanlainen virhe (%s) johtettiin kohteesta % (%s):||"%s"|| Kirjoita %:lle informoidaksesi mit‰ olit tekem‰ss‰, milloin t‰m‰ virhe esiintyi.||Paina Ok jatkaaksesi, ja peruuta poistuaksesi ohjelmaan.
+03=Tiedosto"%s" on huono teksti tai ei ole tuettu muoto.
+04=Tiedosto"%s" ei ole %s muoto tai ei ole kelvollinen tekstitiedosto.
+05="%s" ei ole kelvollinen video tiedosto.
+06=Ei voimassa rivin numero.
+07=Valitse v‰hint‰‰n yksi etsint‰‰n.
+08=Hakupolkua ei ole olemassa.
+09=Numerokohta ei ole kelvollinen kohta.
+10=Lis‰‰ kaksi teksti‰ tai enemm‰n.
+11=Ep‰onnistuttu yhdist‰m‰‰n palvelimelle!.
+12=Ei voida poistaa vain luku m‰‰ritett‰ "%s".||Mahdollisesti kirjoitussuojattu levy.
+13=Virhe yritett‰ess‰ kytkeyty‰ Microsoft Word:iin!
+14=Valitse videon edellinen osa(t) ensin!.
+15=Valitse voimassaoleva vienti hakemisto.
+16=Valitse v‰hint‰‰ yksi kieli purkaaksesi.
+17="%s" ei ole hyv‰ksytt‰v‰ SAMI tiedosto.
+18=Valitse tekstin osa listasta.
+19=Jos valitset elokuva fragmentin yhteen osaan teksti‰ sinun tarvitsee valita elokuva fragmentti jokaiseen osaan tekstiss‰ (paitsi viimeiseen osaan)
+20=Tarvitset kaksi tai useampia pisteit‰.
+21=Incorrect regular expression in Custom info %s
+22=Custom Info %d was disabled.|Fix the regular expression to enable it.
+23=Subtitle duration too short!
+24=Error: can not execute script.
+25=Error: can not compile script.
+26=Save subtitles first
+
+[Question messages]
+01=Tiedosto "%s" on muutettu.||Haluatko tallentaa muutokset?.
+02=Tiedosto "%s" on jo olemassa.||Haluatko korvata sen?.
+03=Alkuper‰inen tiedosto ("%s") on muutettu.||Haluatko tallentaa muutokset?.
+04=K‰‰nnetty tiedosto  ("%s") on muutettu.||Haluatko tallentaa muutokset?.
+05=Valitut tekstit ollaa poistamassa.||Haluatko jatkaa?.
+06=Piste 1 Teksti: %s|Piste 1 Elokuva: %s||Piste 2 Teksti: %s|Piste 2 Elokuva: %s||Synkronoi teksti?
+07=Videosoitinta ei ole valittu tai sit‰ ei ole olemassa.||Haluatko konfiguroida ulkoisen soittimen?.
+08=Uusi versio on saatavilla!.||Haluatko katsoa muutoksia?.
+09=Tiedosto jota koitat tallentaa on m‰‰ritetty vain lukuoikeus.||Kokeiletko tallentaa kuitenkin?.
+10=Do you want to save the marking in a file?
+
+[Information messages]
+01=Ei lˆydy enemp‰‰ "%s" tapauksia.
+02=Ei uutta versiota saatavilla.
+03=Kieliasun tarkistus suoritettu.||%d vaihto(a) tehty.
+04=Liian monta osaa. Palautetaan...
+05=Yksi kieli lˆydetty.||Jos tiedosto sis‰lsi enemm‰n kieli‰, lis‰‰ manuaalisesti avaa tiedosto tekstieditorilla ja korjaa luokan nimi.
+06=Ei voida sijoittaa "TYYLI" alkuun ja/tai sulkemaan tagia!.||Todenn‰kˆisesti syy on siin‰, ett‰ t‰m‰ ei sis‰ll‰ kuin yhden kielen.|Jos n‰in on,kokeile lis‰t‰ manuaalisesti haluttu kieli(t).
+07=Sopivin fonttikoko toistoon on: %d
+08=Kaikki vaihdot: %d
+09=Tiedostonimi: %s|Koko: %s|FPS: %s|Kestoaika: %s|Kehykset: %d|Resoluutio: %dx%d|FourCC: %s
+10=Jotain raitoja elokuvassa ei voitu tulkita.Todenn‰kˆisesti audion tai videon koodekki puuttuu.
+11=Ei ole tarpeellista asettaa elokuva fragmenttia rinnakkain viimeiseen tekstiin.
+12=A sudden error occured:|"%s"
+
+[Information and errors messages]
+01=Teksti numero %d on tyhj‰ teksti ja on valmis poistettavaksi.||Haluatko jatkaa?.
+02=Teksti numero %d:||"%s" on kielletty kirjainmerkki ja on valmis poistettavaksi.||Haluatko jatkaa?.
+03=Teksti numero %d:||"%s" on valmis poistettavaksi.||Haluatko jatkaa?.
+04=Osa tekstist‰ numero %d:||"%s" on valmis poistettavaksi, joten teksti tulee olemaan:||"%s"||Hyv‰ksytkˆ?.
+05=Teksti numero %d:||"%s" alkaa merkill‰ "-".||Haluatko poistaa "-" alusta?.
+
+[Main menu/View]
+01=Toolbar
+02=Text style bars
+03=Statusbar
+04=Columns
+05=Show notes in left panel
+06=Show time control buttons
+07=Show lines count
+08=Visual subtitle representation
+
+[Video Popup Menu]
+01=Enter full screen
+02=Exit full screen
+03=Zoom to %d%%
+04=Reset subtitle vertical position
+
+[Time control buttons hints]
+01=Shift to previous/Extend to previous
+02=Shift to next/Extend to next
+03=Set default pause/Set default pause, if pause is too short
+04=Set ato duration/Set min duration
+
+[Auto combine subtitles]
+01=Auto combine subtitles
+02=milliseconds
+03=Combine if duration is less than (0 = no limit):
+04=Combine if CpS is greater than (0 = no limit):
+05=characters per second
+06=Don't combine if pause is greater than (0 = no limit):
+07=Punctuation marks detection
+08=Combined subtitles maximum duration (0 = no limit):
+09=Decrease duration if necessary, with no more than:
+10=Combined subtitles maximum lines length (0 = no limit):
+11=characters
+12=For all the subtitles
+13=For the selected subtitles
+
+[Time expander/reducer]
+01=Duration expander/reducer
+02=Expand duration
+03=Reduce duration
+04=Expand/reduce duration:
+05=Seconds
+06=Frames
+07=Only if subtitle is longer than:
+09=characters
+10=Only if duration is longer than:
+11=Only if duration is shorter than:
+12=Prevent overlapping
+13=For all the subtitles
+14=For the selected subtitles
+
+[Set pauses]
+01=Set pauses
+02=Pauses value:
+03=Shorten duration of:
+04=First subtitle only
+05=Second subtitle only
+06=Both subtitles equally
+07=The subtitle with less CpS
+08=For all the subtitles
+09=For the selected subtitles
+
+[Round time values]
+01=Round time values
+02=Round to:
+03=milliseconds
+04=For all the subtitles
+05=For the selected subtitles
+
+[Smart line adjust]
+01=Smart line adjust
+02=Two lines if longer than:
+03=characters
+04=Break method:
+05=Equal lines
+06=Break on punctuation marks
+07=Don''t unbreak subtitles that are not too long
+08=Adjust only long subs and subs with more than 2 lines
+09=For all the subtitles
+10=For the selected subtitles
+11=Always try to find a better breaking point
+
+[Unbreak subtitles]
+01=Unbreak subtitles
+02=Characters limit
+03=No limit
+04=Don''t unbreak if line length exceeds:
+05=characters
+06=Don''t unbreak subtitles with "ó" on second line
+07=For all the subtitles
+08=For the selected subtitles
+
+[Custom info]
+01=Add custom info
+02=Composite custom info
+03=Subtitles duration information
+04=Subtitles line lenght information
+05=Subtitles lines count information
+06=Subtitles pause information
+07=Subtitles CpS information
+08=Subtitles text information
+09=Custom info sets
+10=Save custom info set
+11=Delete custom info set
+12=There is no custom info. Click the "+" button to add new custom info.
+13=Caption
+14=Duration
+15=Lines length
+16=Lines count
+17=Pause
+18=CpS
+19=Text
+20=Composite info
+21=ms
+22=chars
+23=lines
+24=cps
+25=AND
+26=OR
+27=Contains (Case sensitive)
+28=Contains (Case insensitive)
+29=Does not contain (Case sensitive)
+30=Does not contain (Case insensitive)
+31=Matches regular expression
+32=Matches regular expression (tags ignored)
+33=Delete
+34=Edit
+

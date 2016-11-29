@@ -1,0 +1,1136 @@
+;   Subtitle Workshop 2.51
+;   Swedish Language file ( manualen är än så länge på Engelska)
+;
+;   Översättare : Kalle
+;   E-mail      : Kalleho@hotmail.com
+;
+
+[General]
+Translator=Kalle
+Font Charset=0
+AllFiles=Alla understödda filer
+Help=Manual.html
+FPS=FPS
+PlainText=Blank text
+STP=Undertext Översättnings Project
+SRF=Undertext Rapport Fil
+AllTheFiles=All files
+
+[Standard buttons]
+01=&Ok
+02=&Avbryt
+03=&Välj
+04=&Använd
+05=&Avsluta
+06=&Ja
+07=&Nej
+
+[Main Form]
+01=Format:
+02=Tid
+03=Ramar
+04=Inkommande FPS:
+05=FPS:
+06=Arbeta med:
+07=Längd|Slut tid|Båda
+08=Nummer
+09=Visa
+10=Göm
+11=Text
+12=Översättning
+13=%d Ej översatta rader
+14=Längd:
+15=%s (%s tecken):
+16=- Ej översatt text -
+17=Lines:
+18=Notes:
+19=Pause
+20=%d subtitles selected / %d
+21=#%d / %d
+
+[Main menu header]
+01=Arkiv
+02=Redigera
+03=Sök
+04=Verktyg
+05=Film
+06=Inställningar
+07=Hjälp(Eng manual)
+08=View
+
+[Main menu/File]
+01=Ny undertext...
+02=Ladda undertext...
+03=Tidigare filer
+04=Töm lista
+05=Ladda
+06=Projekt...
+07=Ursprunglig
+08=Översatt
+09=Spara
+10=Ursprunglig som...
+11=Översatt som...
+12=Spara som...
+13=Stäng
+14=Avsluta
+15=Save marking
+
+[Main menu/Edit]
+01=Ångra
+02=Återskapa
+03=Lägg till i undertext
+04=Lägg till före
+05=Ta bort vald text
+06=Klipp ut
+07=Kopiera
+08=Infoga
+09=Välj alla
+10=Invert selection
+11=Insert symbol...
+
+[Main menu/Edit/Timings]
+01=Tidsjusteringar
+02=Sätt visningstidsgräns...
+03=Sätt fördröjning...
+04=Anpassa
+05=Anpassa undertext...
+06=Anpassa till synkroniserade undertexter
+07=Tids utvidgare
+08=Utöka längd
+09=Automatisk visningstidsgräns
+10=Läs tidsjustering  från fil
+11=Flytta %s millisekunder
+12=Extend length to previous
+13=Set pauses...
+14=Shift to next
+15=Shift to previous
+16=Round time values...
+
+[Main menu/Edit/Texts]
+01=Texter
+02=Smart rad justering
+03=Omvandla...
+04=Håll undertexten obruten
+05=Separera repliker...
+06=Separera snabba repliker
+07=Sätt maximum radlängd...
+08=Läs texter från fil
+09=Fast smart line adjust
+10=Fast unbreak subtitles
+
+[Main menu/Edit/Subtitles]
+01=Undertexter
+02=Förena undertexter
+03=Effekter
+04=Tecken effect
+05=Flash
+06=Snabb flash
+07=Medium flash
+08=Långsam flash
+09=Höger-till-vänster
+10=Spegelvänd text
+11=Reparera mellanmärken
+12=Sortera
+13=Ta bort onödiga länkar
+14=Markera valda undertexter
+15=Avmarkera valda undertexter
+16=Auto combine subtitles...
+17=Delete dots at the beginning
+18=Jump to next marked
+19=Jump to previous marked
+
+[Main menu/Edit/Translation]
+01=Text översättning
+02=Översättnings läge
+03=Växla kolumner
+
+[Main menu/Search]
+01=Sök...
+02=Sök nästa
+03=Sök && Ersätt...
+04=Gå till rad nummer...
+
+[Main menu/Tools]
+01=Stavnings kontroll
+02=Grupp ändring...
+03=Dela undertext...
+04=Förena undertexter...
+05=Information och fel
+06=Information och fel...
+07=Varierande information...
+08=OCR manus
+09=Visa i egentligt format
+10=Inställningar...
+11=Återgranska fel
+12=Reparera alla fel
+13=Reparera fel (valda undertexter)
+14=Hoppa till nästa fel
+15=Lägg till FPS från AVI
+16=Extern förhandsvisning
+17=SAMI språk extraktor
+18=Pascal manus
+19=Jump to previous error
+20=Show CpS boxes
+
+[Main menu/Movie]
+01=Öppna...
+02=Stäng
+03=Information...
+04=Video förhandsvisnings läge
+05=Visa undertexter
+06=Spara media startfil
+07=Audio stream
+08=None
+09=Video renderer
+10=Default
+11=VMR9
+
+[Main menu/Movie/Playback]
+01=Uppspelning
+02=Spela/Paus
+03=Stopp
+04=Bakåt
+05=Framåt
+06=Backa 5 sekunder
+07=Framåt 5 sekunder
+08=Uppspelningshastighet
+
+[Main menu/Movie/Subtitles]
+01=Undertexter
+02=Flytta undertexter
+03=Sätt start tid
+04=Sätt slut tid
+05=Starta undertext
+06=Avsluta undertext
+
+[Main menu/Movie/Synchronization]
+01=Synkronisation
+02=Första synk punkt
+03=Sista synk punkt
+04=Lägg till synk punkt
+
+[Main menu/Movie/Display]
+01=Display
+02=Ursprunglig
+03=Översättning
+
+[Main menu/Settings]
+01=Export inställningar...
+02=Språk
+03=Visa vänstra panelen
+04=Visa tidskontroller
+05=Använd in-place editering
+06=Refresh language files
+07=Files refreshed
+08=keys
+
+[Main menu/Help]
+01=OM %s...
+02=Sök efter ny version
+
+[Popup Menu]
+01=Kursiv
+02=Fet
+03=Understruken
+04=Sätt färg
+05=Radera färgval
+06=Remove all tags
+07=Delete
+08=Style
+
+[Video preview hints]
+01=Spela/Paus (%s)
+02=Stopp (%s)
+03=Navigera i rull lista
+04=Hoppa till föregående undertext
+05=Hoppa till nästa undertext
+06=Bakåt (%s)
+07=Framåt (%s)
+08=Slow motion
+09=Flytta undertext (%s)
+10=Sätt start tid (%s)
+11=Sätt slut tid (%s)
+12=Starta undertext (%s)
+13=Avsluta undertext (%s)
+14=Markera som första synk punkt (%s)
+15=Markera som sista synk punkt (%s)
+16=Lägg till undertext/video synk punkt (%s)
+17=Volume: %d%%
+18=Mute/Unmute
+
+[Save as]
+01=Spara som
+02=Dubbelklicka på utformat:
+03=Behandlat format
+04=Alla format
+
+[Custom formats]
+01=Behandlade format
+02=Information
+03=Namn:
+04=Ändelse:
+05=Nytt radtecken:
+06=Tid
+07=Ramar
+08=Struktur:
+09=FPS:
+10=Ladda projekt
+11=Spara projekt
+12=Kom ihåg senast behandlade format
+13=Spara!
+14=Behandlat formatprojekt
+
+[Settings Form]
+01=Inställningar
+02=Ändra program konfigurationer
+03=Allmänt
+04=Avancerat
+05=Tecken
+06=Format
+07=Filtyper
+08=Spara
+09=Video förhandsvisning
+10=Undertexter
+11=Extern förhandsvisning
+12=Utseende
+13=Program
+14=Lista
+15=Meny
+16=Alltid överst
+17=Tillåt flera åtgärder samtidigt
+18=Fråga före radering av undertext
+19=Behandla otydliga filer som blank text
+20=Automatisk sökning efter film
+21=Tvinga att arbeta i tidsläge
+22=Håll ordning på raderna vid översättning
+23=Välj text vid hopp till nästa rad
+24=Välj text vid hopp till föregående rad
+25=Ingen samverkan mellan märken
+26=Arbeta med stilmärken
+27=Senast öppnade fil begränsningar:
+28=Smart rad justering
+29=Två rader om längre än:
+30=Tecken
+31=Stoppunkt vid lägesbyte
+32=Separera rader
+33=Bryt rad efter:
+34=Justera rader automatiskt
+35=Maximal rad längd:
+36=Byt tid:
+37=millisekunder
+38=Visa i huvudfönster
+39=Ursprungliga teckentolkning:
+40=Översättnings teckentolkning:
+41=Förinställt format:
+42=Visa format vid "Spara som":
+43=Visa behandlat format
+44=Välj &alla
+45=Välj &ingen
+46=Registrera filändelser vid start
+47=Associera med de vanligaste undertextändelserna
+48=Fråga om spara vid programavslut/stäng undertext
+49=Spara arbetet automatiskt varje
+50=minuter.
+51=Spara som backup
+52=Utformatsinställningar...
+53=Dubbelklicka på undertext:
+54=Sekunder att hoppa:
+55=Shift-dubbelklicka på undertext:
+56=Fokus textlåda
+57=Gå undertextens tid i video
+58=Gå N sekunder(s) före undertext i video
+59=Bakåt och framåt tid:
+60=sekunder.
+61=Förinställd slow motion:
+62=Rita gränser
+63=Rita skugga
+64=Prova transparent bakgrund
+65=Tvinga att använda område (kan vara slö)
+66=Font...
+67=Färg...
+68=Bakgrund...
+69=Gräns brädd:
+70=Skugga brädd:
+71=MODELL
+72=Välj videospelarens program:
+73=Hitta associerat program
+74=Fråga efter annan video varje gång
+75=Testa alltid med video:
+76=Spara temporär undertext i format:
+77=Ursprungligt format
+78=Behandlat format:
+79=Parameter att skicka till videospelare:
+80=VIDEO_FILE representerar videofilen med vilken du testar undertexten . SUBT_FILE är parametern med vilken den temporära undertexten sänds till videospelaren. Du kan lägga till andra parametrar som tex.Helskärm, osv.
+81=Font att använda i programmet:
+82=Font storlek:
+83="Text" och "Översättning" fält placering:
+84=Vänster|Höger|Mitten
+85=Visa rutnät
+86=Sätt stil för undertext
+87=Märk ej översatt text med färg:
+88=Visa det horisontella reglaget
+89=Använd Office XP stil meny
+90=Använd valfria huvudmenyer
+91=Tags mode:
+92=Multiple tags mode
+93=Single tags mode (the old mode)
+94=Auto delete tags
+95=Default subtitle duration:
+96=Default subtitle pause:
+97=Increase step (time):
+98=Increase step (frames):
+99=frames
+100=Keep min duration of:
+101=but don''t allow overlaps
+102=Automatically round time values to:
+103=Round time values on subtitle load
+104=Notes charset:
+105=Add "Open with Subtitle Workshop" to shell context menu
+106=Ask to save new subttiles
+107=Save empty subtitles
+108=Vertical video center align
+109=Enter full screen on double click
+110=Setting Show and Hide times
+111=Shift Show value:
+112=Shift Hide value:
+113=Align left when subtitles contain a new line starting with "-"
+114=Relative font size
+115=Keep subtitle on video
+116=Try antialiasing (Force using regions must be off)
+117=Smart main window and subtitle list resize
+118=Resize subtitle list columns when resizing form
+119=Mark untranslated subtitles with background:
+120=Right click selection
+121=Row height:
+122=Text margin:
+123=Selection
+124=Text:
+125=Color:
+126=Transparency:
+127=Columns
+128=Align:
+129=Display style:
+130=Full
+131=Compact
+132=Marking with color:
+133=Marking with background:
+134=Columns to mark:
+135=Mark column "%s"
+136=Marking priority:
+137=Low (before error marking)
+138=High (after error marking)
+139=Marked subtitle color in video preview:
+140=Marking file
+141=Do not save marking file
+142=Ask each time to save marking file
+143=Automatically save marking file on subtitle save
+144=Automatically load marking file
+145=Marking
+146=Play video on load
+147=Visual subtitle representation color:
+148=Hilight tags in "Text" and "Translation" fields:
+
+[Output settings]
+01=Utformat inställningar
+02=Disk ID:
+03=DVD Titel:
+04=Språk:
+05=Författare:
+06=Web:
+07=Info:
+08=Licens:
+09=Undertext:
+10=Bakgrund:
+11=MODELL
+12=&Sätt font
+13=Placering:
+14=Vänster
+15=Mitten
+16=Höger
+17=Ramfrekvens:
+18=Minska ram
+19=Färg 0 (bakgrund):
+20=Färg 1 (Typsnitt):
+21=Färg 2 (överstreckat):
+22=Färg 3 (ojämna):
+23=Palettfärg n°:
+24=Kontrast
+25=Titel:
+26=Manus:
+27=Kosmetik
+28=Annat
+29=Gräns stil:
+30=Kontur + dropp skugga
+31=Ogenomskinlig
+32=Färg
+33=Primär:
+34=Sekundär:
+35=Tredje alt:
+36=Skugga:
+37=Vänster marginal:
+38=Höger marginal:
+39=Vertikal marginal:
+40=Kontur:
+41=Riktning:
+42=Kodning:
+43=Källa:
+44=Program:
+45=Sökväg:
+46=Fördröjning:
+47=CD Spår:
+48=Kommentar:
+49=TMPlayer Format
+50=TMPlayer+ Format
+51=TMPlayer Multiline Format
+
+[Duration limits]
+01=Visningstidsgränser
+02=Ställ in maximum visningstid
+03=Millisekunder
+04=Ställ in minimum visningstid
+05=* Att öka tiden orsakar inte överlappning
+06=Increase at start if necessary
+
+[Set delay]
+01=Sätt fördröjning...
+02=För alla undertexter
+03=För valda undertexter
+04=From first selected until last subtitle
+
+[Adjust subtitles]
+01=Justera undertexter
+02=Enkel
+03=Avancerad
+04=Först talade replik:
+05=Sist talade replik:
+06=Ladda från fil
+07=Spara till fil
+08=Bilda ny synkpunkt
+09=Gammal tid
+10=Ny tid
+11=&Lägg till
+12=Lägg till från &media
+13=&Ta bort
+14=Om tiden är utanför punkt gränsen:
+15=Extrapolera
+16=Återta ursprunglig tid (inga ändringar)
+17=Återta förskjutningen av närliggande punkt
+18=&Justera!
+19=Bilda ny synkpunkt
+20=Gammal tid
+21=Ny tid
+
+[Time expander/reducer]
+01=Tids utökare/minskare
+02=Utöka drifttid
+03=minska drifttid
+04=Utöka/Minska drifttid
+05=Sekunder
+06=Ramar
+07=Endast om undertexten är längre än:
+09=Tecken
+10=Endast om drifttiden är längre än:
+11=Endast om drifttiden är kortare än:
+12=Undvik överlappning
+13=För alla undertexter
+14=För valda undertexter
+
+[Automatic durations]
+01=Automatisk visningstid
+02=Millisekunder
+03=per tecken
+04=per ord
+05=per rad
+06=Använd ny visningstid i alla
+07=Endast om ny begränsning är större än originalet
+08=Endast om ny begränsning är mindre än originalet
+09=Alla undertexter
+10=Endast valda undertexter
+11=Method
+12=Characters
+13=per second
+14=Increase at start if necessary
+15=Maximum increase at start (0 = no limit):
+16=milliseconds
+
+[Convert case]
+01=Omvandling
+02=Meningens typ
+03=Endast första bokstaven i första ordet
+04="..." upptäck
+05=små bokstäver
+06=STORA BOKSTÄVER
+07=Rubrik
+08=iNVERTERAD tEXT
+09=Alla undertexter
+10=Endast valda texter
+
+[Divide lines]
+01=Sära på repliker
+02=Sära efter radnummer:
+03=Använd automatisk visningstid
+04=Visa:
+05=Göm:
+06=Visningstid:
+07=Fortsätt direkt
+08=%s Tecken
+09=&Skilj!
+
+[Search & Replace]
+01=Sök och ersätt
+02=Sök
+03=Sök text:
+04=&Sök!
+05=Ersätt med:
+06=Sök &nästa
+07=&Ersätt
+08=Ersätt &alla
+09=&Mer >
+10=&Mindre <
+11=Matcha gemener/VERSALER
+12=Matcha hela ord
+13=Bevara vid ersätt
+14=Sök efter text i:
+15=Hela undertexten
+16=Från vald post
+17=Teckentolkning:
+
+[Go to line]
+01=Gå till rad nummer
+02=Ge rad numer:
+
+[Batch convert]
+01=Grupp omvandling
+02=Omvandla olika filer till samma format
+03=< &Tillbaka
+04=&Nästa >
+05=Omvandla
+06=&Avsluta
+07=&Stäng
+08=&Alla
+09=Ingen
+10=Utökningar:
+11=Sökväg:
+12=Inkludera undermappar
+13=Heltäckande format granskning
+14=Export katalog:
+15=Export format:
+16=Förinställd FPS:
+17=Fil namn
+18=Format
+19=FPS
+20=Storlek
+21=&Lägg till
+22=&Ta bort
+23=Töm
+24=Färdig!. Se loggen för detaljer:
+25=Spara...
+26=Kontrollerar fil %s
+
+[Batch convert log]
+01=%s %s - Gruppomvandlar Logg
+02=Generering %s
+03=Export format: %s
+04=Totalt filer att omvandla: %d
+05=Försöker ladda "%s"...
+06=Laddning av filen har lyckats!
+07=Fil "%s" finns redan, ersätter...
+08=Filen har sparats till"%s"'
+09=Fil "%s" finns redan och du har inte gett programmet tillåtelse att ersätta den
+10=Fel uppstod vid laddning av fil, kan inte spara!
+11=Omvandling slutförd: %u
+12=Total tid: %s
+13=Omvandling av alla filer har lyckats
+14=Det uppstod fel vid omvandling av vissa filer, se detaljer nedanför
+
+[Split]
+01=Dela undertext...
+02=Enkel
+03=Avancerad
+04=Välj detalj
+05=Detalj nummer:
+06=Inmatad tid:
+07=Inmatad ram:
+08=Slut på video:
+09=Namngivning
+10=Del %d:
+11=Filnamn
+12=Längd
+13=Rader
+14=Tidsmässigt lika långa delar
+15=Radmässigt lika långa delar
+16=Videoslut
+17=Nummer på delar:
+18=Auto-namnge delar:
+19=Export katalog:
+20=Export format:
+21=Återkalkylering tidsvärden
+22=Dubbelklicka för att välja film
+23=&Dela!
+
+[Join]
+01=Sätt ihop undertexter...
+02=Lägg till undertextfiler du vill sätta ihop (i ordningsföljd):
+03=Filnamn
+04=Format
+05=FPS
+06=Storlek
+07=Film fragment (optionella)
+08=&Lägg till
+09=&Ta bort
+10=&Töm
+11=&Sätt film fragment
+12=R&adera film fragment
+13=Utgående format:
+14=Utgående FPS:
+15=Ladda fil när den är ihopsatt och sparad
+16=Återkalkylering tidsvärden
+17=&Sätt ihop!
+
+[Information and errors]
+01=Information och fel
+02=Granska!
+03=Reparera fel!
+04=&Inställningar
+05=Bekräfta varje borttagning
+06=Undertext
+07=Typ
+08=Beskrivning
+09=Fel
+10=Varning
+11=Info
+13=Reparerad
+14=Totala fel: %d
+15=Reparerade fel: %d
+16=Innehåller rader utan bokstäver
+17=Endast undertext
+18=Överlappad med föregående undertext
+19=Dåliga värden
+20=För lång visningsstid
+21=För kort visningstid
+22=För lång rad(er)
+23=Över två rader
+24=Dålig text
+25=Har text före kolon (":")
+26=Onödiga punkter
+27=Innehåller otillåtna tecken
+28=Upprepade tecken
+29=Upprepad undertext
+30=OCR fel
+31=Enkel undertextrad börjar med "-"
+32=Inget mellanrum efter behandlat tecken
+33=Inget mellanrum före behandlat tecken
+34=Onödiga mellanrum
+35=Markerad undertext
+36=Borttagna rader vilka inte innehåller tecken
+37=Blank undertext togs bort
+38=Reparerad överlappning
+39=Reparerad dåligt värde
+40=Undertext med över två rader justerades
+41=Undermålig undertext togs bort
+42=Undermålig del togs bort
+43=Tog bort text före kolon (":")
+44=Tog bort onödiga punkter
+45=Otillåtet tecken togs bort
+46=Reparerade upprepade tecken
+47=Reparerade upprepade undertexter
+48=OCR fel reparerades
+49=Tog bort "-" i enkel textrad
+50=Lade till mellanrum efter tecken
+51=Lade till mellanrum före behandlat tecken
+52=Onödiga mellanrum togs bort
+53=Dubbelklicka för att hoppa till rad huvudrutan
+67=E
+68=W
+69=F
+70=CI
+71=Select
+72=+ Select
+73=- Select
+74=Select subtitles
+75=Add to selected subtitles
+76=Remove from selected subtitles
+77=All
+78=None
+79=Inverse
+80=Select all
+81=Select none
+82=Invert selection
+83=Error types sets
+84=Save error types set
+85=Delete error types set
+86=Error types
+87=Custom info
+88=Show/hide errors
+89=Show/hide warnings
+90=Show/hide fixed
+91=Show/hide custom info
+92=Show/hide Error types panel
+93=Show/hide Custom info panel
+65=Custom info
+66=Displayed: %d
+54=Unnecessary tags
+56=Dash on first line
+58=Too many CpS
+60=Too short pause
+62=Dialogue on one line
+55=Removed unnecessary tags
+57=Removed dash on first line
+59=Fixed too much CpS
+61=Fixed too short pause
+63=Fixed dialogue on one line
+94=Export to file
+95=Text file
+96=char
+97=sec
+98=fr
+99=cps
+
+[Information and errors Settings]
+01=Inställningar
+02=Allmänt
+03=Advancerad
+04=Granska
+05=Reparera
+06=Onödiga utrymmen
+07=Visa bekräftelse i huvudfönstret vid reparering
+08=Markera felen i huvudfönstrets lista
+09=Sätt färg...
+10=Fet
+11=Kursiv
+12=Understruken
+13=Markera fel vid laddning av undertext
+14=Reparera fel vid laddning av undertext
+15=Reparera en enhets överlappning vid laddning
+16=OCR Manus:
+17=&Redigera
+18=Upprepande tecken:
+19=Otillåtna tecken:
+20=Tollerans för upprepande undertexter:
+21=millisekunder.
+22=Mellanrum efter tecken:
+23=Mellanrum före tecken:
+24=För lång visningstid:
+25=För kort visningstid:
+26=För lång rad:
+27=Tecken.
+28=Rad utan bokstäver
+29=Blank undertext
+30=Överlappade undertexter
+31=Dåliga värden
+32=För lång viningstid
+33=För kort visningstid
+34=För långa rader
+35=Undertexter över två rader
+36=Undermåliga undertexter
+37=Text före kolon(":")
+38=Endast om text är med stora bokstäver
+39=Onödiga punkter
+40=Otillåtna tecken
+41=Upprepande tecken
+42=Upprepande undertexter
+43=OCR Fel
+44="- " i undertext med bara en rad
+45=Mellanrum efter behandlat tecken
+46=Mellanrum före behandlat tecken
+47=Onödigt mellanrum
+48=Kontrollera:
+49=Reparera:
+50=Redigering och mellanrum i början och slutet
+51=Mellanrum emellan redigeringar (vänster och höger)
+52=Dubbla mellanrum emellan tecken
+53=Mellanrum framför punktmarkering
+54=Mellanrum efter "¿" och "¡"
+55=Mellanrum före "?" och "!"
+56=Melanrum emellan nummer
+57=Too short pauses
+58="- " on first line
+59=Only if there is no "- " on second line
+60=Dialogue on one line
+61=Unnecessary tags
+62=Too many characters per second
+63=Mark too much CpS with CpS boxes
+64=Default errorr marking
+65=Set Default Styles
+66=Mark column "Num"
+67=Mark column "Pause"
+68=Mark column "Show"
+69=Mark column "Hide"
+70=Mark column "Duration"
+71=Mark column "Text"
+72=Mark as Bold
+73=Mark as Italic
+74=Mark as Underline
+75=Mark as Strikethrough
+76=Mark the text color
+77=Mark the background color
+78=Mark
+79=Automatically recheck errors
+80=Do not recheck on Pascal scripts
+81=Recheck all once after a Pascal script executes
+82=Recheck on each change made by a Pascal script (might be slow)
+83=Indicate too long lines in Text and Translation labels
+84=Indicate too short duration in Duration box
+85=Indicate too long duration in Duration box
+86=Indicate too short pause in Pause box
+87=Indicate overlapping subtitles in Pause box
+88=Indicate bad values in Show and Hide boxes
+89=Indicate subtitles over two lines in lines counter labels
+90=Text color
+91=Background color
+92=Too short pause under:
+93=Characters per second (CpS)
+94=Too many CpS over:
+95=characters per second
+96=Normal CpS box colors:
+97=Too many CpS box colors:
+98=Display percantage in CpS box
+99=Display current CpS in CpS box
+100=Display minimum time in CpS box
+101=Display maximum characters in CpS box
+
+[Various information]
+01=Varierande information
+02=Information
+03=Tillägg
+04=Original fil
+05=Översatt fil
+06=Nuvarande format:
+07=Fil:
+08=Storlek:
+09=Totalt antal undertexter:
+10=Totalt antal rader:
+11=Totalt antal ord:
+12=Totalt antal bokstäver:
+13=Undertexter med en rad:
+14=Undertexter med två rader:
+15=Undertexter med flera än två rader:
+16=Längsta rad:
+17=I undertexten %d finns %d tecken
+18=Bästa font storlek för uppspelning
+19=Resolution brädd:
+20=Från AVI
+21=Font namn:
+22=Fet
+23=Kursiv
+24=Kalkylera
+25=Shortest line:
+26=Longest pause:
+27=Shortest pause:
+28=In subtitle %d, %d,%.3d seconds
+29=In subtitle %d, %d milliseconds
+30=Most CpS:
+31=Least CpS:
+32=In subtitle %d, %d cps
+33=Average CpS:
+34=Longest duration:
+35=Shortest duration:
+36=Refresh info
+
+[SAMI Language Extractor]
+01=SAMI Språk Extraktor
+02=SAMI fil:
+03=Export katalog:
+04=Valt språk tas i bruk:
+05=Klass
+06=Språk
+07=Automatisk igenkänning
+08=Lägg till manuellt
+09=Genomför!
+10=Lägg till språk
+11=Mata in klassnamn på valt språk :
+12=Var god vänta...
+
+[About form]
+01=Om %s
+02=Information
+03=Förtext
+04=Version: %s
+05=%s version: %s
+06=%d olika understödda format
+07=If you like this software, we would really appreciate you could make a donation. Click here to do it.
+08=Programerad av
+09=Tilläggs programering
+10=%s av
+11=%s programering
+12=Översättare
+13=Beta testare
+14=Default icon by
+15=För uppdateringar besök:
+16=License
+
+[Error messages]
+01=Kunde inte initialisera undertexten API. Vänligen ladda ner DLL "%s" från %s och kopiera till "%s" katalogen.
+02=Följande fel (%s) härrör sig från %s (%s):||"%s"||Vänligen skriv till %s och informera om vad du gjorde när detta fel uppstod.||Tryck Ok för att fortsätta, och Avbryt för att avsluta programmet.
+03=Filen "%s" är en dålig undertext eller så understöds inte detta format.
+04=Filen "%s" är inte i %s format eller så är det inte en giltig undertext fil.
+05="%s" är inte en giltig videofil.
+06=Ej giltigt rad nummer.
+07=Välj minst en utökning att söka efter.
+08=Sökvägen finns inte.
+09=Posten är inte en giltig post.
+10=Var vänlig och lägg till minst två undertexter.
+11=Kunde inte kontakta servern!.
+12=Kunde inte ta bort Läs-endast (read-only) attributet från "%s".||Finns möjligen på en skrivskyddad enhet.
+13=Fel uppstod vid försök att koppla till Microsoft Word!.
+14=Välj video(r)för föregående del(ar) först!.
+15=Välj en tillåten export katalog.
+16=Välj minst ett språk att finna.
+17="%s" är inte en giltig SAMI fil.
+18=Välj en undertext del i listan.
+19=Om du väljer ett filmfragment för en del av undertexten så måste du välja filmfragment för alla delar av undertexten (utom för den sista delen).
+20=Du behöver två eller flera punkter.
+21=Incorrect regular expression in Custom info %s
+22=Custom Info %d was disabled.|Fix the regular expression to enable it.
+23=Subtitle duration too short!
+24=Error: can not execute script.
+25=Error: can not compile script.
+26=Save subtitles first
+
+[Question messages]
+01=Filen "%s" har ändrats.||Vill du spara ändringarna?.
+02=Filen "%s" finns redan.||Vill du ersätta den?.
+03=Original filen ("%s") har ändrats.||Vill du spara ändringarna?.
+04=Översatta filen  ("%s") har ändrats.||Vill du spara ändringarna?.
+05=De valda undertexterna kommer att tas bort.||Vill du fortsätta?.
+06=Punkt 1 Undertext: %s|Punkt 1 Film: %s||Punkt 2 Undertext: %s|Punkt 2 Film: %s||Synkronisera undertext?
+07=Videospelaren har inte valts eller så existerar den inte.||Vill du konfigurera en extern spelare?.
+08=En ny version hittades!.||Vill du se en lista på ändringar?.
+09=Filen du försöker spara är en Läs-endast (read-only) fil.||Vill du försöka spara den ändå?.
+10=Do you want to save the marking in a file?
+
+[Information messages]
+01=Kunde inte hitta fler platser av "%s".
+02=Ingen nyare version är tillgänglig.
+03=Stavningskontroll avslutad.||%d ändring(ar).
+04=För många delar. Nollställer...
+05=Endast ett språk hittades.||Om filen innehåller flera språk,så lägg till manuellt genom att öppna filen med en texteditor och reparera klass namn  .
+06=Kunde inte lokalisera "STIL" start och/eller stäng märke!.||Troligen därför att denna fil inte innehåller mer än ett språk.|Om den ändå gör det så,försök att söka manuellt för klass namn på det sökta språket.
+07=Lämpligaste font storlek för uppspelning är: %d
+08=Totalt ersatta: %d
+09=Fil namn: %s|Storlek: %s|FPS: %s|Visningstid: %s|Totala ramar: %d|Resolution: %dx%d|FourCC: %s
+10=En del av strömmarna i filmen kunde inte tolkas ordentligt. Troligen för att ljud eller video codec fattas.
+11=Det är inte nödvändigt att sätta filmfragment för den undertextens sista del.
+12=A sudden error occured:|"%s"
+
+[Information and errors messages]
+01=Undertext nr %d är en blank undertext och kommer att raderas.||Vill du fortsätta?.
+02=Undertext nr %d:||"%s" har ett otillåtet tecken och kommer att raderas.||Vill du fortsätta?.
+03=Undertext nr %d:||"%s" kommer att raderas.||Vill du fortsätta?.
+04=Delar av undertext nr %d:||"%s" kommer att raderas, så undertexten kommer att bli:||"%s"||Vill du fortsätta?.
+05=Undertext nr %d:||"%s" är en singelrad undertext med "-".||Vill du radera "-" i början av raden?.
+
+[Main menu/View]
+01=Toolbar
+02=Text style bars
+03=Statusbar
+04=Columns
+05=Show notes in left panel
+06=Show time control buttons
+07=Show lines count
+08=Visual subtitle representation
+
+[Video Popup Menu]
+01=Enter full screen
+02=Exit full screen
+03=Zoom to %d%%
+04=Reset subtitle vertical position
+
+[Time control buttons hints]
+01=Shift to previous/Extend to previous
+02=Shift to next/Extend to next
+03=Set default pause/Set default pause, if pause is too short
+04=Set ato duration/Set min duration
+
+[Auto combine subtitles]
+01=Auto combine subtitles
+02=milliseconds
+03=Combine if duration is less than (0 = no limit):
+04=Combine if CpS is greater than (0 = no limit):
+05=characters per second
+06=Don't combine if pause is greater than (0 = no limit):
+07=Punctuation marks detection
+08=Combined subtitles maximum duration (0 = no limit):
+09=Decrease duration if necessary, with no more than:
+10=Combined subtitles maximum lines length (0 = no limit):
+11=characters
+12=For all the subtitles
+13=For the selected subtitles
+
+[Set pauses]
+01=Set pauses
+02=Pauses value:
+03=Shorten duration of:
+04=First subtitle only
+05=Second subtitle only
+06=Both subtitles equally
+07=The subtitle with less CpS
+08=For all the subtitles
+09=For the selected subtitles
+
+[Round time values]
+01=Round time values
+02=Round to:
+03=milliseconds
+04=For all the subtitles
+05=For the selected subtitles
+
+[Smart line adjust]
+01=Smart line adjust
+02=Two lines if longer than:
+03=characters
+04=Break method:
+05=Equal lines
+06=Break on punctuation marks
+07=Don''t unbreak subtitles that are not too long
+08=Adjust only long subs and subs with more than 2 lines
+09=For all the subtitles
+10=For the selected subtitles
+11=Always try to find a better breaking point
+
+[Unbreak subtitles]
+01=Unbreak subtitles
+02=Characters limit
+03=No limit
+04=Don''t unbreak if line length exceeds:
+05=characters
+06=Don''t unbreak subtitles with "—" on second line
+07=For all the subtitles
+08=For the selected subtitles
+
+[Custom info]
+01=Add custom info
+02=Composite custom info
+03=Subtitles duration information
+04=Subtitles line lenght information
+05=Subtitles lines count information
+06=Subtitles pause information
+07=Subtitles CpS information
+08=Subtitles text information
+09=Custom info sets
+10=Save custom info set
+11=Delete custom info set
+12=There is no custom info. Click the "+" button to add new custom info.
+13=Caption
+14=Duration
+15=Lines length
+16=Lines count
+17=Pause
+18=CpS
+19=Text
+20=Composite info
+21=ms
+22=chars
+23=lines
+24=cps
+25=AND
+26=OR
+27=Contains (Case sensitive)
+28=Contains (Case insensitive)
+29=Does not contain (Case sensitive)
+30=Does not contain (Case insensitive)
+31=Matches regular expression
+32=Matches regular expression (tags ignored)
+33=Delete
+34=Edit
+

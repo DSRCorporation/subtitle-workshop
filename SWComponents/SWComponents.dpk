@@ -1,0 +1,48 @@
+// This file is part of SWComponents, the component package for Subtitle Workshop
+// URL: subworkshop.sf.net
+// Licesne: GPL v3
+// Copyright: See Subtitle Workshop's copyright information
+// File Description: SWComponents main package file
+
+package SWComponents;
+
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'Subtitle Workshop Components'}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  vcl;
+
+contains
+  SWButton in 'Sources\SWButton.pas',
+  MiMenu in 'Sources\MiMenu.pas',
+  MiSubtitulo in 'Sources\MiSubtitulo.pas',
+  SWSeekBar in 'Sources\SWSeekBar.pas',
+  SWTimeCounter in 'Sources\SWTimeCounter.pas',
+  USSpeller in 'Sources\USSpeller.pas',
+  TimeMaskEdit in 'Sources\TimeMaskEdit.pas',
+  SymbolDlg in 'Sources\SymbolDlg.pas';
+
+end.

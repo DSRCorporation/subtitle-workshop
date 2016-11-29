@@ -1,0 +1,1154 @@
+;   Subtitle Workshop 2.51
+;   Hungarian language file
+;
+;   Author: Jozsef Tamas Herczeg
+;   E-mail: hdodi@freemail.hu
+;   Web: http://www.soft-trans.hu
+
+[General]
+Translator=Herczeg József Tamás
+Font Charset=238
+AllFiles=Minden támogatott fájltípus
+Help=Manual.html
+FPS=FPS
+PlainText=Egyszerû szöveg
+STP=Feliratfordítási projekt
+SRF=Felirat jelentésfájl
+AllTheFiles=All files
+
+[Standard buttons]
+01=&OK
+02=&Mégse
+03=&Tallózás
+04=Alkalma&z
+05=&Kilépés
+06=&Igen
+07=&Nem
+
+[Main Form]
+01=Mód:
+02=Idõ
+03=Képkockák
+04=Bemeneti FPS:
+05=FPS:
+06=Munka szélesség:
+07=Idõtartam|Végsõ idõ|Mindkettõ
+08=Sz.
+09=Megjelenítés
+10=Elrejtés
+11=Szöveg
+12=Fordítás
+13=%d lefordítatlan sor
+14=Idõtartam:
+15=%s (%s karakter):
+16=- Lefordítatlan felirat -
+17=Lines:
+18=Notes:
+19=Pause
+20=%d subtitles selected / %d
+21=#%d / %d
+
+[Main menu header]
+01=Fájl
+02=Szerkesztés
+03=Keresés
+04=Eszközök
+05=Film
+06=Beállítások
+07=Súgó
+08=View
+
+[Main menu/File]
+01=Új felirat...
+02=Felirat betöltése...
+03=Legutóbbi fájlok
+04=Lista ürítése
+05=Betöltés
+06=Projekt...
+07=Eredeti
+08=Firdítás
+09=Mentés
+10=Eredeti mint...
+11=Fordítás mint...
+12=Mentés másként...
+13=Bezárás
+14=Kilépés
+15=Save marking
+
+[Main menu/Edit]
+01=Felirat beszúrás
+02=Beszúrás elé
+03=Kijelöltek eltávolítása
+04=Kivágás
+05=Másolás
+06=Beillesztés
+07=Mind kijelölése
+08=Beillesztés
+09=Mind kijelölése
+10=Invert selection
+11=Insert symbol...
+
+[Main menu/Edit/Timings]
+01=Idõzítések
+02=Idõtartam korlátozások...
+03=Késleltetés...
+04=Igazítás
+05=Feliratozás igazítása...
+06=Igazítás a szinkronizált feliratozáshoz
+07=Idõ kiterjesztõ
+08=Hossz megnyújtása
+09=Automatkus idõtartamok
+10=Ütemezések olvasása fájlból
+11=%s milliszekundum eltolása
+12=Extend length to previous
+13=Set pauses...
+14=Shift to next
+15=Shift to previous
+16=Round time values...
+
+[Main menu/Edit/Texts]
+01=Szövegek
+02=Intelligens sor igazítás
+03=Írásmód átalakítása...
+04=Tördeletlen feliratozás
+05=Sorok felosztása...
+06=Sorok gyors felosztása
+07=Maximális sorhossz megadása...
+08=Szövegek olvasása fájlból
+09=Fast smart line adjust
+10=Fast unbreak subtitles
+
+[Main menu/Edit/Subtitles]
+01=Feliratozás
+02=Feliratok egyesítése
+03=Hatások
+04=Hatás típusa
+05=Villanás
+06=Gyors villanás
+07=Közepes villanás
+08=Lassú villanás
+09=Jobbról balra
+10=Szöveg megfordítása
+11=Központozás javítása
+12=Rendezés
+13=Fölösleges hivatkozások törlése
+14=A kijelölt feliratok megjelölése
+15=A megjelölés megszüntetése
+16=Auto combine subtitles...
+17=Delete dots at the beginning
+18=Jump to next marked
+19=Jump to previous marked
+
+[Main menu/Edit/Translation]
+01=Fordítás
+02=Fordító mód
+03=Csere
+
+[Main menu/Search]
+01=Keresés...
+02=Továbbkeresés
+03=Keresés && csere...
+04=Ugrás sorszámhoz...
+
+[Main menu/Tools]
+01=Helyesírás-ellenõrzés
+02=Csoportos átalakítás...
+03=Feliratozás felosztása...
+04=Feliratozás egyesítése...
+05=Információ és hibák
+06=Információ és hibák...
+07=Különféle információk...
+08=OCR parancsfájlok
+09=Beállítások...
+10=Hibakeresés ismétlése
+11=Hibák javítása (mind)
+12=Hibák javításas (kijelölt feliratok)
+13=Ugrás következõ hibához
+14=FPS hozzáadása AVI-ból
+15=Külsõ elõnézet
+16=SAMI nyelvkibontó
+17=SAMI nyelvkibontó
+18=Pascal parancsfájlok
+19=Jump to previous error
+20=Show CpS boxes
+
+[Main menu/Movie]
+01=Megnyitás...
+02=Bezárás
+03=Információ...
+04=Videó elõnézet mód
+05=Feliratozás megjelenítése
+06=A médiaindító fájl mentése
+07=Audio stream
+08=None
+09=Video renderer
+10=Default
+11=VMR9
+
+[Main menu/Movie/Playback]
+01=Visszajátszás
+02=Lejátszás/Szünet
+03=Leállítás
+04=Visszatekerés
+05=Elõretekerés
+06=Vissza 5 másodperc
+07=Elõretekerés 5 másodperc
+08=Visszajátszás sebessége
+
+[Main menu/Movie/Subtitles]
+01=Feiratozás
+02=Felirat áthelyezése
+03=Kezdõ idõpont megadása
+04=Záró idõpont megadása
+05=Kezdõ felirat
+06=Záró felirat
+
+[Main menu/Movie/Synchronization]
+01=Szinkronizálás
+02=Elsõ szinkronizálási pont
+03=Utolsó szinkronizálási pont
+04=Elsõ párbeszéd a videóban
+
+[Main menu/Movie/Display]
+01=Megjelenítés
+02=Eredeti
+03=Fordítás
+
+[Main menu/Settings]
+01=Kimenet beállításai...
+02=Nyelv
+03=Bal panel megjelenítése
+04=Idõvezérlõk megjelenítése
+05=Helybeli szerkesztés használata
+06=Refresh language files
+07=Files refreshed
+08=keys
+
+[Main menu/Help]
+01=%s névjegye...
+02=Új verzió keresése
+
+[Popup Menu]
+01=Dõlt
+02=Félkövér
+03=Aláhúzott
+04=Szín beállítása
+05=Színelemek eltávolítása
+06=Remove all tags
+07=Delete
+08=Style
+
+[Video preview hints]
+01=Lejátszás/Szünet (%s)
+02=Leállítás (%s)
+03=Gördítési lista kapcsolása
+04=Visszatekerés (%s)
+05=Elõretekerés (%s)
+06=Lassú mozgás
+07=Kezdõ idõpont megadása (%s)
+08=Záró idõpont megadása (%s)
+09=Kezdõ felirat (%s)
+10=Záró felirat (%s)
+11=Megjelölés elsõ szinkronizálási pontként (%s)
+12=Megjelölés utolsó szinkronizálási pontként (%s)
+13=Megjelölés elsõ párbeszédként a videóban (%s)
+14=Megjelölés utolsó párbeszédként a videóban (%s)
+15=Megjelölés utolsó szinkronizálási pontként (%s)
+16=Megjelölés a videó elsõ párbeszédeként (%s)
+17=Volume: %d%%
+18=Mute/Unmute
+
+[Save as]
+01=Mentés másként
+02=Dupla kattintás a kimeneti formátumra:
+03=Egyéni formátum
+04=Minden formátum
+
+[Custom formats]
+01=Egyéni formátumok
+02=Információ
+03=Név:
+04=Kiterjesztés:
+05=Új sor kar.:
+06=Idõ
+07=Képkockák
+08=Szerkezet:
+09=FPS:
+10=Projekt betöltése
+11=Projekt mentése
+12=Utolsó egyéni formátum megjegyzése
+13=Mentsd!
+14=Egyéni formátumú projekt
+
+[Settings Form]
+01=Beállítások
+02=A program beállításainak módosítása
+03=Általános
+04=Speciális
+05=Karakterkészletek
+06=Formátumok
+07=Fájltípusok
+08=Mentés
+09=Videó elõnézete
+10=Feliratozás
+11=Külsõ elõnézet
+12=Megjelenés
+13=Program
+14=Lista
+15=Menü
+16=Mindig látható
+17=Több példány futásának engedélyezése
+18=Megerõsítés felirat törlésekor
+19=Érvénytelen fájlok egyszerû szövegként értelmezése
+20=Film automatikus keresése
+21=Idõ módban mûködés utasítása
+22=Sorrend megtartása a szöveg megfordításakor
+23=Szöveg kijelölése a következõ sorhoz ugráskor
+24=Szöveg kijelölése az elõzõ sorhoz ugráskor
+25=Nincs interaktivitás a címkékkel
+26=Munka a stíluscímkékkel
+27=Legutóbbi fájlok korlátozása:
+28=Intelligens sorigazítás
+29=Két sor, ha hosszabb, mint:
+30=karakternél
+31=Töréspont kapcsoló
+32=Sorok felosztása
+33=Sortördelés utána:
+34=Automatikus intelligens sorigazítás
+35=Maximális sorhossz:
+36=Idõeltolás:
+37=milliszekundum
+38=Megjelenítés a fõ ûrlapon
+39=Eredeti karakterkészlete:
+40=Fordítás karakterkészlete:
+41=Alapértelmezett formátum:
+42=Megjelenítendõ formátumok "Mentés másként" esetén:
+43=Egyéni formátumok megjelenítése
+44=Min&d kijelölése
+45=Kijelölés &megszüntetése
+46=Kiterjesztések bejegyzése indításkor
+47=Társítás a legtámogatottabb feliratkiterjesztésekhez
+48=Rákérdezés mentésre a program/felirat bezárásakor
+49=A munka automatikus mentése
+50=percenként
+51=Mentés biztonsági másolatként
+52=Kimeneti beállítások...
+53=Dupla kattintás egy feliratban:
+54=Átugrandó másodpercek:
+55=Shift-dupla kattintás egy feliratban:
+56=Szövegpanel fókuszálása
+57=Felirat idejéhez ugrás a videóban
+58=Ugrás N másodperccel a felirat elé a videóban
+59=Elõre- és visszatekerési idõ:
+60=másodperc.
+61=Alapértelmezett lassú mozgás:
+62=Szegély kirajzolása
+63=Árnyék kirajzolása
+64=Átlátszó háttér próbálása
+65=Utasítás területek használatárs (lassú lehet)
+66=Betû...
+67=Szín...
+68=Háttér...
+69=Szegély szélessége:
+70=Árnyék szélessége:
+71=MINTA
+72=A videólejátszó útvonala:
+73=A társított program felismerése
+74=Minden alkalommal másik videó kérése
+75=Tesztelés mindig videóval:
+76=Az ideiglenes felirat mentésének formátuma:
+77=Eredeti formátum
+78=Egyéni formátum:
+79=A videólejátszóhoz küldendõ paraméterek:
+80=A VIDEO_FILE jelenti azt a videófájlt, melyben a feliratozást  kívánja ön tesztelni. A SUBT_FILE az a tulajdonság, melyben az ideiglenes feliratfájl kerül küldésre a videólejátszóhoz. Adhat hozzá további tulajdonságokat is, például teljes képernyõ, stb.
+81=A programban használatos betûk:
+82=Betûméret:
+83=A "Szöveg" és a "Fordítás" mezõk igazítása:
+84=Balra|Jobbra|Középre
+85=Rácsvonalak kijelzése
+86=Stílus alkalmazása a feliratozásra
+87=A lefordítatlan feliratok megjelölése színnel:
+88=Vízszintes görgetõsáv kijelzése
+89=Office XP stílusú menü használata
+90=Színátmenetes menü használata
+91=Tags mode:
+92=Multiple tags mode
+93=Single tags mode (the old mode)
+94=Auto delete tags
+95=Default subtitle duration:
+96=Default subtitle pause:
+97=Increase step (time):
+98=Increase step (frames):
+99=frames
+100=Keep min duration of:
+101=but don''t allow overlaps
+102=Automatically round time values to:
+103=Round time values on subtitle load
+104=Notes charset:
+105=Add "Open with Subtitle Workshop" to shell context menu
+106=Ask to save new subttiles
+107=Save empty subtitles
+108=Vertical video center align
+109=Enter full screen on double click
+110=Setting Show and Hide times
+111=Shift Show value:
+112=Shift Hide value:
+113=Align left when subtitles contain a new line starting with "-"
+114=Relative font size
+115=Keep subtitle on video
+116=Try antialiasing (Force using regions must be off)
+117=Smart main window and subtitle list resize
+118=Resize subtitle list columns when resizing form
+119=Mark untranslated subtitles with background:
+120=Right click selection
+121=Row height:
+122=Text margin:
+123=Selection
+124=Text:
+125=Color:
+126=Transparency:
+127=Columns
+128=Align:
+129=Display style:
+130=Full
+131=Compact
+132=Marking with color:
+133=Marking with background:
+134=Columns to mark:
+135=Mark column "%s"
+136=Marking priority:
+137=Low (before error marking)
+138=High (after error marking)
+139=Marked subtitle color in video preview:
+140=Marking file
+141=Do not save marking file
+142=Ask each time to save marking file
+143=Automatically save marking file on subtitle save
+144=Automatically load marking file
+145=Marking
+146=Play video on load
+147=Visual subtitle representation color:
+148=Hilight tags in "Text" and "Translation" fields:
+
+[Output settings]
+01=Kimenet beállításai
+02=Lemezazonosító:
+03=DVD címe:
+04=Nyelv:
+05=Szerzõ:
+06=Web:
+07=Információ:
+08=Licenc:
+09=Felirat:
+10=Háttér:
+11=MINTA
+12=Betû&típus
+13=Igazítás:
+14=Balra
+15=Középre
+16=Jobbra
+17=Képkocka-sebesség:
+18=Képkocka eldobása
+19=Szín 0 (háttér):
+20=Szín 1 (betûtípus):
+21=Szín 2 (körvonal):
+22=Szín 3 (durvulásmentesítés):
+23=Palettaszín n°:
+24=Kontraszt
+25=Cím:
+26=Parancsfájl:
+27=Kozmetika
+28=Egyebek
+29=Szegély stílusa:
+30=Körvonal + árnyék
+31=Tömör panel
+32=Szín
+33=Elsõdleges:
+34=Másodlagos:
+35=Negyedleges:
+36=Árnyék:
+37=Bal margó:
+38=Jobb margó:
+39=Függõleges margó:
+40=Körvonal:
+41=Igazítás:
+42=Kódolás:
+43=Forrás:
+44=Program:
+45=Útvonal:
+46=Késleltetés:
+47=CD-sáv:
+48=Megjegyzés:
+49=49
+50=TMPlayer+ formátum
+51=TMPlayer többsoros formátum
+
+[Duration limits]
+01=Idõtartam korlátozások beállításai
+02=Leghosszabb idõtartam beállítása
+03=Milliszekundum
+04=Legrövidebb idõtartam beállítása
+05=* Az idõ növelése nem okoz átfedést
+06=Increase at start if necessary
+
+[Set delay]
+01=Késleltetés beállítása
+02=Az összes felirathoz
+03=A kijelölt felirathoz
+04=From first selected until last subtitle
+
+[Adjust subtitles]
+01=Feliratok igazítása
+02=Elsõ kimondott sor:
+03=Utolsó kimondott sor:
+04=&Igazítsd!
+05=Utolsó kimondott sor:
+06=Betöltés fájlból
+07=Mentés fájlba
+08=Sor #
+09=Régi idõ
+10=Új idõ
+11=&Hozzáadás
+12=Hozzáadás a &médiából
+13=&Eltávolítás
+14=Ha az idõpont a hatókörön kívülre mutat:
+15=Extrapolálás
+16=Eredeti idõ visszaállítása (nincs változás)
+17=A szomszédos pont eltolásának visszaállíása
+18=&Igazítsd!
+19=Új szinkronizációs pont beírása
+20=Régi idõ:
+21=Új idõ:
+
+[Time expander]
+01=Idõnyújtó
+02=Nyújtás idõtartama:
+03=Másodperc
+04=Képkocka
+05=Csak ha a felirat hosszabb, mint:
+06=karakter
+07=Csak ha az idõtartam rövidebb, mint:
+08=Átfedés megelõzése
+09=Az összes feliratnál
+10=A kijelölt feliratoknál
+12=Átfedés megakadályozása
+13=Teljes feliratozás
+14=Kijelölt feliratok
+
+[Automatic durations]
+01=Automatikus idõtartamok
+02=Milliszekundum
+03=karakterenként
+04=szavanként
+05=soronként
+06=Az új idõtartam alkalmazása minden esetben
+07=Csak akkor, ha az új idõtartam hosszabb az eredetinél
+08=Csak akkor, ha az új idõtartam rövidebb az eredetinél
+09=Minden felirat
+10=Csak a kijelölt feliratok
+11=Method
+12=Characters
+13=per second
+14=Increase at start if necessary
+15=Maximum increase at start (0 = no limit):
+16=milliseconds
+
+[Convert case]
+01=Írásmód átalakítása
+02=Mondat típusa.
+03=Csak az elsõ szó elsõ betûje
+04="..." felismerése
+05=kisbetûs
+06=NAGYBETÛS
+07=Címtípus
+08=fORDÍTOTT tÍPUS
+09=Minden felirat
+10=Csak a kijelölt feliratok
+
+[Divide lines]
+01=Sorok kettéosztása
+02=Kettéosztás sor után, száma:
+03=Automatikus idõtartam használata
+04=Megjelenítés:
+05=Elrejtés:
+06=Idõtartam:
+07=Folytatás közvetlenül
+08=%s karakter
+09=&Oszd ketté!
+
+[Search & Replace]
+01=Keresés és csere
+02=Keresés
+03=Keresendõ szöveg:
+04=&Keresd!
+05=Mire cseréli:
+06=&Továbbkeresés
+07=&Csere
+08=Min&d cseréje
+09=&Több >
+10=&Kevesebb <
+11=Kis-/nagybetû megkülönböztetése
+12=Teljes szóval megegyezõ
+13=Írásmód megtartása csere esetén
+14=Szövegkeresés helye:
+15=A teljes feliratozásban
+16=A kijelölt elemtõl
+17=Karakterkészlet:
+
+[Go to line]
+01=Ugrás sorhoz, száma:
+02=Sorszám beírása:
+
+[Batch convert]
+01=Csoportos átalakítás
+02=Több fájl egyetlen formává alakítása néhány lépésben.
+03=< &Vissza
+04=&Tovább >
+05=Át&alakítás
+06=&Kilépés
+07=&Bezárás
+08=Min&d
+09=&Egyik sem
+08=Kiterjesztések:
+09=Keresési útvonal:
+10=Almappákban is
+11=Alapos formátum-ellenõrzés
+12=Kimeneti mappa:
+13=Kimeneti formátum:
+14=Alapértelmezett FPS:
+15=Fájlnév
+16=Formátum
+17=FPS
+18=Méret
+19=&Hozzáadás
+20=&Eltávolítás
+21=&Törlés
+22=Kész!. Részletek a naplófájlban:
+23=Mentés...
+24=%s fájl ellenõrzése
+25=Save...
+26=Checking file %s
+
+[Batch convert log]
+01=%s %s - Csoportos átalakítási napló
+02=Létrehozva: %s
+03=Kimeneti formátum: %s
+04=Összes átalakítandó fájl: %d
+05="%s" betöltésének próbája...
+06=A fájl betöltése sikerült!
+07=A(z) "%s" fájl már létezik, lecserélés...
+08=A fájl mentése sikerült a(z) "%s"' mappába
+09=A(z) "%s" fájl már létezik, és ön nem engedélyezte a programnak a lecserélését
+10=Hiba történt a fájl betöltésekor, nem lehet menteni!
+11=Elkészült átalakítás összesen: %u
+12=Összes idõ: %s
+13=Az összes fájl átalakítása sikerült
+14=Némely fájl átalakításakor hiba történt, részletek alább
+
+[Split]
+01=Feliratozás felosztása...
+02=Egyszerû
+03=Összetett
+04=Kijelölt elem
+05=Elem száma:
+06=Adott idõpont:
+07=Adott képkocka:
+08=A video vége:
+09=Elnevezés
+10=%d. rész:
+11=FájlNév
+12=Hossz
+13=Sorok
+14=Idõben egyenlõ részek
+15=Sorokban egyenlõ részek
+16=A videók végén
+17=A részek száma:
+18=A részek automatikus elnevezése:
+19=Kimeneti mappa:
+20=Kimeneti formátum:
+21=Idõértékek újraszámolása
+22=A film kiválasztása dupla kattintással
+23=&Felosztás!
+
+[Join]
+01=Feliratok összefûzése...
+02=Adja hozzá az összefûzni kívánt feliratfájlokat (sorban):
+03=Fájlnév
+04=Formátum
+05=FPS
+06=Méret
+07=Filmrészlet (választható)
+08=&Hozzáadás
+09=&Eltávolítás
+10=&Törlés
+11=Filmrészlet &beállítása
+12=Filmrészlet &eltávolítása
+13=Kimeneti formátum:
+14=Kimeneti FPS:
+15=A fájl betöltése összefûzés és mentés után
+16=Idõértékek újraszámolása
+17=&Fûzd!
+
+[Information and errors]
+01=Információ és hibák
+02=Ellenõrzés!
+03=Hibák javítása!
+04=&Beállítások
+05=Minden törlés megerõsítése
+06=Felirat
+07=Típus
+08=Leírás
+09=Hiba
+10=Figyelmeztetés
+11=Információ
+13=Javított
+14=Összes hiba: %d
+15=Javított hiba: %d
+16=Betûk nélküli sorokat tartalmaz
+17=Üres felirat
+18=Átfedés az elõzõ felirattal
+19=Hibás értékek
+20=Nincs szóköz az egyéni karakter után
+21=Nincs szóköz az egyéni karakter elõtt
+22=Túl hosszú sor(ok)
+23=Két sornál több
+24=Halláskárosult
+25=Szöveg van a kettõspont (":") elõtt
+26=Fölösleges pontok
+27=Tiltott karaktert tartalmaz
+28=Ismételt karakter
+29=Ismételt felirat
+30=OCR hiba
+31=Egysoros felirat "-" jellel kezdõdik
+32=Nincs szóköz az egyéni karakter után
+33=Nincs szóköz az egyéni karakter elõtt
+34=Fölösleges szóközök
+35=Megjelölt felirat
+36=Deleted lines without letters
+37=Üres felirat törlésre került
+38=Javított átfedés
+39=Javított hibás értékek
+40=Két sornál hosszabb felirat igazítva
+41=A halláskárosult felirat eltávolítva
+42=A halláskárosult rész törölve
+43=A kettõspont (":") elõtti szöveg törölve
+44=Eltávolított fölösleges pontok
+45=Tiltott karaktert tartalmazott, és törlésre került
+46=Javított ismételt karakter
+47=Javítottismételt felirat
+48=Javított OCR hibák
+49=A "-" szimbólum törölve az egysoros feliratban
+50=Az egyéni karakter után hozzáadott szóköz
+51=Az egyéni karakter elé hozzáadott szóköz
+52=Eltávolított fölösleges szóközök
+53=Kattintson duplán arra a sorra, amelyikhez ugrani akar a fõablakban
+67=E
+68=W
+69=F
+70=CI
+71=Select
+72=+ Select
+73=- Select
+74=Select subtitles
+75=Add to selected subtitles
+76=Remove from selected subtitles
+77=All
+78=None
+79=Inverse
+80=Select all
+81=Select none
+82=Invert selection
+83=Error types sets
+84=Save error types set
+85=Delete error types set
+86=Error types
+87=Custom info
+88=Show/hide errors
+89=Show/hide warnings
+90=Show/hide fixed
+91=Show/hide custom info
+92=Show/hide Error types panel
+93=Show/hide Custom info panel
+65=Custom info
+66=Displayed: %d
+54=Unnecessary tags
+56=Dash on first line
+58=Too many CpS
+60=Too short pause
+62=Dialogue on one line
+55=Removed unnecessary tags
+57=Removed dash on first line
+59=Fixed too much CpS
+61=Fixed too short pause
+63=Fixed dialogue on one line
+94=Export to file
+95=Text file
+96=char
+97=sec
+98=fr
+99=cps
+
+[Information and errors Settings]
+01=Beállítások
+02=Általános
+03=Speciális
+04=Keresés
+05=Javítás
+06=Fölösleges szóközök
+07=Megerõsítések a fõablakban történõ javításkor
+08=Hibák megjelölése a fõ ûrlap listájában
+09=Szín beállítása...
+10=Félkövér
+11=Dõlt
+12=Aláhúzott
+13=Hibák megjelölése a felirat betöltésekor
+14=Hibajavítás a felirat betöltésekor
+15=Egy egységnyi átfedés javítása betöltéskor
+16=OCR parancsfájl:
+17=&Szerkesztés
+18=Ismételhetõ karakterek:
+19=Tiltott karakterek:
+20=Az ismételt karakterek tûréshatára:
+21=milliszekundum.
+22=A karakterek utáni hely:
+23=A karakterek elõtti hely:
+24=Túl hosszú idõtartam:
+25=Túl rövid idõtartam:
+26=Túl hosszú sor:
+27=karakter.
+28=Betû nélküli sorok
+29=Üres feliratok
+30=Átfedõ feliratok
+31=Rossz értékek
+32=Túl hosszú idõtartamok
+33=Túl rövid idõtartamok
+34=Túl hosszú sorok
+35=Két sornál hosszabb feliratok
+36=Halláskárosult feliratozás
+37=A kettõspont (":") elõtti szöveg
+38=Csak ha nagybetûkkel írott a szöveg
+39=Fölösleges pontok
+40=Tiltott karakterek
+41=Ismételt karakterek
+42=Ismételt feliratok
+43=OCR hibák
+44=A "- " egysoros felirat
+45=Szóközök az egyéni karakterek után
+46=Szóközök az egyéni karakterek elõtt
+47=Fölösleges szóközök
+48=Keresendõ:
+49=Javítás:
+50=Beírások és szóközök az elején és a végén
+51=A beírások közti szóközök (balra és jobbra)
+52=Dupla szóközök és beírások
+53=Az írásjelek elõtti szóközök
+54=Szóközök a "¿" és a "¡" után
+55=Szóközök a "?" és a "!" elõtt
+56=Szóközök a számok között
+57=Too short pauses
+58="- " on first line
+59=Only if there is no "- " on second line
+60=Dialogue on one line
+61=Unnecessary tags
+62=Too many characters per second
+63=Mark too much CpS with CpS boxes
+64=Default errorr marking
+65=Set Default Styles
+66=Mark column "Num"
+67=Mark column "Pause"
+68=Mark column "Show"
+69=Mark column "Hide"
+70=Mark column "Duration"
+71=Mark column "Text"
+72=Mark as Bold
+73=Mark as Italic
+74=Mark as Underline
+75=Mark as Strikethrough
+76=Mark the text color
+77=Mark the background color
+78=Mark
+79=Automatically recheck errors
+80=Do not recheck on Pascal scripts
+81=Recheck all once after a Pascal script executes
+82=Recheck on each change made by a Pascal script (might be slow)
+83=Indicate too long lines in Text and Translation labels
+84=Indicate too short duration in Duration box
+85=Indicate too long duration in Duration box
+86=Indicate too short pause in Pause box
+87=Indicate overlapping subtitles in Pause box
+88=Indicate bad values in Show and Hide boxes
+89=Indicate subtitles over two lines in lines counter labels
+90=Text color
+91=Background color
+92=Too short pause under:
+93=Characters per second (CpS)
+94=Too many CpS over:
+95=characters per second
+96=Normal CpS box colors:
+97=Too many CpS box colors:
+98=Display percantage in CpS box
+99=Display current CpS in CpS box
+100=Display minimum time in CpS box
+101=Display maximum characters in CpS box
+
+[Various information]
+01=Különféle információk
+02=Információ
+03=Extrák
+04=Eredeti fájl
+05=Fordítás fájl
+06=Jelenlegi formátum:
+07=Fájl:
+08=Méret:
+09=Feliratok száma összesen:
+10=Sorok száma összesen:
+11=Szavak száma összesen:
+12=Betûk száma összesen:
+13=Egysoros feliratok:
+14=Kétsoros feliratok:
+15=Kettõnél több sorból álló feliratok:
+16=Leghosszabb sor:
+17=A(z) %d felirat %d karakterbõl áll
+18=A lejátszás legjobb betûmérete
+19=Felbontás szélessége:
+20=AVI-ból
+21=Betûtípus neve:
+22=Félkövér
+23=Dõlt
+24=Számítás
+25=Shortest line:
+26=Longest pause:
+27=Shortest pause:
+28=In subtitle %d, %d,%.3d seconds
+29=In subtitle %d, %d milliseconds
+30=Most CpS:
+31=Least CpS:
+32=In subtitle %d, %d cps
+33=Average CpS:
+34=Longest duration:
+35=Shortest duration:
+36=Refresh info
+
+[SAMI Language Extractor]
+01=SAMI nyelvkibontó
+02=SAMI fájl:
+03=Kimeneti mappa:
+04=A kiválasztott nyelvek kibontására kerül sor:
+05=Osztály
+06=Nyelv
+07=Mind automatikus felismerése
+08=Kézi hozzáadás
+09=Bontsd ki!
+10=Nyelv hozzáadása
+11=Írja be az óhajtott nyelv osztályának nevét:
+12=Kis türelmet...
+
+[About form]
+01=%s névjegye
+02=Információ
+03=Közremûködtek
+04=Verzió: %s
+05=%s verzió: %s
+06=%d féle támogatott formátum
+07=Ha megkedvelte ezt a szoftvert, akkor nagyon hálásak lennénk némi adományért. Kattintson ehhez ide.
+08=Programozta
+09=Kiegészítõ programozás
+10=%s by
+10=%s programozás
+11=Fordítók:
+12=Béta tesztelõk
+13=Frissítések itt:
+15=Frissítések lelõhelye:
+14=Default icon by
+16=License
+
+[Error messages]
+01=A felirat API nem inicializálható. Töltse le a(z) "%s" DLL-t a %s címrõl és másolja a(z) "%s" mappába.
+02=A következõ hiba (%s) a(z) %s (%s) objektumból ered:||"%s"||Írja meg a(z) %s címre, hogy mit tett, mikor ez a hiba jelentkezett.||Az OK gombbal folytathatja, a Mégse gombbal kiléphet a programból.
+03=A(z) "%s" fájl rossz felirat, vagy a formátum nem támogatott.
+04=A(z) "%s" fájl nem %s formátumú, vagy nem érvényes feliratfájl.
+05=A(z) "%s" nem érvényes videófájl.
+06=Nem érvényes a sorszám.
+07=Legalább egy keresendõ kiterjesztést válasszon.
+08=A keresési útvonal nem létezik.
+09=Az elem száma nem érvényes elem.
+10=Adjon hozzá kettõ vagy több feliratot.
+11=Nem sikerült a csatlakozás a kiszolgálóhoz!
+12="%s" írásvédett attribútumát nem lehet eltávolítani.||Valószínûleg írásvédett meghajtón tárolja.
+13=Hiba történt a Microsoft Wordhöz kapcsolódáskor.
+14=Elõbb az elõzõ rész(ek)hez válassza ki a videó(ka)t!
+15=Érvényes kimeneti mappát válasszon.
+16=Legalább egy kibontandó nyelvet válasszon ki.
+17=A(z) "%s" nem érvényes SAMI fájl.
+18=Válasszon ki egy feliratrészt a listából.
+19=Ha kiválaszt egy filmrészletet a felirat egy részéhez, akkor a feliratozás összes részéhez is ki kell választania egy filmrészletet (természetesen az utolsó rész kivételével).
+20=Kettõ vagy több pontra van szükség.
+21=Incorrect regular expression in Custom info %s
+22=Custom Info %d was disabled.|Fix the regular expression to enable it.
+23=Subtitle duration too short!
+24=Error: can not execute script.
+25=Error: can not compile script.
+26=Save subtitles first
+
+[Question messages]
+01=A(z) "%s" fájl megváltozott.||Menti a módosításokat?
+02=A(z) "%s" fájl már létezik.||Kívánja lecserélni?
+03=A(z) ("%s") eredeti fájl megváltozott.||Menti a módosításokat?
+04=A(z) ("%s") fordított fájl megváltozott.||Menti a módosításokat?
+05=A kijelölt feliratok törlésre kerülnek.||Végrehajtja?
+06=Pont 1 Felirat: %s|Pont 1 Film: %s||Pont 2 Felirat: %s|Pont 2 Film: %s||Szinkronizálja a feliratot?
+07=Nem adta meg a videólejátszó programfájlját, vagy nem létezik.||Meg akar adni külsõ lejátszót?
+08=Jelent meg új verzió!.||Megtekinti a változtatások listáját?.
+09=Az ön által menteni kívánt fájl írásvédett.||MIndenképp menti?.
+10=Do you want to save the marking in a file?
+
+[Information messages]
+01="%s" többször nem fordul elõ.
+02=Nincs új verzió.
+03=A helyesírás-ellenõrzés befejezõdött.||%d változtatás történt.
+04=Túl sok a részek száma. Alaphelyzetbe állítás...
+05=Csak egy nyelv található.||Ha a fájl több nyelvet tartalmaz, adja hozzá azokat, melyeket kézzel kíván szövegszerkesztõben megnyitni, és megkeresni a megfelelõ osztálynevet.
+06=Nem sikerült megállapítani a "STYLE" kezdõ és=vagy záró címkéjét!.||Valószínûleg azért, mert ez a fájl nem tartalmaz több nyelvet.|Ha igen, akkor próbálja meg kézzel hozzáadni az óhajtott nyelv(ek) osztálynevének keresésével.
+07=A lejátszáshoz legmegfelelõbb betûméret: %d
+08=Összes csere: %d
+09=Fájlnév: %s|Méret: %s|FPS: %s|Idõtartam: %s|Összes képkocka: %d|Felbontás: %dx%d|FourCC: %s
+10=Nem sikerült megfelelõen leképezni a film néhány adatfolyamát. Valószínûleg hiányzik a hang- vagy a videokodek.
+11=Nincs szükség az utolsó felirathoz tartozó filmrészlet beállítására.
+12=A sudden error occured:|"%s"
+
+[Information and errors messages]
+01=A(z) %d számú felirat üres felirat, és törlésre kerül.||Kívánja végrehajtani?
+02=A(z) %d számú felirat:||"%s" tiltott karaktert tartalmaz és törlése következik.||Kívánja végrehajtani?
+03=A(z) %d számú felirat:||"%s" törlése következik.||Kívánja végrehajtani?
+04=A(z) %d:||"%s" sz. felirat törlésre kerül, ezért a felirat lesz:||"%s"||Kívánja folytatni?.
+05=A(z) %d:||"%s" sz. felirat egy egysoros felirat, és "-" szimbólummal kezdõdik.||Kívánja törölni az elején a "-" szimbólumot?.
+
+[Main menu/View]
+01=Toolbar
+02=Text style bars
+03=Statusbar
+04=Columns
+05=Show notes in left panel
+06=Show time control buttons
+07=Show lines count
+08=Visual subtitle representation
+
+[Video Popup Menu]
+01=Enter full screen
+02=Exit full screen
+03=Zoom to %d%%
+04=Reset subtitle vertical position
+
+[Time control buttons hints]
+01=Shift to previous/Extend to previous
+02=Shift to next/Extend to next
+03=Set default pause/Set default pause, if pause is too short
+04=Set ato duration/Set min duration
+
+[Auto combine subtitles]
+01=Auto combine subtitles
+02=milliseconds
+03=Combine if duration is less than (0 = no limit):
+04=Combine if CpS is greater than (0 = no limit):
+05=characters per second
+06=Don't combine if pause is greater than (0 = no limit):
+07=Punctuation marks detection
+08=Combined subtitles maximum duration (0 = no limit):
+09=Decrease duration if necessary, with no more than:
+10=Combined subtitles maximum lines length (0 = no limit):
+11=characters
+12=For all the subtitles
+13=For the selected subtitles
+
+[Time expander/reducer]
+01=Duration expander/reducer
+02=Expand duration
+03=Reduce duration
+04=Expand/reduce duration:
+05=Seconds
+06=Frames
+07=Only if subtitle is longer than:
+09=characters
+10=Only if duration is longer than:
+11=Only if duration is shorter than:
+12=Prevent overlapping
+13=For all the subtitles
+14=For the selected subtitles
+
+[Set pauses]
+01=Set pauses
+02=Pauses value:
+03=Shorten duration of:
+04=First subtitle only
+05=Second subtitle only
+06=Both subtitles equally
+07=The subtitle with less CpS
+08=For all the subtitles
+09=For the selected subtitles
+
+[Round time values]
+01=Round time values
+02=Round to:
+03=milliseconds
+04=For all the subtitles
+05=For the selected subtitles
+
+[Smart line adjust]
+01=Smart line adjust
+02=Two lines if longer than:
+03=characters
+04=Break method:
+05=Equal lines
+06=Break on punctuation marks
+07=Don''t unbreak subtitles that are not too long
+08=Adjust only long subs and subs with more than 2 lines
+09=For all the subtitles
+10=For the selected subtitles
+11=Always try to find a better breaking point
+
+[Unbreak subtitles]
+01=Unbreak subtitles
+02=Characters limit
+03=No limit
+04=Don''t unbreak if line length exceeds:
+05=characters
+06=Don''t unbreak subtitles with "—" on second line
+07=For all the subtitles
+08=For the selected subtitles
+
+[Custom info]
+01=Add custom info
+02=Composite custom info
+03=Subtitles duration information
+04=Subtitles line lenght information
+05=Subtitles lines count information
+06=Subtitles pause information
+07=Subtitles CpS information
+08=Subtitles text information
+09=Custom info sets
+10=Save custom info set
+11=Delete custom info set
+12=There is no custom info. Click the "+" button to add new custom info.
+13=Caption
+14=Duration
+15=Lines length
+16=Lines count
+17=Pause
+18=CpS
+19=Text
+20=Composite info
+21=ms
+22=chars
+23=lines
+24=cps
+25=AND
+26=OR
+27=Contains (Case sensitive)
+28=Contains (Case insensitive)
+29=Does not contain (Case sensitive)
+30=Does not contain (Case insensitive)
+31=Matches regular expression
+32=Matches regular expression (tags ignored)
+33=Delete
+34=Edit
+

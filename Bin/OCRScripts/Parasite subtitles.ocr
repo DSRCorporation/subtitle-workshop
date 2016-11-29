@@ -1,0 +1,15 @@
+<!----------------------------------------------->
+<!--     Subtitle Workshop OCR Script file     -->
+<!--    Copyright © 2013 Andrey Spiridonov     -->
+<!--        http://subworkshop.sf.net/         -->
+<!--                                           -->
+<!-- Last modified: 14.08.2013                 -->
+<!----------------------------------------------->
+
+<SWOCR WordChars="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_ñÑáéíóúÁÉÍÓÚäëïöü">
+	
+	<!-- Remove subtitles, containing only grunts, shouts, sighs, and similar sound representations like "argh", "hmm", "uhh", "whoa", "whoo-hoo", "whoops" etc. -->
+	<!-- ("\x3C" is '<', "\x3E" is '>', "\x22" is '"') -->
+	<ERROR UseREOnlyToFind="False" Find="^(?i)([ !?.,;:—–'\x22\n\r-]|\x3C/?[ibuc]\x3E|\x3Cc:#[0-9a-fA-F]{6}\x3E|a+h+|o+h+|meh|e+h+|hm+|(g|a+r)r+|(a+|o+|e+)w+|b?p?g?ah+|phe+w+|o+uch|yack|n*h*u+n*h+|r*(u+|a+)r*n*g*h+|r+aa+|(e|h?i*|hi*-)ya+h*|heh*|a*ha+h*|oo+(f|h)|he+y|hyuh|whe+w|s+(s|h)h+|b?zz+t?|mm+|wh?(oo+|a+|o+a+)h?w?|wo+h?w?|bla+h*|whoo+sh|tsk|oi|mwah+|pff+t*|ps+(h|t)?|um+|ahem|wh?o+-ho+|(wh?)?oo+ps?(ie|y)?|e+u+gh+|y+ee+)+$" ReplaceBy="">
+	
+</SWOCR>

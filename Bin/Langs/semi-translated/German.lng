@@ -1,0 +1,1139 @@
+;   Subtitle Workshop 2.51
+;   Deutsche Sprachausgabe
+;
+;   Author: JazzMC
+;   E-mail: JazzMC@gmx.de
+;   Web: http://www.jazzmc.gmxhome.de
+;   Modified by: Milo
+;   E-Mail: milo.mayr@t-online.de
+;   Last modified: 08.02.2004
+
+[General]
+Translator=Milo
+Font Charset=0
+AllFiles=Alle unterstützten Dateien
+Help=Manual.html
+FPS=FPS
+PlainText=Text
+STP=Subtitle Translation Project
+SRF=Subtitle Report File
+AllTheFiles=All files
+
+[Standard buttons]
+01=&OK
+02=&Abbrechen
+03=&Durchsehen
+04=&Anwenden
+05=&Verlassen
+06=&Ja
+07=&Nein
+
+[Main Form]
+01=Modus:
+02=Zeit
+03=Einzelbilder (Frames)
+04=FPS in (Bilder/Sek.):
+05=FPS out (Bilder/Sek.):
+06=Variablen:
+07=Dauer|Zeitwerte|Beides
+08=Item Nr.
+09=Beginn
+10=Ende
+11=Text
+12=Übersetzung
+13=%d nicht übersetzte Zeile
+14=Dauer:
+15=%s (%s Zeichen):
+16=- Unübersetztes Item -
+17=Lines:
+18=Notes:
+19=Pause
+20=%d subtitles selected / %d
+21=#%d / %d
+
+[Main menu header]
+01=Datei
+02=Bearbeiten
+03=Suchen
+04=Extras
+05=Video
+06=Einstellungen
+07=Hilfe
+08=View
+
+[Main menu/File]
+01=&Neue Untertitel...
+02=Untertitel ö&ffnen...
+03=&Zuletzt geöffnete Dateien
+04=Liste löschen
+05=Öffnen
+06=Projekt...
+07=&Original
+08=Ü&bersetzt
+09=&Speichern
+10=O&riginal als...
+11=Üb&ersetzung als...
+12=Speichern &als...
+13=S&chließen
+14=&Beenden
+15=Save marking
+
+[Main menu/Edit]
+01=&Rückgängig
+02=&Wiederholen
+03=Item &unterhalb einfügen
+04=Item &oberhalb einfügen
+05=Auswahl &löschen
+06=Ausschnei&den
+07=&Kopieren
+08=E&infügen
+09=&Alles auswählen
+10=Invert selection
+11=Insert symbol...
+
+[Main menu/Edit/Timings]
+01=Zeiten anpassen
+02=Maximale Zeitdauer einstellen...
+03=Zeitversatz einstellen...
+04=Zeitwerte anpassen
+05=mittels Synchro-Punkten
+06=mittels Synchro-Punkten aus anderer Datei
+07=Zeiten strecken/kürzen
+08=Zeiten strecken
+09=Automatische Zeitbestimmung
+10=Zeitwerte aus Datei einlesen
+11=Zeitversatz %s Millisekunden
+12=Extend length to previous
+13=Set pauses...
+14=Shift to next
+15=Shift to previous
+16=Round time values...
+
+[Main menu/Edit/Texts]
+01=Zeilen anpassen
+02=Intelligente Zeilenanpassung
+03=Groß-/Kleinschreibung anpassen...
+04=Zeilen zusammenführen
+05=Zeilen trennen...
+06=Zeilen schnell trennen
+07=Maximale Zeilenlänge einstellen...
+08=Text aus Datei einlesen
+09=Fast smart line adjust
+10=Fast unbreak subtitles
+
+[Main menu/Edit/Subtitles]
+01=Items anpassen
+02=Items zusammenfügen
+03=Effekte
+04=Buchstabenweise einblenden
+05=Blinken
+06=Schnell blinken
+07=Mittelschnell blinken
+08=Langsam blinken
+09=Rechts nach links
+10=Text umkehren
+11=Satzzeichen reparieren
+12=Sortieren
+13=Überflüssige Verknüpfungen entfernen
+14=Ausgewählte Items markieren
+15=Ausgewählte Items demarkieren
+16=Auto combine subtitles...
+17=Delete dots at the beginning
+18=Jump to next marked
+19=Jump to previous marked
+
+[Main menu/Edit/Translation]
+01=Übersetzung
+02=Übersetzermodus
+03=Tauschen
+
+[Main menu/Search]
+01=Suchen...
+02=Weitersuchen
+03=Suchen und &Ersetzen...
+04=&Gehe zu Item Nr...
+
+[Main menu/Tools]
+01=Rechtschreibung
+02=Batch-Konvertierung...
+03=Untertitel trennen...
+04=Untertitel zusammenführen...
+05=Information und Fehlermeldungen
+06=Fehlermeldungen...
+07=Datei-Informationen...
+08=OCR Skript
+09=Im Hauptfenster anzeigen
+10=Einstellungen...
+11=Erneut auf Fehler prüfen
+12=Alle Fehler beheben
+13=Fehler der ausgewählten Items beheben
+14=Zum nächsten Fehler springen
+15=FPS des Videos übernehmen
+16=Externe Vorschau
+17=SAMI Language Extractor
+18=Pascal Skript
+19=Jump to previous error
+20=Show CpS boxes
+
+[Main menu/Movie]
+01=Öffnen...
+02=Schließen
+03=Information...
+04=Video Vorschaumodus
+05=Untertitel anzeigen
+06=als Startup-Datei speichern
+07=Audio stream
+08=None
+09=Video renderer
+10=Default
+11=VMR9
+
+[Main menu/Movie/Playback]
+01=Playback
+02=Wiedergabe/Pause
+03=Stopp
+04=Zurück
+05=Vorwärts
+06=5 Sekunden zurück
+07=5 Sekunden vorwärts
+08=Playback-Geschwindigkeit
+
+[Main menu/Movie/Subtitles]
+01=Items an Video anpassen
+02=Item verschieben
+03=Startzeit des Items festlegen
+04=Endzeit des Items festlegen
+05=Neues Item beenden
+06=Neues Item starten
+
+[Main menu/Movie/Synchronization]
+01=Synchronisierung
+02=Vorderer Synchro-Punkt
+03=Hinterer Synchro-Punkt
+04=Synchro-Punkto hinzufügen
+
+[Main menu/Movie/Display]
+01=Anzeige
+02=Original
+03=Übersetzung
+
+[Main menu/Settings]
+01=Ausgabeeinstellungen...
+02=Sprache
+03=Kontrollfelder links anzeigen
+04=Zeitwerte unten anzeigen
+05=Korrektur im Hauptfenster ermöglichen
+06=Refresh language files
+07=Files refreshed
+08=keys
+
+[Main menu/Help]
+01=Über...
+02=Auf Updates überprüfen
+
+[Popup Menu]
+01=Kursiv
+02=Fett
+03=Unterstreichen
+04=Farbe einstellen
+05=Farbeinstellungen entfernen
+06=Remove all tags
+07=Delete
+08=Style
+
+[Video preview hints]
+01=Wiedergabe/Pause (%s)
+02=Stopp (%s)
+03=automatisch zum in Vorschau angezeigten Item springen (Scroll)
+04=Zum vorhergehenden Item springen
+05=Zum nächsten Item springen
+06=Zurück (%s)
+07=Vorwärts (%s)
+08=Playback-Geschwindigkeit
+09=Item verschieben (%s)
+10=Startzeit des Items festlegen (%s)
+11=Endzeit des Items festlegen (%s)
+12=Neues Item starten (%s)
+13=Neues Item beenden (%s)
+14=Vorderen Synchro-Punkt festlegen (%s)
+15=Hinteren Synchro-Punkt festlegen (%s)
+16=Synchro-Punkte hinzufügen (%s)
+17=Volume: %d%%
+18=Mute/Unmute
+
+[Save as]
+01=Speichern als
+02=Doppelklick auf das Ausgabeformat:
+03=Voreingestellte Formate
+04=Alle Formate
+
+[Custom formats]
+01=Eigene Formate
+02=Informationen
+03=Name:
+04=Datei-Erweiterung:
+05=Neues Item-Symbol:
+06=Zeit
+07=Einzelbilder
+08=Struktur:
+09=FPS:
+10=Projekt laden
+11=Projekt speichern
+12=Eigenes Format merken
+13=Speichern!
+14=Voreingestelltes Projekt
+
+[Settings Form]
+01=Einstellungen
+02=Programmkonfiguration ändern
+03=Allgemein
+04=Fortgeschritten
+05=Zeichen-Sets
+06=Formate
+07=Datei-Typen
+08=Speichern
+09=Video-Vorschau
+10=Untertitel
+11=Externe Vorschau
+12=Aussehen
+13=Programme
+14=Liste
+15=Menü
+16=Immer im Vordergrund
+17=Mehr als eine Instanz gleichzeitig
+18=Bestätigung beim Löschen von Items
+19=Ungültige Dateien als nur-Text interpretieren
+20=Automatische Suche nach Video
+21=Arbeiten in Zeit-Modus erzwingen
+22=Zeilenanordnung bei umgekehrtem Text beibehalten
+23=Text auswählen beim Wechsel in die letzte Zeile
+24=Text auswählen beim Wechsel in die nächste Zeile
+25=Tags aktivieren
+26=Mit 'Style Tags' arbeiten
+27=Limit für zuletzt benutzte Untertitel:
+28=Intelligente Zeilen-Anpassung
+29=Zwei Zeilen wenn länger als:
+30=Zeichen
+31=Trennpunkt hin- und herschalten
+32=Zeilen teilen
+33=Zeile teilen nach:
+34=Automatische intelligente Zeilen-Anpassung
+35=Maximale Zeilenlänge:
+36=Zeitversatz:
+37=Millisekunden
+38=Im Hauptfenster anzeigen
+39=Zeichensatz des Originals:
+40=Zeichensatz der Übersetzung:
+41=Voreingestelltes Format:
+42=Formate, die bei 'Speichern als' angezeigt werden:
+43=Wählbare Formate anzeigen
+44=&Alle Auswählen
+45=&Keine Auswählen
+46=Dateiendungen beim Start registrieren
+47=Mit meistgenutzten Formaten verknüpfen
+48=Bei Beendigung und Schließen fragen ob Speichern
+49=Veränderungen automatisch speichern alle
+50=Minuten.
+51=Als Backup speichern
+52=Ausgabe-Einstellungen...
+53=Doppelklick in einem Item:
+54=Sekunden vorspringen:
+55=Shift-Doppelklick in einem Item:
+56=Fokussiere Textbox
+57=Gehe zur Anfangszeit des aktuellen Items im Video
+58=Gehe N Sekunden vor die Anfangszeit des aktuellen Items im Video
+59=Zeit zum Vor- und Zurückspulen:
+60=Sekunden.
+61=Standard Playback-Geschwindigkeit:
+62=Abgrenzungen benutzen
+63=Schatten benutzen
+64=Durchsichtigen Hintergrund versuchen
+65=Gebrauch der Regionen erzwingen (kann langsam sein)
+66=Schriftart...
+67=Farbe...
+68=Hintergrund...
+69=Breite der Abgrenzung:
+70=Breite des Schattens:
+71=BEISPIEL
+72=EXE des Video-Players:
+73=Verknüpftes Programm suchen
+74=Jedes Mal nach einem Video fragen
+75=Immer mit diesem Video testen:
+76=Temporäre Untertitel speichern als:
+77=Originalformat
+78=Ausgewähltes Format:
+79=Parameter für den Videoplayer:
+80=VIDEO_FILE gibt die Videodatei an, mit der du die Untertitel testest. SUBT_FILE ist der Parameter, mit dem die temporären Untertitel zum Player gesandt werden. Du kannst auch andere Parameter verwenden, z.B. Vollbild usw.
+81=Schriftart auswählen:
+82=Schriftgröße:
+83=Felder für Text und Übersetzung neu ausrichten:
+84=Links|Rechts|Mitte
+85=Zeige Rasterlinien
+86=Untertitel an den Stil anpassen
+87=Nicht übersetzte Items farbig markieren:
+88=Horizontales Scroll-Feld anzeigen
+89=Menü im Stil von Office XP benutzen
+90=Menü mit Halbschatten
+91=Tags mode:
+92=Multiple tags mode
+93=Single tags mode (the old mode)
+94=Auto delete tags
+95=Default subtitle duration:
+96=Default subtitle pause:
+97=Increase step (time):
+98=Increase step (frames):
+99=frames
+100=Keep min duration of:
+101=but don''t allow overlaps
+102=Automatically round time values to:
+103=Round time values on subtitle load
+104=Notes charset:
+105=Add "Open with Subtitle Workshop" to shell context menu
+106=Ask to save new subttiles
+107=Save empty subtitles
+108=Vertical video center align
+109=Enter full screen on double click
+110=Setting Show and Hide times
+111=Shift Show value:
+112=Shift Hide value:
+113=Align left when subtitles contain a new line starting with "-"
+114=Relative font size
+115=Keep subtitle on video
+116=Try antialiasing (Force using regions must be off)
+117=Smart main window and subtitle list resize
+118=Resize subtitle list columns when resizing form
+119=Mark untranslated subtitles with background:
+120=Right click selection
+121=Row height:
+122=Text margin:
+123=Selection
+124=Text:
+125=Color:
+126=Transparency:
+127=Columns
+128=Align:
+129=Display style:
+130=Full
+131=Compact
+132=Marking with color:
+133=Marking with background:
+134=Columns to mark:
+135=Mark column "%s"
+136=Marking priority:
+137=Low (before error marking)
+138=High (after error marking)
+139=Marked subtitle color in video preview:
+140=Marking file
+141=Do not save marking file
+142=Ask each time to save marking file
+143=Automatically save marking file on subtitle save
+144=Automatically load marking file
+145=Marking
+146=Play video on load
+147=Visual subtitle representation color:
+148=Hilight tags in "Text" and "Translation" fields:
+
+[Output settings]
+01=Ausgabe-Einstellungen
+02=Disk ID:
+03=DVD Titel:
+04=Sprache:
+05=Autor:
+06=Web:
+07=Info:
+08=Lizenz:
+09=Untertitel:
+10=Hintergrund:
+11=BEISPIEL
+12=&Schrift festlegen
+13=Anpassen:
+14=Links
+15=Mitte
+16=Rechts
+17=Bildwiederholungsrate:
+18=Bild fallenlassen (drop frame)
+19=Farbe 0 (Hintergrund):
+20=Farbe 1 (Schrift):
+21=Farbe 2 (Umrandung):
+22=Farbe 3 (Anti-Aliasing):
+23=Palettenfarbe Nr.:
+24=Kontrast
+25=Titel:
+26=Skript:
+27=Aussehen
+28=Sonstiges
+29=Stil der Abgrenzung:
+30=Umriss und Schatten verwerfen
+31=Undurchsichtige Box
+32=Farbe
+33=Erst-:
+34=Zweit-:
+35=Dritt-:
+36=Schatten:
+37=Linke Abgrenzung :
+38=Rechte Abgrenzung:
+39=Vertikaler Rand:
+40=Umriss:
+41=Ausrichtung:
+42=Kodierung:
+43=Quelle:
+44=Programm:
+45=Pfad:
+46=Verzögerung:
+47=CD-Track:
+48=Kommentar:
+49=TMPlayer Format
+50=TMPlayer+ Format
+51=TMPlayer Multiline Format
+
+[Duration limits]
+01=Begrenzung der Dauer
+02=Maximale Dauer einstellen
+03=Millisekunden
+04=Minimale Dauer einstellen
+05=* Zeitanpassung bewirkt KEINE Überschneidungen
+06=Increase at start if necessary
+
+[Set delay]
+01=Verzögerung einstellen
+02=Für ganzen Untertitel
+03=Nur für markierte Teile
+04=From first selected until last subtitle
+
+[Adjust subtitles]
+01=Untertitel anpassen
+02=Einfach
+03=Erweitert
+04=Erster Satz:
+05=Letzter Satz:
+06=Aus Datei laden
+07=In Datei speichern
+08=Item Nr.
+09=Alter Zeitwert
+10=Neuer Zeitwert
+11=&Hinzufügen
+12=Aus &Videodatei
+13=&Entfernen
+14=Falls Zeitwerte außerhalb der Synchro-Punkte liegen:
+15=Zeitwerte über Synchro-Punkt hinaus fortschreiben
+16=Zeitwerte wiederherstellen (Änderungen verwerfen)
+17=Zeitwerte anhand benachbarter Synchro-Punkte errechnen
+18=&Anpassen!
+19=Neuen Synchro-Punkt festlegen
+20=Alter Zeitwert:
+21=Neuer Zeitwert:
+
+[Time expander/reducer]
+01=Zeitwerte strecken/kürzen
+02=Zeitwerte strecken
+03=Zeitwerte kürzen
+04=Zeitwerte strecken/kürzen:
+05=Sekunden
+06=Einzelbilder (Frames)
+07=Nur wenn Item länger ist als:
+09=Zeichen
+10=Nur wenn Dauer länger als:
+11=Nur wenn Dauer kürzer als:
+12=Überschneidungen verhindern
+13=Für alle Items
+14=Für ausgewählte Items
+
+[Automatic durations]
+01=Automatische Zeitbestimmung
+02=Millisekunden
+03=pro Zeichen
+04=pro Wort
+05=pro Zeile
+06=Neue Zeiten immer anwenden
+07=Nur wenn Dauer länger als Original
+08=Nur wenn Dauer kürzer als Original
+09=Alle Untertitel
+10=Nur ausgewählte Untertitel
+11=Method
+12=Characters
+13=per second
+14=Increase at start if necessary
+15=Maximum increase at start (0 = no limit):
+16=milliseconds
+
+[Convert case]
+01=Groß-/Kleinschreibung wechseln
+02=Ersten Wort im Satz groß schreiben
+03=Nur erstes Wort des Items
+04="..." als Halbsatz werten
+05=kleinschreibung
+06=GROSSSCHREIBUNG
+07=Jedes Wort Groß Schreiben
+08=gROSS-/kLEINSCHREIBUNG uMKEHREN
+09=Alle Items
+10=Nur ausgewählte Items
+
+[Divide lines]
+01=Zeilen unterteilen
+02=Unterteilen ab Zeile:
+03=Automatische Zeitbestimmung verwenden
+04=Anzeigen:
+05=Ausblenden:
+06=Dauer:
+07=Direkt weitermachen
+08=%s Zeichen
+09=&Unterteilen!
+
+[Search & Replace]
+01=Suchen und Ersetzen
+02=Suchen
+03=Suchen nach:
+04=&Suchen
+05=Ersetzen durch:
+06=&Nächsten suchen
+07=&Ersetzen
+08=&Alle ersetzen
+09=&Mehr >
+10=&Weniger <
+11=Groß-/Kleinschreibung beachten
+12=Nur ganze Worte suchen
+13=Beim Ersetzen Groß-/Kleinschreibung beibehalten
+14=Nach Text suchen in:
+15=ganzem Untertitel
+16=in ausgewählten Items
+17=Zeichensatz:
+
+[Go to line]
+01=Gehe zu Item Nr.:
+02=Item Nr. eingeben:
+
+[Batch convert]
+01=Batch-Konvertierung
+02=Konvertiere mehrere Dateien in ein gemeinsames Format in wenigen Schritten.
+03=< &Zurück
+04=&Nächster >
+05=&Konvertieren
+06=&Ende
+07=&Schließen
+08=&Alle
+09=&Keine
+10=Dateiendungen:
+11=Pfad zum Suchen:
+12=Unterverzeichnisse mit einbinden
+13=Vollständige Format-Überprüfung
+14=Ausgabepfad:
+15=Ausgabeformat:
+16=Voreingestellte FPS (Bilder/Sek.):
+17=Dateiname
+18=Format
+19=FPS (Bilder/Sek.)
+20=Größe
+21=&Hinzufügen
+22=&Entfernen
+23=Alle &löschen
+24=Fertig!. Log-Datei mit Details:
+25=Speichern...
+26=Überprüfe Datei %s
+
+[Batch convert log]
+01=%s %s - Bericht der Batch-Konvertierung
+02=Angefertigt am %s
+03=Ausgabe-Format: %s
+04=Anzahl der zu konvertierenden Dateien: %d
+05=Versuche zu öffnen "%s"...
+06=Datei erfolgreich geöffnet!
+07=Datei "%s" existiert bereits, ersetze...
+08=Datei erfolgreich gespeichert als "%s"'
+09=Datei "%s" existiert bereits, und du hast nicht angegeben, sie zu ersetzen
+10=Fehler beim Laden der Datei, kann nicht speichern!
+11=Anzahl der durchgeführten Konvertierungen: %u
+12=Gesamtzeit: %s
+13=Alle Dateien wurden erfolgreich konvertiert
+14=Es gab einige Fehler beim Laden, siehe unten für Details
+
+[Split]
+01=Untertitel aufteilen...
+02=Einfach
+03=Fortgeschritten
+04=Ausgewählte(s) Items
+05=Item Nr.:
+06=Angegebene Zeit:
+07=Angegebener Frame (Bild):
+08=Ende des Videos:
+09=Dateiname
+10=Teil %d:
+11=Dateiname
+12=Länge
+13=Items
+14=Trennen in gleichlange Teile
+15=Trennen in Teile mit gleicher Anzahl von Items
+16=Abtrennen von Items, die die Videolänge übersteigen
+17=Anzahl von Teilen:
+18=Teile automatisch benennen:
+19=Ausgabepfad:
+20=Ausgabeformat:
+21=Zeitwerte neu berechnen
+22=Doppelklick um das Video auszuwählen
+23=&Aufteilen!
+
+[Join]
+01=Untertitel verbinden...
+02=Trage die zu verbindenen Untertitel in richtiger Reihenfolge ein:
+03=Dateiname
+04=Format
+05=FPS (Bilder/Sek.)
+06=Größe
+07=Video-Fragment
+08=&Hinzufügen
+09=&Entfernen
+10=Alle &Löschen
+11=Video-Fragment &auswählen
+12=Video-Fragment &löschen
+13=Ausgabeformat:
+14=Ausgabe-FPS (Bilder/Sek.):
+15=Lade Datei nach Verbinden und Speichern
+16=Zeitwerte neu berechnen
+17=&Verbinden!
+
+[Information and errors]
+01=Information und Fehlermeldungen
+02=Überprüfen!
+03=Fehler reparieren!
+04=&Einstellungen
+05=Jedes Löschen bestätigen
+06=Untertitel
+07=Typ
+08=Beschreibung
+09=Fehler
+10=Warnung
+11=Info
+13=Repariert
+14=Fehler gesamt: %d
+15=Fehler repariert: %d
+16=Enthält Zeilen ohne Buchstabe
+17=Leerzeile
+18=Überschneidung mit vorhergehendem Item
+19=Fehlerhafte Werte
+20=Dauer zu lang
+21=Dauer zu kurz
+22=Zu lange Zeile(n)
+23=Mehr als zwei Zeilen
+24=Untertitel für Hörgeschädigte
+25=Text vor dem Doppelpunkt (":")
+26=Überflüssige Satzzeichen
+27=Verbotene Zeichen
+28=Wiederholtes Zeichen
+29=Wiederholtes Item
+30=Fehler bei der Texterkennung (OCR)
+31=Einzeiliges Item beginnt mit Trennstrich ("-")
+32=Kein Leerzeichen nach Sonderzeichen
+33=Kein Leerzeichen vor Sonderzeichen
+34=Überflüssige Leerzeichen
+35=Ausgewähler Untertitel
+36=Zeilen ohne Buchstaben gelöscht
+37=Leerzeilen gelöscht
+38=Überlappung behoben
+39=Fehlerhafte Werte behoben
+40=Mehr als zweizeiliger Untertitel behoben
+41=Item für Hörgeschädigte entfernt
+42=Text für Hörgeschädigte entfernt
+43=Text vor dem Doppelpunkt (":") entfernt
+44=Überflüssige Satzzeichen entfernt
+45=Verbotene Zeichen entfernt
+46=Wiederholtes Zeichen entfernt
+47=Wiederholter Untertitel entfernt
+48=Fehler bei der Texterkennung (OCR) behoben
+49=Trennstrich ("-") beim einzeiligen Untertitel entfernt
+50=Leerzeichen nach Sonderzeichen hinzugefügt
+51=Leerzeichen vor Sonderzeichen hinzugefügt
+52=Überflüssiges Leerzeichen entfernt
+53=Doppelklicken um zur Zeile im Hauptfenster zu springen
+67=E
+68=W
+69=F
+70=CI
+71=Select
+72=+ Select
+73=- Select
+74=Select subtitles
+75=Add to selected subtitles
+76=Remove from selected subtitles
+77=All
+78=None
+79=Inverse
+80=Select all
+81=Select none
+82=Invert selection
+83=Error types sets
+84=Save error types set
+85=Delete error types set
+86=Error types
+87=Custom info
+88=Show/hide errors
+89=Show/hide warnings
+90=Show/hide fixed
+91=Show/hide custom info
+92=Show/hide Error types panel
+93=Show/hide Custom info panel
+65=Custom info
+66=Displayed: %d
+54=Unnecessary tags
+56=Dash on first line
+58=Too many CpS
+60=Too short pause
+62=Dialogue on one line
+55=Removed unnecessary tags
+57=Removed dash on first line
+59=Fixed too much CpS
+61=Fixed too short pause
+63=Fixed dialogue on one line
+94=Export to file
+95=Text file
+96=char
+97=sec
+98=fr
+99=cps
+
+[Information and errors Settings]
+01=Einstellungen
+02=Allgemein
+03=Fortgeschritten
+04=Suchen
+05=Beheben
+06=Unnötige Leerzeichen
+07=Bestätigung im Hauptfenster anzeigen
+08=Fehler im Hauptfenster markieren
+09=Farbe bestimmen...
+10=Fett
+11=Kursiv
+12=Unterstreichen
+13=Fehler beim Laden des Untertitels markieren
+14=Fehler beim Laden des Untertitels beheben
+15=Überlappungsfehler beim Laden beheben
+16=OCR Skript:
+17=&Editieren
+18=Wiederholbare Zeichen:
+19=Verbotene Zeichen:
+20=Toleranz für wiederholte Untertitel:
+21=Millisekunden.
+22=Leerzeichen nach Zeichen:
+23=Leerzeichen vor Zeichen:
+24=Zu lange Dauer:
+25=Zu kurze Dauer:
+26=zu lange Zeile:
+27=Zeichen.
+28=Leere Zeilen
+29=Leere Items
+30=Überlappende Items
+31=Fehlerhafte Werte
+32=Zu lange Dauer
+33=Zu kurze Dauer
+34=Zu lange Zeilen
+35=Items mit mehr als 2 Zeilen
+36=Item für Hörgeschädigte
+37=Text vor Doppelpunkten (":")
+38=Nur wenn Text aus Großbuchstaben besteht
+39=Überflüssige Punkte
+40=Verbotene Zeichen
+41=Wiederholte Zeichen
+42=Wiederholte Items
+43=Fehler bei der Texterkennung (OCR)
+44=Trennstrich ("-") in einzeiligem Untertitel
+45=Leerzeichen nach Sonderzeichen
+46=Leerzeichen vor Sonderzeichen
+47=Überflüssige Leerzeichen
+48=Überprüfung:
+49=Berichtige:
+50=Enter oder Leertaste am Beginn und Ende
+51=Leerzeichen zwischen Enter-Eingaben (links und rechts)
+52=Doppelte Enter-Eingaben oder Leerzeichen
+53=Leerzeichen vor Satzzeichen
+54=Leerzeichen nach "¿" und "¡"
+55=Leerzeichen vor "?" und "!"
+56=Leerzeichen zwischen Zahlen
+57=Too short pauses
+58="- " on first line
+59=Only if there is no "- " on second line
+60=Dialogue on one line
+61=Unnecessary tags
+62=Too many characters per second
+63=Mark too much CpS with CpS boxes
+64=Default errorr marking
+65=Set Default Styles
+66=Mark column "Num"
+67=Mark column "Pause"
+68=Mark column "Show"
+69=Mark column "Hide"
+70=Mark column "Duration"
+71=Mark column "Text"
+72=Mark as Bold
+73=Mark as Italic
+74=Mark as Underline
+75=Mark as Strikethrough
+76=Mark the text color
+77=Mark the background color
+78=Mark
+79=Automatically recheck errors
+80=Do not recheck on Pascal scripts
+81=Recheck all once after a Pascal script executes
+82=Recheck on each change made by a Pascal script (might be slow)
+83=Indicate too long lines in Text and Translation labels
+84=Indicate too short duration in Duration box
+85=Indicate too long duration in Duration box
+86=Indicate too short pause in Pause box
+87=Indicate overlapping subtitles in Pause box
+88=Indicate bad values in Show and Hide boxes
+89=Indicate subtitles over two lines in lines counter labels
+90=Text color
+91=Background color
+92=Too short pause under:
+93=Characters per second (CpS)
+94=Too many CpS over:
+95=characters per second
+96=Normal CpS box colors:
+97=Too many CpS box colors:
+98=Display percantage in CpS box
+99=Display current CpS in CpS box
+100=Display minimum time in CpS box
+101=Display maximum characters in CpS box
+
+[Various information]
+01=Informationen
+02=Information
+03=Extras
+04=Originaldatei
+05=übersetzte Datei
+06=Aktuelles Format:
+07=Datei:
+08=Größe:
+09=Gesamtzahl der Untertitel:
+10=Gesamtzahl der Zeilen:
+11=Gesamtzahl der Wörter:
+12=Gesamtzahl der Zeichen:
+13=Einzeilige Untertitel:
+14=Zweizeilige Untertitel:
+15=Untertitel mit mehr als zwei Zeilen:
+16=Längste Zeile:
+17=Im Untertitel %d mit %d Zeichen
+18=Beste Schriftgröße für Playback
+19=Breite der Video-Auflösung:
+20=Von Videodatei:
+21=Schriftart:
+22=Fett
+23=Kursiv
+24=Berechnen
+25=Shortest line:
+26=Longest pause:
+27=Shortest pause:
+28=In subtitle %d, %d,%.3d seconds
+29=In subtitle %d, %d milliseconds
+30=Most CpS:
+31=Least CpS:
+32=In subtitle %d, %d cps
+33=Average CpS:
+34=Longest duration:
+35=Shortest duration:
+36=Refresh info
+
+[SAMI Language Extractor]
+01=SAMI Language Extractor
+02=SAMI Datei:
+03=Ausgabe-Verzeichnis:
+04=Ausgewählte Sprachen werden extrahiert:
+05=Klasse
+06=Sprache
+07=Alle automatisch erkennen
+08=Manuell hinzufügen
+09=Extrahieren!
+10=Sprache hinzufügen
+11=Klassennummer der gewünschten Sprache eingeben:
+12=Bitte warten...
+
+[About form]
+01=Über Subtitle Workshop
+02=Informationen
+03=Mitwirkende
+04=Version: %s
+05=%s Version: %s
+06=%d Unterstützte Untertitel-Formate
+07=Falls Euch dieses Programm gefällt, würden wir uns sehr freuen, wenn Ihr zu seiner weiteren Entwicklung mittels einer Spende beitragen könntet.
+08=Programmiert von
+09=Zusätzliche Programmierung
+10=%s durch
+11=%s Programmierung
+12=Übersetzer
+13=Beta-Tester
+14=Symbole
+15=Für Updates besucht:
+16=License
+
+[Error messages]
+01=Konnte Untertitel-API nicht initialisieren. Bitte die DLL-Datei "%s" von %s herunterladen und sie in das "%s"-Verzeichnis kopieren.
+02=Der folgenden Fehler (%s) kommt aus Objekt %s (%s):||"%s"||Bitte schreibe an %s und gebe an, bei welchem Vorgang der Fehler auftrat.||OK um Fortzufahren, Abbrechen zum Beenden des Programms.
+03=Die Datei "%s" ist korrupt oder in einem nicht unterstützten Format.
+04=Die Datei "%s" ist nicht im Format %s oder keine zulässige Untertitel-Datei.
+05="%s" ist keine zulässige Videodatei.
+06=Keine zulässige Item Nr.
+07=Mindestens eine Dateiendung angeben, nach der gesucht werden soll.
+08=Der Suchpfad existiert nicht.
+09=Item Nr. "%s" ist kein zulässiges Item.
+10=Bitte zwei oder mehr Items hinzufügen.
+11=Verbindung zum Server fehlgeschlagen!
+12=Konnte den Schreibschutz von "%s" nicht entfernen.||Möglicherweise ist die Datei auf einem schreibgeschützten Datenträger.
+13=Fehler beim Verbinden mit Microsoft Word!
+14=Bitte zuerst ein Video für die vorangegangenen Teile spezifizieren!
+15=Bitte gültiges Ausgabeverzeichnis auswählen.
+16=Mindestens eine Sprache auswählen, die extrahiert werden soll.
+17="%s" ist keine gültige SAMI-Datei
+18=Untertitel aus der Liste auswählen.
+19=Falls die Untertitel mehreren Video-Fragmenten zugeordnet sind, muss deren Zuordnung lückenlos sein. Unzugeordnete Zeilen dürfen nur am Ende der Untertitel verbleiben.
+20=Mehr als zwei Synchro-Punkte benötigt.
+21=Incorrect regular expression in Custom info %s
+22=Custom Info %d was disabled.|Fix the regular expression to enable it.
+23=Subtitle duration too short!
+24=Error: can not execute script.
+25=Error: can not compile script.
+26=Save subtitles first
+
+[Question messages]
+01=Datei "%s" wurde geändert.||Änderungen speichern?
+02=Datei "%s" existiert schon.||Soll sie ersetzt werden?
+03=Original-Datei ("%s") wurde geändert.||Änderungen speichern?
+04=Übersetzte Datei  ("%s") wurde geändert.||Änderungen speichern?
+05=Die ausgewählten Items werden gelöscht.||Fortfahren?
+06=Vorderer Synchro-Punkt im Untertitel: %s|Vorderer Synchro-Punkt im Video: %s||Hinterer Synchro-Punkt im Untertitel: %s|Hinterer Synchro-Punkt im Video: %s||Untertitel synchronisieren?
+07=Die EXE-Datei des Players wurde nicht spezifiziert oder existiert nicht.||Einen externen Player auswählen?
+08=Eine neue Version wurde gefunden!||Liste der Änderungen einsehen?
+09=Die zu speichernde Datei ist schreibgeschützt.||Trotzdem versuchen?
+10=Do you want to save the marking in a file?
+
+[Information messages]
+01=Konnte keine weiteren Instanzen von "%s" finden.
+02=Keine neuere Version verfügbar.
+03=Rechtschreibcheck fertig.||%d Änderung(en) gemacht.
+04=Zu viele Teile. Zurück zum Anfang...
+05=Lediglich eine Sprache wurde gefunden.||Falls die Datei mehr Sprachen enthält, die Datei mit dem Texteditor öffnen und weitere durch Suche der Klassen-Bezeichnungen hinzufügen.
+06=Konnten den "STYLE" Start- und/oder End-Schlüssel nicht finden!||Die Datei enthält vermutlich nur eine Sprache.|Sollte sie mehr Sprachen enthalten, bitte nach der Klassen-Bezeichnung dieser Sprachen manuell suchen.
+07=Beste Schriftgröße für Playback ist: %d
+08=Anzahl der Ersetzungen: %d
+09=Dateiname: %s|Größe: %s|FPS: %s|Dauer: %s|Anzahl der Frames: %d|Auflösung: %dx%d|FourCC: %s
+10=Ein Teil des Video-Streams kommte nicht gerendered werden. Vermutlich fehlt ein Audio- oder Video-Codec.
+11=Das Video-Fragment, das das letzte Item enthält, muss nicht ausgewählt werden.
+12=A sudden error occured:|"%s"
+
+[Information and errors messages]
+01=Item Nr. %d ist leer und soll gelöscht werden.||Fortfahren?
+02=Item Nr. %d:||"%s" hat ein ungültiges Zeichen und soll gelöscht werden.||Fortfahren?
+03=Item Nr. %d:||"%s" soll gelöscht werden.||Fortfahren?
+04=Teil des Items Nr. %d:||"%s" soll gelöscht werden, so dass es lautet:||"%s"||Fortfahren?
+05=Item Nr. %d:||"%s" is ein einzeiliger Item und beginnt mit einem Trennstrich ("-").||Soll der Trennstrich ("-") gelöscht werden?
+
+[Main menu/View]
+01=Toolbar
+02=Text style bars
+03=Statusbar
+04=Columns
+05=Show notes in left panel
+06=Show time control buttons
+07=Show lines count
+08=Visual subtitle representation
+
+[Video Popup Menu]
+01=Enter full screen
+02=Exit full screen
+03=Zoom to %d%%
+04=Reset subtitle vertical position
+
+[Time control buttons hints]
+01=Shift to previous/Extend to previous
+02=Shift to next/Extend to next
+03=Set default pause/Set default pause, if pause is too short
+04=Set ato duration/Set min duration
+
+[Auto combine subtitles]
+01=Auto combine subtitles
+02=milliseconds
+03=Combine if duration is less than (0 = no limit):
+04=Combine if CpS is greater than (0 = no limit):
+05=characters per second
+06=Don't combine if pause is greater than (0 = no limit):
+07=Punctuation marks detection
+08=Combined subtitles maximum duration (0 = no limit):
+09=Decrease duration if necessary, with no more than:
+10=Combined subtitles maximum lines length (0 = no limit):
+11=characters
+12=For all the subtitles
+13=For the selected subtitles
+
+[Set pauses]
+01=Set pauses
+02=Pauses value:
+03=Shorten duration of:
+04=First subtitle only
+05=Second subtitle only
+06=Both subtitles equally
+07=The subtitle with less CpS
+08=For all the subtitles
+09=For the selected subtitles
+
+[Round time values]
+01=Round time values
+02=Round to:
+03=milliseconds
+04=For all the subtitles
+05=For the selected subtitles
+
+[Smart line adjust]
+01=Smart line adjust
+02=Two lines if longer than:
+03=characters
+04=Break method:
+05=Equal lines
+06=Break on punctuation marks
+07=Don''t unbreak subtitles that are not too long
+08=Adjust only long subs and subs with more than 2 lines
+09=For all the subtitles
+10=For the selected subtitles
+11=Always try to find a better breaking point
+
+[Unbreak subtitles]
+01=Unbreak subtitles
+02=Characters limit
+03=No limit
+04=Don''t unbreak if line length exceeds:
+05=characters
+06=Don''t unbreak subtitles with "—" on second line
+07=For all the subtitles
+08=For the selected subtitles
+
+[Custom info]
+01=Add custom info
+02=Composite custom info
+03=Subtitles duration information
+04=Subtitles line lenght information
+05=Subtitles lines count information
+06=Subtitles pause information
+07=Subtitles CpS information
+08=Subtitles text information
+09=Custom info sets
+10=Save custom info set
+11=Delete custom info set
+12=There is no custom info. Click the "+" button to add new custom info.
+13=Caption
+14=Duration
+15=Lines length
+16=Lines count
+17=Pause
+18=CpS
+19=Text
+20=Composite info
+21=ms
+22=chars
+23=lines
+24=cps
+25=AND
+26=OR
+27=Contains (Case sensitive)
+28=Contains (Case insensitive)
+29=Does not contain (Case sensitive)
+30=Does not contain (Case insensitive)
+31=Matches regular expression
+32=Matches regular expression (tags ignored)
+33=Delete
+34=Edit
+
