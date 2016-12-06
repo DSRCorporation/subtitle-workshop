@@ -13,7 +13,8 @@ interface
 uses
   Windows, Dialogs, Controls,
   Classes, //added by adenry 2013.04.11 - for TStringList
-  USubtitlesRead, USubtitleFile, USubtitlesFunctions, FastStrings, SysUtils;
+  XMLIntf, XMLDoc,
+  USubtitlesRead, USubtitleFile, USubtitlesFunctions, UTagFinder, FastStrings, SysUtils;
 
 //function RemoveSWTags                            (Text: String; Bold, Italic, Underline: Boolean; Color: Boolean = True): String; //moved to USubtitlesFunctions by adenry 2013.04.11
 function SubtitlesToFile                         (Subtitles: TSubtitles; const FileName: String; const FPS: Single; const SubtitleFormat: TSubtitleFormats; From: Integer = -1; UpTo: Integer = -1): Boolean;

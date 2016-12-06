@@ -103,7 +103,8 @@ uses
   UCheckFormat in 'Source\UCheckFormat.pas',
   USubtitlesRead in 'Source\USubtitlesRead.pas',
   USubtitlesSave in 'Source\USubtitlesSave.pas',
-  USubtitlesFunctions in 'Source\USubtitlesFunctions.pas';
+  USubtitlesFunctions in 'Source\USubtitlesFunctions.pas',
+  UTagFinder in 'Source\UTagFinder.pas';
 
 var
   Subtitles: TSubtitles = NIL;

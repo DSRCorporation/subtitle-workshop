@@ -20,8 +20,11 @@ uses
 const
   HexChars: set of Char = ['A'..'F', 'a'..'f' , '0'..'9']; //added by adenry 2013.04.11
 
-// -----------------------------------------------------------------------------
+// ----------------------------------------------------- ------------------------
 
+type
+  SubtitleString = {$IFDEF UTF8}WideString{$ELSE}String{$ENDIF};
+  
 function RemoveSWTags   (Text: String; Bold, Italic, Underline: Boolean; Color: Boolean = True): String; //moved here from USubtitlesSave by adenry 2013.04.11
 function TimeToFrames   (Time: Integer; FPS: Single): Integer;
 function FramesToTime   (Frames, FPS: Single): Integer;
@@ -47,7 +50,6 @@ function HHMMSSFFTimeToMS(const Time: String; const FPS: Single): Integer;
 function CloseUnclosedTags(Text, OpenTag, CloseTag: {$IFDEF UTF8}WideString{$ELSE}String{$ENDIF}): {$IFDEF UTF8}WideString{$ELSE}String{$ENDIF}; //added by adenry 2013.04.11
 function SetTagsForSingleTagsMode(Text: {$IFDEF UTF8}WideString{$ELSE}String{$ENDIF}; CloseTags: Boolean = False): {$IFDEF UTF8}WideString{$ELSE}String{$ENDIF}; //added by adenry 2013.04.11
 procedure SplitDelimitedString(Delimiter: Char; Str: {$IFDEF UTF8}WideString{$ELSE}String{$ENDIF}; ListOfStrings: TStrings); //added by adenry 2013.04.11
-
 // -----------------------------------------------------------------------------
 
 implementation
