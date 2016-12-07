@@ -4,7 +4,7 @@
 // Copyright: See Subtitle API's copyright information
 // File Description: Timed Text subtitle format saving functionality
 
-function SubtitlesToFile_TIMEDTEXT(Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_TIMEDTEXT(Subtitles: TSubtitles; const FileName: String; const charset: Byte = DEFAULT_CHARSET; From: Integer = -1; UpTo: Integer = -1): Boolean;
 
 const
   FULL_TIMECODE:          SubtitleString = 'hh:mm:ss.zzz';
@@ -146,7 +146,7 @@ var
     end;
   end;
 
-  procedure ProcessContent(parentNode: IXMLNode; content: SubtitleString);
+  procedure ProcessContent(parentNode: IXMLNode; content: WideString);
   var
     tagNode   : IXMLNode;
     tagFinder : TTagFinder;
@@ -172,6 +172,7 @@ var
     p       : IXMLNode;
     start,
     final   : SubtitleString;
+    content : WideString;
   begin
     start := TimeToString(subtitle.InitialTime, FULL_TIMECODE);
     final := TimeToString(subtitle.FinalTime,   FULL_TIMECODE);
@@ -184,7 +185,13 @@ var
       Attributes['style']   := 'basic';
     end;
 
-    ProcessContent(p, subtitle.Text);
+    {$IFDEF UTF8}
+    content := subtitle.Text;
+    {$ELSE}
+    content := StringToWideStringEx(subtitle.Text, CharSetToCodePage(charset));
+    content := UTF8Encode(content);
+    {$ENDIF}
+    ProcessContent(p, content);
 
     Result := p;
   end;

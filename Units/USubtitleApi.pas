@@ -47,7 +47,7 @@ type
     function LoadSubtitle(FileName: String; FPS: Single; FormatIndex: Integer = 0; Append: Boolean = False; ReCalcTimeValues: Boolean = True): Boolean;
     procedure CreateNewSubtitle;
     function GetFileFormat(FileName: String): Integer;
-    function SaveSubtitle(FileName: String; FormatIndex: Integer; FPS: Single; FromIndex: Integer = -1; ToIndex: Integer = -1): Boolean;
+    function SaveSubtitle(FileName: String; FormatIndex: Integer; FPS: Single; Charset: Byte = DEFAULT_CHARSET; FromIndex: Integer = -1; ToIndex: Integer = -1): Boolean;
     function CloseSubtitle: Boolean;
     function AddSubtitle(InitialTime, FinalTime: Integer; Text: String): Integer;
     function InsertSubtitle(Index, InitialTime, FinalTime: Integer; Text: String): Boolean;
@@ -266,9 +266,9 @@ end;
 
 // -----------------------------------------------------------------------------
 
-function TSubtitleApi.SaveSubtitle(FileName: String; FormatIndex: Integer; FPS: Single; FromIndex: Integer = -1; ToIndex: Integer = -1): Boolean;
+function TSubtitleApi.SaveSubtitle(FileName: String; FormatIndex: Integer; FPS: Single; Charset: Byte = DEFAULT_CHARSET; FromIndex: Integer = -1; ToIndex: Integer = -1): Boolean;
 var
-  SaveSubFile: function(FileName: PChar; FormatIndex: Integer; FPS: Single; FromIndex, ToIndex: Integer): LongBool; stdcall;
+  SaveSubFile: function(FileName: PChar; FormatIndex: Integer; FPS: Single; Charset: Byte; FromIndex, ToIndex: Integer): LongBool; stdcall;
 begin
   Result := False;
 
@@ -276,7 +276,7 @@ begin
   Begin
     SaveSubFile := GetProcAddress(FInstance, 'SaveSubtitleFile');
     If @SaveSubFile <> NIL Then
-      Result := SaveSubFile(PChar(FileName), FormatIndex, FPS, FromIndex, ToIndex);
+      Result := SaveSubFile(PChar(FileName), FormatIndex, FPS, Charset, FromIndex, ToIndex);
   End;
 end;
 

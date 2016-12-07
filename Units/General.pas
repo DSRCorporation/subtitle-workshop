@@ -118,7 +118,7 @@ function LoadSubtitle(const FileName: String; FPS: Single; SubtitleFormat: Integ
 function LoadPlainText(const FileName: String; Translation: Boolean = False): Boolean; //procedure converted to a function by adenry //Translation added by adenry
 function LoadSRF(const FileName: String; Translation: Boolean = False): Boolean; // URUSoft Subtitle Report file //procedure converted to a function by adenry //Translation added by adenry
 // ---------------
-function SaveFile(FileName: WideString; FormatIndex: Integer; FPS: Single): Boolean;
+function SaveFile(FileName: WideString; FormatIndex: Integer; FPS: Single; Charset: Byte): Boolean;
 procedure SaveMarking(markingFile, subFile: String); //added by adenry
 procedure LoadMarking(markingFile: String); //added by adenry
 // ---------------
@@ -827,7 +827,7 @@ begin
             UpdateArray(OrgFormat); //format index added by adenry
             if OrgFile <> '' then
             begin
-              if SaveFile(OrgFile, OrgFormat, GetFPS) then
+              if SaveFile(OrgFile, OrgFormat, GetFPS, GetOrgCharset) then
               begin
                 OrgModified := False;
                 UndoNumWhenOrgSaved := UndoList.Count; //added by adenry
@@ -863,7 +863,7 @@ begin
             UpdateArray(TransFormat, True); //format index added by adenry
             if TransFile <> '' then
             begin
-              SubtitleAPI.SaveSubtitle(TransFile, TransFormat, GetFPS);
+              SubtitleAPI.SaveSubtitle(TransFile, TransFormat, GetFPS, GetTransCharset);
               TransModified := False;
             end else
             begin // If translated file is new...
@@ -1272,7 +1272,7 @@ procedure CommandLineProcess(Cli: String);
 
       // save work
       UpdateArray(frmMain.OrgFormat); //format index added by adenry
-      SaveFile(Output, frmMain.OrgFormat, FPS);
+      SaveFile(Output, frmMain.OrgFormat, FPS, GetOrgCharset);
       SubtitleAPI.ClearSubtitles;
 
     except on E:Exception do
@@ -1491,18 +1491,18 @@ end;
 
 // -----------------------------------------------------------------------------
 
-function SaveFile(FileName: WideString; FormatIndex: Integer; FPS: Single): Boolean;
+function SaveFile(FileName: WideString; FormatIndex: Integer; FPS: Single; Charset: Byte): Boolean;
 begin
   Result := False;
   if FileExists(FileName) = False then
   begin
-    SubtitleAPI.SaveSubtitle(FileName, FormatIndex, FPS);
+    SubtitleAPI.SaveSubtitle(FileName, FormatIndex, FPS, Charset);
     Result := True;
   end else
   begin
     if FileIsReadOnly(FileName) = False then
     begin
-      SubtitleAPI.SaveSubtitle(FileName, FormatIndex, FPS);
+      SubtitleAPI.SaveSubtitle(FileName, FormatIndex, FPS, Charset);
       Result := True;
     end else
     begin
@@ -1511,7 +1511,7 @@ begin
           begin
             if FileSetReadOnly(FileName, False) then
             begin
-              SubtitleAPI.SaveSubtitle(FileName, FormatIndex, FPS);
+              SubtitleAPI.SaveSubtitle(FileName, FormatIndex, FPS, Charset);
               Result := True;
             end else
             begin

@@ -337,9 +337,9 @@ end;
 
 // -----------------------------------------------------------------------------
 
-function SaveSubtitleFile(FileName: PChar; FormatIndex: Integer; FPS: Single; FromIndex, ToIndex: Integer): LongBool; stdcall;
+function SaveSubtitleFile(FileName: PChar; FormatIndex: Integer; FPS: Single; Charset: Byte; FromIndex, ToIndex: Integer): LongBool; stdcall;
 begin
-  Result := LongBool(SubtitlesToFile(Subtitles, FileName, FPS, TSubtitleFormats(FormatIndex), FromIndex, ToIndex));
+  Result := LongBool(SubtitlesToFile(Subtitles, FileName, FPS, Charset, TSubtitleFormats(FormatIndex), FromIndex, ToIndex));
 end;
 
 // -----------------------------------------------------------------------------

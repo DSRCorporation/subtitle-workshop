@@ -50,6 +50,8 @@ function HHMMSSFFTimeToMS(const Time: String; const FPS: Single): Integer;
 function CloseUnclosedTags(Text, OpenTag, CloseTag: {$IFDEF UTF8}WideString{$ELSE}String{$ENDIF}): {$IFDEF UTF8}WideString{$ELSE}String{$ENDIF}; //added by adenry 2013.04.11
 function SetTagsForSingleTagsMode(Text: {$IFDEF UTF8}WideString{$ELSE}String{$ENDIF}; CloseTags: Boolean = False): {$IFDEF UTF8}WideString{$ELSE}String{$ENDIF}; //added by adenry 2013.04.11
 procedure SplitDelimitedString(Delimiter: Char; Str: {$IFDEF UTF8}WideString{$ELSE}String{$ENDIF}; ListOfStrings: TStrings); //added by adenry 2013.04.11
+function CharSetToCodePage(ciCharset: UINT): Cardinal;
+function StringToWideStringEx(const S: string; CodePage: Word): WideString;
 // -----------------------------------------------------------------------------
 
 implementation
@@ -685,6 +687,50 @@ begin
   end;
 end;
 //added by adenry: end
+
+// -----------------------------------------------------------------------------
+
+// Windows.pas doesn't declare TranslateCharsetInfo() correctly.
+function TranslateCharsetInfo(lpSrc: PDWORD; var lpCs: TCharsetInfo; dwFlags: DWORD): BOOL; stdcall; external gdi32 name 'TranslateCharsetInfo';
+
+function CharSetToCodePage(ciCharset: UINT): Cardinal;
+var
+  C: TCharsetInfo;
+begin
+  if ciCharset = DEFAULT_CHARSET then Result := GetACP else //added by adenry - IMPORTANT! - fixes a bug - Otherwise Default charset can't be used properly
+  begin
+    TranslateCharsetInfo(PDWORD(ciCharset), C, TCI_SRCCHARSET);
+    Result := C.ciACP;
+  end;
+end;
+
+// -----------------------------------------------------------------------------
+
+//Convert an ANSI string to a Wide string
+function StringToWideStringEx(const S: string; CodePage: Word): WideString;
+var
+  InputLength,
+  OutputLength: Integer;
+begin
+  InputLength := Length(S);
+  OutputLength := MultiByteToWideChar(CodePage, 0, PChar(S), InputLength, nil, 0);
+  SetLength(Result, OutputLength);
+  MultiByteToWideChar(CodePage, 0, PChar(S), InputLength, PWideChar(Result), OutputLength);
+end;
+
+// -----------------------------------------------------------------------------
+
+//Convert an Wide string to an ANSI string
+function WideStringToStringEx(const WS: WideString; CodePage: Word): AnsiString;
+var
+  InputLength,
+  OutputLength: Integer;
+begin
+  InputLength := Length(WS);
+  OutputLength := WideCharToMultiByte(CodePage, 0, PWideChar(WS), InputLength, nil, 0, nil, nil);
+  SetLength(Result, OutputLength);
+  WideCharToMultiByte(CodePage, 0, PWideChar(WS), InputLength, PAnsiChar(Result), OutputLength, nil, nil);
+end;
 
 // -----------------------------------------------------------------------------
 

@@ -322,7 +322,7 @@ begin
       end;
     end;
 
-    SubtitleAPI.SaveSubtitle(dlgSave.FileName, SubFormat, OutputFPS);
+    SubtitleAPI.SaveSubtitle(dlgSave.FileName, SubFormat, OutputFPS, GetOrgCharset);
     SubtitleAPI.CloseSubtitle;
 
     if chkLoadFile.Checked then

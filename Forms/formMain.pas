@@ -5196,7 +5196,7 @@ begin
     if OrgFile <> '' then
     begin
       UpdateArray(OrgFormat); //format index added by adenry
-      if SaveFile(OrgFile, OrgFormat, GetFPS) then  // We save original file in it's original format
+      if SaveFile(OrgFile, OrgFormat, GetFPS, GetOrgCharset) then  // We save original file in it's original format
       begin
         OrgModified := False;
         UndoNumWhenOrgSaved := UndoList.Count; //added by adenry
@@ -5208,7 +5208,7 @@ begin
     if TransFile <> '' then
     begin
       UpdateArray(TransFormat, True); //format index added by adenry
-      if SaveFile(TransFile, TransFormat, GetFPS) then // We save translated file in it's original format
+      if SaveFile(TransFile, TransFormat, GetFPS, GetTransCharset) then // We save translated file in it's original format
       begin
         TransModified := False;
         UndoNumWhenTransSaved := UndoList.Count; //added by adenry
@@ -5262,7 +5262,7 @@ begin
   if OrgFile <> '' then
   begin
     UpdateArray(OrgFormat); //format index added by adenry
-    if SaveFile(OrgFile, OrgFormat, GetFPS) then  // We save original file in it's original format
+    if SaveFile(OrgFile, OrgFormat, GetFPS, GetOrgCharset) then  // We save original file in it's original format
     begin
       OrgModified := False;
       UndoNumWhenOrgSaved := UndoList.Count; //added by adenry      
@@ -5407,7 +5407,7 @@ begin
   if TransFile <> '' then
   begin
     UpdateArray(TransFormat, True); //format index added by adenry
-    if SaveFile(TransFile, TransFormat, GetFPS) then // We save translated file in it's original format
+    if SaveFile(TransFile, TransFormat, GetFPS, GetTransCharset) then // We save translated file in it's original format
     begin
       TransModified := False;
       UndoNumWhenTransSaved := UndoList.Count; //added by adenry
@@ -7962,13 +7962,13 @@ begin
       UpdateArray(OrgFormat);  //format index added by adenry
       if SaveAsBackup = False then
       begin
-        if SaveFile(OrgFile, OrgFormat, GetFPS) then // We save original file in it's original format
+        if SaveFile(OrgFile, OrgFormat, GetFPS, GetOrgCharset) then // We save original file in it's original format
         begin
           OrgModified := False;
           UndoNumWhenOrgSaved := UndoList.Count; //added by adenry
         end;
       end else
-        SaveFile(OrgFile + '.bak', OrgFormat, GetFPS);
+        SaveFile(OrgFile + '.bak', OrgFormat, GetFPS, GetOrgCharset);
       SubtitleAPI.ClearSubtitles;
     end else
       if (frmSaveAsExecuting=False) and (AskToSaveNewSubs) then //added by adenry
@@ -7985,13 +7985,13 @@ begin
         if SaveAsBackup = False then
         begin
           //UpdateArray(True); //removed by adenry - moved up
-          if SaveFile(TransFile, TransFormat, GetFPS) then // We save translated file in it's original format
+          if SaveFile(TransFile, TransFormat, GetFPS, GetTransCharset) then // We save translated file in it's original format
           begin
             TransModified := False;
             UndoNumWhenTransSaved := UndoList.Count; //added by adenry
           end;
         end else
-          SaveFile(TransFile + '.bak', TransFormat, GetFPS);
+          SaveFile(TransFile + '.bak', TransFormat, GetFPS, GetTransCharset);
         SubtitleAPI.ClearSubtitles;
       end else
         if (frmSaveAsExecuting=False) and (AskToSaveNewSubs) then //added by adenry
@@ -8340,7 +8340,7 @@ begin
       FileName := Copy(FileName, 1, LastDelimiter('.', ExtractFileName(FileName))-1) + Ext;
 
     UpdateArray(Format, mnuTranslatorMode.Checked); //format index added by adenry
-    SubtitleAPI.SaveSubtitle(String(Temp) + FileName, Format, GetFPS);
+    SubtitleAPI.SaveSubtitle(String(Temp) + FileName, Format, GetFPS, GetOrgCharset);
     SubtitleAPI.ClearSubtitles;
 
     Params := ReplaceString(Params, 'SUBT_FILE', String(Temp) + FileName);
@@ -9611,7 +9611,7 @@ begin
       FN := Copy(ExtractFileName(OrgFile), 1, LastDelimiter('.', ExtractFileName(OrgFile))-1);
 
       UpdateArray(SubtitleAPI.GetFormatIndex('SAMI Captioning')); //format index added by adenry
-      SaveFile(Dir + '\' + FN + '.smi', SubtitleAPI.GetFormatIndex('SAMI Captioning'), GetFPS);
+      SaveFile(Dir + '\' + FN + '.smi', SubtitleAPI.GetFormatIndex('SAMI Captioning'), GetFPS, GetOrgCharset);
       SubtitleAPI.ClearSubtitles;
 
       ASX := TStringList.Create;
@@ -9646,7 +9646,7 @@ begin
       FN := Copy(ExtractFileName(OrgFile), 1, LastDelimiter('.', ExtractFileName(OrgFile))-1);
 
       UpdateArray(SubtitleAPI.GetFormatIndex('RealTime')); //format index added by adenry
-      SaveFile(Dir + '\' + FN + '.rt', SubtitleAPI.GetFormatIndex('RealTime'), GetFPS);
+      SaveFile(Dir + '\' + FN + '.rt', SubtitleAPI.GetFormatIndex('RealTime'), GetFPS, GetOrgCharset);
       SubtitleAPI.ClearSubtitles;
 
       SMIL := TStringList.Create;

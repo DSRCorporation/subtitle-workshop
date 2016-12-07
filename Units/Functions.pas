@@ -21,6 +21,8 @@ uses
 // --------------------------//
 procedure AddCharsets(ComboBox: TComboBox);
 function StrCharsetToInt(CharSet: String): Byte;
+function GetOrgCharset: Byte;
+function GetTransCharset: Byte;
 // --------------------------//
 //       Recent Files        //
 // --------------------------//
@@ -170,6 +172,20 @@ begin
   if CharSet = 'Cyrillic'     then Result := RUSSIAN_CHARSET else
   if CharSet = 'Thai'         then Result := THAI_CHARSET else
   if CharSet = 'EastEurope'   then Result := EASTEUROPE_CHARSET;
+end;
+
+// -----------------------------------------------------------------------------
+
+function GetOrgCharset: Byte;
+begin
+  Result := frmMain.OrgCharset;
+end;
+
+// -----------------------------------------------------------------------------
+
+function GetTransCharset: Byte;
+begin
+  Result := frmMain.TransCharset;
 end;
 
 // -----------------------------------------------------------------------------
