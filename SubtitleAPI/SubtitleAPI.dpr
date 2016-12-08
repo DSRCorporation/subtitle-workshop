@@ -104,7 +104,8 @@ uses
   USubtitlesRead in 'Source\USubtitlesRead.pas',
   USubtitlesSave in 'Source\USubtitlesSave.pas',
   USubtitlesFunctions in 'Source\USubtitlesFunctions.pas',
-  UTagFinder in 'Source\UTagFinder.pas';
+  UTagFinder in 'Source\UTagFinder.pas',
+  UTimedTextUtils in 'Source\UTimedTextUtils.pas';
 
 var
   Subtitles: TSubtitles = NIL;

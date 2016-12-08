@@ -13,8 +13,7 @@ interface
 uses
   Windows, Dialogs, Controls,
   Classes, //added by adenry 2013.04.11 - for TStringList
-  XMLIntf, XMLDoc,
-  USubtitlesRead, USubtitleFile, USubtitlesFunctions, UTagFinder, FastStrings, SysUtils;
+  USubtitlesRead, USubtitleFile, USubtitlesFunctions, UTimedTextUtils, UTagFinder, FastStrings, SysUtils;
 
 //function RemoveSWTags                            (Text: String; Bold, Italic, Underline: Boolean; Color: Boolean = True): String; //moved to USubtitlesFunctions by adenry 2013.04.11
 function SubtitlesToFile                         (Subtitles: TSubtitles; const FileName: String; const FPS: Single; const Charset: Byte; const SubtitleFormat: TSubtitleFormats; From: Integer = -1; UpTo: Integer = -1): Boolean;
@@ -394,3 +393,4 @@ end;
 {$include SaveFormats/FSave_ZEROG}
 
 end.
+

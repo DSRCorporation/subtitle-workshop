@@ -27,16 +27,14 @@ type
     FRight    : SubtitleString;
     FParams   : SubtitleString;
     FFound    : Boolean;
-    
     function FindOpenTag(var tagStart, tagEnd: Integer): Boolean;
     function FindCloseTag(var tagStart, tagEnd: Integer): Boolean;
-
   protected
     procedure SetSource(source: SubtitleString);
     procedure SetTag(tag: SubtitleString);
-
   public
-    constructor Create(source: SubtitleString);
+    constructor Create; overload;
+    constructor Create(source: SubtitleString); overload;
     property Source: SubtitleString read FSource write SetSource;
     property Tag: SubtitleString read FTag write SetTag;
     property Content: SubtitleString read FContent;
@@ -53,6 +51,11 @@ type
   function FindFirstTag(source: SubtitleString; tags: array of SubtitleString): TTagFinder;
 
 implementation
+
+  constructor TTagFinder.Create;
+  begin
+    Clear;
+  end;
 
   constructor TTagFinder.Create(source: SubtitleString);
   begin
@@ -137,7 +140,7 @@ implementation
       FFound    := True;
 
       paramsStart := openStart + Length(FTag) + 1;
-      FParams     := Copy(source, paramsStart, openEnd - paramsStart - 1);
+      FParams     := Trim(Copy(source, paramsStart, openEnd - paramsStart - 1));
     end;
   end;
 
@@ -155,8 +158,11 @@ implementation
       tagFinder.Build;
 
       if (tagFinder.Found) and (tagFinder.TagStart < minStart) then begin
+        Result.Destroy;
         Result    := tagFinder;
         minStart  := tagFinder.TagStart;
+      end else begin
+        tagFinder.Destroy;
       end;
     end;
   end;
