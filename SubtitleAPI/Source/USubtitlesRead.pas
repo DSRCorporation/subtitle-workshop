@@ -157,6 +157,7 @@ type
                       sfSubViewer1,
                       sfSubViewer2,
                       sfTimedText,                 // by URUWorks 2007.12.22
+                      sfTimedTextUtf8,
                       //sfTitlevisionTXT,
                       sfTMPlayer,
                       sfTurboTitler,
@@ -168,7 +169,7 @@ type
                       sfZeroG);
 
 const
-  TSubtitleFormatsName : array[1..65] of String =
+  TSubtitleFormatsName : array[1..66] of String =
   ('Adobe Encore DVD (Old)',
    'Adobe Encore DVD NTSC', //added by adenry 2013.04.11
    'Adobe Encore DVD PAL', //added by adenry 2013.04.11
@@ -227,6 +228,7 @@ const
    'SubViewer 1.0',
    'SubViewer 2.0',
    'Timed Text',              // by URUWorks 2007.12.22
+   'Timed Text (UTF-8)',
    //'Titlevision ANSI with cues',
    'TMPlayer',
    'Turbo Titler',
@@ -481,6 +483,7 @@ begin
     sfSubViewer1              : Result := FileToSubtitles_SUBVIEWER1             (Subtitles, tmpSubFile, ExtraTime);
     sfSubViewer2              : Result := FileToSubtitles_SUBVIEWER2             (Subtitles, tmpSubFile, ExtraTime);
     sfTimedText               : Result := FileToSubtitles_TIMEDTEXT              (Subtitles, tmpSubFile, ExtraTime);    // by URUWorks 2007.12.22
+    sfTimedTextUtf8           : Result := FileToSubtitles_TIMEDTEXT              (Subtitles, tmpSubFile, ExtraTime);    
     //sfTitlevisionTXT          : Result := FileToSubtitles_TITLEVISIONTXT         (Subtitles, tmpSubFile, ExtraTime);
     sfTMPlayer                : Result := FileToSubtitles_TMPLAYER               (Subtitles, tmpSubFile, ExtraTime);
     sfTurboTitler             : Result := FileToSubtitles_TURBOTITLER            (Subtitles, tmpSubFile, ExtraTime);

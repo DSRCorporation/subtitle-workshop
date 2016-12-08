@@ -4,7 +4,7 @@
 // Copyright: See Subtitle API's copyright information
 // File Description: Timed Text subtitle format saving functionality
 
-function SubtitlesToFile_TIMEDTEXT(Subtitles: TSubtitles; const FileName: String; const charset: Byte = DEFAULT_CHARSET; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_TIMEDTEXT(Subtitles: TSubtitles; const FileName: String; const charset: Byte = DEFAULT_CHARSET; const utf8: Boolean = False; From: Integer = -1; UpTo: Integer = -1): Boolean;
 
 const
   FULL_TIMECODE:          SubtitleString = 'hh:mm:ss.zzz';
@@ -25,7 +25,14 @@ var
   begin
     with doc do begin
       Version     := '1.0';
-      Encoding    := 'UTF-8';
+      {$IFNDEF UTF8}
+      if (utf8 = True) then
+      {$ENDIF}
+        Encoding  := 'UTF-8'
+      {$IFNDEF UTF8}
+      else
+        Encoding  := GetCharsetEncoding(charset);
+      {$ENDIF}
       StandAlone  := 'no';
       Options     := [doNodeAutoIndent];
     end;
@@ -188,8 +195,11 @@ var
     {$IFDEF UTF8}
     content := subtitle.Text;
     {$ELSE}
-    content := StringToWideStringEx(subtitle.Text, CharSetToCodePage(charset));
-    content := UTF8Encode(content);
+    if (utf8 = True) then begin
+      content := StringToWideStringEx(subtitle.Text, CharSetToCodePage(charset));
+      content := UTF8Encode(content);
+    end else
+      content := subtitle.Text;
     {$ENDIF}
     ProcessContent(p, content);
 
