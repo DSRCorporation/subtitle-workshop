@@ -37,5 +37,7 @@ begin
     
   finally
     tmpSubFile.Free;
+    pBuilder.Destroy;
+    doc.Destroy;
   end;
 end;

@@ -14,6 +14,7 @@ type
     FTagFinder : TTagFinder;
   protected
     procedure SetUp;    override;
+    procedure TearDown; override;
   published
     procedure TestRegularText;
     procedure TestTaggedText;
@@ -39,6 +40,11 @@ implementation
 procedure TTagFinderTestCase.SetUp;
 begin
   FTagFinder := TTagFinder.Create;
+end;
+
+procedure TTagFinderTestCase.TearDown;
+begin
+  FTagFinder.Destroy;
 end;
 
 procedure TTagFinderTestCase.TestRegularText;
