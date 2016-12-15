@@ -4,53 +4,40 @@
 // Copyright: See Subtitle API's copyright information
 // File Description: Timed Text subtitle format saving functionality
 
-function SubtitlesToFile_TIMEDTEXT(Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_TIMEDTEXT(Subtitles: TSubtitles; const FileName: String; const charset: Byte = DEFAULT_CHARSET; const utf8: Boolean = False; From: Integer = -1; UpTo: Integer = -1): Boolean;
 var
-  tmpSubFile : TSubtitleFile;
-  i          : Integer;
+  tmpSubFile  : TSubtitleFile;
+  doc         : TTtmlDocument;
+  pBuilder    : TParagraphBuilder;
+  encoding    : SubtitleString;
+  i           : Integer;
 begin
   Result := True;
+
+  if (utf8 = True) then
+    encoding := 'UTF-8'
+  else
+    encoding := GetCharsetEncoding(charset);
+
+  doc := TTtmlDocument.Create(encoding, ExtractFileName(FileName));
+  pBuilder := TParagraphBuilder.Create(charset, utf8);
+
+  doc.AppendParagraphs(pBuilder.BuildParagraphs(Subtitles, From, UpTo));
+
   tmpSubFile := TSubtitleFile.Create;
-  with tmpSubFile do
   try
-    //Add('<tt xml:lang="en" xmlns="http://www.w3.org/2006/10/ttaf1" xmlns:tts="http://www.w3.org/2006/10/ttaf1#style">', False); //removed by adenry 2013.04.13
-    Add('<tt xml:lang="" xmlns="http://www.w3.org/ns/ttml">', False); //added by adenry 2013.04.13
-    Add(' <head>', False);
-    Add(' </head>', False);
-    Add(' <body region="subtitleArea">', False); //region="subtitleArea" added by adenry 2013.04.13
-    Add('   <div>', False); //added by adenry 2013.04.13
-
-    DecimalSeparator := '.'; //added by adenry 2013.04.13
-
-    for i := From to UpTo do
-    begin
-      {$IFNDEF VIPLAY}
-      if NoInteractionWithTags = False then
-      begin
-      {$ENDIF}
-        //if WorkWithTags = False then //removed by adenry 2013.04.13
-          Subtitles.Text[i] := RemoveSWTags(Subtitles.Text[i], True, True, True, True);
-      {$IFNDEF VIPLAY}
-      end;
-      {$ENDIF}
-      //Add(Format('		<div xml:id="d%d" begin="%ds" dur="10s" end="%ds">', [i + 1, Subtitles[i].InitialTime div 1000, Subtitles[i].FinalTime div 1000]), False); //removed by adenry 2013.04.13
-      //Add(Format('			<p xml:id="p%d" region="r1">%s</p>', [i + 1, Subtitles[i].Text]), False); //removed by adenry 2013.04.13
-      //Add('		</div>', False); //removed by adenry 2013.04.13
-      Add(Format('      <p xml:id="subtitle%d" begin="%.3fs" end="%.3fs">', [i + 1, Subtitles[i].InitialTime / 1000, Subtitles[i].FinalTime / 1000]), False); //added by adenry 2013.04.13
-      Add(Format('        %s', [ReplaceString(Subtitles[i].Text, #13#10, '<br/>')]), False); //added by adenry 2013.04.13
-      Add       ('      </p>', False); //added by adenry 2013.04.13
-    end;
-
-    Add('   </div>', False); //added by adenry 2013.04.13
-    Add(' </body>', False);
-    Add('</tt>', False);
+    for i := 0 to doc.XML.Count - 1 do
+      tmpSubFile.Add(doc.XML[i], False);
 
     try
       tmpSubFile.SaveToFile(FileName);
     except
-      Result := False;
+      Result := False
     end;
+    
   finally
     tmpSubFile.Free;
+    pBuilder.Destroy;
+    doc.Destroy;
   end;
 end;

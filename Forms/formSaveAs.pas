@@ -276,7 +276,7 @@ begin
         end;
       //added by adenry: end
 
-      if SaveFile(SubFile, SubFormat, GetFPS) = False then
+      if SaveFile(SubFile, SubFormat, GetFPS, GetOrgCharset) = False then
       begin
         SubtitleAPI.ClearSubtitles; //added by adenry
         Close;

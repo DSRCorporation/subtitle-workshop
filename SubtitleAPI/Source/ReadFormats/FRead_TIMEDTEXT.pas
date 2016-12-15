@@ -24,7 +24,7 @@ var
     //Result := StrToInt(Copy(S, 1, Length(S)-1)) * 1000; //removed by adenry 2013.04.13
     //added by adenry: begin 2013.04.13
     try
-      Result := Trunc(StrToFloat(Copy(S, 1, Length(S)-1)) * 1000);
+      Result := StringToTime(S);
     except
       Result := 0;
     end;

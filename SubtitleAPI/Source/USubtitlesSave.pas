@@ -13,10 +13,10 @@ interface
 uses
   Windows, Dialogs, Controls,
   Classes, //added by adenry 2013.04.11 - for TStringList
-  USubtitlesRead, USubtitleFile, USubtitlesFunctions, FastStrings, SysUtils;
+  USubtitlesRead, USubtitleFile, USubtitlesFunctions, UTimedTextUtils, UTagFinder, FastStrings, SysUtils;
 
 //function RemoveSWTags                            (Text: String; Bold, Italic, Underline: Boolean; Color: Boolean = True): String; //moved to USubtitlesFunctions by adenry 2013.04.11
-function SubtitlesToFile                         (Subtitles: TSubtitles; const FileName: String; const FPS: Single; const SubtitleFormat: TSubtitleFormats; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile                         (Subtitles: TSubtitles; const FileName: String; const FPS: Single; const Charset: Byte; const SubtitleFormat: TSubtitleFormats; From: Integer = -1; UpTo: Integer = -1): Boolean;
 function SubtitlesToFile_ADOBEENCOREDVD          (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
 function SubtitlesToFile_ADOBEENCOREDVDNTSC      (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean; //added by adenry 2013.04.11
 function SubtitlesToFile_ADOBEENCOREDVDPAL       (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean; //added by adenry 2013.04.11
@@ -74,7 +74,7 @@ function SubtitlesToFile_SUBSONIC                (Subtitles: TSubtitles; const F
 function SubtitlesToFile_SUBSTATIONALPHA         (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
 function SubtitlesToFile_SUBVIEWER1              (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
 function SubtitlesToFile_SUBVIEWER2              (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_TIMEDTEXT               (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;  // by URUWorks 2007.12.22
+function SubtitlesToFile_TIMEDTEXT               (Subtitles: TSubtitles; const FileName: String; const charset: Byte = DEFAULT_CHARSET; const utf8: Boolean = False; From: Integer = -1; UpTo: Integer = -1): Boolean;
 //function SubtitlesToFile_TITLEVISIONTXT          (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
 function SubtitlesToFile_TMPLAYER                (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
 function SubtitlesToFile_TURBOTITLER             (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
@@ -237,7 +237,7 @@ implementation
 
 // -----------------------------------------------------------------------------
 
-function SubtitlesToFile(Subtitles: TSubtitles; const FileName: String; const FPS: Single; const SubtitleFormat: TSubtitleFormats; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile(Subtitles: TSubtitles; const FileName: String; const FPS: Single; const Charset: Byte; const SubtitleFormat: TSubtitleFormats; From: Integer = -1; UpTo: Integer = -1): Boolean;
 begin
   Result := False;
   if not Assigned(Subtitles) then exit;
@@ -308,7 +308,8 @@ begin
       sfSubStationAlpha         : Result := SubtitlesToFile_SUBSTATIONALPHA(Subtitles, FileName, From, UpTo);
       sfSubViewer1              : Result := SubtitlesToFile_SUBVIEWER1(Subtitles, FileName, From, UpTo);
       sfSubViewer2              : Result := SubtitlesToFile_SUBVIEWER2(Subtitles, FileName, From, UpTo);
-      sfTimedText               : Result := SubtitlesToFile_TIMEDTEXT(Subtitles, FileName, From, UpTo);
+      sfTimedText               : Result := SubtitlesToFile_TIMEDTEXT(Subtitles, FileName, Charset, False, From, UpTo);
+      sfTimedTextUtf8           : Result := SubtitlesToFile_TIMEDTEXT(Subtitles, FileName, Charset, True,  From, UpTo);
       //sfTitlevisionTXT          : Result := SubtitlesToFile_TITLEVISIONTXT(Subtitles, FileName, From, UpTo);
       sfTMPlayer                : Result := SubtitlesToFile_TMPLAYER(Subtitles, FileName, From, UpTo);
       sfTurboTitler             : Result := SubtitlesToFile_TURBOTITLER(Subtitles, FileName, From, UpTo);
@@ -392,3 +393,4 @@ end;
 {$include SaveFormats/FSave_ZEROG}
 
 end.
+

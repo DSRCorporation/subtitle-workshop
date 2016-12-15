@@ -442,12 +442,12 @@ begin
             begin
               Inc(TotConv);
               mmoLog.Lines.Add(Format(LogStr[7], [OutputPath +  FName]));
-              if SubtitleAPI.SaveSubtitle(OutputPath +  FName, cmbOutputFormat.ItemIndex + 1, FPS) then
+              if SubtitleAPI.SaveSubtitle(OutputPath +  FName, cmbOutputFormat.ItemIndex + 1, FPS, GetOrgCharset) then
                 mmoLog.Lines.Add(Format(LogStr[8], [OutputPath +  FName]));
             end else
               mmoLog.Lines.Add(Format(LogStr[9], [OutputPath +  FName]))
           end else
-            if SubtitleAPI.SaveSubtitle(OutputPath +  FName, cmbOutputFormat.ItemIndex + 1, FPS) then
+            if SubtitleAPI.SaveSubtitle(OutputPath +  FName, cmbOutputFormat.ItemIndex + 1, FPS, GetOrgCharset) then
             begin
               Inc(TotConv);
               mmoLog.Lines.Add(Format(LogStr[8], [OutputPath +  FName]));

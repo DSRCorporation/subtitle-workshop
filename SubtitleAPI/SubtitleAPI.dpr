@@ -103,7 +103,9 @@ uses
   UCheckFormat in 'Source\UCheckFormat.pas',
   USubtitlesRead in 'Source\USubtitlesRead.pas',
   USubtitlesSave in 'Source\USubtitlesSave.pas',
-  USubtitlesFunctions in 'Source\USubtitlesFunctions.pas';
+  USubtitlesFunctions in 'Source\USubtitlesFunctions.pas',
+  UTagFinder in 'Source\UTagFinder.pas',
+  UTimedTextUtils in 'Source\UTimedTextUtils.pas';
 
 var
   Subtitles: TSubtitles = NIL;
@@ -224,7 +226,8 @@ begin
     sfSubStationAlpha         : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.ssa'; end;
     sfSubViewer1              : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.sub'; end;
     sfSubViewer2              : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.sub'; end;
-    sfTimedText               : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.xml'; end;    
+    sfTimedText               : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.xml'; end;
+    sfTimedTextUtf8           : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.xml'; end;    
     //sfTitlevisionTXT          : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.txt'; end;
     sfTMPlayer                : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.txt;*.sub'; end;
     sfTurboTitler             : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.tts'; end;
@@ -336,9 +339,9 @@ end;
 
 // -----------------------------------------------------------------------------
 
-function SaveSubtitleFile(FileName: PChar; FormatIndex: Integer; FPS: Single; FromIndex, ToIndex: Integer): LongBool; stdcall;
+function SaveSubtitleFile(FileName: PChar; FormatIndex: Integer; FPS: Single; Charset: Byte; FromIndex, ToIndex: Integer): LongBool; stdcall;
 begin
-  Result := LongBool(SubtitlesToFile(Subtitles, FileName, FPS, TSubtitleFormats(FormatIndex), FromIndex, ToIndex));
+  Result := LongBool(SubtitlesToFile(Subtitles, FileName, FPS, Charset, TSubtitleFormats(FormatIndex), FromIndex, ToIndex));
 end;
 
 // -----------------------------------------------------------------------------

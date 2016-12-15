@@ -373,7 +373,7 @@ begin
         try
           UpdateArray(SubFormat); //format index added by adenry
           // Save first file
-          SubtitleAPI.SaveSubtitle(OutPath + edtNameFile1.Text + Extension, SubFormat, GetFPS, 0, SplitIn.Index);
+          SubtitleAPI.SaveSubtitle(OutPath + edtNameFile1.Text + Extension, SubFormat, GetFPS, GetOrgCharset, 0, SplitIn.Index);
           if chkRecalculate.Checked then
           begin
             if rdoEndOfVideo.Checked then
@@ -384,7 +384,7 @@ begin
           end;
 
           // Save second file
-          SubtitleAPI.SaveSubtitle(OutPath + edtNameFile2.Text + Extension, SubFormat, GetFPS, SplitIn.Index + 1, SubtitleAPI.SubtitleCount - 1);
+          SubtitleAPI.SaveSubtitle(OutPath + edtNameFile2.Text + Extension, SubFormat, GetFPS, GetOrgCharset, SplitIn.Index + 1, SubtitleAPI.SubtitleCount - 1);
         finally
           SubtitleAPI.ClearSubtitles;
           frmSplit.Close;
@@ -428,6 +428,7 @@ begin
         SubtitleAPI.SaveSubtitle(OutPath + PartData.FileName,   // Output file
                                  cmbOutputFormat.ItemIndex + 1, // Output format
                                  GetFPS,                        // Output FPS
+                                 GetOrgCharset,
                                  PartData.FirstNode.Index,      // From subtitle
                                  PartData.LastNode.Index        // To subtitle
                                  );      
