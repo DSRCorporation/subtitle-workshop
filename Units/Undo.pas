@@ -171,6 +171,7 @@ begin
       AutoRecheckNodeErrors(Node, [], rtSubDeleted, True);//refresh info&errors form only //added by adenry
       UpdateSubSubtitleVisibilityAfterNodeChange(Node, Data.InitialTime, Data.FinalTime, -1, -1); //added by adenry
 
+      frmMain.WaveformAdapter.DeleteSubtitle(Node);
       lstSubtitles.DeleteNode(Node); //DELETE THE NODE
 
       if Node2 <> NextNode then //added by adenry later

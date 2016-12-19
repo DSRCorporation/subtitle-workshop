@@ -18,7 +18,7 @@ uses
     ifpii_controls, ifpii_std, ifpii_classes, ifpii_graphics, ifpii_forms, ifpii_stdctrls, ifpii_extctrls, ifpii_menus, ifpidateutils,
     ifpiir_controls, ifpiir_std, ifpiir_classes, ifpiir_graphics, ifpiir_forms, ifpiir_stdctrls, ifpiir_extctrls, ifpiir_menus, ifpidateutilsr,
   StrMan, FastStrings, WinShell, //DirectShow9, //WinShell added by adenry, DirectShow9 removed by adenry
-  CommonTypes;
+  WaveformAdapter, Types, CommonTypes;
 
 type
   TfrmMain = class(TForm)
@@ -485,6 +485,23 @@ type
     mnuDisplayOriginalPopup: TMenuItem;
     mnuDisplayTranslationPopup: TMenuItem;
     edtPlayerShortcuts: TEdit;
+    
+    // Waveform controls
+    PanelWAVDisplay : TPanel;
+    // TODO: populate popup to main menu
+    // TODO: move captions to lang file
+    dlgLoadWaveform: TOpenDialog;  
+    mnuWaveformPopupMenu: TPopupMenu;
+    mnuWaveformOpen: TMenuItem;
+    mnuWaveformClose: TMenuItem;
+    mnuWaveformInsertSubtitle: TMenuItem;
+    mnuWaveformDeleteSubtitle: TMenuItem;
+    N63: TMenuItem;
+    N64: TMenuItem;
+    mnuWaveformInsertSceneChange: TMenuItem;
+    mnuWaveformDeleteSceneChange: TMenuItem;
+
+
     procedure lstSubtitlesInitNode(Sender: TBaseVirtualTree; ParentNode,
       Node: PVirtualNode; var InitialStates: TVirtualNodeInitStates);
     procedure lstSubtitlesFreeNode(Sender: TBaseVirtualTree;
@@ -955,6 +972,14 @@ type
       Node: PVirtualNode; Column: TColumnIndex);
     procedure lstSubtitlesEditCancelled(Sender: TBaseVirtualTree;
       Column: TColumnIndex);
+    //  Waveform popup menu handlers
+    procedure mnuWaveformOpenClick(Sender: TObject);
+    procedure mnuWaveformCloseClick(Sender: TObject);
+    procedure mnuWaveformInsertSubtitleClick(Sender: TObject);
+    procedure mnuWaveformDeleteSubtitleClick(Sender: TObject);
+    procedure UpdateWaveformMenuEnabled;
+    procedure mnuWaveformInsertSceneChangeClick(Sender: TObject);
+    procedure mnuWaveformDeleteSceneChangeClick(Sender: TObject);
   protected
     procedure CreateParams(var Params: TCreateParams); override;
   private
@@ -973,6 +998,9 @@ type
     procedure SetTransModified(const Value: Boolean); //by BDZL
     procedure SetOrgModified(const Value: Boolean); //by BDZL
     procedure CMDialogKey(var AMessage: TCMDialogKey); message CM_DIALOGKEY; //added by adenry
+    // Waveform listeners
+    procedure WaveformSelectionChange(Sender: TObject);
+    procedure WaveformSelectedRangeChanged(Sender: TObject; OldStart, OldStop : Integer; NeedSort : Boolean);
   public
     FormatType     : (ftTime, ftFrames);
     ActualLangFile : String;
@@ -1172,6 +1200,9 @@ type
 
     OutputSettingsFormats : array of TOutputSettingsFormats; //added by adenry
 
+    // Waveform adapter
+    WaveformAdapter : TWaveformAdapter;
+    
     // ----------
     procedure AppException(Sender: TObject; E: Exception); //moved here by adenry
     procedure UpdateRFMenus;
@@ -1277,7 +1308,8 @@ uses
   General, Functions, TreeViewHandle, USubtitlesFunctions, USubtitleAPI, VideoPreview, FileTypes, InfoErrorsFunctions, Undo, ShortCuts, VTInPlaceEdition, PascalScriptsFunctions, OCRScripts,
   formSettings, formSaveAs, formDurationLimits, formAdjustSubtitles, formSetDelay, formSearchAndReplace, formBatchConvert, formSplit, formConvertCase,
     formJoin, formTimeExpanderReducer, formAbout, formOutputSettings, formInfoErrors, formInfoErrorsSettings, formDivideLines, formAutomaticDurations,
-    formSAMILangExtractor, formVariousInfo, formSetPauses, formUnbreakSubtitles, formSmartLineAdjust, formCombineSubtitles, formRoundTimeValues;
+    formSAMILangExtractor, formVariousInfo, formSetPauses, formUnbreakSubtitles, formSmartLineAdjust, formCombineSubtitles, formRoundTimeValues,
+  WAVDisplayerUnit;
 
 {$R *.dfm}
 
@@ -3901,6 +3933,18 @@ begin
   mmoNotes.DoubleBuffered := True;
   sbStatusbar.DoubleBuffered := True;
   //added by adenry: end
+
+  // Waveform inititalization
+  WaveformAdapter := TWaveformAdapter.Create(PanelWAVDisplay, lstSubtitles);
+  WaveformAdapter.Displayer.OnSelectionChange := WaveformSelectionChange;
+  WaveformAdapter.Displayer.OnSelectedRangeChanged := WaveformSelectedRangeChanged;
+
+  WaveformAdapter.Charset := OrgCharset;
+
+  // Menu
+  WaveformAdapter.Displayer.PopupMenu := mnuWaveformPopupMenu;
+  //  dlgLoadWaveform.InitialDir := Ini.ReadString('General', 'Last folder', '');
+  UpdateWaveformMenuEnabled;
 end;
 
 // -----------------------------------------------------------------------------
@@ -4056,7 +4100,7 @@ begin
 
     // Save color of Color tag dialogue
     Ini.WriteInteger('General', 'Tag Color', dlgColor.Color); //added by adenry
-    
+
 
     if mnuTranslatorMode.Checked = False then
     begin
@@ -4211,6 +4255,9 @@ begin
     Ini.UpdateFile; //added by adenry
     Ini.Free;
   end;
+  
+  // Waveform
+  WaveformAdapter.Destroy;
 end;
 
 // -----------------------------------------------------------------------------
@@ -6046,7 +6093,7 @@ begin
   MarkLongLinesInLabel(lblTranslation); //added by adenry
   lstSubtitles.Refresh; //todo: is this really necessary?
   RefreshTimes;
-
+  
   New(UndoAction);
   UndoAction^.UndoActionType := uaInsertLine;
   UndoAction^.UndoActionName := uanInsert; //added by adenry
@@ -7047,6 +7094,8 @@ begin
     if Assigned(frmInfoErrors) then frmInfoErrors.SetCustomInfosCharsets; //added later
     Dashes := SetDashes(OrgCharset); //added by adenry - refresh dashes list (not all charsets support all dashes characters)
     AutoRecheckAllErrors(TextErrors); //added by adenry - dashes may have changed, so dash-related errors may have changed
+
+    WaveformAdapter.Charset := OrgCharset;
   end;
 end;
 
@@ -7073,6 +7122,7 @@ procedure TfrmMain.mnuNewSubtitleClick(Sender: TObject);
 begin
   if CloseSub then
   begin
+    WaveformAdapter.ClearSubtitles;
     SubtitleAPI.CreateNewSubtitle;
     EnableCtrls(True);
     InsertNode;
@@ -13984,6 +14034,10 @@ begin
     or ShouldRefreshTimes2 //the mouse is down
     then
       RefreshTimes;
+
+  WaveformAdapter.SelectedNode := Node;
+
+  UpdateWaveformMenuEnabled;
 end;
 //added by adenry: end
 
@@ -14197,6 +14251,120 @@ begin
   RestoreTopMostWindow(sdSymbolDialogue.Form);
 end;
 //added by adenry: end
+
+
+
+// Waveform listeners
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.WaveformSelectionChange(Sender: TObject);
+var
+  node: PVirtualNode;
+begin
+  node := WaveformAdapter.SelectedNode;
+  if Assigned(node) then begin
+    if lstSubtitles.Selected[node] then Exit;
+
+    lstSubtitles.ClearSelection;
+
+    ShouldRefreshTimes := True;
+    lstSubtitles.Selected[node] := True;
+    ShouldRefreshTimes := False;
+  end else begin
+    ShouldRefreshTimes := True;
+    ShouldRefreshTimes2:= True;
+    lstSubtitles.ClearSelection;
+  end;
+
+  UpdateWaveformMenuEnabled;
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.WaveformSelectedRangeChanged(Sender: TObject; OldStart, OldStop : Integer; NeedSort : Boolean);
+var
+  node: PVirtualNode;
+  newStart, newStop: Integer;
+begin
+  node      := WaveformAdapter.SelectedNode;
+  newStart  := WaveformAdapter.Displayer.SelectedRange.StartTime;
+  newStop   := WaveformAdapter.Displayer.SelectedRange.StopTime;
+
+  // TODO: normalize times (remove or add 1 ms)
+  if (newStart <> oldStart) then ChangeShowTime(node, newStart);
+  if (newStop <> oldStop)   then ChangeHideTime(node, newStop);
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.UpdateWaveformMenuEnabled;
+var
+  loaded: Boolean;
+begin
+  loaded := WaveformAdapter.Displayer.IsPeakDataLoaded;
+
+  mnuWaveformOpen.Enabled   := not loaded;
+  mnuWaveformClose.Enabled  := loaded;
+  //  TODO: fix minor issues with selection changes
+  mnuWaveformInsertSubtitle.Enabled := loaded and (not WaveformAdapter.Displayer.SelectionIsEmpty);
+  mnuWaveformDeleteSubtitle.Enabled := loaded and (WaveformAdapter.Displayer.SelectedRange <> nil);
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuWaveformOpenClick(Sender: TObject);
+begin
+  if (dlgLoadWaveform.Execute) and (dlgLoadWaveform.FileName <> '') then begin
+    WaveformAdapter.LoadWAV(dlgLoadWaveform.FileName);
+    WaveformAdapter.SyncSubtitlesWithTree;
+    UpdateWaveformMenuEnabled;
+  end;
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuWaveformCloseClick(Sender: TObject);
+begin
+  WaveformAdapter.Clear;
+  UpdateWaveformMenuEnabled;
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuWaveformInsertSubtitleClick(Sender: TObject);
+var
+  start, stop: Integer;
+begin
+  start := WaveformAdapter.Displayer.Selection.StartTime;
+  stop  := WaveformAdapter.Displayer.Selection.StopTime;
+
+  InsertNodeInRange(start, stop);
+
+  lstSubtitles.Refresh;
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuWaveformDeleteSubtitleClick(Sender: TObject);
+begin
+  DeleteSelectedNodes;
+  UpdateWaveformMenuEnabled;
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuWaveformInsertSceneChangeClick(Sender: TObject);
+begin
+
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuWaveformDeleteSceneChangeClick(Sender: TObject);
+begin
+
+end;
 
 // -----------------------------------------------------------------------------
 
