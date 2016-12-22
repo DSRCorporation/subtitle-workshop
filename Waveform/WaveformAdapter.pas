@@ -18,29 +18,30 @@ uses
 
 type
 
-  // Adapter for efficient usage TWAVDisplayer bound with TVirtualStringTree
+  // Adapter for simple usage TWAVDisplayer bound with TVirtualStringTree
   TWaveformAdapter = class
   private
     WAVDisplayer        : TWAVDisplayer;
     WAVRenderer         : TDShowRenderer;
     FSourceTree         : TVirtualStringTree;
+    FSceneChangeWrapper : TSceneChangeWrapper;
     FCharset            : Byte;
     
     procedure InitDisplayer(parentPanel: TPanel);
     procedure InitRenderer;
-
     function HasNodeChanged(node: PVirtualNode): Boolean;
+    procedure UpdateSceneChanges;
+
   protected
     procedure OnCustomDrawRange(Sender: TObject; ACanvas: TCanvas; Range: TRange; Rect: TRect);
-
     procedure SelectNode(node: PVirtualNode);
     function GetSelectedNode: PVirtualNode;
-
     procedure SetCharset(charset: Byte);
+    procedure PlaySubtitle(next: Boolean);
   public
     constructor Create(parentPanel: TPanel; sourceTree: TVirtualStringTree);
     destructor Destroy; override;
-
+    
     procedure Clear;
     procedure ClearSubtitles;
     procedure LoadWAV(filename: WideString);
@@ -52,8 +53,15 @@ type
     procedure DeleteSubtitle; overload;
     procedure DeleteSubtitle(node: PVirtualNode); overload;
     procedure ClearSelection;
+    procedure InsertSceneChange;
+    procedure DeleteSceneChangesInSelection;
+    procedure PlayPause;
+    procedure Stop;
+    procedure PlayNextSubtitle;
+    procedure PlayPrevSubtitle;
 
     property Displayer: TWAVDisplayer read WAVDisplayer;
+    property Renderer: TDShowRenderer read WAVRenderer;
     property SelectedNode: PVirtualNode read GetSelectedNode write SelectNode;
     property Charset: Byte read FCharset write SetCharset;
   end;
@@ -108,40 +116,47 @@ constructor TWaveformAdapter.Create(parentPanel: TPanel; sourceTree: TVirtualStr
 begin
   FSourceTree := sourceTree;
   FCharset    := DEFAULT_CHARSET;
-  
+
   InitDisplayer(parentPanel);
 end;
 
 destructor TWaveformAdapter.Destroy;
 begin
   FSourceTree := nil;
-  
+
   FreeAndNil(WAVRenderer);
   FreeAndNil(WAVDisplayer);
-  
+
   inherited;
 end;
 
 procedure TWaveformAdapter.InitDisplayer(parentPanel: TPanel);
 begin
   WAVDisplayer := TWAVDisplayer.Create(nil);
-  
-  WAVDisplayer.Left   := 0;
-  WAVDisplayer.Top    := 0;
-  WAVDisplayer.Width  := parentPanel.Width;
-  WAVDisplayer.Height := parentPanel.Height - 12;
-  WAVDisplayer.Align  := alClient;
-  WAVDisplayer.Parent := parentPanel;
 
   WAVDisplayer.OnCustomDrawRange := Self.OnCustomDrawRange;
 
-//  WAVDisplayer.Enabled := False;
-  WAVDisplayer.SetPageSizeMs(10000);
-  WAVDisplayer.MinimumBlank := 150;
+  with WAVDisplayer do begin
+    Left    := 0;
+    Top     := 0;
+    Width   := parentPanel.Width;
+    Height  := parentPanel.Height - 12;
+    Align   := alClient;
+    Parent  := parentPanel;
 
-  WAVDisplayer.SceneChangeEnabled     := True;
-  WAVDisplayer.SceneChangeStartOffset := 150;
-  WAVDisplayer.SceneChangeStopOffset  := 150;
+  //  Enabled := False;
+    SetPageSizeMs(10000);
+    MinimumBlank    := 150;
+    AutoScrolling   := True;
+    SnappingEnabled := True;
+
+    SceneChangeEnabled      := True;
+    SceneChangeStartOffset  := 150;
+    SceneChangeStopOffset   := 150;
+  end;
+
+  FSceneChangeWrapper := TSceneChangeWrapper.Create;
+  FSceneChangeWrapper.SetOffsets(150, 150, 150);
 end;
 
 procedure TWaveformAdapter.InitRenderer;
@@ -154,19 +169,24 @@ end;
 procedure TWaveformAdapter.Clear;
 begin
   ClearSubtitles;
-//    WAVDisplayer.Enabled := False;
-  WAVDisplayer.Close;
-  WAVDisplayer.Invalidate;
-  WAVDisplayer.VerticalScaling := 100;
+  with WAVDisplayer do begin
+//    Enabled := False;
+    Close;
+    Invalidate;
+    VerticalScaling := 100;
+  end;
 end;
 
 procedure TWaveformAdapter.ClearSubtitles;
 var
   emptyArray: TIntegerDynArray;
 begin
-  WAVDisplayer.ClearRangeList;
-  WAVDisplayer.ClearRangeListVO;
-  WAVDisplayer.SetSceneChangeList(emptyArray);
+  with WAVDisplayer do begin
+    ClearRangeList;
+    ClearRangeListVO;
+    SetSceneChangeList(emptyArray);
+  end;
+  FSceneChangeWrapper.SetSceneChangeList(emptyArray);
 end;
 
 procedure TWaveformAdapter.LoadWAV(filename: WideString);
@@ -256,7 +276,7 @@ begin
 
     if Assigned(range) then begin
       if not HasNodeChanged(node) then Exit;
-      
+
       range.StartTime := subtitle.InitialTime;
       range.StopTime  := subtitle.FinalTime;
       range.Text      := subtitle.Text;
@@ -319,6 +339,89 @@ begin
   FCharset := charset;
 
   WAVDisplayer.UpdateView([uvfRange]);
+end;
+
+procedure TWaveformAdapter.InsertSceneChange;
+var
+  sceneChanges: TIntegerDynArray;
+begin
+  SetLength(sceneChanges, 1);
+  sceneChanges[0] := WAVDisplayer.GetCursorPos;
+
+  FSceneChangeWrapper.Insert(sceneChanges);
+
+  UpdateSceneChanges;
+end;
+
+procedure TWaveformAdapter.DeleteSceneChangesInSelection;
+begin
+  with WAVDisplayer do begin
+    if SelectionIsEmpty then Exit;
+
+    FSceneChangeWrapper.Delete(Selection.StartTime, Selection.StopTime);
+  end;
+  UpdateSceneChanges;
+end;
+
+procedure TWaveformAdapter.UpdateSceneChanges;
+begin
+  WAVDisplayer.SetSceneChangeList(FSceneChangeWrapper.GetSCArray);
+  WAVDisplayer.UpdateView([uvfRange]);
+end;
+
+procedure TWaveformAdapter.PlayPause;
+var
+  range: TSubtitleRange;
+begin
+  with WAVDisplayer do begin
+    if IsPlaying then begin
+      Pause;
+      Exit;
+    end;
+
+    if SelectionIsEmpty then
+      PlayRange(GetCursorPos, Length)
+    else
+      PlayRange(Selection);
+  end;
+end;
+
+procedure TWaveformAdapter.Stop;
+begin
+  WAVDisplayer.Stop;
+end;
+
+procedure TWaveformAdapter.PlayNextSubtitle;
+begin
+  PlaySubtitle(True);
+end;
+
+procedure TWaveformAdapter.PlayPrevSubtitle;
+begin
+  PlaySubtitle(False);
+end;
+
+procedure TWaveformAdapter.PlaySubtitle(next: Boolean);
+var
+  ind: Integer;
+begin
+  with WAVDisplayer do begin
+    if IsPlaying then Stop;
+    if RangeList.Count = 0 then Exit;
+
+    ind := RangeList.IndexOf(SelectedRange);
+
+    if next then begin
+      if (ind < RangeList.Count - 1) then Inc(ind);
+    end else begin
+      if (ind = -1) then ind := RangeList.Count;
+      if (ind > 0) then Dec(ind);
+    end;
+
+    SelectedRange := RangeList[ind];
+  end;
+
+  PlayPause;
 end;
 
 procedure TWaveformAdapter.OnCustomDrawRange(Sender: TObject; ACanvas: TCanvas; Range : TRange; Rect : TRect);

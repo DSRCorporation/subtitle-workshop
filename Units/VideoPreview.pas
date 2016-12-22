@@ -120,7 +120,6 @@ begin
   begin
     if Flag = True then
     begin
-      mnuVideoPreviewMode.Checked := True;
       pnlVideo.Height := Round(pnlParent1.Height * VideoPanelRatio); //modified by adenry //pnlVideo.Height := (pnlParent1.Height div 2) - (spSplitter.Height div 2);
       if (spSplitter.Top < 70) then
         spSplitter.Top := 70;
@@ -130,8 +129,6 @@ begin
       if spSplitter.Visible = False then
         spSplitter.Show;
       lstSubtitles.Height := pnlParent1.Height - spSplitter.Top - spSplitter.Height;
-      //sbSeekBar.Position := 0;
-      sbSeekBar.Show;
       UpdateVideoPos;
       if Player.Initialized then
         tcTimeCounter.Show else
@@ -145,15 +142,12 @@ begin
       subSubtitle.Hide;
       subSubtitle.Text := ''; //added by adenry
       subSubtitle.SubtitleNum := 0; //added by adenry
-      mnuVideoPreviewMode.Checked := False;
       spSplitter.Hide;
       pnlVideo.Hide;
       lstSubtitles.Top := 0;
       lstSubtitles.Height := pnlParent1.Height;
       tcTimeCounter.Hide;
-      sbSeekBar.Hide;
     end;
-    tbVideoPreviewMode.Down := Flag; //added by adenry
   end;
 end;
 

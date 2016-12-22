@@ -75,7 +75,8 @@ uses
   VFW in 'Waveform\VfW.pas',
   MiniScrollBarUnit in 'Waveform\MiniScrollBarUnit.pas',
   SubStructUnit in 'Waveform\SubStructUnit.pas',
-  WaveformAdapter in 'Waveform\WaveformAdapter.pas';
+  WaveformAdapter in 'Waveform\WaveformAdapter.pas',
+  VerticalScalingFormUnit in 'Forms\VerticalScalingFormUnit.pas' {VerticalScalingForm};
 
 {$R *.res}
 
@@ -133,6 +134,7 @@ begin
   Application.Initialize;
   Application.Title := 'Subtitle Workshop';
   Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TVerticalScalingForm, VerticalScalingForm);
   Application.Run;
 
 end.

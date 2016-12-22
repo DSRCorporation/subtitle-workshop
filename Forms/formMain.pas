@@ -18,7 +18,7 @@ uses
     ifpii_controls, ifpii_std, ifpii_classes, ifpii_graphics, ifpii_forms, ifpii_stdctrls, ifpii_extctrls, ifpii_menus, ifpidateutils,
     ifpiir_controls, ifpiir_std, ifpiir_classes, ifpiir_graphics, ifpiir_forms, ifpiir_stdctrls, ifpiir_extctrls, ifpiir_menus, ifpidateutilsr,
   StrMan, FastStrings, WinShell, //DirectShow9, //WinShell added by adenry, DirectShow9 removed by adenry
-  WaveformAdapter, Types, CommonTypes;
+  WaveformAdapter, VerticalScalingFormUnit, Types, CommonTypes;
 
 type
   TfrmMain = class(TForm)
@@ -346,6 +346,7 @@ type
     tbInfoErrorsSettings: TToolButton;
     tbSeparator8: TToolButton;
     tbVideoPreviewMode: TToolButton;
+    tbWaveformPreviewMode: TToolButton;
     mnuTextStyleBars: TMenuItem;
     sbStatusbar: TStatusBar;
     mnuStatusbar: TMenuItem;
@@ -485,22 +486,45 @@ type
     mnuDisplayOriginalPopup: TMenuItem;
     mnuDisplayTranslationPopup: TMenuItem;
     edtPlayerShortcuts: TEdit;
-    
-    // Waveform controls
-    PanelWAVDisplay : TPanel;
-    // TODO: populate popup to main menu
+    // Waveform controls and menus
+    pnlWAVDisplay: TPanel;
+    pnlWaveformVideo: TPanel;
+    dlgLoadWaveform: TOpenDialog;
     // TODO: move captions to lang file
-    dlgLoadWaveform: TOpenDialog;  
+    // Popup menu
     mnuWaveformPopupMenu: TPopupMenu;
     mnuWaveformOpen: TMenuItem;
     mnuWaveformClose: TMenuItem;
+    N63: TMenuItem;
     mnuWaveformInsertSubtitle: TMenuItem;
     mnuWaveformDeleteSubtitle: TMenuItem;
-    N63: TMenuItem;
     N64: TMenuItem;
     mnuWaveformInsertSceneChange: TMenuItem;
     mnuWaveformDeleteSceneChange: TMenuItem;
-
+    N65: TMenuItem;
+    mnuWaveformZoomIn: TMenuItem;
+    mnuWaveformZoomOut: TMenuItem;
+    mnuWaveformZoomSelection: TMenuItem;
+    mnuWaveformZoomAll: TMenuItem;
+    mnuWaveformZoomVertical: TMenuItem;
+    // Main menu
+    mnuMainWaveform: TMenuItem;
+    mnuMainWaveformOpen: TMenuItem;
+    mnuMainWaveformClose: TMenuItem;
+    N69: TMenuItem;
+    mnuMainWaveformPreviewMode: TMenuItem;
+    N66: TMenuItem;
+    mnuMainWaveformInsertSubtitle: TMenuItem;
+    mnuMainWaveformDeleteSubtitle: TMenuItem;
+    N67: TMenuItem;
+    mnuMainWaveformInsertSceneChange: TMenuItem;
+    mnuMainWaveformDeleteSceneChange: TMenuItem;
+    N68: TMenuItem;
+    mnuMainWaveformZoomIn: TMenuItem;
+    mnuMainWaveformZoomOut: TMenuItem;
+    mnuMainWaveformZoomSelection: TMenuItem;
+    mnuMainWaveformZoomAll: TMenuItem;
+    mnuMainWaveformZoomVertical: TMenuItem;
 
     procedure lstSubtitlesInitNode(Sender: TBaseVirtualTree; ParentNode,
       Node: PVirtualNode; var InitialStates: TVirtualNodeInitStates);
@@ -839,6 +863,8 @@ type
       Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure tbVideoPreviewModeMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure tbWaveformPreviewModeMouseUp(Sender: TObject;
+      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure mnuTextStyleBarsClick(Sender: TObject);
     procedure tbBoldItalicUnderlineMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -972,14 +998,38 @@ type
       Node: PVirtualNode; Column: TColumnIndex);
     procedure lstSubtitlesEditCancelled(Sender: TBaseVirtualTree;
       Column: TColumnIndex);
-    //  Waveform popup menu handlers
+    // Waveform handlers
+    procedure UpdateWaveformMenuEnabled;
+    procedure EnableWaveformCtrls(Enabled: Boolean);
+    procedure UpdatePreviewMode(Sender: TObject);
+    function RedirectMousewheelToWaveform(Sender: TObject; Shift: TShiftState; MousePos: TPoint; WheelDelta: Integer): Boolean;
+    function RedirectMousewheelToVolume(Sender: TObject; Shift: TShiftState; MousePos: TPoint; WheelDelta: Integer): Boolean;
+    // Waveform popup menu handlers
     procedure mnuWaveformOpenClick(Sender: TObject);
     procedure mnuWaveformCloseClick(Sender: TObject);
     procedure mnuWaveformInsertSubtitleClick(Sender: TObject);
     procedure mnuWaveformDeleteSubtitleClick(Sender: TObject);
-    procedure UpdateWaveformMenuEnabled;
     procedure mnuWaveformInsertSceneChangeClick(Sender: TObject);
     procedure mnuWaveformDeleteSceneChangeClick(Sender: TObject);
+    procedure mnuWaveformZoomInClick(Sender: TObject);
+    procedure mnuWaveformZoomOutClick(Sender: TObject);
+    procedure mnuWaveformZoomSelectionClick(Sender: TObject);
+    procedure mnuWaveformZoomAllClick(Sender: TObject);
+    procedure mnuWaveformZoomVerticalClick(Sender: TObject);
+    // Waveform main menu handlers
+    procedure mnuMainWaveformOpenClick(Sender: TObject);
+    procedure mnuMainWaveformCloseClick(Sender: TObject);
+    procedure mnuMainWaveformPreviewModeClick(Sender: TObject);
+    procedure mnuMainWaveformInsertSubtitleClick(Sender: TObject);
+    procedure mnuMainWaveformDeleteSubtitleClick(Sender: TObject);
+    procedure mnuMainWaveformInsertSceneChangeClick(Sender: TObject);
+    procedure mnuMainWaveformDeleteSceneChangeClick(Sender: TObject);
+    procedure mnuMainWaveformZoomInClick(Sender: TObject);
+    procedure mnuMainWaveformZoomOutClick(Sender: TObject);
+    procedure mnuMainWaveformZoomSelectionClick(Sender: TObject);
+    procedure mnuMainWaveformZoomAllClick(Sender: TObject);
+    procedure mnuMainWaveformZoomVerticalClick(Sender: TObject);
+
   protected
     procedure CreateParams(var Params: TCreateParams); override;
   private
@@ -998,8 +1048,9 @@ type
     procedure SetTransModified(const Value: Boolean); //by BDZL
     procedure SetOrgModified(const Value: Boolean); //by BDZL
     procedure CMDialogKey(var AMessage: TCMDialogKey); message CM_DIALOGKEY; //added by adenry
-    // Waveform listeners
+    // Waveform handlers
     procedure WaveformSelectionChange(Sender: TObject);
+    procedure WaveformSelectedRangeChange(Sender: TObject);
     procedure WaveformSelectedRangeChanged(Sender: TObject; OldStart, OldStop : Integer; NeedSort : Boolean);
   public
     FormatType     : (ftTime, ftFrames);
@@ -1201,8 +1252,10 @@ type
     OutputSettingsFormats : array of TOutputSettingsFormats; //added by adenry
 
     // Waveform adapter
-    WaveformAdapter : TWaveformAdapter;
-    
+    WaveformAdapter             : TWaveformAdapter;
+    waveformVerticalScalingForm : TVerticalScalingForm;
+    previewSelected             : (psVideo, psWaveform, psNone);
+
     // ----------
     procedure AppException(Sender: TObject; E: Exception); //moved here by adenry
     procedure UpdateRFMenus;
@@ -1963,6 +2016,8 @@ begin
       tbInfoErrors.Hint         := mnuInformationAndErrors.Caption;
       tbVariousInfo.Hint        := mnuVariousInformation.Caption;
       tbVideoPreviewMode.Hint   := mnuVideoPreviewMode.Caption;
+      tbWaveformPreviewMode.Hint:= mnuMainWaveformPreviewMode.Caption;
+         
       //added by adenry: end
 
       // ----------------------- //
@@ -3935,16 +3990,21 @@ begin
   //added by adenry: end
 
   // Waveform inititalization
-  WaveformAdapter := TWaveformAdapter.Create(PanelWAVDisplay, lstSubtitles);
-  WaveformAdapter.Displayer.OnSelectionChange := WaveformSelectionChange;
-  WaveformAdapter.Displayer.OnSelectedRangeChanged := WaveformSelectedRangeChanged;
+  WaveformAdapter := TWaveformAdapter.Create(pnlWAVDisplay, lstSubtitles);
+  WaveformAdapter.Displayer.OnSelectionChange       := WaveformSelectionChange;
+  WaveformAdapter.Displayer.OnSelectedRangeChange   := WaveformSelectedRangeChange;
+  WaveformAdapter.Displayer.OnSelectedRangeChanged  := WaveformSelectedRangeChanged;
 
   WaveformAdapter.Charset := OrgCharset;
 
-  // Menu
+  // Waveform popup menu
   WaveformAdapter.Displayer.PopupMenu := mnuWaveformPopupMenu;
-  //  dlgLoadWaveform.InitialDir := Ini.ReadString('General', 'Last folder', '');
   UpdateWaveformMenuEnabled;
+
+  // Preview mode
+  tbVideoPreviewMode.Down     := True;
+  mnuVideoPreviewMode.Checked := True;
+  UpdatePreviewMode(tbVideoPreviewMode);
 end;
 
 // -----------------------------------------------------------------------------
@@ -4031,7 +4091,20 @@ end;
 
 procedure TfrmMain.mnuVideoPreviewModeClick(Sender: TObject);
 begin
-  SetVideoPreviewMode(not mnuVideoPreviewMode.Checked);
+  mnuVideoPreviewMode.Checked := not mnuVideoPreviewMode.Checked;
+  tbVideoPreviewMode.Down := mnuVideoPreviewMode.Checked;
+
+  UpdatePreviewMode(mnuVideoPreviewMode);
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuMainWaveformPreviewModeClick(Sender: TObject);
+begin
+  mnuMainWaveformPreviewMode.Checked := not mnuMainWaveformPreviewMode.Checked;
+  tbWaveformPreviewMode.Down := mnuMainWaveformPreviewMode.Checked;
+
+  UpdatePreviewMode(mnuMainWaveformPreviewMode);
 end;
 
 // -----------------------------------------------------------------------------
@@ -4682,7 +4755,10 @@ end;
 
 procedure TfrmMain.btnPlayClick(Sender: TObject);
 begin
-  Pause;
+  case previewSelected of
+    psVideo     : Pause;
+    psWaveform  : WaveformAdapter.PlayPause;
+  end;
 end;
 
 // -----------------------------------------------------------------------------
@@ -4696,7 +4772,10 @@ end;
 
 procedure TfrmMain.btnStopClick(Sender: TObject);
 begin
-  Stop;
+  case previewSelected of
+    psVideo     : Stop;
+    psWaveform  : WaveformAdapter.Stop;
+  end;
 end;
 
 // -----------------------------------------------------------------------------
@@ -9315,23 +9394,28 @@ var
   Node     : PVirtualNode;
   CurrTime : Integer;
 begin
-  CurrTime := GetCurrentPos;
-  Node := lstSubtitles.GetFirst;
-  while Assigned(Node) do
-  begin
-    if GetStartTime(Node) > CurrTime then
-    begin
-      if Node <> lstSubtitles.GetFirst then
-        SetVideoPos(GetStartTime(Node.PrevSibling.PrevSibling));
-      exit;
-    end;
-    if Node = lstSubtitles.GetLast then
-    begin
-      if (CurrTime >= GetStartTime(Node)) and (CurrTime <= GetFinalTime(Node)) then
-        SetVideoPos(GetStartTime(Node.PrevSibling)) else
-        SetVideoPos(GetStartTime(Node));        
-    end;
-    Node := Node.NextSibling;
+  case previewSelected of
+    psVideo:    begin
+                  CurrTime := GetCurrentPos;
+                  Node := lstSubtitles.GetFirst;
+                  while Assigned(Node) do
+                  begin
+                    if GetStartTime(Node) > CurrTime then
+                    begin
+                      if Node <> lstSubtitles.GetFirst then
+                        SetVideoPos(GetStartTime(Node.PrevSibling.PrevSibling));
+                      exit;
+                    end;
+                    if Node = lstSubtitles.GetLast then
+                    begin
+                      if (CurrTime >= GetStartTime(Node)) and (CurrTime <= GetFinalTime(Node)) then
+                        SetVideoPos(GetStartTime(Node.PrevSibling)) else
+                        SetVideoPos(GetStartTime(Node));
+                    end;
+                    Node := Node.NextSibling;
+                  end;
+                end;
+    psWaveform: WaveformAdapter.PlayPrevSubtitle;
   end;
 end;
 
@@ -9342,16 +9426,21 @@ var
   Node     : PVirtualNode;
   CurrTime : Integer;
 begin
-  CurrTime := GetCurrentPos;
-  Node := lstSubtitles.GetFirst;
-  while Assigned(Node) do
-  begin
-    if GetStartTime(Node) > CurrTime then
-    begin
-      SetVideoPos(GetStartTime(Node));
-      exit;
-    end;
-    Node := Node.NextSibling;
+  case previewSelected of
+    psVideo:    begin
+                  CurrTime := GetCurrentPos;
+                  Node := lstSubtitles.GetFirst;
+                  while Assigned(Node) do
+                  begin
+                    if GetStartTime(Node) > CurrTime then
+                    begin
+                      SetVideoPos(GetStartTime(Node));
+                      exit;
+                    end;
+                    Node := Node.NextSibling;
+                  end;
+                end;
+    psWaveform: WaveformAdapter.PlayNextSubtitle;
   end;
 end;
 
@@ -10827,6 +10916,11 @@ begin
     if Assigned(Player.BasicAudio) then
       Player.BasicAudio.put_Volume(i);
   end;
+
+
+  if (Assigned(WaveformAdapter) and WaveformAdapter.Displayer.IsPeakDataLoaded) then
+    WaveformAdapter.Renderer.SetVolume(vol);
+    
   if vol > 75 then tmpSWButton := btnMute100 else
   if vol > 50 then tmpSWButton := btnMute075 else
   if vol > 25 then tmpSWButton := btnMute050 else
@@ -12192,9 +12286,57 @@ begin
   mnuInfoErrorsSettingsClick(mnuInfoErrorsSettings);
 end;
 
+procedure TfrmMain.UpdatePreviewMode(Sender: TObject);
+begin
+  if (Sender = tbWaveformPreviewMode) or (Sender = mnuMainWaveformPreviewMode) then begin
+    if tbWaveformPreviewMode.Down then begin
+      tbVideoPreviewMode.Down     := False;
+      mnuVideoPreviewMode.Checked := False;
+
+      previewSelected := psWaveform;
+    end;
+  end
+  else
+  if (Sender = tbVideoPreviewMode) or (Sender = mnuVideoPreviewMode) then begin
+    if tbVideoPreviewMode.Down then begin
+      tbWaveformPreviewMode.Down          := False;
+      mnuMainWaveformPreviewMode.Checked  := False;
+
+      previewSelected := psVideo
+    end;
+  end;
+
+  if (not tbVideoPreviewMode.Down and not tbWaveformPreviewMode.Down) then
+    previewSelected := psNone;
+
+  pnlWAVDisplay.Visible   := previewSelected = psWaveform;
+  pnlVideoDisplay.Visible := previewSelected = psVideo;
+  sbSeekBar.Visible       := previewSelected = psVideo;
+
+  SetVideoPreviewMode(previewSelected <> psNone);
+
+  case previewSelected of
+    psVideo     : EnableVPCtrls(Player.Initialized);
+    psWaveform  : begin
+                    EnableWaveformCtrls(WaveformAdapter.Displayer.IsPeakDataLoaded);
+                    if (WaveformAdapter.Displayer.IsPeakDataLoaded) then
+                      WaveformAdapter.Renderer.SetVolume(sbVolume.Position);
+                  end;
+  end;
+
+  UpdateWaveformMenuEnabled;
+end;
+
 procedure TfrmMain.tbVideoPreviewModeMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-  mnuVideoPreviewModeClick(mnuVideoPreviewMode);
+  mnuVideoPreviewMode.Checked := tbVideoPreviewMode.Down;
+  UpdatePreviewMode(tbVideoPreviewMode);
+end;
+
+procedure TfrmMain.tbWaveformPreviewModeMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  mnuMainWaveformPreviewMode.Checked := tbWaveformPreviewMode.Down;
+  UpdatePreviewMode(tbWaveformPreviewMode);
 end;
 
 procedure TfrmMain.tbSpellCheckMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -13134,36 +13276,26 @@ begin
     else if TempActiveControl = tmePause    then begin tmePauseMouseWheelUp(tmePause, Shift, MousePos, Handled); Handled := True; end
     else if TempActiveControl = sbVolume    then begin VolumeSet(sbVolume.Position + 5); Application.ActivateHint(Mouse.CursorPos); Handled := True; end;
   end else
-  //added later: set volume if mouse is over the video panel
-  if (Mouse.CursorPos.X > pnlVideo.ClientToScreen(Point(0,0)).X) and
-     (Mouse.CursorPos.X < pnlVideo.ClientToScreen(Point(0,0)).X + pnlVideo.Width) and
-     (Mouse.CursorPos.Y > pnlVideo.ClientToScreen(Point(0,0)).Y) and
-     (Mouse.CursorPos.Y < pnlVideo.ClientToScreen(Point(0,0)).Y + pnlVideo.Height) then
-  begin
-    VolumeSet(sbVolume.Position + 5);
-    Handled := True;
+  case previewSelected of
+    psVideo     : Handled := RedirectMousewheelToVolume(Sender, Shift, MousePos, 5);
+    psWaveform  : Handled := RedirectMousewheelToWaveform(Sender, Shift, MousePos, 1)
   end;
+
 end;
 
-procedure TfrmMain.FormMouseWheelDown(Sender: TObject; Shift: TShiftState;
-  MousePos: TPoint; var Handled: Boolean);
+procedure TfrmMain.FormMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
 begin
   if TempActiveControl <> nil then
   begin
-    if TempActiveControl =   tmeHide     then begin tmeHideMouseWheelDown(tmeHide, Shift, MousePos, Handled); Handled := True; end
-    else if TempActiveControl =  tmeShow     then begin tmeShowMouseWheelDown(tmeShow, Shift, MousePos, Handled); Handled := True; end
-    else if TempActiveControl =  tmeDuration then begin tmeDurationMouseWheelDown(tmeDuration, Shift, MousePos, Handled); Handled := True; end
-    else if TempActiveControl =  tmePause    then begin tmePauseMouseWheelDown(tmePause, Shift, MousePos, Handled); Handled := True; end
-    else if TempActiveControl =  sbVolume    then begin VolumeSet(sbVolume.Position - 5); Application.ActivateHint(Mouse.CursorPos); Handled := True; end;
+         if TempActiveControl = tmeHide     then begin tmeHideMouseWheelDown(tmeHide, Shift, MousePos, Handled); Handled := True; end
+    else if TempActiveControl = tmeShow     then begin tmeShowMouseWheelDown(tmeShow, Shift, MousePos, Handled); Handled := True; end
+    else if TempActiveControl = tmeDuration then begin tmeDurationMouseWheelDown(tmeDuration, Shift, MousePos, Handled); Handled := True; end
+    else if TempActiveControl = tmePause    then begin tmePauseMouseWheelDown(tmePause, Shift, MousePos, Handled); Handled := True; end
+    else if TempActiveControl = sbVolume    then begin VolumeSet(sbVolume.Position - 5); Application.ActivateHint(Mouse.CursorPos); Handled := True; end;
   end else
-  //added later: set volume if mouse is over the video panel
-  if (Mouse.CursorPos.X > pnlVideo.ClientToScreen(Point(0,0)).X) and
-     (Mouse.CursorPos.X < pnlVideo.ClientToScreen(Point(0,0)).X + pnlVideo.Width) and
-     (Mouse.CursorPos.Y > pnlVideo.ClientToScreen(Point(0,0)).Y) and
-     (Mouse.CursorPos.Y < pnlVideo.ClientToScreen(Point(0,0)).Y + pnlVideo.Height) then
-  begin
-    VolumeSet(sbVolume.Position - 5);
-    Handled := True;
+  case previewSelected of
+    psVideo     : Handled := RedirectMousewheelToVolume(Sender, Shift, MousePos, -5);
+    psWaveform  : Handled := RedirectMousewheelToWaveform(Sender, Shift, MousePos, -1)
   end;
 end;
 //added by adenry: end
@@ -14278,6 +14410,21 @@ begin
   end;
 
   UpdateWaveformMenuEnabled;
+  
+  with WaveformAdapter.Displayer do begin
+    if not SelectionIsEmpty then
+      UpdatePlayRange(Selection.StartTime, Selection.StopTime);
+  end;
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.WaveformSelectedRangeChange(Sender: TObject);
+begin
+  with WaveformAdapter.Displayer do begin
+    if not SelectionIsEmpty then
+      UpdatePlayRange(Selection.StartTime, Selection.StopTime);
+  end;
 end;
 
 // -----------------------------------------------------------------------------
@@ -14298,18 +14445,72 @@ end;
 
 // -----------------------------------------------------------------------------
 
+function TfrmMain.RedirectMousewheelToWaveform(Sender: TObject; Shift: TShiftState; MousePos: TPoint; WheelDelta: Integer): Boolean;
+begin
+  Result := False;
+  if (MousePos.X > pnlWAVDisplay.ClientToScreen(Point(0,0)).X) and
+     (MousePos.X < pnlWAVDisplay.ClientToScreen(Point(0,0)).X + pnlWAVDisplay.Width) and
+     (MousePos.Y > pnlWAVDisplay.ClientToScreen(Point(0,0)).Y) and
+     (MousePos.Y < pnlWAVDisplay.ClientToScreen(Point(0,0)).Y + pnlWAVDisplay.Height) then
+  begin
+    WaveformAdapter.Displayer.RedirectedMousewheel(Sender, Shift, WheelDelta, MousePos);
+    Result := True;
+  end;
+end;
+
+// -----------------------------------------------------------------------------
+
+function TfrmMain.RedirectMousewheelToVolume(Sender: TObject; Shift: TShiftState; MousePos: TPoint; WheelDelta: Integer): Boolean;
+begin
+  Result := False;
+  if (Mouse.CursorPos.X > pnlVideo.ClientToScreen(Point(0,0)).X) and
+     (Mouse.CursorPos.X < pnlVideo.ClientToScreen(Point(0,0)).X + pnlVideo.Width) and
+     (Mouse.CursorPos.Y > pnlVideo.ClientToScreen(Point(0,0)).Y) and
+     (Mouse.CursorPos.Y < pnlVideo.ClientToScreen(Point(0,0)).Y + pnlVideo.Height) then
+  begin
+    VolumeSet(sbVolume.Position + WheelDelta);
+    Result := True;
+  end;
+end;
+
+// -----------------------------------------------------------------------------
+
 procedure TfrmMain.UpdateWaveformMenuEnabled;
 var
-  loaded: Boolean;
+  loaded, selectionEmpty, active: Boolean;
 begin
-  loaded := WaveformAdapter.Displayer.IsPeakDataLoaded;
+  loaded          := WaveformAdapter.Displayer.IsPeakDataLoaded;
+  selectionEmpty  := WaveformAdapter.Displayer.SelectionIsEmpty;
+  active          := loaded and (previewSelected = psWaveform);
 
-  mnuWaveformOpen.Enabled   := not loaded;
-  mnuWaveformClose.Enabled  := loaded;
-  //  TODO: fix minor issues with selection changes
-  mnuWaveformInsertSubtitle.Enabled := loaded and (not WaveformAdapter.Displayer.SelectionIsEmpty);
-  mnuWaveformDeleteSubtitle.Enabled := loaded and (WaveformAdapter.Displayer.SelectedRange <> nil);
+  // TODO: fix minor issues with selection changes
+
+  mnuWaveformClose.Enabled              := loaded;
+  mnuWaveformInsertSubtitle.Enabled     := active and (not selectionEmpty);
+  mnuWaveformDeleteSubtitle.Enabled     := active and (WaveformAdapter.Displayer.SelectedRange <> nil);
+  mnuWaveformInsertSceneChange.Enabled  := active and selectionEmpty;
+  mnuWaveformDeleteSceneChange.Enabled  := active and not selectionEmpty;
+  mnuWaveformZoomIn.Enabled             := active;
+  mnuWaveformZoomOut.Enabled            := active;
+  mnuWaveformZoomSelection.Enabled      := active and (not selectionEmpty);
+  mnuWaveformZoomAll.Enabled            := active;
+  mnuWaveformZoomVertical.Enabled       := active;
+
+  mnuMainWaveformClose.Enabled              := mnuWaveformClose.Enabled;
+  mnuMainWaveformInsertSubtitle.Enabled     := mnuWaveformInsertSubtitle.Enabled;
+  mnuMainWaveformDeleteSubtitle.Enabled     := mnuWaveformDeleteSubtitle.Enabled;
+  mnuMainWaveformInsertSceneChange.Enabled  := mnuWaveformInsertSceneChange.Enabled;
+  mnuMainWaveformDeleteSceneChange.Enabled  := mnuWaveformDeleteSceneChange.Enabled;
+  mnuMainWaveformZoomIn.Enabled             := mnuWaveformZoomIn.Enabled;
+  mnuMainWaveformZoomOut.Enabled            := mnuWaveformZoomOut.Enabled;
+  mnuMainWaveformZoomSelection.Enabled      := mnuWaveformZoomSelection.Enabled;
+  mnuMainWaveformZoomAll.Enabled            := mnuWaveformZoomAll.Enabled;
+  mnuMainWaveformZoomVertical.Enabled       := mnuWaveformZoomVertical.Enabled;
 end;
+
+// -----------------------------------------------------------------------------
+
+// Popup menu
 
 // -----------------------------------------------------------------------------
 
@@ -14319,6 +14520,7 @@ begin
     WaveformAdapter.LoadWAV(dlgLoadWaveform.FileName);
     WaveformAdapter.SyncSubtitlesWithTree;
     UpdateWaveformMenuEnabled;
+    EnableWaveformCtrls(True);
   end;
 end;
 
@@ -14328,6 +14530,7 @@ procedure TfrmMain.mnuWaveformCloseClick(Sender: TObject);
 begin
   WaveformAdapter.Clear;
   UpdateWaveformMenuEnabled;
+  EnableWaveformCtrls(False);
 end;
 
 // -----------------------------------------------------------------------------
@@ -14356,16 +14559,160 @@ end;
 
 procedure TfrmMain.mnuWaveformInsertSceneChangeClick(Sender: TObject);
 begin
-
+  WaveformAdapter.InsertSceneChange;
 end;
 
 // -----------------------------------------------------------------------------
 
 procedure TfrmMain.mnuWaveformDeleteSceneChangeClick(Sender: TObject);
 begin
-
+  WaveformAdapter.DeleteSceneChangesInSelection;
 end;
 
 // -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuWaveformZoomInClick(Sender: TObject);
+begin
+  WaveformAdapter.Displayer.ZoomIn;
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuWaveformZoomOutClick(Sender: TObject);
+begin
+  WaveformAdapter.Displayer.ZoomOut;
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuWaveformZoomSelectionClick(Sender: TObject);
+begin
+  with WaveformAdapter.Displayer do
+    if not SelectionIsEmpty then ZoomRange(Selection);
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuWaveformZoomAllClick(Sender: TObject);
+begin
+  WaveformAdapter.Displayer.ZoomAll;
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuWaveformZoomVerticalClick(Sender: TObject);
+begin
+  if (waveformVerticalScalingForm = nil) then
+    waveformVerticalScalingForm := TVerticalScalingForm.Create(Self, WaveformAdapter.Displayer);
+  waveformVerticalScalingForm.Visible := not waveformVerticalScalingForm.Visible;
+end;
+
+// -----------------------------------------------------------------------------
+
+// Main menu (same functionality as popup)
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuMainWaveformOpenClick(Sender: TObject);
+begin
+  mnuWaveformOpenClick(Sender);
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuMainWaveformCloseClick(Sender: TObject);
+begin
+  mnuWaveformCloseClick(Sender);
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuMainWaveformInsertSubtitleClick(Sender: TObject);
+begin
+  mnuWaveformInsertSubtitleClick(Sender);
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuMainWaveformDeleteSubtitleClick(Sender: TObject);
+begin
+  mnuWaveformDeleteSubtitleClick(Sender);
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuMainWaveformInsertSceneChangeClick(Sender: TObject);
+begin
+  mnuWaveformInsertSceneChangeClick(Sender);
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuMainWaveformDeleteSceneChangeClick(Sender: TObject);
+begin
+  mnuWaveformDeleteSceneChangeClick(Sender);
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuMainWaveformZoomInClick(Sender: TObject);
+begin
+  mnuWaveformZoomInClick(Sender);
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuMainWaveformZoomOutClick(Sender: TObject);
+begin
+  mnuWaveformZoomOutClick(Sender);
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuMainWaveformZoomSelectionClick(Sender: TObject);
+begin
+  mnuWaveformZoomSelectionClick(Sender);
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuMainWaveformZoomAllClick(Sender: TObject);
+begin
+  mnuWaveformZoomAllClick(Sender);
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuMainWaveformZoomVerticalClick(Sender: TObject);
+begin
+  mnuWaveformZoomVerticalClick(Sender);
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.EnableWaveformCtrls(Enabled: Boolean);
+begin
+  sbSeekBar.Enabled            := False;
+  btnScrollList.Enabled        := False;
+  btnRew.Enabled               := False;
+  btnForward.Enabled           := False;
+  btnAlterPlaybackRate.Enabled := False;
+  btnMoveSubtitle.Enabled      := False;
+  btnSetShowTime.Enabled       := False;
+  btnSetHideTime.Enabled       := False;
+  btnStartSubtitle.Enabled     := False;
+  btnEndSubtitle.Enabled       := False;
+  btnSyncPoint1.Enabled        := False;
+  btnSyncPoint2.Enabled        := False;
+  btnAddSyncPoint.Enabled      := False;
+
+  btnPlay.Enabled              := Enabled;
+  btnPause.Enabled             := Enabled;
+  btnStop.Enabled              := Enabled;
+  btnPrevSub.Enabled           := Enabled;
+  btnNextSub.Enabled           := Enabled;
+  sbVolume.Enabled             := Enabled;
+  btnMute.Enabled              := Enabled;
+end;
 
 end.
