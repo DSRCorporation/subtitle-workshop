@@ -2239,15 +2239,17 @@ object frmSettings: TfrmSettings
         EditLabel.Width = 94
         EditLabel.Height = 13
         EditLabel.Caption = 'Safety zone offset:'
-        ReadOnly = True
         TabOrder = 1
+        OnKeyPress = lbledtSafetyZoneOffsetKeyPress
       end
       object udSafetyZoneOffset: TUpDown
         Left = 41
         Top = 54
-        Width = 15
+        Width = 16
         Height = 21
-        Max = 20
+        Associate = lbledtSafetyZoneOffset
+        Max = 1000
+        Increment = 10
         TabOrder = 2
       end
       object chkShowSceneChange: TCheckBox

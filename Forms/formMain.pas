@@ -14662,11 +14662,24 @@ end;
 // -----------------------------------------------------------------------------
 
 procedure TfrmMain.mnuWaveformInsertSubtitleClick(Sender: TObject);
+var
+  UndoAction: PUndoAction;
 begin
   with WaveformAdapter.Displayer do begin
     if SelectionIsEmpty then Exit;
 
     InsertNodeInRange(Selection.StartTime, Selection.StopTime);
+
+    New(UndoAction);
+    UndoAction^.UndoActionType := uaInsertLine;
+    UndoAction^.UndoActionName := uanInsert; //added by adenry
+    UndoAction^.LineNumber     := lstSubtitles.FocusedNode.Index;
+    UndoAction^.Node           := lstSubtitles.FocusedNode;
+    UndoAction^.BindToNext     := False;
+    UndoAction^.Buffer         := nil;
+    UndoAction^.BufferSize     := 0;
+    AddUndo(UndoAction);
+
     lstSubtitles.Refresh;
 
     UpdateWaveformEnabled;

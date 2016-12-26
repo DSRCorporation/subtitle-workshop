@@ -318,6 +318,8 @@ type
       Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure subSampleMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure lbledtSafetyZoneOffsetKeyPress(Sender: TObject;
+      var Key: Char);
   private
     procedure SetLanguage;
     procedure UpdateSubSamplePos;
@@ -1180,7 +1182,7 @@ begin
     chkMouseAntiOverlapping.Checked := Ini.ReadBool('Waveform', 'MouseAntiOverlapping', False);
     chkShowSubtitleText.Checked     := Ini.ReadBool('Waveform', 'ShowSubtitleText', True);
     chkShowSceneChange.Checked      := Ini.ReadBool('Waveform', 'ShowSceneChange', True);
-    lbledtSafetyZoneOffset.Text     := Ini.ReadString('Waveform', 'SafetyZoneOffset', '150');
+    udSafetyZoneOffset.Position     := Ini.ReadInteger('Waveform', 'SafetyZoneOffset', 150);
 
 
   if Assigned(Items) then FreeAndNil(Items);    // added by Bdzl
@@ -1742,12 +1744,12 @@ begin
     Ini.WriteBool('Waveform', 'MouseAntiOverlapping', chkMouseAntiOverlapping.Checked);
     Ini.WriteBool('Waveform', 'ShowSubtitleText', chkShowSubtitleText.Checked);
     Ini.WriteBool('Waveform', 'ShowSceneChange', chkShowSceneChange.Checked);
-    Ini.WriteString('Waveform', 'SafetyZoneOffset', lbledtSafetyZoneOffset.Text);
+    Ini.WriteInteger('Waveform', 'SafetyZoneOffset', udSafetyZoneOffset.Position);
 
     with frmMain.WaveformAdapter do begin
       Displayer.EnableMouseAntiOverlapping  := chkMouseAntiOverlapping.Checked;
       Displayer.SceneChangeEnabled          := chkShowSceneChange.Checked;
-      SafetyOffset      := StrToInt(lbledtSafetyZoneOffset.Text);
+      SafetyOffset      := udSafetyZoneOffset.Position;
       ShowSubtitleText  := chkShowSubtitleText.Checked;
 
       Displayer.UpdateView([uvfRange]);
@@ -2096,5 +2098,13 @@ end;
 //added by adenry: end
 
 // -----------------------------------------------------------------------------
+
+procedure TfrmSettings.lbledtSafetyZoneOffsetKeyPress(Sender: TObject; var Key: Char);
+begin
+  if not (Key in [#8, '0'..'9']) then begin
+    // Discard the key
+    Key := #0;
+  end;
+end;
 
 end.
