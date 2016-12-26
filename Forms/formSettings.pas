@@ -12,7 +12,7 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, ExtCtrls, StdCtrls, ComCtrls, CheckLst, Registry, IniFiles, Mask, Math,
   VirtualTrees, MiSubtitulo, {NFormSizing,}
   FastStrings, WinShell, //WinShell added by adenry
-  CommonTypes;
+  CommonTypes, WAVDisplayerUnit;
 
 type
   TfrmSettings = class(TForm)
@@ -263,6 +263,12 @@ type
     chkTagsHighlight: TCheckBox;
     pnlTagsHighlightColor: TPanel;
     rdoAutoDeleteTags: TRadioButton;
+    pgeWaveform: TTabSheet;
+    chkMouseAntiOverlapping: TCheckBox;
+    chkShowSubtitleText: TCheckBox;
+    lbledtSafetyZoneOffset: TLabeledEdit;
+    udSafetyZoneOffset: TUpDown;
+    chkShowSceneChange: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure tvSettingsClick(Sender: TObject);
     procedure tvSettingsKeyUp(Sender: TObject; var Key: Word;
@@ -391,6 +397,9 @@ begin
       tvSettings.Items.AddChild(tvSettings.Items[tvSettings.Items.Count-3], ReadString('Settings Form','145', 'Marking'));
       tvSettings.Items[tvSettings.Items.Count-1].ImageIndex := 12;
       tvSettings.Items[tvSettings.Items.Count-4].MakeVisible;
+      tvSettings.Items.Add(nil, 'Waveform');
+      tvSettings.Items[tvSettings.Items.Count-1].ImageIndex := 13;
+      tvSettings.Items[tvSettings.Items.Count-1].MakeVisible;
       //added by adenry: end
 
       tvSettings.Items[0].Selected := True;
@@ -1165,6 +1174,15 @@ begin
     //added by adenry: end
 
 
+    // --------------------------------- //
+    //            Waveform               //
+    // --------------------------------- //
+    chkMouseAntiOverlapping.Checked := Ini.ReadBool('Waveform', 'MouseAntiOverlapping', False);
+    chkShowSubtitleText.Checked     := Ini.ReadBool('Waveform', 'ShowSubtitleText', True);
+    chkShowSceneChange.Checked      := Ini.ReadBool('Waveform', 'ShowSceneChange', True);
+    lbledtSafetyZoneOffset.Text     := Ini.ReadString('Waveform', 'SafetyZoneOffset', '150');
+
+
   if Assigned(Items) then FreeAndNil(Items);    // added by Bdzl
 
 
@@ -1717,6 +1735,23 @@ begin
     frmMain.MarkingInVideoPreview       := chkMarkingInVideoPreview.Checked;
     frmMain.MarkingInVideoPreviewColor  := pnlMarkingColorVideoPreview.Color;
     //added by adenry: end
+
+    // --------------------------------- //
+    //              Waveform             //
+    // --------------------------------- //
+    Ini.WriteBool('Waveform', 'MouseAntiOverlapping', chkMouseAntiOverlapping.Checked);
+    Ini.WriteBool('Waveform', 'ShowSubtitleText', chkShowSubtitleText.Checked);
+    Ini.WriteBool('Waveform', 'ShowSceneChange', chkShowSceneChange.Checked);
+    Ini.WriteString('Waveform', 'SafetyZoneOffset', lbledtSafetyZoneOffset.Text);
+
+    with frmMain.WaveformAdapter do begin
+      Displayer.EnableMouseAntiOverlapping  := chkMouseAntiOverlapping.Checked;
+      Displayer.SceneChangeEnabled          := chkShowSceneChange.Checked;
+      SafetyOffset      := StrToInt(lbledtSafetyZoneOffset.Text);
+      ShowSubtitleText  := chkShowSubtitleText.Checked;
+
+      Displayer.UpdateView([uvfRange]);
+    end;
 
     // --------------------------------- //
 

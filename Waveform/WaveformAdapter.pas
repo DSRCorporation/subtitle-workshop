@@ -26,7 +26,9 @@ type
     FSourceTree         : TVirtualStringTree;
     FSceneChangeWrapper : TSceneChangeWrapper;
     FCharset            : Byte;
-    
+    FShowSubtitleText   : Boolean;
+    FSafetyOffset       : Integer;
+
     procedure InitDisplayer(parentPanel: TPanel);
     procedure InitRenderer;
     function HasNodeChanged(node: PVirtualNode): Boolean;
@@ -37,6 +39,7 @@ type
     procedure SelectNode(node: PVirtualNode);
     function GetSelectedNode: PVirtualNode;
     procedure SetCharset(charset: Byte);
+    procedure SetSafetyOffset(offset: Integer);
     procedure PlaySubtitle(next: Boolean);
   public
     constructor Create(parentPanel: TPanel; sourceTree: TVirtualStringTree);
@@ -64,6 +67,8 @@ type
     property Renderer: TDShowRenderer read WAVRenderer;
     property SelectedNode: PVirtualNode read GetSelectedNode write SelectNode;
     property Charset: Byte read FCharset write SetCharset;
+    property ShowSubtitleText: Boolean read FShowSubtitleText write FShowSubtitleText;
+    property SafetyOffset: Integer read FSafetyOffset write SetSafetyOffset;
   end;
 
 //------------------------------------------------------------------------------
@@ -144,19 +149,12 @@ begin
     Align   := alClient;
     Parent  := parentPanel;
 
-  //  Enabled := False;
     SetPageSizeMs(10000);
-    MinimumBlank    := 150;
     AutoScrolling   := True;
     SnappingEnabled := True;
-
-    SceneChangeEnabled      := True;
-    SceneChangeStartOffset  := 150;
-    SceneChangeStopOffset   := 150;
   end;
 
   FSceneChangeWrapper := TSceneChangeWrapper.Create;
-  FSceneChangeWrapper.SetOffsets(150, 150, 150);
 end;
 
 procedure TWaveformAdapter.InitRenderer;
@@ -341,6 +339,18 @@ begin
   WAVDisplayer.UpdateView([uvfRange]);
 end;
 
+procedure TWaveformAdapter.SetSafetyOffset(offset: Integer);
+begin
+  with WAVDisplayer do begin
+    MinimumBlank            := offset;
+    SceneChangeStartOffset  := offset;
+    SceneChangeStopOffset   := offset;
+    SceneChangeFilterOffset := offset;
+  end;
+
+  FSceneChangeWrapper.SetOffsets(offset, offset, offset);
+end;
+
 procedure TWaveformAdapter.InsertSceneChange;
 var
   sceneChanges: TIntegerDynArray;
@@ -374,6 +384,8 @@ var
   range: TSubtitleRange;
 begin
   with WAVDisplayer do begin
+    AutoScrolling := True;
+    
     if IsPlaying then begin
       Pause;
       Exit;
@@ -406,6 +418,8 @@ var
   ind: Integer;
 begin
   with WAVDisplayer do begin
+    AutoScrolling := True;
+    
     if IsPlaying then Stop;
     if RangeList.Count = 0 then Exit;
 
@@ -430,9 +444,7 @@ const MINIMAL_SPACE : Integer = 25;
 var WAVZoneHeight : Integer;
     AlignBottom : Boolean;
 begin
-//  TODO: preferences support
-//  if (not ConfigObject.ShowTextInWAVDisplay) then
-//    Exit;
+  if (not FShowSubtitleText) then Exit;
 
   InflateRect(Rect, -TEXT_MARGINS, -TEXT_MARGINS);
   if (Rect.Right - Rect.Left) > MINIMAL_SPACE then begin
