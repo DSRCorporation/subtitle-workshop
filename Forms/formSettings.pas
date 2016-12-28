@@ -399,7 +399,7 @@ begin
       tvSettings.Items.AddChild(tvSettings.Items[tvSettings.Items.Count-3], ReadString('Settings Form','145', 'Marking'));
       tvSettings.Items[tvSettings.Items.Count-1].ImageIndex := 12;
       tvSettings.Items[tvSettings.Items.Count-4].MakeVisible;
-      tvSettings.Items.Add(nil, 'Waveform');
+      tvSettings.Items.Add(nil, ReadString('Settings Form', '149', 'Waveform'));
       tvSettings.Items[tvSettings.Items.Count-1].ImageIndex := 13;
       tvSettings.Items[tvSettings.Items.Count-1].MakeVisible;
       //added by adenry: end
@@ -659,6 +659,14 @@ begin
 
       btnOk.Caption     := BTN_OK;
       btnCancel.Caption := BTN_CANCEL;
+
+      // ------------------ //
+      //      Waveform      //
+      // ------------------ //
+      chkMouseAntiOverlapping.Caption           := ReadString('Settings Form', '150', 'Enable mouse anti-overlapping');
+      lbledtSafetyZoneOffset.EditLabel.Caption  := ReadString('Settings Form', '151', 'Safety zone offset:');
+      chkShowSubtitleText.Caption               := ReadString('Settings Form', '151', 'Show subtitle text');
+      chkShowSceneChange.Caption                := ReadString('Settings Form', '152', 'Show scene change');
 
       // ------------------ //
       //      Set font      //

@@ -574,7 +574,7 @@ object frmSettings: TfrmSettings
         Width = 145
         Height = 21
         Style = csDropDownList
-        ItemHeight = 13
+        ItemHeight = 0
         TabOrder = 0
       end
       object gbCharsets: TGroupBox
@@ -603,7 +603,7 @@ object frmSettings: TfrmSettings
           Width = 145
           Height = 21
           Style = csDropDownList
-          ItemHeight = 13
+          ItemHeight = 0
           TabOrder = 0
         end
         object cmbOrgCharset: TComboBox
@@ -612,7 +612,7 @@ object frmSettings: TfrmSettings
           Width = 145
           Height = 21
           Style = csDropDownList
-          ItemHeight = 13
+          ItemHeight = 0
           TabOrder = 1
         end
         object chkShowInMainForm: TCheckBox
@@ -649,7 +649,7 @@ object frmSettings: TfrmSettings
         Width = 241
         Height = 21
         Style = csDropDownList
-        ItemHeight = 13
+        ItemHeight = 0
         TabOrder = 0
       end
       object chkLstFormatsToShow: TCheckListBox
@@ -1484,7 +1484,7 @@ object frmSettings: TfrmSettings
         Height = 21
         Style = csDropDownList
         Enabled = False
-        ItemHeight = 13
+        ItemHeight = 0
         Sorted = True
         TabOrder = 1
       end
@@ -1569,7 +1569,7 @@ object frmSettings: TfrmSettings
         Width = 169
         Height = 21
         Style = csDropDownList
-        ItemHeight = 13
+        ItemHeight = 0
         TabOrder = 3
       end
       object chkSmartResize: TCheckBox
@@ -1808,7 +1808,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 13
+          ItemHeight = 0
           TabOrder = 0
         end
         object cmbShowColAlign: TComboBox
@@ -1817,7 +1817,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 13
+          ItemHeight = 0
           TabOrder = 1
         end
         object cmbHideColAlign: TComboBox
@@ -1826,7 +1826,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 13
+          ItemHeight = 0
           TabOrder = 2
         end
         object cmbDurColAlign: TComboBox
@@ -1835,7 +1835,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 13
+          ItemHeight = 0
           TabOrder = 3
         end
         object cmbTransColAlign: TComboBox
@@ -1844,7 +1844,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 13
+          ItemHeight = 0
           TabOrder = 4
         end
         object cmbTextColAlign: TComboBox
@@ -1853,7 +1853,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 13
+          ItemHeight = 0
           TabOrder = 5
         end
         object cmbDurColStyle: TComboBox
@@ -1862,7 +1862,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 13
+          ItemHeight = 0
           TabOrder = 6
         end
         object cmbHideColStyle: TComboBox
@@ -1871,7 +1871,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 13
+          ItemHeight = 0
           TabOrder = 7
         end
         object cmbShowColStyle: TComboBox
@@ -1880,7 +1880,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 13
+          ItemHeight = 0
           TabOrder = 8
         end
         object cmbNumColStyle: TComboBox
@@ -1889,7 +1889,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 13
+          ItemHeight = 0
           TabOrder = 9
         end
         object cmbPauseColAlign: TComboBox
@@ -1898,7 +1898,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 13
+          ItemHeight = 0
           TabOrder = 10
         end
         object cmbPauseColStyle: TComboBox
@@ -1907,7 +1907,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 13
+          ItemHeight = 0
           TabOrder = 11
         end
       end
@@ -2240,6 +2240,7 @@ object frmSettings: TfrmSettings
         EditLabel.Height = 13
         EditLabel.Caption = 'Safety zone offset:'
         TabOrder = 1
+        Text = '0'
         OnKeyPress = lbledtSafetyZoneOffsetKeyPress
       end
       object udSafetyZoneOffset: TUpDown

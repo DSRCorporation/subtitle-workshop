@@ -316,7 +316,7 @@ begin
       Node := lstSubtitles.GetNextSibling(Node);
     end;
 
-    lstSubtitles.FocusedNode := lstSubtitles.GetLast();
+    lstSubtitles.FocusedNode := lstSubtitles.GetLast;
     InsertNode(True, InitialTime, FinalTime);
   end;
 end;

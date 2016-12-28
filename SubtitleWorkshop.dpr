@@ -76,7 +76,7 @@ uses
   MiniScrollBarUnit in 'Waveform\MiniScrollBarUnit.pas',
   SubStructUnit in 'Waveform\SubStructUnit.pas',
   WaveformAdapter in 'Waveform\WaveformAdapter.pas',
-  VerticalScalingFormUnit in 'Forms\VerticalScalingFormUnit.pas' {VerticalScalingForm};
+  formVerticalScaling in 'Forms\formVerticalScaling.pas' {VerticalScalingForm};
 
 {$R *.res}
 

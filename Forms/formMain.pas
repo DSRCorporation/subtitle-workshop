@@ -18,7 +18,7 @@ uses
     ifpii_controls, ifpii_std, ifpii_classes, ifpii_graphics, ifpii_forms, ifpii_stdctrls, ifpii_extctrls, ifpii_menus, ifpidateutils,
     ifpiir_controls, ifpiir_std, ifpiir_classes, ifpiir_graphics, ifpiir_forms, ifpiir_stdctrls, ifpiir_extctrls, ifpiir_menus, ifpidateutilsr,
   StrMan, FastStrings, WinShell, //DirectShow9, //WinShell added by adenry, DirectShow9 removed by adenry
-  WaveformAdapter, VerticalScalingFormUnit, Types, CommonTypes;
+  WaveformAdapter, formVerticalScaling, Types, CommonTypes;
 
 type
   TfrmMain = class(TForm)
@@ -1036,16 +1036,15 @@ type
     procedure mnuWaveformPrevSubtitleClick(Sender: TObject);
     procedure mnuWaveformNextSubtitleClick(Sender: TObject);
     procedure mnuMainWaveformPreviewModeClick(Sender: TObject);
-
+    // Waveform updaters
+    procedure UpdateWaveformEnabled;
+    procedure UpdateWaveformPlayPauseVisible;
+    procedure UpdateWaveformVolume;
   protected
     procedure CreateParams(var Params: TCreateParams); override;
 	  // Preview mode handling
     procedure SwitchPreviewMode(Sender: TObject);
     procedure UpdatePlaybackCntrlsVisible;
-    // Waveform updaters
-    procedure UpdateWaveformEnabled;
-    procedure UpdateWaveformPlayPauseVisible;
-    procedure UpdateWaveformVolume;
   private
     procedure WMCopyData(var Msg: TWMCOPYDATA); message WM_COPYDATA;
     procedure GetLangs;
@@ -1670,6 +1669,11 @@ begin
       lblInputFPS.Caption := ReadString('Main Form', '04', 'Input FPS:');
       lblFPS.Caption      := ReadString('Main Form', '05', 'FPS:');
       lblWorkWith.Caption := ReadString('Main Form', '06', 'Work with:');
+      
+      rdoDuration.Font.Charset  := frmMain.Font.Charset;
+      rdoFinalTime.Font.Charset := frmMain.Font.Charset;
+      rdoBoth.Font.Charset      := frmMain.Font.Charset;
+      
       tmp                 := ReadString('Main Form', '07', 'Duration|Hide time|Both');
       rdoDuration.Caption   := Copy(tmp, 1, Pos('|', tmp) - 1);
       rdoFinalTime.Caption  := Copy(tmp, Pos('|', tmp) + 1, SmartPos('|', tmp, True, Pos('|', tmp) + 1) - (Pos('|', tmp) + 1));
@@ -1755,6 +1759,7 @@ begin
       captions[5] := ReadString('Main menu header', '06', 'Settings'); //mnuSettings.Caption replaced with captions[5] by adenry
       captions[6] := ReadString('Main menu header', '07', 'Help'); //mnuHelp.Caption replaced with captions[6] by adenry
       captions[7] := ReadString('Main menu header', '08', 'View'); //added by adenry
+      captions[8] := ReadString('Main menu header', '09', 'Waveform');
 
       // --------- //
       // File menu //
@@ -1991,6 +1996,37 @@ begin
       mnuDisplayTranslation.Caption := ReadString('Main menu/Movie/Display', '03', 'Translation');
 
       // ------------- //
+      // Waveform menu //
+      // ------------- //
+      mnuMainWaveform.Caption := captions[8];
+      mnuMainWaveformOpen.Caption               := ReadString('Main menu/Waveform', '01', 'Open...');
+      mnuMainWaveformClose.Caption              := ReadString('Main menu/Waveform', '02', 'Close');
+      mnuMainWaveformPreviewMode.Caption        := ReadString('Main menu/Waveform', '03', 'Waveform preview mode');
+      mnuMainWaveformInsertSubtitle.Caption     := ReadString('Main menu/Waveform', '04', 'Insert subtitle');
+      mnuMainWaveformDeleteSubtitle.Caption     := ReadString('Main menu/Waveform', '05', 'Delete subtitle');
+      mnuMainWaveformInsertSceneChange.Caption  := ReadString('Main menu/Waveform', '06', 'Insert scene change');
+      mnuMainWaveformDeleteSceneChange.Caption  := ReadString('Main menu/Waveform', '07', 'Delete scene change');
+      mnuMainWaveformZoom.Caption               := ReadString('Main menu/Waveform', '08', 'Zoom');
+      mnuMainWaveformPlayback.Caption           := ReadString('Main menu/Waveform', '09', 'Playback');
+
+      // ------------- //
+      // Waveform/Zoom //
+      // ------------- //
+      mnuMainWaveformZoomIn.Caption         := ReadString('Main menu/Waveform/Zoom', '01', 'Zoom in');
+      mnuMainWaveformZoomOut.Caption        := ReadString('Main menu/Waveform/Zoom', '02', 'Zoom out');
+      mnuMainWaveformZoomSelection.Caption  := ReadString('Main menu/Waveform/Zoom', '03', 'Zoom selection');
+      mnuMainWaveformZoomAll.Caption        := ReadString('Main menu/Waveform/Zoom', '04', 'Zoom all');
+      mnuMainWaveformZoomVertical.Caption   := ReadString('Main menu/Waveform/Zoom', '05', 'Zoom vertical');
+
+      // ----------------- //
+      // Waveform/Playback //
+      // ----------------- //
+      mnuMainWaveformPlayPause.Caption    := ReadString('Main menu/Waveform/Playback', '01', 'Play/Pause');
+      mnuMainWaveformStop.Caption         := ReadString('Main menu/Waveform/Playback', '02', 'Stop');
+      mnuMainWaveformPrevSubtitle.Caption := ReadString('Main menu/Waveform/Playback', '03', 'Previous subtitle');
+      mnuMainWaveformNextSubtitle.Caption := ReadString('Main menu/Waveform/Playback', '04', 'Next subtitle');
+
+      // ------------- //
       // Settings menu //
       // ------------- //
       mnuSubSettings.Caption          := mnuInfoErrorsSettings.Caption;
@@ -2032,7 +2068,8 @@ begin
       tbVariousInfo.Hint        := mnuVariousInformation.Caption;
       tbVideoPreviewMode.Hint   := mnuVideoPreviewMode.Caption;
       tbWaveformPreviewMode.Hint:= mnuMainWaveformPreviewMode.Caption;
-         
+
+
       //added by adenry: end
 
       // ----------------------- //
@@ -2066,6 +2103,27 @@ begin
       mnuRemoveColorTagsPopup2.Caption := mnuRemoveColorTagsPopup.Caption;
       mnuRemoveAllTagsPopup2.Caption   := mnuRemoveAllTagsPopup.Caption;
       //added by adenry: end
+
+      // ------------------- //
+      // Waveform popup menu //
+      // ------------------- //
+      mnuWaveformOpen.Caption               := mnuMainWaveformOpen.Caption;
+      mnuWaveformClose.Caption              := mnuMainWaveformClose.Caption;
+      mnuWaveformInsertSubtitle.Caption     := mnuMainWaveformInsertSubtitle.Caption;
+      mnuWaveformDeleteSubtitle.Caption     := mnuMainWaveformDeleteSubtitle.Caption;
+      mnuWaveformInsertSceneChange.Caption  := mnuMainWaveformInsertSceneChange.Caption;
+      mnuWaveformDeleteSceneChange.Caption  := mnuMainWaveformDeleteSceneChange.Caption;
+      mnuWaveformZoom.Caption               := mnuMainWaveformZoom.Caption;
+      mnuWaveformPlayback.Caption           := mnuMainWaveformPlayback.Caption;
+      mnuWaveformZoomIn.Caption             := mnuMainWaveformZoomIn.Caption;
+      mnuWaveformZoomOut.Caption            := mnuMainWaveformZoomOut.Caption;
+      mnuWaveformZoomSelection.Caption      := mnuMainWaveformZoomSelection.Caption;
+      mnuWaveformZoomAll.Caption            := mnuMainWaveformZoomAll.Caption;
+      mnuWaveformZoomVertical.Caption       := mnuMainWaveformZoomVertical.Caption;
+      mnuWaveformPlayPause.Caption          := mnuMainWaveformPlayPause.Caption;
+      mnuWaveformStop.Caption               := mnuMainWaveformStop.Caption;
+      mnuWaveformPrevSubtitle.Caption       := mnuMainWaveformPrevSubtitle.Caption;
+      mnuWaveformNextSubtitle.Caption       := mnuMainWaveformNextSubtitle.Caption;
 
       //added by adenry: begin
       // --------------------- //
@@ -2115,6 +2173,12 @@ begin
       btnSyncPoint1.Hint         := Format(ReadString('Video preview hints', '14', 'Mark as first sync point (%s)'), [ShortCutToText(mnuFirstSyncPoint.ShortCut)]);
       btnSyncPoint2.Hint         := Format(ReadString('Video preview hints', '15', 'Mark as last sync point (%s)'), [ShortCutToText(mnuLastSyncPoint.ShortCut)]);
       btnAddSyncPoint.Hint       := Format(ReadString('Video preview hints', '16', 'Add subtitle/video synchronization point (%s)'), [ShortCutToText(mnuAddSyncPoint.ShortCut)]);
+      btnZoomIn.Hint             := mnuMainWaveformZoomIn.Caption;
+      btnZoomOut.Hint            := mnuMainWaveformZoomOut.Caption;
+      btnZoomSelection.Hint      := mnuMainWaveformZoomSelection.Caption;
+      btnZoomAll.Hint            := mnuMainWaveformZoomAll.Caption;
+      btnZoomVertical.Hint       := mnuMainWaveformZoomVertical.Caption;
+      
       //added by adenry:begin
       VolumeHint                 := ReadString('Video preview hints', '17', 'Volume: %d%%');
       sbVolume.Hint              := Format(VolumeHint, [sbVolume.Position]);
@@ -7241,6 +7305,8 @@ begin
     MarkingModified := False; //added by adenry
     OldInputFPS := GetInputFPS; //added by adenry
     OldFPS      := GetFPS; //added by adenry
+
+    UpdateWaveformEnabled;
   end;
 end;
 
@@ -11698,10 +11764,12 @@ begin
     end;
   end else
   //added later: end
-  if ssShift in Shift then
-    if WheelDelta > 0 then
-      tmeDurationMouseWheelUp(tmeDuration, Shift, MousePos, Handled) else
-      tmeDurationMouseWheelDown(tmeDuration, Shift, MousePos, Handled);
+  if lstSubtitles.SelectedCount <> 0 then begin
+    if ssShift in Shift then
+      if WheelDelta > 0 then
+        tmeDurationMouseWheelUp(tmeDuration, Shift, MousePos, Handled) else
+        tmeDurationMouseWheelDown(tmeDuration, Shift, MousePos, Handled);
+  end;
 end;
 //added by adenry: end
 
@@ -14467,7 +14535,6 @@ begin
 
   UpdateWaveformEnabled;
 
-  // TODO: move to adapter
   with WaveformAdapter.Displayer do begin
     if not SelectionIsEmpty then
       UpdatePlayRange(Selection.StartTime, Selection.StopTime);
@@ -14478,7 +14545,6 @@ end;
 
 procedure TfrmMain.WaveformSelectedRangeChange(Sender: TObject);
 begin
-  // TODO: move to adapter
   with WaveformAdapter.Displayer do begin
     if not SelectionIsEmpty then
       UpdatePlayRange(Selection.StartTime, Selection.StopTime);
@@ -14496,7 +14562,9 @@ begin
   newStart  := WaveformAdapter.Displayer.SelectedRange.StartTime;
   newStop   := WaveformAdapter.Displayer.SelectedRange.StopTime;
 
-  // TODO: normalize times (remove or add 1 ms)
+  newStart  := 10 * Round(newStart / 10);
+  newStop   := 10 * Round(newStop  / 10);
+  
   if (newStart <> oldStart) then ChangeShowTime(node, newStart);
   if (newStop <> oldStop)   then ChangeHideTime(node, newStop);
 end;
@@ -14540,31 +14608,23 @@ end;
 
 // -----------------------------------------------------------------------------
 
-procedure SetEnabled(controls :array of TControl; Enabled: Boolean);
-var
-  i: Integer;
-begin
-  for i := Low(controls) to High(controls) do controls[i].Enabled := Enabled;
-end;
-
-// -----------------------------------------------------------------------------
-
 procedure TfrmMain.UpdateWaveformEnabled;
 var
-  loaded, selectionEmpty, active, empty, sceneChange: Boolean;
+  loaded, selectionEmpty, active,
+  empty, sceneChange, enabled: Boolean;
 begin
   loaded          := WaveformAdapter.Displayer.IsPeakDataLoaded;
   active          := loaded and (previewSelected = psWaveform);
+  enabled         := active and lstSubtitles.Enabled;
   empty           := WaveformAdapter.Displayer.RangeList.Count = 0;
   selectionEmpty  := WaveformAdapter.Displayer.SelectionIsEmpty;
   sceneChange     := WaveformAdapter.Displayer.SceneChangeEnabled;
-  // TODO: fix minor issues with selection changes
 
   mnuWaveformClose.Enabled              := loaded;
-  mnuWaveformInsertSubtitle.Enabled     := active and not selectionEmpty;
-  mnuWaveformDeleteSubtitle.Enabled     := active and (WaveformAdapter.Displayer.SelectedRange <> nil);
-  mnuWaveformInsertSceneChange.Enabled  := active and sceneChange and selectionEmpty;
-  mnuWaveformDeleteSceneChange.Enabled  := active and sceneChange and not selectionEmpty ;
+  mnuWaveformInsertSubtitle.Enabled     := enabled and not selectionEmpty;
+  mnuWaveformDeleteSubtitle.Enabled     := enabled and (WaveformAdapter.Displayer.SelectedRange <> nil);
+  mnuWaveformInsertSceneChange.Enabled  := enabled and sceneChange and selectionEmpty;
+  mnuWaveformDeleteSceneChange.Enabled  := enabled and sceneChange and not selectionEmpty ;
   mnuWaveformZoom.Enabled               := active;
   mnuWaveformZoomIn.Enabled             := active;
   mnuWaveformZoomOut.Enabled            := active;
@@ -14672,7 +14732,7 @@ begin
 
     New(UndoAction);
     UndoAction^.UndoActionType := uaInsertLine;
-    UndoAction^.UndoActionName := uanInsert; //added by adenry
+    UndoAction^.UndoActionName := uanInsert;
     UndoAction^.LineNumber     := lstSubtitles.FocusedNode.Index;
     UndoAction^.Node           := lstSubtitles.FocusedNode;
     UndoAction^.BindToNext     := False;

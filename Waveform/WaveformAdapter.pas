@@ -314,8 +314,10 @@ begin
     subtitle  := FSourceTree.GetNodeData(node);
     range     := subtitle.Range;
 
-    if Assigned(range) then
+    if Assigned(range) then begin
       WAVDisplayer.SelectedRange := range;
+      WAVDisplayer.SetPositionMs(range.StartTime - WAVDisplayer.PageSize div 4);
+    end;
   end else
     WAVDisplayer.ClearSelection;
 end;

@@ -1,4 +1,4 @@
-unit VerticalScalingFormUnit;
+unit formVerticalScaling;
 
 interface
 

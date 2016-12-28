@@ -703,6 +703,7 @@ begin
       Result := True;
       SubtitleAPI.CloseSubtitle;
       lstSubtitles.Clear;
+      WaveformAdapter.ClearSubtitles;
       tmeShow.Time     := 0;
       tmeHide.Time     := 0;
       tmeDuration.Time := 0;
@@ -741,6 +742,8 @@ begin
       RefreshTimes; //added by adenry to properly refresh the time boxes
       frmMain.RefreshFormInfoErrors; //added by adenry
       frmMain.RefreshFormVariousInfo; //added by adenry
+
+      UpdateWaveformEnabled;
     end else
       Result := False;
   end;

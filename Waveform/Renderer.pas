@@ -74,7 +74,7 @@ type
     function FGetStop : Int64;
     function GetDirectVobSubFilter : IBaseFilter;
     function GetDirectVobSubInterface : IDirectVobSub;
-    
+
   protected
     procedure DisplayWindowProc(var Mesg : TMessage);
 

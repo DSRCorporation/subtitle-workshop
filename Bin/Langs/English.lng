@@ -60,6 +60,7 @@ SRF=Subtitle Report File
 06=Settings
 07=Help
 08=View
+09=Waveform
 
 [Main menu/File]
 01=New subtitle
@@ -226,6 +227,30 @@ SRF=Subtitle Report File
 01=Display
 02=Original
 03=Translation
+
+[Main menu/Waveform]
+01=Open...
+02=Close
+03=Waveform preview mode
+04=Insert subtitle
+05=Delete subtitle
+06=Insert scene change
+07=Delete scene change
+08=Zoom
+09=Playback
+
+[Main menu/Waveform/Zoom]
+01=Zoom in
+02=Zoom out
+03=Zoom selection
+04=Zoom all
+05=Zoom vertical
+
+[Main menu/Waveform/Playback]
+01=Play/Pause
+02=Stop
+03=Previous subtitle
+04=Next subtitle
 
 [Main menu/Settings]
 01=Output settings...
@@ -509,6 +534,15 @@ SRF=Subtitle Report File
 146=Play video on load
 147=Visual subtitle representation color:
 148=Highlight tags in "Text" and "Translation" fields:
+;----------------;
+;    Waveform    ;
+;----------------;
+149=Waveform
+150=Enable mouse anti-overlapping
+151=Safety zone offset:
+152=Show subtitle text
+153=Show scene change
+
 
 [Output settings]
 01=Output settings

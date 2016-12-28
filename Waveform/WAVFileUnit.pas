@@ -99,6 +99,8 @@ end;
 function TWAVFile.Open(filename : WideString) : Boolean;
 var Buff : array[0..3] of Char;
     Size, Size2 : Integer;
+    LBuff: array[0..1] of Char;
+    DataFlag    : Boolean;
 begin
   Result := False;
   if FIsOpen then
@@ -149,8 +151,17 @@ begin
     FFS.Seek(Size2,soFromCurrent);
 
   // === DATA Header ===
-  if not (FFS.Read(Buff, 4) = 4) or not (StrLComp(Buff,'data',4) = 0) then
-    Exit;
+  // Seek 'data' word. WAV with PCM inside may have extra data witout fixed size.
+  // 'data' must be padded with 2 bytes
+  DataFlag := False;
+  while not DataFlag and (FFS.Read(LBuff, 2) = 2) do begin
+    Buff[0] := Buff[2];
+    Buff[1] := Buff[3];
+    Buff[2] := LBuff[0];
+    Buff[3] := LBuff[1];
+
+    DataFlag := StrLComp(Buff,'data',4) = 0;
+  end;
 
   // Read data size
   if not (FFS.Read(FDataSize,4) = 4) then
