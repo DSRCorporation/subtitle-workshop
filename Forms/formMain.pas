@@ -18,7 +18,8 @@ uses
     ifpii_controls, ifpii_std, ifpii_classes, ifpii_graphics, ifpii_forms, ifpii_stdctrls, ifpii_extctrls, ifpii_menus, ifpidateutils,
     ifpiir_controls, ifpiir_std, ifpiir_classes, ifpiir_graphics, ifpiir_forms, ifpiir_stdctrls, ifpiir_extctrls, ifpiir_menus, ifpidateutilsr,
   StrMan, FastStrings, WinShell, //DirectShow9, //WinShell added by adenry, DirectShow9 removed by adenry
-  CommonTypes;
+  CommonTypes,
+  NetflixQualityCheck;
 
 type
   TfrmMain = class(TForm)
@@ -351,6 +352,7 @@ type
     mnuStatusbar: TMenuItem;
     N45: TMenuItem;
     tbSpellCheck: TToolButton;
+    tbNetflixQualityCheck: TToolButton;
     tmrSeekbarMouseOver: TTimer;
     pnlEditingControls: TPanel;
     pnlTimingControls: TPanel;
@@ -629,6 +631,8 @@ type
     procedure mnuForwardClick(Sender: TObject);
     procedure btnScrollListClick(Sender: TObject);
     procedure mnuSpellCheckClick(Sender: TObject);
+    procedure tbNetflixQualityCheckMouseUp(Sender: TObject;
+      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure btnRewMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure btnForwardMouseDown(Sender: TObject; Button: TMouseButton;
@@ -12153,6 +12157,13 @@ begin
     SpellCheck($00000409) else //US English
     SpellCheck; //Default
 end;
+
+procedure TfrmMain.tbNetflixQualityCheckMouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  PerformNetflixQualityCheck;
+end;
+
 //added by adenry: end
 
 // -----------------------------------------------------------------------------

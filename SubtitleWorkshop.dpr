@@ -7,6 +7,8 @@
 program SubtitleWorkshop;
 
 
+{$R 'Resources\Resources.res' 'Resources\Resources.rc'}
+
 uses
   Forms,
   IniFiles,
@@ -66,7 +68,8 @@ uses
   HTMLPars in 'Lib\HTMLPars.pas',
   RegExpr in 'Lib\RegExpr.pas',
   StrMan in 'Lib\StrMan.pas',
-  WinShell in 'Lib\WinShell.pas';
+  WinShell in 'Lib\WinShell.pas',
+  NetflixQualityCheck in 'Units\NetflixQualityCheck.pas';
 
 {$R *.res}
 
