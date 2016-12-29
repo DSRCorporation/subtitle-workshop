@@ -66,7 +66,17 @@ uses
   HTMLPars in 'Lib\HTMLPars.pas',
   RegExpr in 'Lib\RegExpr.pas',
   StrMan in 'Lib\StrMan.pas',
-  WinShell in 'Lib\WinShell.pas';
+  WinShell in 'Lib\WinShell.pas',
+  WAVDisplayerUnit in 'Waveform\WAVDisplayerUnit.pas',
+  WAVFileUnit in 'Waveform\WAVFileUnit.pas',
+  Renderer in 'Waveform\Renderer.pas',
+  DirectVobSubInterface in 'Waveform\DirectVobsubInterface.pas',
+  MiscToolsUnit in 'Waveform\MiscToolsUnit.pas',
+  VFW in 'Waveform\VfW.pas',
+  MiniScrollBarUnit in 'Waveform\MiniScrollBarUnit.pas',
+  SubStructUnit in 'Waveform\SubStructUnit.pas',
+  WaveformAdapter in 'Waveform\WaveformAdapter.pas',
+  formVerticalScaling in 'Forms\formVerticalScaling.pas' {VerticalScalingForm};
 
 {$R *.res}
 
@@ -124,6 +134,7 @@ begin
   Application.Initialize;
   Application.Title := 'Subtitle Workshop';
   Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TVerticalScalingForm, VerticalScalingForm);
   Application.Run;
 
 end.

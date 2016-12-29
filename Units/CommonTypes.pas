@@ -9,7 +9,7 @@ unit CommonTypes;
 interface
 
 uses
-  Controls, StdCtrls, ComCtrls, ExtCtrls, Messages, Classes, Windows, RichEdit;
+  Controls, StdCtrls, ComCtrls, ExtCtrls, Messages, Classes, Windows, RichEdit, SubStructUnit;
 
 type
 
@@ -206,6 +206,7 @@ type
     Text, Translation      : String;
     Marked                 : Boolean;
     ErrorType              : set of TErrorType;
+    Range                  : TSubtitleRange;
   end;
   PSubtitleItem = ^TSubtitleItem;
 

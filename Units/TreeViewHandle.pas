@@ -36,6 +36,7 @@ function GetTreeNextColumn(Tree: TVirtualStringTree; Column: Integer; Loop: Bool
 procedure AddArrayItems(Translation: Boolean = False);
 procedure UpdateArray(FormatIndex: Integer; Translated: Boolean = False);
 procedure DeleteSelectedNodes;
+function InsertNodeInRange(InitialTime: Integer; FinalTime: Integer): PVirtualNode;
 function InsertNode(After: Boolean = True; InitialTime: Integer = -1; FinalTime: Integer = -1; Text: String = ''; Translation: String = ''; Select: Boolean = True): PVirtualNode;
 // ------------------
 procedure SetStartTime(Node: PVirtualNode; StartTime: Integer);
@@ -162,6 +163,8 @@ begin
   if (Translation = False) and (frmMain.mnuTranslatorMode.Checked) then
     SetUntranslated;
   frmMain.lstSubtitles.EndUpdate;
+
+  frmMain.WaveformAdapter.SyncSubtitlesWithTree;
 end;
 
 // -----------------------------------------------------------------------------
@@ -234,6 +237,7 @@ begin
       end;
 
       i := lstSubtitles.GetFirstSelected.Index;
+
       DeleteSelectedWithUndo; //delete the nodes
       //assign selection
       Node := GetNodeWithIndex(lstSubtitles, i);
@@ -264,6 +268,8 @@ begin
     Sender.Selected[Node] := False;
     Node := Node.NextSibling;
   end;
+
+  frmMain.WaveformAdapter.ClearSelection;
 end;
 
 // -----------------------------------------------------------------------------
@@ -287,6 +293,33 @@ begin
     Node := Node.NextSibling;
   end;
 end;                                   
+
+// -----------------------------------------------------------------------------
+
+function InsertNodeInRange(InitialTime: Integer; FinalTime: Integer): PVirtualNode;
+var
+  Node: PVirtualNode;
+  subtitle: PSubtitleItem;
+begin
+  with frmMain do begin
+    Node := lstSubtitles.GetFirst;
+
+    while Assigned(Node) do begin
+
+      subtitle := lstSubtitles.GetNodeData(Node);
+      if subtitle.InitialTime > InitialTime then begin
+        lstSubtitles.FocusedNode := Node;
+        InsertNode(False, InitialTime, FinalTime);
+        Exit;
+      end;
+      
+      Node := lstSubtitles.GetNextSibling(Node);
+    end;
+
+    lstSubtitles.FocusedNode := lstSubtitles.GetLast;
+    InsertNode(True, InitialTime, FinalTime);
+  end;
+end;
 
 // -----------------------------------------------------------------------------
 
@@ -328,7 +361,7 @@ begin
           Node := lstSubtitles.FocusedNode.PrevSibling;
         end;
         //lstSubtitles.Selected[lstSubtitles.FocusedNode] := False; //removed by adenry
-        UnSelectAll(frmMain.lstSubtitles); //added by adenry
+        UnSelectAll(lstSubtitles); //added by adenry
         lstSubtitles.FocusedNode := Node;
         if Select then
           lstSubtitles.Selected[Node] := True;
@@ -379,6 +412,9 @@ begin
       frmMain.OrgModified   := True;
       frmMain.TransModified := True;
       Result := Node;
+
+      WaveformAdapter.AddSubtitle(Node);
+      WaveformAdapter.SelectedNode := Node;
     end;
   end;
 end;
@@ -398,6 +434,8 @@ begin
       Data.InitialTime := StartTime;
       frmMain.OrgModified   := True;
       frmMain.TransModified := True;
+
+      frmMain.WaveformAdapter.UpdateSubtitle(Node);
     end;
   end;
 end;
@@ -417,6 +455,8 @@ begin
       Data.FinalTime := FinalTime;
       frmMain.OrgModified   := True;
       frmMain.TransModified := True;
+
+      frmMain.WaveformAdapter.UpdateSubtitle(Node);
     end;
   end;
 end;
@@ -436,6 +476,8 @@ begin
       if SetModified then //added by adenry
         frmMain.OrgModified := True;
       UpdateSubSubtitleTextAfterNodeChange(Node); //added by adenry
+
+      frmMain.WaveformAdapter.UpdateSubtitle(Node);
     end;
   end;
 end;
