@@ -283,7 +283,7 @@ begin
     if SubtitleFormat > SubtitleAPI.FormatsCount then SubtitleFormat := 0;
     //SubtitleFormat = 0 is automatic format detection
 
-    if SubtitleAPI.LoadSubtitle(FileName, FPS, SubtitleFormat) = True then
+    if SubtitleAPI.LoadSubtitle(FileName, FPS, frmMain.OrgCharset, SubtitleFormat) = True then
     begin
       dlgLoadFile.InitialDir := ExtractFilePath(FileName);
       AddToRecent(FileName);
@@ -1170,7 +1170,7 @@ procedure CommandLineProcess(Cli: String);
     Param     := Copy(Param, Pos('/', Param)+1, Length(Param));
     OutputFPS := StrToFloatDef(Copy(Param, 1, Length(Param)-1), 25); // Output FPS
 
-    SubtitleAPI.LoadSubtitle(Input, InputFPS);
+    SubtitleAPI.LoadSubtitle(Input, InputFPS, DEFAULT_CHARSET);
     SubtitleAPI.SaveSubtitle(Output, Format, OutputFPS);
     SubtitleAPI.CloseSubtitle;
     
@@ -1195,7 +1195,7 @@ procedure CommandLineProcess(Cli: String);
     Param  := Copy(Param, Pos('/', Param)+1, Length(Param));
     Delay  := StrToIntDef(Copy(Param, 1, Length(Param)-1), 0);
 
-    SubtitleAPI.LoadSubtitle(Input, FPS);
+    SubtitleAPI.LoadSubtitle(Input, FPS, DEFAULT_CHARSET);
     try
       if Delay <> 0 then
         SubtitleAPI.SetAbsoluteDelay(Delay);
@@ -1250,7 +1250,7 @@ procedure CommandLineProcess(Cli: String);
       Script   := Copy(Param, 1, Length(Param)-1);                // Pascal script
 
       LoadSubtitle(Input, FPS);
-      SubtitleAPI.LoadSubtitle(Input, FPS);
+      SubtitleAPI.LoadSubtitle(Input, FPS, DEFAULT_CHARSET);
 
       // run script
       err := FALSE;
