@@ -12,7 +12,7 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, ExtCtrls, StdCtrls, ComCtrls, CheckLst, Registry, IniFiles, Mask, Math,
   VirtualTrees, MiSubtitulo, {NFormSizing,}
   FastStrings, WinShell, //WinShell added by adenry
-  CommonTypes;
+  CommonTypes, WAVDisplayerUnit;
 
 type
   TfrmSettings = class(TForm)
@@ -263,6 +263,12 @@ type
     chkTagsHighlight: TCheckBox;
     pnlTagsHighlightColor: TPanel;
     rdoAutoDeleteTags: TRadioButton;
+    pgeWaveform: TTabSheet;
+    chkMouseAntiOverlapping: TCheckBox;
+    chkShowSubtitleText: TCheckBox;
+    lbledtSafetyZoneOffset: TLabeledEdit;
+    udSafetyZoneOffset: TUpDown;
+    chkShowSceneChange: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure tvSettingsClick(Sender: TObject);
     procedure tvSettingsKeyUp(Sender: TObject; var Key: Word;
@@ -312,6 +318,8 @@ type
       Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure subSampleMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure lbledtSafetyZoneOffsetKeyPress(Sender: TObject;
+      var Key: Char);
   private
     procedure SetLanguage;
     procedure UpdateSubSamplePos;
@@ -391,6 +399,9 @@ begin
       tvSettings.Items.AddChild(tvSettings.Items[tvSettings.Items.Count-3], ReadString('Settings Form','145', 'Marking'));
       tvSettings.Items[tvSettings.Items.Count-1].ImageIndex := 12;
       tvSettings.Items[tvSettings.Items.Count-4].MakeVisible;
+      tvSettings.Items.Add(nil, ReadString('Settings Form', '149', 'Waveform'));
+      tvSettings.Items[tvSettings.Items.Count-1].ImageIndex := 13;
+      tvSettings.Items[tvSettings.Items.Count-1].MakeVisible;
       //added by adenry: end
 
       tvSettings.Items[0].Selected := True;
@@ -648,6 +659,14 @@ begin
 
       btnOk.Caption     := BTN_OK;
       btnCancel.Caption := BTN_CANCEL;
+
+      // ------------------ //
+      //      Waveform      //
+      // ------------------ //
+      chkMouseAntiOverlapping.Caption           := ReadString('Settings Form', '150', 'Enable mouse anti-overlapping');
+      lbledtSafetyZoneOffset.EditLabel.Caption  := ReadString('Settings Form', '151', 'Safety zone offset:');
+      chkShowSubtitleText.Caption               := ReadString('Settings Form', '151', 'Show subtitle text');
+      chkShowSceneChange.Caption                := ReadString('Settings Form', '152', 'Show scene change');
 
       // ------------------ //
       //      Set font      //
@@ -1163,6 +1182,15 @@ begin
         rdoMarkingSaveAuto.Checked := True;
     chkMarkingLoadAuto.Checked := Ini.ReadBool('Marking look', 'Marking auto load', True);
     //added by adenry: end
+
+
+    // --------------------------------- //
+    //            Waveform               //
+    // --------------------------------- //
+    chkMouseAntiOverlapping.Checked := Ini.ReadBool('Waveform', 'MouseAntiOverlapping', False);
+    chkShowSubtitleText.Checked     := Ini.ReadBool('Waveform', 'ShowSubtitleText', True);
+    chkShowSceneChange.Checked      := Ini.ReadBool('Waveform', 'ShowSceneChange', True);
+    udSafetyZoneOffset.Position     := Ini.ReadInteger('Waveform', 'SafetyZoneOffset', 150);
 
 
   if Assigned(Items) then FreeAndNil(Items);    // added by Bdzl
@@ -1719,6 +1747,23 @@ begin
     //added by adenry: end
 
     // --------------------------------- //
+    //              Waveform             //
+    // --------------------------------- //
+    Ini.WriteBool('Waveform', 'MouseAntiOverlapping', chkMouseAntiOverlapping.Checked);
+    Ini.WriteBool('Waveform', 'ShowSubtitleText', chkShowSubtitleText.Checked);
+    Ini.WriteBool('Waveform', 'ShowSceneChange', chkShowSceneChange.Checked);
+    Ini.WriteInteger('Waveform', 'SafetyZoneOffset', udSafetyZoneOffset.Position);
+
+    with frmMain.WaveformAdapter do begin
+      Displayer.EnableMouseAntiOverlapping  := chkMouseAntiOverlapping.Checked;
+      Displayer.SceneChangeEnabled          := chkShowSceneChange.Checked;
+      SafetyOffset      := udSafetyZoneOffset.Position;
+      ShowSubtitleText  := chkShowSubtitleText.Checked;
+
+      Displayer.UpdateView([uvfRange]);
+    end;
+
+    // --------------------------------- //
 
     if frmMain.OrgFile <> '' then
     begin
@@ -2061,5 +2106,13 @@ end;
 //added by adenry: end
 
 // -----------------------------------------------------------------------------
+
+procedure TfrmSettings.lbledtSafetyZoneOffsetKeyPress(Sender: TObject; var Key: Char);
+begin
+  if not (Key in [#8, '0'..'9']) then begin
+    // Discard the key
+    Key := #0;
+  end;
+end;
 
 end.

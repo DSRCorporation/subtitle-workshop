@@ -171,6 +171,7 @@ begin
       AutoRecheckNodeErrors(Node, [], rtSubDeleted, True);//refresh info&errors form only //added by adenry
       UpdateSubSubtitleVisibilityAfterNodeChange(Node, Data.InitialTime, Data.FinalTime, -1, -1); //added by adenry
 
+      WaveformAdapter.DeleteSubtitle(Node);
       lstSubtitles.DeleteNode(Node); //DELETE THE NODE
 
       if Node2 <> NextNode then //added by adenry later
@@ -363,6 +364,7 @@ procedure UndoActionSet(OldList, NewList: TList);
               lstSubtitles.FocusedNode := Node.NextSibling;
             AutoRecheckNodeErrors(Node, [], rtSubDeleted, True); //refresh info&errors form only //added by adenry
             UpdateSubSubtitleVisibilityAfterNodeChange(Node, Data.InitialTime, Data.FinalTime, -1, -1); //added by adenry
+            WaveformAdapter.DeleteSubtitle(Node);
             lstSubtitles.DeleteNode(Node); //DELETE THE NODE
             if not Bind then //added by adenry - important!
               lstSubtitles.Selected[lstSubtitles.FocusedNode] := True;
@@ -421,6 +423,7 @@ procedure UndoActionSet(OldList, NewList: TList);
             if not Bind then //added by adenry - important!
               lstSubtitles.Selected[lstSubtitles.FocusedNode] := True;
 
+            WaveformAdapter.AddSubtitle;
             UpdateSubSubtitleVisibilityAfterNodeChange(UndoAction2^.Node, -1, -1, Data^.InitialTime, Data^.FinalTime); //added by adenry
 
             //AutoRecheckNodeErrors(lstSubtitles.FocusedNode); //added by adenry - not needed because we restore the errors too with Data^.ErrorType   := PSubtitleItem(UndoAction1^.Buffer)^.ErrorType;

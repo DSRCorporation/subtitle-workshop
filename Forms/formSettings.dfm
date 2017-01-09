@@ -1,6 +1,6 @@
 object frmSettings: TfrmSettings
-  Left = 287
-  Top = 507
+  Left = 489
+  Top = 209
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'frmSettings'
@@ -33,7 +33,7 @@ object frmSettings: TfrmSettings
     Top = 64
     Width = 369
     Height = 441
-    ActivePage = pgeVideoPreview
+    ActivePage = pgeWaveform
     Style = tsButtons
     TabOrder = 4
     object pgeGeneral: TTabSheet
@@ -2209,6 +2209,57 @@ object frmSettings: TfrmSettings
         Height = 17
         Caption = 'Mark column "Duration"'
         TabOrder = 14
+      end
+    end
+    object pgeWaveform: TTabSheet
+      Caption = 'pgeWaveform'
+      ImageIndex = 13
+      TabVisible = False
+      object chkMouseAntiOverlapping: TCheckBox
+        Left = 0
+        Top = 16
+        Width = 361
+        Height = 17
+        Caption = 'Enable mouse anti-overlapping'
+        TabOrder = 0
+      end
+      object chkShowSubtitleText: TCheckBox
+        Left = 0
+        Top = 88
+        Width = 361
+        Height = 17
+        Caption = 'Show subtitle text'
+        TabOrder = 3
+      end
+      object lbledtSafetyZoneOffset: TLabeledEdit
+        Left = 0
+        Top = 54
+        Width = 41
+        Height = 21
+        EditLabel.Width = 94
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Safety zone offset:'
+        TabOrder = 1
+        Text = '0'
+        OnKeyPress = lbledtSafetyZoneOffsetKeyPress
+      end
+      object udSafetyZoneOffset: TUpDown
+        Left = 41
+        Top = 54
+        Width = 16
+        Height = 21
+        Associate = lbledtSafetyZoneOffset
+        Max = 1000
+        Increment = 10
+        TabOrder = 2
+      end
+      object chkShowSceneChange: TCheckBox
+        Left = 0
+        Top = 112
+        Width = 361
+        Height = 17
+        Caption = 'Show scene change'
+        TabOrder = 4
       end
     end
   end
