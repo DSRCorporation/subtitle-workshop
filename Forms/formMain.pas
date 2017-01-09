@@ -18,7 +18,7 @@ uses
     ifpii_controls, ifpii_std, ifpii_classes, ifpii_graphics, ifpii_forms, ifpii_stdctrls, ifpii_extctrls, ifpii_menus, ifpidateutils,
     ifpiir_controls, ifpiir_std, ifpiir_classes, ifpiir_graphics, ifpiir_forms, ifpiir_stdctrls, ifpiir_extctrls, ifpiir_menus, ifpidateutilsr,
   StrMan, FastStrings, WinShell, //DirectShow9, //WinShell added by adenry, DirectShow9 removed by adenry
-  WaveformAdapter, formVerticalScaling, Types, CommonTypes;
+  WaveformAdapter, formVerticalScaling, Types, CommonTypes, NetflixQualityCheck;
 
 type
   TfrmMain = class(TForm)
@@ -352,6 +352,7 @@ type
     mnuStatusbar: TMenuItem;
     N45: TMenuItem;
     tbSpellCheck: TToolButton;
+    tbNetflixQualityCheck: TToolButton;
     tmrSeekbarMouseOver: TTimer;
     pnlEditingControls: TPanel;
     pnlTimingControls: TPanel;
@@ -908,6 +909,8 @@ type
     procedure sbStatusbarMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure tbSpellCheckMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure tbNetflixQualityCheckMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure tmePauseTimeChange(Sender: TObject; NewTime: Cardinal);
     procedure tmePauseTimeChangeFromEditOnly(Sender: TObject;
@@ -12440,7 +12443,7 @@ begin
   pnlVideoDisplay.Visible := previewSelected = psVideo;
   sbSeekBar.Visible       := previewSelected = psVideo;
   tcTimeCounter.Visible   := (previewSelected = psVideo) and Player.Initialized;
-             
+
   SetVideoPreviewMode(previewSelected <> psNone);
 
   case previewSelected of
@@ -12471,6 +12474,14 @@ begin
     SpellCheck; //Default
 end;
 //added by adenry: end
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.tbNetflixQualityCheckMouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+    PerformNetflixQualityCheck();
+end;
 
 // -----------------------------------------------------------------------------
 

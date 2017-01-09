@@ -22,7 +22,11 @@ type
 
 const
   FULL_TIMECODE: string = 'hh:mm:ss.zzz';
+  CONTEXT_RADIUS: Integer = 6;
 
+
+// Quality check report
+  
 procedure NetflixQCReportAddHeader(var report: string);
 begin
   report := report + 'Timecode,Context,Comment' + #13#10;
@@ -38,10 +42,25 @@ end;
 
 function GetStringContext(Str: string; Pos: Integer; Radius: Integer): string;
 var
+  l, r, n: Integer;
 begin
-  Result := Copy(Str, Max(1, Pos - Radius), Radius * 2 + 1);  // todo
+  l := Max(1, Pos - Radius);
+  r := Min(length(Str), Pos + Radius);
+  n := r - l + 1;
+  Result := Copy(Str, l, n);
 end;
 
+function EscapeCSV(Str: string): string;
+begin
+  Result := Str;
+  Result := StringReplace(Result, '"', '""', [rfReplaceAll]);
+  Result := StringReplace(Result, #13#10, #10, [rfReplaceAll]);
+  Result := StringReplace(Result, #10, '\n', [rfReplaceAll]);
+  Result := Format('"%s"', [Result]);
+end;
+
+
+// Glyph check
 
 function LoadNetflixAllowedGlyphs(): TGlyphArray;
 const
@@ -105,8 +124,9 @@ begin
       if not IsGlyphAllowed(AllowedGlyphs, CurrentGlyph) then
       begin
         Timecode := TimeToString(GetStartTime(ParagraphNode), FULL_TIMECODE);
-        Context := 'ctx';
-        Comment := 'cmnt';
+        Context := UTF8Encode(EscapeCSV(GetStringContext(CurrentText, i, CONTEXT_RADIUS)));
+        Comment := Format('Invalid character %s found at column %d.',
+          ['U+' + IntToHex(CurrentGlyph, 4), i]);
         NetflixQCReportAddWarning(Report, Timecode, Context, Comment);
         Result := false;
       end;
@@ -116,20 +136,92 @@ begin
 end;
 
 
-{function GetSubtitle(): String;
-var
-  Node: PVirtualNode;
-  Subtitle: String;
+// White space check
+
+function IsWhiteSpace(Str: string; Pos: Integer; var SpaceSize: Integer): Boolean;
 begin
-  Subtitle := '';
-  Node := frmMain.lstSubtitles.GetFirst;
-  while Assigned(Node) do
+  Result := false;
+
+  if (Str[Pos] = ' ') or (Str[Pos] = #10) then
   begin
-    Subtitle := Subtitle + GetSubText(Node) + #13#10;
-    Node := Node.NextSibling;
+    Result := true;
+    SpaceSize := 1;
+    Exit;
   end;
-  Result := Subtitle;
-end;}
+
+  if (Pos <> Length(Str)) and
+    (Str[Pos] = #13) and
+    (Str[Pos + 1] = #10) then
+  begin
+    Result := true;
+    SpaceSize := 2;
+    Exit;
+  end;
+end;
+
+function CheckWhiteSpacesInLine(ParagraphNode: PVirtualNode; var Report: string): Boolean;
+var
+  CurrentText: string;
+  IsPreviousCharSpace: Boolean;
+  PreviousCharPos: Integer;
+  IsCurrentCharSpace: Boolean;
+  CharsSkip: Integer;
+  SkipWhileSpaceRest: Boolean;
+  i: Integer;
+  Timecode, Context, Comment: string;
+begin
+  CurrentText := GetSubText(ParagraphNode);    
+  IsPreviousCharSpace := false;
+  PreviousCharPos := 0;
+  i := 1;
+  while i <= Length(CurrentText) do
+  begin
+    CharsSkip := 1;
+    IsCurrentCharSpace := IsWhiteSpace(CurrentText, i, CharsSkip);
+
+    if SkipWhileSpaceRest then
+    begin
+      if not IsCurrentCharSpace then
+      begin
+        SkipWhileSpaceRest := false;
+      end;
+    end
+    else
+    if IsPreviousCharSpace and IsCurrentCharSpace then
+    begin
+      Timecode := TimeToString(GetStartTime(ParagraphNode), FULL_TIMECODE);
+      Context := UTF8Encode(EscapeCSV(GetStringContext(CurrentText, i, CONTEXT_RADIUS)));
+      Comment := Format('Invalid white space found at column %d.', [PreviousCharPos]);
+      NetflixQCReportAddWarning(Report, Timecode, Context, Comment);
+      Result := false;
+       
+      SkipWhileSpaceRest := true;
+    end;
+
+    PreviousCharPos := i;
+    IsPreviousCharSpace := IsCurrentCharSpace;
+    i := i + CharsSkip;
+  end;
+end;
+
+function PerformNetflixWhiteSpaceCheck(var Report: string): Boolean;
+var
+  ParagraphNode: PVirtualNode;
+begin
+  Result := true;
+  ParagraphNode := frmMain.lstSubtitles.GetFirst;
+  while Assigned(ParagraphNode) do
+  begin
+    if not CheckWhiteSpacesInLine(ParagraphNode, Report) then
+    begin
+      Result := false;
+    end;
+    ParagraphNode := ParagraphNode.NextSibling;
+  end;
+end;
+
+
+// Quality check
 
 procedure PerformNetflixQualityCheck();
 var
@@ -137,6 +229,7 @@ var
 begin
   NetflixQCReportAddHeader(Report);
   PerformNetflixGlyphCheck(Report);
+  PerformNetflixWhiteSpaceCheck(Report);
   ShowMessage(Report);
 end;
 

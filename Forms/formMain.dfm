@@ -1,10 +1,10 @@
 object frmMain: TfrmMain
   Tag = -1
-  Left = 240
-  Top = 207
+  Left = 392
+  Top = 139
   AutoScroll = False
   Caption = 'Subtitle Workshop'
-  ClientHeight = 538
+  ClientHeight = 555
   ClientWidth = 1101
   Color = clBtnFace
   Constraints.MinHeight = 336
@@ -26,12 +26,12 @@ object frmMain: TfrmMain
   OnResize = FormResize
   DesignSize = (
     1101
-    538)
+    555)
   PixelsPerInch = 96
   TextHeight = 13
   object sbStatusbar: TStatusBar
     Left = 0
-    Top = 514
+    Top = 531
     Width = 1101
     Height = 24
     BorderWidth = 2
@@ -294,10 +294,17 @@ object frmMain: TfrmMain
       ImageIndex = 18
       OnMouseUp = tbSettingsMouseUp
     end
+    object tbNetflixQualityCheck: TToolButton
+      Left = 662
+      Top = 0
+      Caption = 'Netflix quality check'
+      ImageIndex = 19
+      OnMouseUp = tbNetflixQualityCheckMouseUp
+    end
   end
   object pnlEditingControls: TPanel
     Left = 128
-    Top = 429
+    Top = 446
     Width = 965
     Height = 86
     Anchors = [akLeft, akRight, akBottom]
@@ -860,7 +867,7 @@ object frmMain: TfrmMain
     Left = 8
     Top = 32
     Width = 113
-    Height = 481
+    Height = 498
     Anchors = [akLeft, akTop, akBottom]
     BevelInner = bvLowered
     BevelOuter = bvNone
@@ -868,7 +875,7 @@ object frmMain: TfrmMain
     TabOrder = 0
     DesignSize = (
       113
-      481)
+      498)
     object lblMode: TLabel
       Left = 8
       Top = 8
@@ -1033,7 +1040,7 @@ object frmMain: TfrmMain
       Left = 0
       Top = 352
       Width = 113
-      Height = 129
+      Height = 146
       Anchors = [akLeft, akTop, akRight, akBottom]
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -1060,7 +1067,7 @@ object frmMain: TfrmMain
     Left = 128
     Top = 32
     Width = 965
-    Height = 396
+    Height = 413
     Anchors = [akLeft, akTop, akRight, akBottom]
     BevelOuter = bvNone
     FullRepaint = False
@@ -1069,7 +1076,7 @@ object frmMain: TfrmMain
       Left = 0
       Top = 0
       Width = 965
-      Height = 396
+      Height = 413
       Align = alClient
       BevelOuter = bvNone
       FullRepaint = False
@@ -8178,7 +8185,7 @@ object frmMain: TfrmMain
         Left = 0
         Top = 269
         Width = 965
-        Height = 127
+        Height = 144
         Align = alClient
         DefaultPasteMode = amInsertAfter
         EditDelay = 100
@@ -9641,7 +9648,7 @@ object frmMain: TfrmMain
     Left = 200
     Top = 160
     Bitmap = {
-      494C010137003B00040010001000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
+      494C010137003B00040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000040000000F0000000010020000000000000F0
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -11625,7 +11632,8 @@ object frmMain: TfrmMain
       000783E00000E01F000383E00000800F00018080000000070000800000000003
       000080000000000100078000000000000007C001000000000007E08300008001
       80FFE0830000C001C1F1F1C70000E001FFF9F1C70000F001FF75F1C70000F807
-      FF8FFFFF0000FC1FFFFFFFFFFFFFFE7F}
+      FF8FFFFF0000FC1FFFFFFFFFFFFFFE7F00000000000000000000000000000000
+      000000000000}
   end
   object USSpellCheck: TUSSpell
     HookCaption = False
@@ -11718,7 +11726,7 @@ object frmMain: TfrmMain
     Left = 232
     Top = 160
     Bitmap = {
-      494C010132003600040010001000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
+      494C010132003600040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000040000000E0000000010020000000000000E0
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -13570,7 +13578,8 @@ object frmMain: TfrmMain
       000783E00000E01F000383E00000800F00018080000000070000800000000003
       000080000000000100078000000000000007C001000000000007E08300008001
       80FFE0830000C001C1F1F1C70000E001FFF9F1C70000F001FF75F1C70000F807
-      FF8FFFFF0000FC1FFFFFFFFFFFFFFE7F}
+      FF8FFFFF0000FC1FFFFFFFFFFFFFFE7F00000000000000000000000000000000
+      000000000000}
   end
   object mnuUndoDropdown: TPopupMenu
     AutoHotkeys = maManual
