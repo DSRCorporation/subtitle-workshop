@@ -9,7 +9,7 @@ unit NetflixQualityCheck;
 
 interface
 
-procedure PerformNetflixQualityCheck();
+procedure PerformNetflixQualityCheck(ShowSuccessMessages: Boolean);
 
 
 implementation
@@ -49,6 +49,7 @@ begin
   n := r - l + 1;
   Result := Copy(Str, l, n);
 end;
+
 
 function EscapeCSV(Str: string): string;
 begin
@@ -172,7 +173,9 @@ var
 begin
   CurrentText := GetSubText(ParagraphNode);    
   IsPreviousCharSpace := false;
+  SkipWhileSpaceRest := false;
   PreviousCharPos := 0;
+  Result := true;
   i := 1;
   while i <= Length(CurrentText) do
   begin
@@ -193,8 +196,8 @@ begin
       Context := UTF8Encode(EscapeCSV(GetStringContext(CurrentText, i, CONTEXT_RADIUS)));
       Comment := Format('Invalid white space found at column %d.', [PreviousCharPos]);
       NetflixQCReportAddWarning(Report, Timecode, Context, Comment);
+
       Result := false;
-       
       SkipWhileSpaceRest := true;
     end;
 
@@ -223,16 +226,93 @@ end;
 
 // Quality check
 
-procedure PerformNetflixQualityCheck();
+function GetTempPathStr(): string;
 var
-  Report: string;
+  TempFolderBuf: array[0..MAX_PATH] of Char;
 begin
-  NetflixQCReportAddHeader(Report);
-  PerformNetflixGlyphCheck(Report);
-  PerformNetflixWhiteSpaceCheck(Report);
-  ShowMessage(Report);
+  GetTempPath(MAX_PATH, @TempFolderBuf);
+  Result := StrPas(TempFolderBuf);
+end;
+
+function SaveString(Str: string; FileName: string): Boolean;
+begin
+  Result := true;
+  with TStringList.Create do
+  try
+    try
+      Add(Str);
+      SaveToFile(FileName);
+    except
+      Result := false;
+    end;
+  finally
+    Free;
+  end;
+end;
+
+procedure PerformNetflixQualityCheck(ShowSuccessMessages: Boolean);
+var
+  GlyphCheckReport: string;
+  GlyphCheckReportPath: string;
+  WhiteSpaceCheckReport: string;
+  WhiteSpaceCheckReportPath: string;
+
+  SuccessMessages: TStringList;
+  FailMessages: TStringList;
+
+  CurrentFileName: string;
+begin
+  SuccessMessages := TStringList.Create;
+  FailMessages := TStringList.Create;
+  if frmMain.OrgFile <> '' then
+  begin
+    CurrentFileName := ChangeFileExt(ExtractFileName(frmMain.OrgFile), '');
+  end
+  else
+  begin
+    CurrentFileName := 'untitledSubtitle';
+  end;
+
+  NetflixQCReportAddHeader(GlyphCheckReport);
+  if PerformNetflixGlyphCheck(GlyphCheckReport) then
+  begin
+    SuccessMessages.Add('Character validation successful.');
+  end
+  else
+  begin
+    GlyphCheckReportPath := GetTempPathStr() + CurrentFileName + '_NetflixGlyphCheck.csv';
+    FailMessages.Add(Format('Character validation failed. '
+      + 'Refer to the Netflix Glyph List for valid characters. '
+      + 'Please see the full report here:' + #13#10 + '%s.', [GlyphCheckReportPath]));
+    if not SaveString(GlyphCheckReport, GlyphCheckReportPath) then
+    begin
+      ShowMessage('Cann''t save glyph check report');
+    end;
+  end;
+
+  NetflixQCReportAddHeader(WhiteSpaceCheckReport);
+  if PerformNetflixWhiteSpaceCheck(WhiteSpaceCheckReport) then
+  begin
+    SuccessMessages.Add('White space validation successful.');
+  end
+  else
+  begin
+    WhiteSpaceCheckReportPath := GetTempPathStr() + CurrentFileName + '_NetflixWhiteSpaceCheck.csv';
+    FailMessages.Add(Format('White space validation failed. '
+      + 'Please see the full report here:' + #13#10 + '%s.', [WhiteSpaceCheckReportPath]));
+    if not SaveString(WhiteSpaceCheckReport, WhiteSpaceCheckReportPath) then
+    begin
+      ShowMessage('Cann''t save white space check report');
+    end;
+  end;
+
+  if ShowSuccessMessages then
+  begin
+    SuccessMessages.AddStrings(FailMessages);
+  end;
+
+  ShowMessage(SuccessMessages.Text);
 end;
 
 end.
-
 

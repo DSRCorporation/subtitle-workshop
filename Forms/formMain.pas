@@ -12480,7 +12480,7 @@ end;
 procedure TfrmMain.tbNetflixQualityCheckMouseUp(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-    PerformNetflixQualityCheck();
+    PerformNetflixQualityCheck(true);
 end;
 
 // -----------------------------------------------------------------------------
