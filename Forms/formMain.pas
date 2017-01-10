@@ -543,6 +543,7 @@ type
     btnZoomSelection: TSWButton;
     btnZoomAll: TSWButton;
     btnZoomVertical: TSWButton;
+    mnuNetflixQualityCheck: TMenuItem;
 
 
     procedure lstSubtitlesInitNode(Sender: TBaseVirtualTree; ParentNode,
@@ -1043,6 +1044,7 @@ type
     procedure UpdateWaveformEnabled;
     procedure UpdateWaveformPlayPauseVisible;
     procedure UpdateWaveformVolume;
+    procedure mnuNetflixQualityCheckClick(Sender: TObject);
   protected
     procedure CreateParams(var Params: TCreateParams); override;
 	  // Preview mode handling
@@ -1945,6 +1947,7 @@ begin
       mnuJumpToPrevError.Caption      := ReadString('Main menu/Tools', '19', 'Jump to previous error');
       mnuShowCPSHintBoxes.Caption     := ReadString('Main menu/Tools', '20', 'Show CPS boxes');
       //added by adenry: end
+      mnuNetflixQualityCheck.Caption  := ReadString('Main menu/Tools', '21', 'Netflix quality check');
 
       // ---------- //
       // Movie menu //
@@ -2067,6 +2070,7 @@ begin
       tbSettings.Hint           := mnuInfoErrorsSettings.Caption;
       tbInfoErrorsSettings.Hint := mnuInfoErrorsSettings.Caption + ' (' + mnuInfoErrors.Caption + ')';
       tbSpellCheck.Hint         := mnuSpellCheck.Caption;
+      tbNetflixQualityCheck.Hint:= mnuNetflixQualityCheck.Caption;
       tbInfoErrors.Hint         := mnuInformationAndErrors.Caption;
       tbVariousInfo.Hint        := mnuVariousInformation.Caption;
       tbVideoPreviewMode.Hint   := mnuVideoPreviewMode.Caption;
@@ -2332,6 +2336,8 @@ begin
       CustomInfoEdit   := ReadString('Custom info', '34', 'Edit'); //added by adenry
 
     end;
+
+    NetflixQualityCheckerLoadLanguage(LF);
   finally
     LF.Free;
   end;
@@ -2634,6 +2640,7 @@ begin
   tbSubtitles.Enabled     := Flag;
   tbSpellCheck.Enabled    := Flag;
   //added by adenry: end
+  tbNetflixQualityCheck.Enabled := Flag;
 
 end;
 
@@ -4505,6 +4512,7 @@ end;
 procedure TfrmMain.mnuToolsClick(Sender: TObject);
 begin
   mnuSpellCheck.Enabled           := lstSubtitles.RootNodeCount > 0;
+  mnuNetflixQualityCheck.Enabled  := lstSubtitles.RootNodeCount > 0;
   mnuSplitSubtitle.Enabled        := lstSubtitles.RootNodeCount > 1;
   //mnuInformationAndErrors.Enabled := lstSubtitles.RootNodeCount > 0; //removed by adenry
   //mnuVariousInformation.Enabled   := InterfaceEnabled;
@@ -14851,5 +14859,10 @@ begin
 end;
 
 // -----------------------------------------------------------------------------
+
+procedure TfrmMain.mnuNetflixQualityCheckClick(Sender: TObject);
+begin
+  PerformNetflixQualityCheck(true);
+end;
 
 end.

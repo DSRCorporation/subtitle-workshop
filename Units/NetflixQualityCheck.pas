@@ -9,8 +9,10 @@ unit NetflixQualityCheck;
 
 interface
 
-procedure PerformNetflixQualityCheck(ShowSuccessMessages: Boolean);
+uses IniFiles;
 
+procedure PerformNetflixQualityCheck(ShowSuccessMessages: Boolean);
+procedure NetflixQualityCheckerLoadLanguage(LF: TIniFile);
 
 implementation
 
@@ -23,6 +25,36 @@ type
 const
   FULL_TIMECODE: string = 'hh:mm:ss.zzz';
   CONTEXT_RADIUS: Integer = 6;
+
+var
+	GlyphCheckSuccessfull: string;
+	GlyphCheckFailed: string;
+	GlyphCheckReport: string;
+	WhiteSpaceCheckSuccessfull: string;
+	WhiteSpaceCheckFailed: string;
+	WhiteSpaceCheckReport: string;
+  SavingError: string;
+
+  
+// Language loder
+
+procedure NetflixQualityCheckerLoadLanguage(LF: TIniFile);
+begin
+ 	GlyphCheckSuccessfull := LF.ReadString('Netflix quality check', 'GlyphCheckSuccessfull',
+    'Character validation successful.');
+	GlyphCheckFailed := LF.ReadString('Netflix quality check', 'GlyphCheckFailed',
+    'Character validation failed. Refer to the Netflix Glyph List for valid characters. Please see the full report here: %s.');
+	GlyphCheckReport := LF.ReadString('Netflix quality check', 'GlyphCheckReport',
+    'Invalid character %s found at column %d.');
+	WhiteSpaceCheckSuccessfull := LF.ReadString('Netflix quality check', 'WhiteSpaceCheckSuccessfull',
+    'White space validation successful.');
+	WhiteSpaceCheckFailed := LF.ReadString('Netflix quality check', 'WhiteSpaceCheckFailed',
+    'White space validation failed. Please see the full report here: %s.');
+	WhiteSpaceCheckReport := LF.ReadString('Netflix quality check', 'WhiteSpaceCheckReport',
+    'Invalid white space found at column %d.');
+	SavingError := LF.ReadString('Netflix quality check', 'SavingError',
+    'Cannt save report.');
+end;
 
 
 // Quality check report
@@ -126,8 +158,7 @@ begin
       begin
         Timecode := TimeToString(GetStartTime(ParagraphNode), FULL_TIMECODE);
         Context := UTF8Encode(EscapeCSV(GetStringContext(CurrentText, i, CONTEXT_RADIUS)));
-        Comment := Format('Invalid character %s found at column %d.',
-          ['U+' + IntToHex(CurrentGlyph, 4), i]);
+        Comment := Format(GlyphCheckReport, ['U+' + IntToHex(CurrentGlyph, 4), i]);
         NetflixQCReportAddWarning(Report, Timecode, Context, Comment);
         Result := false;
       end;
@@ -194,7 +225,7 @@ begin
     begin
       Timecode := TimeToString(GetStartTime(ParagraphNode), FULL_TIMECODE);
       Context := UTF8Encode(EscapeCSV(GetStringContext(CurrentText, i, CONTEXT_RADIUS)));
-      Comment := Format('Invalid white space found at column %d.', [PreviousCharPos]);
+      Comment := Format(WhiteSpaceCheckReport, [PreviousCharPos]);
       NetflixQCReportAddWarning(Report, Timecode, Context, Comment);
 
       Result := false;
@@ -276,33 +307,30 @@ begin
   NetflixQCReportAddHeader(GlyphCheckReport);
   if PerformNetflixGlyphCheck(GlyphCheckReport) then
   begin
-    SuccessMessages.Add('Character validation successful.');
+    SuccessMessages.Add(GlyphCheckSuccessfull);
   end
   else
   begin
     GlyphCheckReportPath := GetTempPathStr() + CurrentFileName + '_NetflixGlyphCheck.csv';
-    FailMessages.Add(Format('Character validation failed. '
-      + 'Refer to the Netflix Glyph List for valid characters. '
-      + 'Please see the full report here:' + #13#10 + '%s.', [GlyphCheckReportPath]));
+    FailMessages.Add(Format(GlyphCheckFailed, [GlyphCheckReportPath]));
     if not SaveString(GlyphCheckReport, GlyphCheckReportPath) then
     begin
-      ShowMessage('Cann''t save glyph check report');
+      ShowMessage(SavingError);
     end;
   end;
 
   NetflixQCReportAddHeader(WhiteSpaceCheckReport);
   if PerformNetflixWhiteSpaceCheck(WhiteSpaceCheckReport) then
   begin
-    SuccessMessages.Add('White space validation successful.');
+    SuccessMessages.Add(WhiteSpaceCheckSuccessfull);
   end
   else
   begin
     WhiteSpaceCheckReportPath := GetTempPathStr() + CurrentFileName + '_NetflixWhiteSpaceCheck.csv';
-    FailMessages.Add(Format('White space validation failed. '
-      + 'Please see the full report here:' + #13#10 + '%s.', [WhiteSpaceCheckReportPath]));
+    FailMessages.Add(Format(WhiteSpaceCheckFailed, [WhiteSpaceCheckReportPath]));
     if not SaveString(WhiteSpaceCheckReport, WhiteSpaceCheckReportPath) then
     begin
-      ShowMessage('Cann''t save white space check report');
+      ShowMessage(SavingError);
     end;
   end;
 

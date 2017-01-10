@@ -185,6 +185,7 @@ SRF=Subtitle Report File
 18=Pascal scripts
 19=Jump to previous error
 20=Show CpS boxes
+21=Netflix quality check
 
 [Main menu/Movie]
 01=Open...
@@ -1294,3 +1295,12 @@ SRF=Subtitle Report File
 03=Subtitle number %d:||"%s" is about to be deleted.||Do you want to proceed?
 04=Part of subtitle number %d:||"%s" is about to be deleted, so the subtitle will be:||"%s"||Do you want to proceed?
 05=Subtitle number %d:||"%s" is a one-line subtitle and starts with "-".||Do you want to delete the "-" at the beginning?
+
+[Netflix quality check]
+GlyphCheckSuccessfull=Character validation successful.
+GlyphCheckFailed=Character validation failed. Refer to the Netflix Glyph List for valid characters. Please see the full report here: %s.
+GlyphCheckReport=Invalid character %s found at column %d.
+WhiteSpaceCheckSuccessfull=White space validation successful.
+WhiteSpaceCheckFailed=White space validation failed. Please see the full report here: %s.
+WhiteSpaceCheckReport=Invalid white space found at column %d.
+SavingError=Cannt save report.
