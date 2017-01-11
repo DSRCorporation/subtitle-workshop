@@ -7,6 +7,8 @@
 program SubtitleWorkshop;
 
 
+{$R 'Resources\Resources.res' 'Resources\Resources.rc'}
+
 uses
   Forms,
   IniFiles,
@@ -76,7 +78,8 @@ uses
   MiniScrollBarUnit in 'Waveform\MiniScrollBarUnit.pas',
   SubStructUnit in 'Waveform\SubStructUnit.pas',
   WaveformAdapter in 'Waveform\WaveformAdapter.pas',
-  formVerticalScaling in 'Forms\formVerticalScaling.pas' {VerticalScalingForm};
+  formVerticalScaling in 'Forms\formVerticalScaling.pas' {VerticalScalingForm},
+  NetflixQualityCheck in 'Units\NetflixQualityCheck.pas';
 
 {$R *.res}
 

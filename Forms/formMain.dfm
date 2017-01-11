@@ -1,11 +1,11 @@
 object frmMain: TfrmMain
   Tag = -1
-  Left = 240
-  Top = 207
+  Left = 346
+  Top = 120
   AutoScroll = False
   Caption = 'Subtitle Workshop'
-  ClientHeight = 538
-  ClientWidth = 1101
+  ClientHeight = 555
+  ClientWidth = 1076
   Color = clBtnFace
   Constraints.MinHeight = 336
   Constraints.MinWidth = 720
@@ -25,14 +25,14 @@ object frmMain: TfrmMain
   OnMouseWheelUp = FormMouseWheelUp
   OnResize = FormResize
   DesignSize = (
-    1101
-    538)
+    1076
+    555)
   PixelsPerInch = 96
   TextHeight = 13
   object sbStatusbar: TStatusBar
     Left = 0
-    Top = 514
-    Width = 1101
+    Top = 531
+    Width = 1076
     Height = 24
     BorderWidth = 2
     Panels = <
@@ -51,7 +51,7 @@ object frmMain: TfrmMain
   object tbMainToolBar: TToolBar
     Left = 0
     Top = 0
-    Width = 1101
+    Width = 1076
     Height = 33
     BorderWidth = 2
     Caption = 'tbMainToolBar'
@@ -225,8 +225,15 @@ object frmMain: TfrmMain
       ImageIndex = 39
       OnMouseUp = tbSpellCheckMouseUp
     end
-    object tbInfoErrors: TToolButton
+    object tbNetflixQualityCheck: TToolButton
       Left = 469
+      Top = 0
+      Caption = 'Netflix quality check'
+      ImageIndex = 19
+      OnMouseUp = tbNetflixQualityCheckMouseUp
+    end
+    object tbInfoErrors: TToolButton
+      Left = 492
       Top = 0
       Caption = 'Information and Errors...'
       ImageIndex = 28
@@ -234,7 +241,7 @@ object frmMain: TfrmMain
       OnMouseUp = tbInfoErrorsMouseUp
     end
     object tbVariousInfo: TToolButton
-      Left = 492
+      Left = 515
       Top = 0
       Caption = 'Various Information...'
       ImageIndex = 29
@@ -242,14 +249,14 @@ object frmMain: TfrmMain
       OnMouseUp = tbVariousInfoMouseUp
     end
     object tbPascalScripts: TToolButton
-      Left = 515
+      Left = 538
       Top = 0
       Caption = 'Pascal scripts'
       DropdownMenu = mnuPascalScriptsDropdown
       ImageIndex = 19
     end
     object tbSeparator7: TToolButton
-      Left = 538
+      Left = 561
       Top = 0
       Width = 16
       Caption = 'tbSeparator7'
@@ -257,7 +264,7 @@ object frmMain: TfrmMain
       Style = tbsSeparator
     end
     object tbVideoPreviewMode: TToolButton
-      Left = 554
+      Left = 577
       Top = 0
       Caption = 'Video preview mode'
       ImageIndex = 34
@@ -265,7 +272,7 @@ object frmMain: TfrmMain
       OnMouseUp = tbVideoPreviewModeMouseUp
     end
     object tbWaveformPreviewMode: TToolButton
-      Left = 577
+      Left = 600
       Top = 0
       Caption = 'Waveform preview mode'
       ImageIndex = 54
@@ -273,7 +280,7 @@ object frmMain: TfrmMain
       OnMouseUp = tbWaveformPreviewModeMouseUp
     end
     object tbSeparator8: TToolButton
-      Left = 600
+      Left = 623
       Top = 0
       Width = 16
       Caption = 'tbSeparator8'
@@ -281,14 +288,14 @@ object frmMain: TfrmMain
       Style = tbsSeparator
     end
     object tbInfoErrorsSettings: TToolButton
-      Left = 616
+      Left = 639
       Top = 0
       Caption = 'Settings (Information and Errors)'
       ImageIndex = 30
       OnMouseUp = tbInfoErrorsSettingsMouseUp
     end
     object tbSettings: TToolButton
-      Left = 639
+      Left = 662
       Top = 0
       Caption = 'Settings...'
       ImageIndex = 18
@@ -297,8 +304,8 @@ object frmMain: TfrmMain
   end
   object pnlEditingControls: TPanel
     Left = 128
-    Top = 429
-    Width = 965
+    Top = 446
+    Width = 940
     Height = 86
     Anchors = [akLeft, akRight, akBottom]
     BevelOuter = bvNone
@@ -579,17 +586,17 @@ object frmMain: TfrmMain
     object pnlTextControls: TPanel
       Left = 266
       Top = 0
-      Width = 699
+      Width = 674
       Height = 86
       Align = alClient
       BevelOuter = bvNone
       FullRepaint = False
       TabOrder = 1
       DesignSize = (
-        699
+        674
         86)
       object lblLines2: TLabel
-        Left = 661
+        Left = 636
         Top = 6
         Width = 28
         Height = 13
@@ -597,7 +604,7 @@ object frmMain: TfrmMain
         Caption = 'Lines:'
       end
       object lblTranslationLines: TLabel
-        Left = 690
+        Left = 665
         Top = 6
         Width = 6
         Height = 13
@@ -605,7 +612,7 @@ object frmMain: TfrmMain
         Caption = '1'
       end
       object lblTextLines: TLabel
-        Left = 461
+        Left = 436
         Top = 6
         Width = 6
         Height = 13
@@ -613,7 +620,7 @@ object frmMain: TfrmMain
         Caption = '1'
       end
       object lblLines1: TLabel
-        Left = 432
+        Left = 407
         Top = 6
         Width = 28
         Height = 13
@@ -637,7 +644,7 @@ object frmMain: TfrmMain
       object mmoTranslationOld: TMemo
         Left = 208
         Top = 22
-        Width = 490
+        Width = 465
         Height = 62
         Alignment = taCenter
         Anchors = [akLeft, akTop, akRight]
@@ -660,7 +667,7 @@ object frmMain: TfrmMain
       object mmoSubtitleTextOld: TMemo
         Left = 0
         Top = 22
-        Width = 469
+        Width = 444
         Height = 62
         Alignment = taCenter
         Anchors = [akLeft, akTop, akRight]
@@ -687,7 +694,7 @@ object frmMain: TfrmMain
       object mmoTranslation: TRichEdit
         Left = 208
         Top = 22
-        Width = 490
+        Width = 465
         Height = 62
         Alignment = taCenter
         Anchors = [akLeft, akTop, akRight]
@@ -712,7 +719,7 @@ object frmMain: TfrmMain
       object mmoSubtitleText: TRichEdit
         Left = 0
         Top = 22
-        Width = 469
+        Width = 444
         Height = 62
         Alignment = taCenter
         Anchors = [akLeft, akTop, akRight]
@@ -860,7 +867,7 @@ object frmMain: TfrmMain
     Left = 8
     Top = 32
     Width = 113
-    Height = 481
+    Height = 498
     Anchors = [akLeft, akTop, akBottom]
     BevelInner = bvLowered
     BevelOuter = bvNone
@@ -868,7 +875,7 @@ object frmMain: TfrmMain
     TabOrder = 0
     DesignSize = (
       113
-      481)
+      498)
     object lblMode: TLabel
       Left = 8
       Top = 8
@@ -1033,7 +1040,7 @@ object frmMain: TfrmMain
       Left = 0
       Top = 352
       Width = 113
-      Height = 129
+      Height = 146
       Anchors = [akLeft, akTop, akRight, akBottom]
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -1059,8 +1066,8 @@ object frmMain: TfrmMain
   object pnlParent2: TPanel
     Left = 128
     Top = 32
-    Width = 965
-    Height = 396
+    Width = 940
+    Height = 413
     Anchors = [akLeft, akTop, akRight, akBottom]
     BevelOuter = bvNone
     FullRepaint = False
@@ -1068,8 +1075,8 @@ object frmMain: TfrmMain
     object pnlParent1: TPanel
       Left = 0
       Top = 0
-      Width = 965
-      Height = 396
+      Width = 940
+      Height = 413
       Align = alClient
       BevelOuter = bvNone
       FullRepaint = False
@@ -1077,7 +1084,7 @@ object frmMain: TfrmMain
       object spSplitter: TSplitter
         Left = 0
         Top = 265
-        Width = 965
+        Width = 940
         Height = 4
         Cursor = crVSplit
         Align = alTop
@@ -1089,7 +1096,7 @@ object frmMain: TfrmMain
       object pnlVideo: TPanel
         Left = 0
         Top = 0
-        Width = 965
+        Width = 940
         Height = 265
         Align = alTop
         BevelOuter = bvNone
@@ -1097,7 +1104,7 @@ object frmMain: TfrmMain
         FullRepaint = False
         TabOrder = 0
         DesignSize = (
-          965
+          940
           265)
         object edtPlayerShortcuts: TEdit
           Left = 40
@@ -1113,7 +1120,7 @@ object frmMain: TfrmMain
           OnKeyUp = PlayerShortcutsKeyUp
         end
         object subSubtitle: TMiSubtitulo
-          Left = 402
+          Left = 390
           Top = 86
           Width = 116
           Height = 28
@@ -1149,7 +1156,7 @@ object frmMain: TfrmMain
         object pnlVideoControls: TPanel
           Left = 0
           Top = 215
-          Width = 965
+          Width = 940
           Height = 50
           Align = alBottom
           FullRepaint = False
@@ -1161,10 +1168,10 @@ object frmMain: TfrmMain
           ParentFont = False
           TabOrder = 0
           DesignSize = (
-            965
+            940
             50)
           object tcTimeCounter: TSWTimeCounter
-            Left = 838
+            Left = 813
             Top = 19
             Width = 125
             Height = 28
@@ -1189,7 +1196,7 @@ object frmMain: TfrmMain
             OnMouseWheelUp = tcTimeCounterMouseWheelUp
           end
           object btnMute100: TSWButton
-            Left = 698
+            Left = 673
             Top = 21
             Width = 30
             Height = 25
@@ -1458,7 +1465,7 @@ object frmMain: TfrmMain
             ShowHint = True
           end
           object btnMute075: TSWButton
-            Left = 698
+            Left = 673
             Top = 21
             Width = 30
             Height = 25
@@ -1727,7 +1734,7 @@ object frmMain: TfrmMain
             ShowHint = True
           end
           object btnMute050: TSWButton
-            Left = 698
+            Left = 673
             Top = 21
             Width = 30
             Height = 25
@@ -1996,7 +2003,7 @@ object frmMain: TfrmMain
             ShowHint = True
           end
           object btnMute025: TSWButton
-            Left = 698
+            Left = 673
             Top = 21
             Width = 30
             Height = 25
@@ -2265,7 +2272,7 @@ object frmMain: TfrmMain
             ShowHint = True
           end
           object btnMute000: TSWButton
-            Left = 698
+            Left = 673
             Top = 21
             Width = 30
             Height = 25
@@ -2534,7 +2541,7 @@ object frmMain: TfrmMain
             ShowHint = True
           end
           object btnMute: TSWButton
-            Left = 698
+            Left = 673
             Top = 21
             Width = 30
             Height = 25
@@ -2804,7 +2811,7 @@ object frmMain: TfrmMain
             OnClick = btnMuteClick
           end
           object sbVolume: TSWSeekBar
-            Left = 731
+            Left = 706
             Top = 25
             Width = 100
             Height = 17
@@ -2888,7 +2895,7 @@ object frmMain: TfrmMain
           object sbSeekBar: TSWSeekBar
             Left = 5
             Top = 3
-            Width = 955
+            Width = 930
             Height = 17
             Cursor = crHandPoint
             MainBar.Data = {
@@ -8142,7 +8149,7 @@ object frmMain: TfrmMain
         object pnlWaveformVideo: TPanel
           Left = 0
           Top = 0
-          Width = 965
+          Width = 940
           Height = 215
           Align = alClient
           Caption = 'pnlWaveformVideo'
@@ -8150,7 +8157,7 @@ object frmMain: TfrmMain
           object pnlWAVDisplay: TPanel
             Left = 1
             Top = 1
-            Width = 963
+            Width = 938
             Height = 213
             Align = alClient
             TabOrder = 0
@@ -8159,7 +8166,7 @@ object frmMain: TfrmMain
           object pnlVideoDisplay: TPanel
             Left = 1
             Top = 1
-            Width = 963
+            Width = 938
             Height = 213
             Cursor = crArrow
             Align = alClient
@@ -8177,8 +8184,8 @@ object frmMain: TfrmMain
       object lstSubtitles: TVirtualStringTree
         Left = 0
         Top = 269
-        Width = 965
-        Height = 127
+        Width = 940
+        Height = 144
         Align = alClient
         DefaultPasteMode = amInsertAfter
         EditDelay = 100
@@ -8957,6 +8964,11 @@ object frmMain: TfrmMain
         ShortCut = 118
         OnClick = mnuSpellCheckClick
       end
+      object mnuNetflixQualityCheck: TMenuItem
+        Caption = 'Netflix quality check'
+        ImageIndex = 39
+        OnClick = mnuNetflixQualityCheckClick
+      end
       object N32: TMenuItem
         Caption = '-'
       end
@@ -9641,7 +9653,7 @@ object frmMain: TfrmMain
     Left = 200
     Top = 160
     Bitmap = {
-      494C010137003B00040010001000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
+      494C010137003B00040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000040000000F0000000010020000000000000F0
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -11625,7 +11637,8 @@ object frmMain: TfrmMain
       000783E00000E01F000383E00000800F00018080000000070000800000000003
       000080000000000100078000000000000007C001000000000007E08300008001
       80FFE0830000C001C1F1F1C70000E001FFF9F1C70000F001FF75F1C70000F807
-      FF8FFFFF0000FC1FFFFFFFFFFFFFFE7F}
+      FF8FFFFF0000FC1FFFFFFFFFFFFFFE7F00000000000000000000000000000000
+      000000000000}
   end
   object USSpellCheck: TUSSpell
     HookCaption = False
@@ -11718,7 +11731,7 @@ object frmMain: TfrmMain
     Left = 232
     Top = 160
     Bitmap = {
-      494C010132003600040010001000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
+      494C010132003600040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000040000000E0000000010020000000000000E0
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -13570,7 +13583,8 @@ object frmMain: TfrmMain
       000783E00000E01F000383E00000800F00018080000000070000800000000003
       000080000000000100078000000000000007C001000000000007E08300008001
       80FFE0830000C001C1F1F1C70000E001FFF9F1C70000F001FF75F1C70000F807
-      FF8FFFFF0000FC1FFFFFFFFFFFFFFE7F}
+      FF8FFFFF0000FC1FFFFFFFFFFFFFFE7F00000000000000000000000000000000
+      000000000000}
   end
   object mnuUndoDropdown: TPopupMenu
     AutoHotkeys = maManual
