@@ -216,7 +216,7 @@ implementation
 
 uses
   Functions, Undo, InfoErrorsFunctions, TreeViewHandle, USubtitlesFunctions, VideoPreview, ShortCuts,
-  formMain, formSaveAs;
+  formMain, formSaveAs, NetflixQualityCheck;
 
 // -----------------------------------------------------------------------------
 
@@ -1535,6 +1535,12 @@ begin
     if (FileName = frmMain.TransFile) then
       SaveMarking(frmMain.TransFile+ID_SRFEXT, frmMain.TransFile);
   //added by adenry: end
+
+  if (SubtitleAPI.GetFormatName(FormatIndex) = 'Timed Text') or
+    (SubtitleAPI.GetFormatName(FormatIndex) = 'Timed Text (UTF-8)') then
+  begin
+    PerformNetflixQualityCheck(False);
+  end;
 end;
 
 // -----------------------------------------------------------------------------

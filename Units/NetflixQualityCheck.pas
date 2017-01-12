@@ -122,6 +122,12 @@ function IsGlyphAllowed(const AllowedGlyphs: TGlyphArray; Glyph: Integer): Boole
 var
   i: Integer;
 begin
+  if (Glyph = 13) or (Glyph = 10) then
+  begin
+    Result := true;
+    Exit;
+  end;
+
   for i := 0 to Length(AllowedGlyphs) - 1 do
   begin
     if AllowedGlyphs[i] = Glyph then
@@ -288,13 +294,10 @@ var
   WhiteSpaceCheckReport: string;
   WhiteSpaceCheckReportPath: string;
 
-  SuccessMessages: TStringList;
-  FailMessages: TStringList;
-
+  Messages: TStringList;
   CurrentFileName: string;
 begin
-  SuccessMessages := TStringList.Create;
-  FailMessages := TStringList.Create;
+  Messages := TStringList.Create;
   if frmMain.OrgFile <> '' then
   begin
     CurrentFileName := ChangeFileExt(ExtractFileName(frmMain.OrgFile), '');
@@ -307,39 +310,43 @@ begin
   NetflixQCReportAddHeader(GlyphCheckReport);
   if PerformNetflixGlyphCheck(GlyphCheckReport) then
   begin
-    SuccessMessages.Add(GlyphCheckSuccessfull);
+    if ShowSuccessMessages then
+    begin
+      Messages.Add(GlyphCheckSuccessfull);
+    end;
   end
   else
   begin
     GlyphCheckReportPath := GetTempPathStr() + CurrentFileName + '_NetflixGlyphCheck.csv';
-    FailMessages.Add(Format(GlyphCheckFailed, [GlyphCheckReportPath]));
+    Messages.Add(Format(GlyphCheckFailed, [GlyphCheckReportPath]));
     if not SaveString(GlyphCheckReport, GlyphCheckReportPath) then
     begin
-      ShowMessage(SavingError);
+      Messages.Add(SavingError);
     end;
   end;
 
   NetflixQCReportAddHeader(WhiteSpaceCheckReport);
   if PerformNetflixWhiteSpaceCheck(WhiteSpaceCheckReport) then
   begin
-    SuccessMessages.Add(WhiteSpaceCheckSuccessfull);
+    if ShowSuccessMessages then
+    begin
+      Messages.Add(WhiteSpaceCheckSuccessfull);
+    end;
   end
   else
   begin
     WhiteSpaceCheckReportPath := GetTempPathStr() + CurrentFileName + '_NetflixWhiteSpaceCheck.csv';
-    FailMessages.Add(Format(WhiteSpaceCheckFailed, [WhiteSpaceCheckReportPath]));
+    Messages.Add(Format(WhiteSpaceCheckFailed, [WhiteSpaceCheckReportPath]));
     if not SaveString(WhiteSpaceCheckReport, WhiteSpaceCheckReportPath) then
     begin
-      ShowMessage(SavingError);
+      Messages.Add(SavingError);
     end;
   end;
 
-  if ShowSuccessMessages then
+  if Messages.Count > 0 then
   begin
-    SuccessMessages.AddStrings(FailMessages);
+    ShowMessage(Messages.Text);
   end;
-
-  ShowMessage(SuccessMessages.Text);
 end;
 
 end.
