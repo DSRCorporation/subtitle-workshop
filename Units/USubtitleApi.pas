@@ -44,7 +44,7 @@ type
     destructor Destroy; override;
     function Initialize(DLLFileName: String): Boolean;
     function UnInitialize: Boolean;
-    function LoadSubtitle(FileName: String; FPS: Single; FormatIndex: Integer = 0; Append: Boolean = False; ReCalcTimeValues: Boolean = True): Boolean;
+    function LoadSubtitle(FileName: String; FPS: Single; Charset: Byte; FormatIndex: Integer = 0; Append: Boolean = False; ReCalcTimeValues: Boolean = True): Boolean;
     procedure CreateNewSubtitle;
     function GetFileFormat(FileName: String): Integer;
     function SaveSubtitle(FileName: String; FormatIndex: Integer; FPS: Single; Charset: Byte = DEFAULT_CHARSET; FromIndex: Integer = -1; ToIndex: Integer = -1): Boolean;
@@ -221,16 +221,16 @@ end;
 
 // -----------------------------------------------------------------------------
 
-function TSubtitleApi.LoadSubtitle(FileName: String; FPS: Single; FormatIndex: Integer = 0; Append: Boolean = False; ReCalcTimeValues: Boolean = True): Boolean;
+function TSubtitleApi.LoadSubtitle(FileName: String; FPS: Single; Charset: Byte; FormatIndex: Integer = 0; Append: Boolean = False; ReCalcTimeValues: Boolean = True): Boolean;
 var
-  LoadSubFile: function(FileName: PChar; FPS: Single; FormatIndex: Integer; Append, ReCalcTimeValues: LongBool): LongBool; stdcall;
+  LoadSubFile: function(FileName: PChar; FPS: Single; FormatIndex: Integer; Append, ReCalcTimeValues: LongBool; Charset: Byte): LongBool; stdcall;
 begin
   Result := False;
   If (FInstance <> 0) And MyFileExists(FileName) = True Then
   Begin
     LoadSubFile := GetProcAddress(FInstance, 'LoadSubtitleFile');
     If @LoadSubFile <> NIL Then
-      Result := LoadSubFile(PChar(FileName), FPS, FormatIndex, Append, ReCalcTimeValues); //FormatIndex = 0 is automatic format detection
+      Result := LoadSubFile(PChar(FileName), FPS, FormatIndex, Append, ReCalcTimeValues, Charset); //FormatIndex = 0 is automatic format detection
   End;
 end;
 

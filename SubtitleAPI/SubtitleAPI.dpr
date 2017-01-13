@@ -105,7 +105,9 @@ uses
   USubtitlesSave in 'Source\USubtitlesSave.pas',
   USubtitlesFunctions in 'Source\USubtitlesFunctions.pas',
   UTagFinder in 'Source\UTagFinder.pas',
-  UTimedTextUtils in 'Source\UTimedTextUtils.pas';
+  UTimedTextUtils in 'Source\UTimedTextUtils.pas',
+  UTtmlParser in 'Source\UTtmlParser.pas',
+  UTtmlTimeConverter in 'Source\UTtmlTimeConverter.pas';
 
 var
   Subtitles: TSubtitles = NIL;
@@ -307,12 +309,12 @@ end;
 //                               File handling                                //
 // -------------------------------------------------------------------------- //
 
-function LoadSubtitleFile(FileName: PChar; FPS: Single; FormatIndex: Integer; Append, ReCalcTimeValues: LongBool): LongBool; stdcall;
+function LoadSubtitleFile(FileName: PChar; FPS: Single; FormatIndex: Integer; Append, ReCalcTimeValues: LongBool; Charset: Byte): LongBool; stdcall;
 begin
   if Append = False then
-    Result := LongBool(LoadSubtitle(Subtitles, FileName, FPS, TSubtitleFormats(FormatIndex)))
+    Result := LongBool(LoadSubtitle(Subtitles, FileName, FPS, Charset, TSubtitleFormats(FormatIndex)))
   else
-    Result := LongBool(LoadSubtitle(Subtitles, FileName, FPS, TSubtitleFormats(FormatIndex), False, ReCalcTimeValues));
+    Result := LongBool(LoadSubtitle(Subtitles, FileName, FPS, Charset, TSubtitleFormats(FormatIndex), False, ReCalcTimeValues));
 end;
 
 // -----------------------------------------------------------------------------

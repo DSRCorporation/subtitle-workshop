@@ -14,7 +14,7 @@ var
 begin
   Result := True;
 
-  if (utf8 = True) then
+  if utf8 then
     encoding := 'UTF-8'
   else
     encoding := GetCharsetEncoding(charset);

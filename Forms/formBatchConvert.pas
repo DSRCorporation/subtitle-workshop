@@ -237,7 +237,7 @@ begin
         begin
           if chkExhaustiveCheck.Checked then
           begin
-            if SubtitleAPI.LoadSubtitle(Path + srRes.Name, 25) then
+            if SubtitleAPI.LoadSubtitle(Path + srRes.Name, 25, frmMain.OrgCharset) then
               FFormat := SubtitleAPI.CurrentFormatIndex else
               FFormat := 0;
             SubtitleAPI.CloseSubtitle;
@@ -541,7 +541,7 @@ begin
       Application.ProcessMessages;
       if chkExhaustiveCheck.Checked then
       begin
-        if SubtitleAPI.LoadSubtitle(dlgAdd.Files[i], 25) then
+        if SubtitleAPI.LoadSubtitle(dlgAdd.Files[i], 25, frmMain.OrgCharset) then
           FFormat := SubtitleAPI.CurrentFormatIndex else
           FFormat := 0;
         SubtitleAPI.CloseSubtitle;

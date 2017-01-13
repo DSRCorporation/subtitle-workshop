@@ -68,7 +68,6 @@ type
     function BuildParagraphs(subtitles: TSubtitles; From, UpTo: Integer): IXMLNodeArray;
   end;
 
-
 implementation
 
 const

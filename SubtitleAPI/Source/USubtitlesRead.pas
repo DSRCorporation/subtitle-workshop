@@ -93,7 +93,7 @@ interface
 uses
   Dialogs, // by Bedazzle 2007.01.26
   Classes, //added by adenry 2013.04.11 - for TStringList
-  USubtitleFile, USubtitlesFunctions, SysUtils, FastStrings{$IFDEF VIPLAY}, Forms{$ENDIF};
+  USubtitleFile, USubtitlesFunctions, SysUtils, FastStrings{$IFDEF VIPLAY}, Forms{$ENDIF}, Windows;
 
 //------------------------------------------------------------------------------
 
@@ -241,7 +241,7 @@ const
 
 //------------------------------------------------------------------------------
 
-function LoadSubtitle(var Subtitles: TSubtitles; const FileName: String; FPS: Single; SubtitleFormat: TSubtitleFormats = sfInvalid; Clear: Boolean = True; ReCalcTimeValues: Boolean = False): Boolean;
+function LoadSubtitle(var Subtitles: TSubtitles; const FileName: String; FPS: Single; Charset: Byte; SubtitleFormat: TSubtitleFormats = sfInvalid; Clear: Boolean = True; ReCalcTimeValues: Boolean = False): Boolean;
 procedure CloseSubtitle(var Subtitles: TSubtitles);
 function DisplaySubtitle(var Subtitles: TSubtitles; const Time: Integer): String;
 
@@ -251,7 +251,7 @@ function MakeOneLine(const Source: String): String;
 
 //------------------------------------------------------------------------------
 
-function FileToSubtitles                         (var Subtitles: TSubtitles; tmpSubFile: TSubtitleFile; FPS: Single; SubtitleFormat: TSubtitleFormats; ReCalcTimeValues: Boolean): Boolean;
+function FileToSubtitles                         (var Subtitles: TSubtitles; tmpSubFile: TSubtitleFile; FPS: Single; SubtitleFormat: TSubtitleFormats; ReCalcTimeValues: Boolean; charset: Byte = DEFAULT_CHARSET): Boolean;
 function FileToSubtitles_ADOBEENCOREDVD          (var Subtitles: TSubtitles; tmpSubFile: TSubtitleFile; FPS: Single; ExtraTime: Integer): Boolean;
 function FileToSubtitles_ADOBEENCOREDVDNTSC      (var Subtitles: TSubtitles; tmpSubFile: TSubtitleFile; FPS: Single; ExtraTime: Integer): Boolean; //added by adenry 2013.04.11
 function FileToSubtitles_ADOBEENCOREDVDPAL       (var Subtitles: TSubtitles; tmpSubFile: TSubtitleFile; FPS: Single; ExtraTime: Integer): Boolean; //added by adenry 2013.04.11
@@ -309,7 +309,7 @@ function FileToSubtitles_SUBSONIC                (var Subtitles: TSubtitles; tmp
 function FileToSubtitles_SUBSTATIONALPHA         (var Subtitles: TSubtitles; tmpSubFile: TSubtitleFile; ExtraTime: Integer): Boolean;
 function FileToSubtitles_SUBVIEWER1              (var Subtitles: TSubtitles; tmpSubFile: TSubtitleFile; ExtraTime: Integer): Boolean;
 function FileToSubtitles_SUBVIEWER2              (var Subtitles: TSubtitles; tmpSubFile: TSubtitleFile; ExtraTime: Integer): Boolean;
-function FileToSubtitles_TIMEDTEXT               (var Subtitles: TSubtitles; tmpSubFile: TSubtitleFile; ExtraTime: Integer): Boolean;   // by URUWorks 2007.12.22
+function FileToSubtitles_TIMEDTEXT               (var Subtitles: TSubtitles; tmpSubFile: TSubtitleFile; ExtraTime: Integer; charset: Byte): Boolean;   // by URUWorks 2007.12.22
 //function FileToSubtitles_TITLEVISIONTXT          (var Subtitles: TSubtitles; tmpSubFile: TSubtitleFile; ExtraTime: Integer): Boolean;
 function FileToSubtitles_TMPLAYER                (var Subtitles: TSubtitles; tmpSubFile: TSubtitleFile; ExtraTime: Integer): Boolean;
 function FileToSubtitles_TURBOTITLER             (var Subtitles: TSubtitles; tmpSubFile: TSubtitleFile; ExtraTime: Integer): Boolean;
@@ -338,11 +338,11 @@ var
 
 implementation
 
-uses UCheckFormat, LibXMLParser;
+uses UCheckFormat, LibXMLParser, Contnrs, UTtmlParser;
 
 //------------------------------------------------------------------------------
 
-function LoadSubtitle(var Subtitles: TSubtitles; const FileName: String; FPS: Single; SubtitleFormat: TSubtitleFormats = sfInvalid; Clear: Boolean = True; ReCalcTimeValues: Boolean = False): Boolean;
+function LoadSubtitle(var Subtitles: TSubtitles; const FileName: String; FPS: Single; Charset: Byte; SubtitleFormat: TSubtitleFormats = sfInvalid; Clear: Boolean = True; ReCalcTimeValues: Boolean = False): Boolean;
 var
   tmpSubFile: TSubtitleFile;
 begin
@@ -358,7 +358,7 @@ begin
     if Subtitles.Format <= Integer(sfInvalid) then
       Subtitles.Format := Integer(CheckSubtitleFormat(tmpSubFile));
 
-    Result := FileToSubtitles(Subtitles, tmpSubFile, FPS, TSubtitleFormats(Subtitles.Format), ReCalcTimeValues);
+    Result := FileToSubtitles(Subtitles, tmpSubFile, FPS, TSubtitleFormats(Subtitles.Format), ReCalcTimeValues, Charset);
   finally
     tmpSubFile.Free;
     if Result = False then
@@ -413,7 +413,7 @@ end;
 
 //------------------------------------------------------------------------------
 
-function FileToSubtitles(var Subtitles: TSubtitles; tmpSubFile: TSubtitleFile; FPS: Single; SubtitleFormat: TSubtitleFormats; ReCalcTimeValues: Boolean): Boolean;
+function FileToSubtitles(var Subtitles: TSubtitles; tmpSubFile: TSubtitleFile; FPS: Single; SubtitleFormat: TSubtitleFormats; ReCalcTimeValues: Boolean; charset: Byte = DEFAULT_CHARSET): Boolean;
 var
   ExtraTime: Integer;
 begin
@@ -482,8 +482,8 @@ begin
     sfSubStationAlpha         : Result := FileToSubtitles_SUBSTATIONALPHA        (Subtitles, tmpSubFile, ExtraTime);
     sfSubViewer1              : Result := FileToSubtitles_SUBVIEWER1             (Subtitles, tmpSubFile, ExtraTime);
     sfSubViewer2              : Result := FileToSubtitles_SUBVIEWER2             (Subtitles, tmpSubFile, ExtraTime);
-    sfTimedText               : Result := FileToSubtitles_TIMEDTEXT              (Subtitles, tmpSubFile, ExtraTime);    // by URUWorks 2007.12.22
-    sfTimedTextUtf8           : Result := FileToSubtitles_TIMEDTEXT              (Subtitles, tmpSubFile, ExtraTime);    
+    sfTimedText               : Result := FileToSubtitles_TIMEDTEXT              (Subtitles, tmpSubFile, ExtraTime, charset);    // by URUWorks 2007.12.22
+    sfTimedTextUtf8           : Result := FileToSubtitles_TIMEDTEXT              (Subtitles, tmpSubFile, ExtraTime, charset);    
     //sfTitlevisionTXT          : Result := FileToSubtitles_TITLEVISIONTXT         (Subtitles, tmpSubFile, ExtraTime);
     sfTMPlayer                : Result := FileToSubtitles_TMPLAYER               (Subtitles, tmpSubFile, ExtraTime);
     sfTurboTitler             : Result := FileToSubtitles_TURBOTITLER            (Subtitles, tmpSubFile, ExtraTime);

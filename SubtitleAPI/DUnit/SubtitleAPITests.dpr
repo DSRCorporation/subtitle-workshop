@@ -7,7 +7,8 @@ uses
   TestFramework,
   TextTestRunner,
   TagFinderTestCases in 'TagFinderTestCases.pas',
-  TimedTextTestCases in 'TimedTextTestCases.pas';
+  TimedTextTestCases in 'TimedTextTestCases.pas',
+  TtmlTimeConverterTestCases in 'TtmlTimeConverterTestCases.pas';
 
 {$R *.RES}
 

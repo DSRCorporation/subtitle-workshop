@@ -122,7 +122,7 @@ begin
     for i := 0 to opnDlg.Files.Count-1 do
     begin
       Application.ProcessMessages;
-      if SubtitleAPI.LoadSubtitle(opnDlg.Files[i], 25) then
+      if SubtitleAPI.LoadSubtitle(opnDlg.Files[i], 25, frmMain.OrgCharset) then
         FFormat := SubtitleAPI.CurrentFormatIndex else
         FFormat := 0;
       if (FFormat > 0) then
@@ -289,10 +289,10 @@ begin
         CurrFPS := StrToFloat(lstFiles.Items[i].SubItems[1]);
 
       if m = 0 then // No movie selected, we use "Recalculate time values" checkbox value
-        SubtitleAPI.LoadSubtitle(lstFiles.Items[i].Caption, CurrFPS, 0, True, chkRecalculate.Checked) else
+        SubtitleAPI.LoadSubtitle(lstFiles.Items[i].Caption, CurrFPS, frmMain.OrgCharset, 0, True, chkRecalculate.Checked) else
       begin
         z := SubtitleAPI.SubtitleCount;
-        SubtitleAPI.LoadSubtitle(lstFiles.Items[i].Caption, CurrFPS, 0, True, False);
+        SubtitleAPI.LoadSubtitle(lstFiles.Items[i].Caption, CurrFPS, frmMain.OrgCharset, 0, True, False);
 
         if i > 0 then
         begin
