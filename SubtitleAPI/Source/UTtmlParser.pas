@@ -7,6 +7,7 @@ uses
   Classes,
   USubtitleFile,
   USubtitlesFunctions,
+  UTtmlTimeConverter,
   LibXMLParser,
   Contnrs;
 
@@ -29,7 +30,6 @@ type
   TTtmlParser = class
   private
     FParser     : TXMLParser;
-    FCurrTag    : AnsiString;
     FState      : set of TXMLState;
 
     FMaxDuration: Integer;
@@ -39,12 +39,14 @@ type
     FSpanStack  : TStack;
 
     FTmpColor   : AnsiString;
-    
+    FTimeConverter: TTtmlTimeConverter;
+
     procedure NormalizeTimes;
     function GetTime(attrName: AnsiString): Integer;
     function OpenSWTags(tags: TSWTags): AnsiString;
     function CloseSWTags(tags: TSWTags): AnsiString;
     function TranslateSpan: TSWTags;
+    procedure InitTimeConverter;
   protected
 
     procedure ClearSubtitle;
@@ -56,7 +58,7 @@ type
     procedure ProcessOpenSpan;
   public
     constructor Create(charset: Byte; maxDuration, extraTime: Integer);
-    destructor Destroy;
+    destructor Destroy; override;
 
     function ParseTTML(subFile: TSubtitleFile; subtitles: TSubtitles): Boolean;
   end;
@@ -102,9 +104,15 @@ begin
 end;
 
 function TTtmlParser.GetTime(attrName: AnsiString): Integer;
+var
+  expr: AnsiString;
 begin
   try
-    Result := StringToTime(FParser.CurAttr.Value(attrName));
+    expr := FParser.CurAttr.Value(attrName);
+    if Assigned(FTimeConverter) then
+      Result := FTimeConverter.ParseTimeExpression(expr)
+    else
+      Result := StringToTime(expr);
   except
     Result := 0;
   end;
@@ -207,6 +215,53 @@ begin
   end;
 end;
 
+procedure TTtmlParser.InitTimeConverter;
+var
+  attrValue     : AnsiString;
+  frameRate,
+  subFrameRate,
+  tickRate,
+  frNumerator,
+  frDenominator : Integer;
+  parts         : TStrings;
+begin
+  with FParser.CurAttr do
+  try
+    attrValue := Value('ttp:frameRate');
+    if (attrValue <> '') then
+      frameRate := StrToInt(attrValue)
+    else
+      frameRate := 30;
+
+    attrValue := Value('ttp:frameRateMultiplier');
+    if (attrValue <> '') then begin
+      parts := TStringList.Create;
+      ExtractStrings([' '], [], PChar(attrValue), parts);
+      frNumerator   := StrToInt(parts[0]);
+      frDenominator := StrToInt(parts[1]);
+    end else begin
+      frNumerator   := 1;
+      frDenominator := 1;
+    end;
+
+    attrValue := Value('ttp:subFrameRate');
+    if (attrValue <> '') then
+      subFrameRate := StrToInt(attrValue)
+    else
+      subFrameRate := 1;
+
+    attrValue := Value('ttp:tickRate');
+    if (attrValue <> '') then
+      tickRate := StrToInt(attrValue)
+    else
+      tickRate := 1;
+
+    FTimeConverter := TTtmlTimeConverter.Create(frameRate, frNumerator, frDenominator, subFrameRate, tickRate);
+  except
+    FTimeConverter := TTtmlTimeConverter.Create(30, 1, 1, 1, 1);
+  end;
+end;
+
 function TTtmlParser.ParseTTML(subFile: TSubtitleFile; subtitles: TSubtitles): Boolean;
 var
   tag: AnsiString;
@@ -216,6 +271,7 @@ begin
   ClearSubtitle;
 
   FSpanStack := TStack.Create;
+  FTimeConverter := nil;
 
   with FParser do
   try
@@ -248,7 +304,12 @@ begin
                       end
                       else
                       if tag = 'br' then
-                        AppendNewLine;
+                        AppendNewLine
+                      else
+                      if tag = 'tt' then
+                      begin
+                        InitTimeConverter;
+                      end;
 
         ptEndTag    : if tag = 'p' then
                       begin
@@ -275,11 +336,15 @@ begin
 
         ptContent   : if (xsSubtitleText in FState) then
                         AppendContent;
+        ptEmptyTag  : if tag = 'br' then
+                        AppendNewLine;
       end;
     end;
   finally
     Free;
     FSpanStack.Destroy;
+    FTimeConverter.Destroy;
+    
     if subtitles.Count > 0 then Result := True;
   end;
 end;

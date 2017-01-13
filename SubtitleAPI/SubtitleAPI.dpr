@@ -106,7 +106,8 @@ uses
   USubtitlesFunctions in 'Source\USubtitlesFunctions.pas',
   UTagFinder in 'Source\UTagFinder.pas',
   UTimedTextUtils in 'Source\UTimedTextUtils.pas',
-  UTtmlParser in 'Source\UTtmlParser.pas';
+  UTtmlParser in 'Source\UTtmlParser.pas',
+  UTtmlTimeConverter in 'Source\UTtmlTimeConverter.pas';
 
 var
   Subtitles: TSubtitles = NIL;
