@@ -4999,6 +4999,8 @@ begin
   mnuSaveMediaStartupFile.Enabled := (OrgFile <> '') and (MovieFile <> '');
   mnuSaveASX.Enabled              := (OrgFile <> '') and (MovieFile <> '');
   mnuSaveSMIL.Enabled             := (OrgFile <> '') and (MovieFile <> '');
+  // ------
+  mnuPlayback.Enabled        := previewSelected = psVideo;
 end;
 
 // -----------------------------------------------------------------------------
@@ -12439,6 +12441,10 @@ begin
       mnuVideoPreviewMode.Checked := False;
 
       previewSelected := psWaveform;
+      mnuMainWaveformPlayPause.ShortCut := TextToShortCut('Ctrl+Space');
+      mnuMainWaveformStop.ShortCut := TextToShortCut('Ctrl+BkSp');
+      mnuPlayPause.ShortCut := TextToShortCut('');
+      mnuStop.ShortCut := TextToShortCut('');
     end;
   end
   else
@@ -12447,7 +12453,11 @@ begin
       tbWaveformPreviewMode.Down          := False;
       mnuMainWaveformPreviewMode.Checked  := False;
 
-      previewSelected := psVideo
+      previewSelected := psVideo;
+      mnuMainWaveformPlayPause.ShortCut := TextToShortCut('');
+      mnuMainWaveformStop.ShortCut := TextToShortCut('');
+      mnuPlayPause.ShortCut := TextToShortCut('Ctrl+Space');
+      mnuStop.ShortCut := TextToShortCut('Ctrl+BkSp');
     end;
   end;
 
