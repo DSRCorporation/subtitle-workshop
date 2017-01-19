@@ -1045,6 +1045,8 @@ type
     procedure UpdateWaveformPlayPauseVisible;
     procedure UpdateWaveformVolume;
     procedure mnuNetflixQualityCheckClick(Sender: TObject);
+    procedure lstSubtitlesCompareNodes(Sender: TBaseVirtualTree; Node1,
+      Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
   protected
     procedure CreateParams(var Params: TCreateParams); override;
 	  // Preview mode handling
@@ -4869,7 +4871,10 @@ end;
 
 procedure TfrmMain.mnuPlayPauseClick(Sender: TObject);
 begin
-  Pause;
+  if previewSelected = psVideo then
+  begin
+    Pause;
+  end;
 end;
 
 // -----------------------------------------------------------------------------
@@ -4994,6 +4999,8 @@ begin
   mnuSaveMediaStartupFile.Enabled := (OrgFile <> '') and (MovieFile <> '');
   mnuSaveASX.Enabled              := (OrgFile <> '') and (MovieFile <> '');
   mnuSaveSMIL.Enabled             := (OrgFile <> '') and (MovieFile <> '');
+  // ------
+  mnuPlayback.Enabled        := previewSelected = psVideo;
 end;
 
 // -----------------------------------------------------------------------------
@@ -5146,6 +5153,7 @@ begin
     RefreshTimes;
     AutoRecheckNodeErrors(Node, TimeErrors); //added by adenry //lstSubtitles.FocusedNode; //modified by adenry
     lstSubtitles.RepaintNode(Node); //lstSubtitles.FocusedNode; //modified by adenry
+    lstSubtitles.SortTree(0, sdAscending);
   end;
 end;
 //added by adenry: end
@@ -6276,6 +6284,7 @@ begin
   MarkLongLinesInLabel(lblTranslation); //added by adenry
   lstSubtitles.Refresh; //todo: is this really necessary?
   RefreshTimes;
+  lstSubtitles.SortTree(0, sdAscending);
   
   New(UndoAction);
   UndoAction^.UndoActionType := uaInsertLine;
@@ -12432,6 +12441,10 @@ begin
       mnuVideoPreviewMode.Checked := False;
 
       previewSelected := psWaveform;
+      mnuMainWaveformPlayPause.ShortCut := TextToShortCut('Ctrl+Space');
+      mnuMainWaveformStop.ShortCut := TextToShortCut('Ctrl+BkSp');
+      mnuPlayPause.ShortCut := TextToShortCut('');
+      mnuStop.ShortCut := TextToShortCut('');
     end;
   end
   else
@@ -12440,7 +12453,11 @@ begin
       tbWaveformPreviewMode.Down          := False;
       mnuMainWaveformPreviewMode.Checked  := False;
 
-      previewSelected := psVideo
+      previewSelected := psVideo;
+      mnuMainWaveformPlayPause.ShortCut := TextToShortCut('');
+      mnuMainWaveformStop.ShortCut := TextToShortCut('');
+      mnuPlayPause.ShortCut := TextToShortCut('Ctrl+Space');
+      mnuStop.ShortCut := TextToShortCut('Ctrl+BkSp');
     end;
   end;
 
@@ -14640,7 +14657,7 @@ begin
   sceneChange     := WaveformAdapter.Displayer.SceneChangeEnabled;
 
   mnuWaveformClose.Enabled              := loaded;
-  mnuWaveformInsertSubtitle.Enabled     := enabled and not selectionEmpty;
+  mnuWaveformInsertSubtitle.Enabled     := enabled;
   mnuWaveformDeleteSubtitle.Enabled     := enabled and (WaveformAdapter.Displayer.SelectedRange <> nil);
   mnuWaveformInsertSceneChange.Enabled  := enabled and sceneChange and selectionEmpty;
   mnuWaveformDeleteSceneChange.Enabled  := enabled and sceneChange and not selectionEmpty ;
@@ -14745,9 +14762,14 @@ var
   UndoAction: PUndoAction;
 begin
   with WaveformAdapter.Displayer do begin
-    if SelectionIsEmpty then Exit;
-
-    InsertNodeInRange(Selection.StartTime, Selection.StopTime);
+    if not SelectionIsEmpty then
+    begin
+      InsertNodeInRange(Selection.StartTime, Selection.StopTime);
+    end
+    else
+    begin
+      InsertNode(False, GetCursorPos);
+    end;
 
     New(UndoAction);
     UndoAction^.UndoActionType := uaInsertLine;
@@ -14760,6 +14782,8 @@ begin
     AddUndo(UndoAction);
 
     lstSubtitles.Refresh;
+    RefreshTimes;
+    lstSubtitles.SortTree(0, sdAscending);
 
     UpdateWaveformEnabled;
   end;
@@ -14831,8 +14855,11 @@ end;
 
 procedure TfrmMain.mnuWaveformPlayPauseClick(Sender: TObject);
 begin
-  WaveformAdapter.PlayPause;
-  UpdateWaveformPlayPauseVisible;
+  if previewSelected = psWaveform then
+  begin
+    WaveformAdapter.PlayPause;
+    UpdateWaveformPlayPauseVisible;
+  end;
 end;
 
 // -----------------------------------------------------------------------------
@@ -14863,6 +14890,12 @@ end;
 procedure TfrmMain.mnuNetflixQualityCheckClick(Sender: TObject);
 begin
   PerformNetflixQualityCheck(true);
+end;
+
+procedure TfrmMain.lstSubtitlesCompareNodes(Sender: TBaseVirtualTree;
+  Node1, Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
+begin
+  Result := GetStartTime(Node1) - GetStartTime(Node2);
 end;
 
 end.

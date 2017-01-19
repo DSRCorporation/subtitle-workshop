@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
   Tag = -1
-  Left = 391
-  Top = 162
+  Left = 708
+  Top = 63
   AutoScroll = False
   Caption = 'Subtitle Workshop'
   ClientHeight = 555
@@ -8226,6 +8226,7 @@ object frmMain: TfrmMain
         OnBeforeColumnWidthTracking = lstSubtitlesBeforeColumnWidthTracking
         OnChange = lstSubtitlesChange
         OnColumnResize = lstSubtitlesColumnResize
+        OnCompareNodes = lstSubtitlesCompareNodes
         OnCreateEditor = lstSubtitlesCreateEditor
         OnDblClick = lstSubtitlesDblClick
         OnEditCancelled = lstSubtitlesEditCancelled
@@ -9398,10 +9399,12 @@ object frmMain: TfrmMain
       Caption = 'Waveform'
       object mnuMainWaveformOpen: TMenuItem
         Caption = 'Open...'
+        ShortCut = 49239
         OnClick = mnuWaveformOpenClick
       end
       object mnuMainWaveformClose: TMenuItem
         Caption = 'Close'
+        ShortCut = 57431
         OnClick = mnuWaveformCloseClick
       end
       object N69: TMenuItem
@@ -9409,6 +9412,7 @@ object frmMain: TfrmMain
       end
       object mnuMainWaveformPreviewMode: TMenuItem
         Caption = 'Waveform preview mode'
+        ShortCut = 49233
         OnClick = mnuMainWaveformPreviewModeClick
       end
       object N66: TMenuItem
@@ -9417,11 +9421,13 @@ object frmMain: TfrmMain
       object mnuMainWaveformInsertSubtitle: TMenuItem
         Caption = 'Insert subtitle'
         ImageIndex = 24
+        ShortCut = 32813
         OnClick = mnuWaveformInsertSubtitleClick
       end
       object mnuMainWaveformDeleteSubtitle: TMenuItem
         Caption = 'Delete subtitle'
         ImageIndex = 26
+        ShortCut = 32814
         OnClick = mnuWaveformDeleteSubtitleClick
       end
       object N67: TMenuItem
@@ -9470,10 +9476,12 @@ object frmMain: TfrmMain
         Caption = 'Playback'
         object mnuMainWaveformPlayPause: TMenuItem
           Caption = 'Play/Pause'
+          ShortCut = 32800
           OnClick = mnuWaveformPlayPauseClick
         end
         object mnuMainWaveformStop: TMenuItem
           Caption = 'Stop'
+          ShortCut = 32776
           OnClick = mnuWaveformStopClick
         end
         object mnuMainWaveformPrevSubtitle: TMenuItem
@@ -9653,7 +9661,7 @@ object frmMain: TfrmMain
     Left = 200
     Top = 160
     Bitmap = {
-      494C010138003B00040010001000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
+      494C010138003B00040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000040000000F0000000010020000000000000F0
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -11637,7 +11645,8 @@ object frmMain: TfrmMain
       000783E00000E01F000383E00000800F00018080000000070000800000000003
       000080000000000100078000000000000007C001000000000007E08300008001
       80FFE0830000C001C1F1F1C70000E001FFF9F1C70000F001FF75F1C70000F807
-      FF8FFFFF0000FC1FFFFFFFFFFFFFFE7F}
+      FF8FFFFF0000FC1FFFFFFFFFFFFFFE7F00000000000000000000000000000000
+      000000000000}
   end
   object USSpellCheck: TUSSpell
     HookCaption = False
@@ -11730,7 +11739,7 @@ object frmMain: TfrmMain
     Left = 232
     Top = 160
     Bitmap = {
-      494C010138003B00040010001000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
+      494C010138003B00040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000040000000F0000000010020000000000000F0
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -13714,7 +13723,8 @@ object frmMain: TfrmMain
       000783E00000E01F000383E00000800F00018080000000070000800000000003
       000080000000000100078000000000000007C001000000000007E08300008001
       80FFE0830000C001C1F1F1C70000E001FFF9F1C70000F001FF75F1C70000F807
-      FF8FFFFF0000FC1FFFFFFFFFFFFFFE7F}
+      FF8FFFFF0000FC1FFFFFFFFFFFFFFE7F00000000000000000000000000000000
+      000000000000}
   end
   object mnuUndoDropdown: TPopupMenu
     AutoHotkeys = maManual
@@ -14007,11 +14017,13 @@ object frmMain: TfrmMain
     object mnuWaveformInsertSubtitle: TMenuItem
       Caption = 'Insert Subtitle'
       ImageIndex = 24
+      ShortCut = 32813
       OnClick = mnuWaveformInsertSubtitleClick
     end
     object mnuWaveformDeleteSubtitle: TMenuItem
       Caption = 'Delete Subtitle'
       ImageIndex = 26
+      ShortCut = 32776
       OnClick = mnuWaveformDeleteSubtitleClick
     end
     object N64: TMenuItem
@@ -14074,8 +14086,6 @@ object frmMain: TfrmMain
         Caption = 'Next subtitle'
         OnClick = mnuWaveformNextSubtitleClick
       end
-    end
-    object TMenuItem
     end
   end
   object dlgLoadWaveform: TOpenDialog
