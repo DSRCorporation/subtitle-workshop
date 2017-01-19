@@ -36,13 +36,18 @@ type
   protected
     procedure BuildProlog;
     procedure BuildRoot;
-    procedure BuildHead;
+    procedure BuildHead; Virtual;
     procedure BuildBody;
     function GetXML: TStrings;
   public
     constructor Create(encoding: SubtitleString; title: SubtitleString);
     procedure AppendParagraphs(nodes: IXMLNodeArray);
     property XML: TStrings read GetXML;
+  end;
+
+  TNetflixTtmlDocument = class(TTtmlDocument)
+  protected
+    procedure BuildHead; Override;
   end;
 
   TTagProcessor = class
@@ -195,6 +200,18 @@ begin
     FDocument.XML.Insert(row, spaces + nodes[i].XML);
     Inc(row);
   end;
+end;
+
+//  TNetflixTtmlDocument
+
+procedure TNetflixTtmlDocument.BuildHead;
+var
+  metadata, desc: IXMLNode;
+begin
+  Inherited;
+  metadata := FHead.ChildNodes.FindNode('metadata');
+  desc := metadata.AddChild('ttm:desc');
+  desc.Text := 'Netflix Timed Text';
 end;
 
 //  TTagProcessor

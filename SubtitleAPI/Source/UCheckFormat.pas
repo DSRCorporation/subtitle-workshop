@@ -52,6 +52,28 @@ var
 begin
   Result := sfInvalid;
 
+  // Timed Text
+  if (SmartPos('<tt xml:', tmpSubFile.Text, False) <> 0) or
+     (SmartPos('</tt>', tmpSubFile.Text, False) <> 0) then
+  begin
+    if SmartPos('UTF-8', tmpSubFile.Text, False) <> 0 then
+    begin
+      if SmartPos('Netflix', tmpSubFile.Text, False) <> 0 then
+      begin
+        Result := sfTimedTextNetflix;
+        Exit;
+      end else
+      begin
+        Result := sfTimedTextUtf8;
+        Exit;
+      end;
+    end else
+    begin
+      Result := sfTimedText;
+      Exit;
+    end;
+  end;
+
   for i := 0 to tmpSubFile.Count-1 do
   begin
     try
@@ -631,14 +653,6 @@ begin
          ((Pos(',', tmpSubFile[i]) = 12) or (Pos(',', tmpSubFile[i]) = 9)) then
       begin
         Result := sfSubViewer2;
-        Break;
-      end;
-
-      // Timed Text
-      if (SmartPos('<tt xml:', tmpSubFile[i], False) <> 0) or
-         (SmartPos('</tt>', tmpSubFile[i], False) <> 0) then
-      begin
-        Result := sfTimedText;
         Break;
       end;
 
