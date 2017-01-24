@@ -2449,6 +2449,8 @@ var NewCursorPos, CursorPosMs, SnappingPos : Integer;
     RangeUnder : TRange;
     RangeSelWindow : Integer;
     ARangeList : TRangeList;
+    LeftBorder, RightBorder: Integer;
+    LeftSnap, RightSnap: Integer;
 begin
   inherited;
 
@@ -2481,10 +2483,40 @@ begin
 
           if Assigned(FSelectedRange) and FIsDragging then
           begin
-            FSelectedRange.StartTime := FSelectedRangeStartDrag.StartTime + (NewCursorPos - FPosStartDrag);
-            FSelectedRange.StopTime := FSelectedRangeStartDrag.StopTime + (NewCursorPos - FPosStartDrag);
-            FSelection.StartTime := FSelectionStartDrag.StartTime + (NewCursorPos - FPosStartDrag);
-            FSelection.StopTime := FSelectionStartDrag.StopTime + (NewCursorPos - FPosStartDrag);
+            LeftBorder := FSelectedRangeStartDrag.StartTime + (NewCursorPos - FPosStartDrag);
+            RightBorder := FSelectedRangeStartDrag.StopTime + (NewCursorPos - FPosStartDrag);
+
+            LeftSnap := FindCorrectedSnappingPoint(LeftBorder, ARangeList);
+            RightSnap := FindCorrectedSnappingPoint(RightBorder, ARangeList);
+
+            if (LeftSnap = -1) and (RightSnap = -1) then
+            begin
+              LeftSnap := LeftBorder;
+              RightSnap := RightBorder;  
+            end else
+            if (LeftSnap <> -1) and (RightSnap = -1) then
+            begin
+              RightSnap := RightBorder + LeftSnap - LeftBorder;
+            end else
+            if (LeftSnap = -1) and (RightSnap <> -1) then
+            begin
+              LeftSnap := LeftBorder + RightSnap - RightBorder;
+            end else
+            if (LeftSnap <> -1) and (RightSnap <> -1) then
+            begin
+              if Abs(LeftBorder - LeftSnap) < Abs(RightBorder - RightSnap) then
+              begin
+                RightSnap := RightBorder + LeftSnap - LeftBorder;
+              end else
+              begin
+                LeftSnap := LeftBorder + RightSnap - RightBorder;
+              end;
+            end;
+
+            FSelectedRange.StartTime := LeftSnap;
+            FSelectedRange.StopTime := RightSnap;
+            FSelection.StartTime := LeftSnap;
+            FSelection.StopTime := RightSnap;
 
             FNeedToSortSelectedSub := True;
 
