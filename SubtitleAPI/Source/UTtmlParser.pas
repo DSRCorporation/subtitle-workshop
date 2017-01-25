@@ -60,7 +60,7 @@ type
     constructor Create(charset: Byte; maxDuration, extraTime: Integer);
     destructor Destroy; override;
 
-    function ParseTTML(subFile: TSubtitleFile; subtitles: TSubtitles): Boolean;
+    function ParseTTML(subFile: TSubtitleFile; subtitles: TSubtitles; var DetectedEncoding: String): Boolean;
   end;
   
   
@@ -262,7 +262,7 @@ begin
   end;
 end;
 
-function TTtmlParser.ParseTTML(subFile: TSubtitleFile; subtitles: TSubtitles): Boolean;
+function TTtmlParser.ParseTTML(subFile: TSubtitleFile; subtitles: TSubtitles; var DetectedEncoding: String): Boolean;
 var
   tag: AnsiString;
 begin
@@ -279,6 +279,7 @@ begin
 
     StartScan;
     while Scan do begin
+      DetectedEncoding := FParser.CurEncoding;
       tag := LowerCase(CurName);
 
       case CurPartType of
