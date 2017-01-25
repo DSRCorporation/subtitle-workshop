@@ -1536,8 +1536,7 @@ begin
       SaveMarking(frmMain.TransFile+ID_SRFEXT, frmMain.TransFile);
   //added by adenry: end
 
-  if (SubtitleAPI.GetFormatName(FormatIndex) = 'Timed Text') or
-    (SubtitleAPI.GetFormatName(FormatIndex) = 'Timed Text (UTF-8)') then
+  if SubtitleAPI.GetFormatName(FormatIndex) = 'Netflix Timed Text' then
   begin
     PerformNetflixQualityCheck(False);
   end;
