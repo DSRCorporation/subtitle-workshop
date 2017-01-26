@@ -211,6 +211,11 @@ type
 
     FWheelTimeScroll, FWheelVZoom, FWheelHZoom : TMouseWheelModifier;
     FMouseIsDown : Boolean; // this fix WAVDisplay refresh bug when double clicking title bar
+    
+    FIsDragging : Boolean;
+    FPosStartDrag : Integer;
+    FSelectedRangeStartDrag : TRange;
+    FSelectionStartDrag : TRange;
 
     FDisplayRuler : Boolean;
     FDisplayRulerHeight : Integer;
@@ -1115,6 +1120,9 @@ begin
   FSelection.StopTime := 0;
   FNeedToSortSelectedSub := False;
 
+  FSelectedRangeStartDrag := TRange.Create;
+  FSelectionStartDrag := TRange.Create;
+
   FLengthMs := 0;
   FSceneChangeStartOffset := 130;
   FSceneChangeStopOffset := 130;
@@ -1997,6 +2005,9 @@ procedure TWAVDisplayer.MouseDownCoolEdit(Button: TMouseButton;
 var NewCursorPos : Integer;
     ClipKaraokeRect , ClipSubRect : TRect;
     x1, x2, i, SnappingPos : Integer;
+    SnappingDistanceTime : Integer;
+const
+    SNAPPING_DISTANCE_PIXEL : Integer = 8;
 begin
   if (ssLeft in Shift) then
   begin
@@ -2055,6 +2066,25 @@ begin
       begin
         NewCursorPos := SnappingPos;
       end
+    end;
+
+    SnappingDistanceTime := PixelToTime(SNAPPING_DISTANCE_PIXEL);
+    
+    if Assigned(FSelectedRange) and
+      InRange(NewCursorPos, FSelectedRange.StartTime + SnappingDistanceTime,
+        FSelectedRange.StopTime - SnappingDistanceTime) then
+    begin
+      FIsDragging := True;
+
+      FSelectionStartDrag.StartTime := FSelection.StartTime;
+      FSelectionStartDrag.StopTime := FSelection.StopTime;
+      FSelectedRangeStartDrag.StartTime := FSelectedRange.StartTime;
+      FSelectedRangeStartDrag.StopTime := FSelectedRange.StopTime;
+
+      Exit;
+    end else
+    begin
+      FIsDragging := False;
     end;
 
     if (ssShift in Shift) or (FDynamicEditMode = demStart) or (FDynamicEditMode = demStop) then
@@ -2317,6 +2347,7 @@ begin
     Exit;
 
   FMouseIsDown := True;
+  FPosStartDrag := PixelToTime(X) + FPositionMs;
 
   ARangeList := GetDisplayRangeListAt(Y);
   Case FSelMode of
@@ -2418,6 +2449,8 @@ var NewCursorPos, CursorPosMs, SnappingPos : Integer;
     RangeUnder : TRange;
     RangeSelWindow : Integer;
     ARangeList : TRangeList;
+    LeftBorder, RightBorder: Integer;
+    LeftSnap, RightSnap: Integer;
 begin
   inherited;
 
@@ -2446,6 +2479,61 @@ begin
           if(FMaxSelTime <> -1) then
           begin
             Constrain(NewCursorPos, 0, FMaxSelTime);
+          end;
+
+          if Assigned(FSelectedRange) and FIsDragging then
+          begin
+            LeftBorder := FSelectedRangeStartDrag.StartTime + (NewCursorPos - FPosStartDrag);
+            RightBorder := FSelectedRangeStartDrag.StopTime + (NewCursorPos - FPosStartDrag);
+
+            LeftSnap := FindCorrectedSnappingPoint(LeftBorder, ARangeList);
+            RightSnap := FindCorrectedSnappingPoint(RightBorder, ARangeList);
+
+            if (LeftSnap = -1) and (RightSnap = -1) then
+            begin
+              LeftSnap := LeftBorder;
+              RightSnap := RightBorder;  
+            end else
+            if (LeftSnap <> -1) and (RightSnap = -1) then
+            begin
+              RightSnap := RightBorder + LeftSnap - LeftBorder;
+            end else
+            if (LeftSnap = -1) and (RightSnap <> -1) then
+            begin
+              LeftSnap := LeftBorder + RightSnap - RightBorder;
+            end else
+            if (LeftSnap <> -1) and (RightSnap <> -1) then
+            begin
+              if Abs(LeftBorder - LeftSnap) < Abs(RightBorder - RightSnap) then
+              begin
+                RightSnap := RightBorder + LeftSnap - LeftBorder;
+              end else
+              begin
+                LeftSnap := LeftBorder + RightSnap - RightBorder;
+              end;
+            end;
+
+            FSelectedRange.StartTime := LeftSnap;
+            FSelectedRange.StopTime := RightSnap;
+            FSelection.StartTime := LeftSnap;
+            FSelection.StopTime := RightSnap;
+
+            FNeedToSortSelectedSub := True;
+
+            Include(UpdateFlags, uvfSelection);
+            Include(UpdateFlags, uvfRange);
+            UpdateView(UpdateFlags);
+
+            if Assigned(FOnSelectionChange) then
+            begin
+              FOnSelectionChange(Self);
+            end;
+            if Assigned(FOnSelectedRangeChange) then
+            begin
+              FOnSelectedRangeChange(Self);
+            end;
+
+            Exit;
           end;
 
           // Snapping
