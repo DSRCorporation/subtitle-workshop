@@ -243,6 +243,8 @@ type
     FShowMinimumBlank : Boolean;
     FSnappingEnabled : Boolean;
 
+    WaveLoaded : Boolean;
+
     procedure DrawAlphaRect(ACanvas : TCanvas; t1, t2 : Integer; y1, y2 : Integer);
     procedure PaintWavOnCanvas(ACanvas : TCanvas; TryOptimize : Boolean);
     procedure PaintOnCanvas(ACanvas : TCanvas);
@@ -1154,6 +1156,7 @@ begin
   MiniSB.Height := 12;
   MiniSB.Align := alBottom;
   SetScrollBar(MiniSB);
+  WaveLoaded := False;
 end;
 
 //------------------------------------------------------------------------------
@@ -2797,7 +2800,10 @@ begin
   FRangeOldStart := -1;
   FRangeOldStop := -1;
   FOldKaraokeSubTime := -1;
-  Cursor := crIBeam;
+  if WaveLoaded then
+  begin
+    Cursor := crIBeam;
+  end;
   MouseCapture := False;
   FMouseIsDown := False;
   FDynamicEditMode := demNone;
@@ -3230,6 +3236,7 @@ begin
 
   Result := True;
   Cursor := crIBeam;
+  WaveLoaded := True;
 end;
 
 //------------------------------------------------------------------------------
@@ -3972,6 +3979,7 @@ begin
     FOnCursorChange(Self);
 
   Cursor := crDefault;
+  WaveLoaded := False;
 end;
 
 //------------------------------------------------------------------------------
