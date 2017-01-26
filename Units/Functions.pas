@@ -21,6 +21,7 @@ uses
 // --------------------------//
 procedure AddCharsets(ComboBox: TComboBox);
 function StrCharsetToInt(CharSet: String): Byte;
+function CodepageToStr(Codepage: Integer): String;
 function GetOrgCharset: Byte;
 function GetTransCharset: Byte;
 // --------------------------//
@@ -172,6 +173,51 @@ begin
   if CharSet = 'Cyrillic'     then Result := RUSSIAN_CHARSET else
   if CharSet = 'Thai'         then Result := THAI_CHARSET else
   if CharSet = 'EastEurope'   then Result := EASTEUROPE_CHARSET;
+end;
+
+// -----------------------------------------------------------------------------
+
+function CodepageToStr(Codepage: Integer): String;
+type
+  TCPData = record
+    CPID: Integer;
+    CPName: String;
+  end;
+
+const
+  MaxEncodings = 15;
+
+  Encodings: Array[0..MaxEncodings - 1] of TCPData =
+  (
+    (CPID: 874; CPName: 'windows-874'),
+    (CPID: 932; CPName: 'shift_jis'),
+    (CPID: 936; CPName: 'gb2312'),
+    (CPID: 949; CPName: 'ks_c_5601-1987'),
+    (CPID: 950; CPName: 'big5'),
+    (CPID: 1250; CPName: 'windows-1250'),
+    (CPID: 1251; CPName: 'windows-1251'),
+    (CPID: 1252; CPName: 'Windows-1252'),
+    (CPID: 1253; CPName: 'windows-1253'),
+    (CPID: 1254; CPName: 'windows-1254'),
+    (CPID: 1255; CPName: 'windows-1255'),
+    (CPID: 1256; CPName: 'windows-1256'),
+    (CPID: 1257; CPName: 'windows-1257'),
+    (CPID: 1258; CPName: 'windows-1258'),
+    (CPID: 1361; CPName: 'Johab')
+  );
+  
+var  
+  I: Integer;
+  
+begin
+  Result := '';
+
+  for I := 0 to MaxEncodings - 1 do
+    if Encodings[I].CPID = Codepage then
+    begin
+      Result := Encodings[I].CPName;
+      break;
+    end;
 end;
 
 // -----------------------------------------------------------------------------
