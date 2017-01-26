@@ -124,7 +124,7 @@ begin
 
   obj.Free;
 
-//  SysUtils.DeleteFile(tmpJsonPath);
+  SysUtils.DeleteFile(tmpJsonPath);
 end;
 
 function TFFMPEGHelper.IsWAVFile(filename: String): Boolean;

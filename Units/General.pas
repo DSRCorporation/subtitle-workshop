@@ -162,6 +162,7 @@ procedure RoundSubtitlesValues(RoundFactor: Byte; SelectedOnly: Boolean); //adde
 // ---------------
 function SetDashes(FontCharset: TFontCharset): TSysCharSet; //added by adenry
 function GetActualDefaultCharset: TFontCharset; //added by adenry
+procedure SetDetectedEncoding(Encoding: String; TranslatedFile: Boolean);
 // ---------------
 // Various
 // ---------------
@@ -245,6 +246,7 @@ var
   i               : Integer;
   Node            : PVirtualNode; //added by adenry
   Data            : PSubtitleItem; //added by adenry
+  DetectedEncoding  : String;
 begin
 //added by aenry: begin
 Result := False;
@@ -283,12 +285,13 @@ begin
     if SubtitleFormat > SubtitleAPI.FormatsCount then SubtitleFormat := 0;
     //SubtitleFormat = 0 is automatic format detection
 
-    if SubtitleAPI.LoadSubtitle(FileName, FPS, frmMain.OrgCharset, SubtitleFormat) = True then
+    if SubtitleAPI.LoadSubtitle(FileName, FPS, frmMain.OrgCharset, DetectedEncoding, SubtitleFormat) = True then
     begin
       dlgLoadFile.InitialDir := ExtractFilePath(FileName);
       AddToRecent(FileName);
       //frmMain.lstSubtitles.BeginUpdate;
       AddArrayItems(TranslatedFile);
+      SetDetectedEncoding(DetectedEncoding, TranslatedFile);
 
       if TranslatedFile = False then
       //ORIGINAL WAS LOADED
@@ -466,6 +469,36 @@ begin
 
 //  frmMain.lstSubtitles.EndUpdate;
 end;
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure SetDetectedEncoding(Encoding: String; TranslatedFile: Boolean);
+var
+  ComboBox: TComboBox;
+  CharsetId, CodePageId: Integer;
+  CodePageName: String;
+  I: Integer;
+begin
+  if not TranslatedFile then
+    ComboBox := frmMain.cmbOrgCharset
+  else
+    ComboBox := frmMain.cmbTransCharset;  
+
+  for I := 0 to ComboBox.Items.Count do
+  begin
+    CharsetId := StrCharsetToInt(ComboBox.Items[i]);
+    CodePageId := CharSetToCodePage(CharsetId);
+    CodePageName := CodepageToStr(CodePageId);
+    CodePageName := LowerCase(CodePageName);
+    
+    if CodePageName = LowerCase(Encoding) then
+    begin
+      ComboBox.ItemIndex := I;
+      ComboBox.OnSelect(ComboBox);
+      Break;
+    end;
+  end;
 end;
 
 // -----------------------------------------------------------------------------
@@ -1536,8 +1569,7 @@ begin
       SaveMarking(frmMain.TransFile+ID_SRFEXT, frmMain.TransFile);
   //added by adenry: end
 
-  if (SubtitleAPI.GetFormatName(FormatIndex) = 'Timed Text') or
-    (SubtitleAPI.GetFormatName(FormatIndex) = 'Timed Text (UTF-8)') then
+  if SubtitleAPI.GetFormatName(FormatIndex) = 'Netflix Timed Text' then
   begin
     PerformNetflixQualityCheck(False);
   end;

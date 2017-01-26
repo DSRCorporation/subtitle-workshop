@@ -185,8 +185,7 @@ begin
   if Assigned(WAVRenderer) and WAVRenderer.IsOpen then WAVRenderer.Close;
 
   if FWAVFilename <> '' then begin
-    if FWAVTemp then
-      if not SysUtils.DeleteFile(FWAVFilename) then ShowMessage('Not deleted');
+    if FWAVTemp then SysUtils.DeleteFile(FWAVFilename);
   end;
 
   FWAVFilename := '';
@@ -342,7 +341,7 @@ begin
 
     if Assigned(range) then begin
       WAVDisplayer.SelectedRange := range;
-      WAVDisplayer.SetPositionMs(range.StartTime - WAVDisplayer.PageSize div 4);
+//      WAVDisplayer.SetPositionMs(range.StartTime - WAVDisplayer.PageSize div 4);
     end;
   end else
     WAVDisplayer.ClearSelection;
@@ -408,8 +407,6 @@ begin
 end;
 
 procedure TWaveformAdapter.PlayPause;
-var
-  range: TSubtitleRange;
 begin
   with WAVDisplayer do begin
     AutoScrolling := True;

@@ -230,6 +230,7 @@ begin
     sfSubViewer2              : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.sub'; end;
     sfTimedText               : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.xml'; end;
     sfTimedTextUtf8           : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.xml'; end;    
+    sfTimedTextNetflix        : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.xml'; end;    
     //sfTitlevisionTXT          : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.txt'; end;
     sfTMPlayer                : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.txt;*.sub'; end;
     sfTurboTitler             : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.tts'; end;
@@ -309,12 +310,16 @@ end;
 //                               File handling                                //
 // -------------------------------------------------------------------------- //
 
-function LoadSubtitleFile(FileName: PChar; FPS: Single; FormatIndex: Integer; Append, ReCalcTimeValues: LongBool; Charset: Byte): LongBool; stdcall;
+function LoadSubtitleFile(FileName: PChar; FPS: Single; FormatIndex: Integer; Append, ReCalcTimeValues: LongBool; Charset: Byte; DetectedEncoding: PChar): LongBool; stdcall;
+var
+  Tmp: String;
 begin
   if Append = False then
-    Result := LongBool(LoadSubtitle(Subtitles, FileName, FPS, Charset, TSubtitleFormats(FormatIndex)))
+    Result := LongBool(LoadSubtitle(Subtitles, FileName, FPS, Charset, Tmp, TSubtitleFormats(FormatIndex)))
   else
-    Result := LongBool(LoadSubtitle(Subtitles, FileName, FPS, Charset, TSubtitleFormats(FormatIndex), False, ReCalcTimeValues));
+    Result := LongBool(LoadSubtitle(Subtitles, FileName, FPS, Charset, Tmp, TSubtitleFormats(FormatIndex), False, ReCalcTimeValues));
+
+  StrPCopy(DetectedEncoding, Tmp);
 end;
 
 // -----------------------------------------------------------------------------

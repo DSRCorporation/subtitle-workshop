@@ -4,7 +4,7 @@
 // Copyright: See Subtitle API's copyright information
 // File Description: Timed Text subtitle format saving functionality
 
-function SubtitlesToFile_TIMEDTEXT(Subtitles: TSubtitles; const FileName: String; const charset: Byte = DEFAULT_CHARSET; const utf8: Boolean = False; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_TIMEDTEXT(Subtitles: TSubtitles; const FileName: String; const charset: Byte = DEFAULT_CHARSET; const utf8: Boolean = False; const Netflix: Boolean = False; From: Integer = -1; UpTo: Integer = -1): Boolean;
 var
   tmpSubFile  : TSubtitleFile;
   doc         : TTtmlDocument;
@@ -19,7 +19,11 @@ begin
   else
     encoding := GetCharsetEncoding(charset);
 
-  doc := TTtmlDocument.Create(encoding, ExtractFileName(FileName));
+  if Netflix then
+    doc := TNetflixTtmlDocument.Create(encoding, ExtractFileName(FileName))
+  else
+    doc := TTtmlDocument.Create(encoding, ExtractFileName(FileName));
+
   pBuilder := TParagraphBuilder.Create(charset, utf8);
 
   doc.AppendParagraphs(pBuilder.BuildParagraphs(Subtitles, From, UpTo));
