@@ -3037,106 +3037,35 @@ end;
 //------------------------------------------------------------------------------
 
 function TWAVDisplayer.LoadWAV(filename : WideString) : Boolean;
-var PeakFilename : WideString;
-    PeakFS : TTntFileStream;
-    PeakFileIDRead : string;
-    PeakFileVerRead : Cardinal;
+var
     WAVFile : TWAVFile;
-    HDRSize : Integer;
-    CreatePeakFile : Boolean;
-    Normalized : Boolean;
-    LengthMs : Integer;
-const
-    PeakFileID : string = 'PeakFile';
-    PeakFileVer : Cardinal = $0100;
-
-    procedure SavePeakFile;
-    begin
-      PeakFS := TTntFileStream.Create(PeakFilename, fmCreate);
-      PeakFS.WriteBuffer(PeakFileID[1], System.Length(PeakFileID));
-      PeakFS.WriteBuffer(PeakFileVer, SizeOf(PeakFileVer));
-      PeakFS.WriteBuffer(LengthMs, SizeOf(FLengthMs));
-      PeakFS.WriteBuffer(FWavFormat.nSamplesPerSec, SizeOf(FWavFormat.nSamplesPerSec));
-      PeakFS.WriteBuffer(FWavFormat.nChannels, SizeOf(FWavFormat.nChannels));
-      PeakFS.WriteBuffer(FWavFormat.wBitsPerSample, SizeOf(FWavFormat.wBitsPerSample));
-      PeakFS.WriteBuffer(FSamplesPerPeak, SizeOf(FSamplesPerPeak));
-      PeakFS.WriteBuffer(FPeakTabSize, SizeOf(FPeakTabSize));
-      PeakFS.WriteBuffer(FPeakTab[0], FPeakTabSize*SizeOf(TPeak));
-      PeakFS.Free;
-    end;
+    LengthMs: Cardinal;
 begin
   ClearPeakData;
   FPeakDataLoaded := False;
-  CreatePeakFile := True;
 
-  // Search for a "peak" file with the same name
-  PeakFilename := WideChangeFileExt(filename,'.peak');
-  if WideFileExists(PeakFilename) then
+  // No file
+  if not WideFileExists(filename) then
   begin
-    // TODO : check if the wav file match, if it exists
-
-    // Load peak file
-    PeakFS := TTntFileStream.Create(PeakFilename, fmOpenRead or fmShareDenyWrite);
-
-    // Check filesize, we need at least
-    HDRSize := System.Length(PeakFileID) + SizeOf(PeakFileVerRead) + SizeOf(FLengthMs) +
-      SizeOf(FWavFormat.nSamplesPerSec) + SizeOf(FWavFormat.nChannels) +
-      SizeOf(FWavFormat.wBitsPerSample) + SizeOf(FSamplesPerPeak) +
-      SizeOf(FPeakTabSize);
-
-    if (PeakFS.Size > HDRSize) then
-    begin
-      SetLength(PeakFileIDRead, System.Length(PeakFileID));
-      PeakFS.ReadBuffer(PeakFileIDRead[1], System.Length(PeakFileID));
-      PeakFS.ReadBuffer(PeakFileVerRead, SizeOf(PeakFileVerRead));
-      PeakFS.ReadBuffer(LengthMs, SizeOf(LengthMs));
-      PeakFS.ReadBuffer(FWavFormat.nSamplesPerSec, SizeOf(FWavFormat.nSamplesPerSec));
-      PeakFS.ReadBuffer(FWavFormat.nChannels, SizeOf(FWavFormat.nChannels));
-      PeakFS.ReadBuffer(FWavFormat.wBitsPerSample, SizeOf(FWavFormat.wBitsPerSample));
-      PeakFS.ReadBuffer(FSamplesPerPeak, SizeOf(FSamplesPerPeak));
-      PeakFS.ReadBuffer(FPeakTabSize, SizeOf(FPeakTabSize));
-      FPeakTab := nil;
-      SetLength(FPeakTab, FPeakTabSize);
-      PeakFS.Read(FPeakTab[0], FPeakTabSize * SizeOf(TPeak));
-      PeakFS.Free;
-
-      Normalized := NormalizePeakTab(-1);
-      if Normalized then
-      begin
-        // rewrite normalized data
-        SavePeakFile;
-      end;
-
-      CreatePeakFile := False;
-    end;
+    Result := False;
+    Exit;
   end;
-
-  if CreatePeakFile then
+  WAVFile := TWAVFile.Create;
+  if (WAVFile.Open(filename) = False) then
   begin
-    // No peak file
-    if not WideFileExists(filename) then
-    begin
-      Result := False;
-      Exit;
-    end;
-    WAVFile := TWAVFile.Create;
-    if (WAVFile.Open(filename) = False) then
-    begin
-      WAVFile.Free;
-      Result := False;
-      Exit;
-    end;
-      
-    LengthMs := WAVFile.Duration;
-    FWavFormat := WAVFile.GetWaveFormatEx^;
-    // Create the "peak" file
-    CreatePeakTab(WAVFile);
-    // Save it
-    SavePeakFile;
-    WAVFile.Close;
     WAVFile.Free;
+    Result := False;
+    Exit;
   end;
-  
+
+  LengthMs := WAVFile.Duration;
+  FWavFormat := WAVFile.GetWaveFormatEx^;
+  // Create the "peak" file
+  CreatePeakTab(WAVFile);
+
+  WAVFile.Close;
+  WAVFile.Free;
+
   SetLengthMs(LengthMs);
   FPeakDataLoaded := True;
 

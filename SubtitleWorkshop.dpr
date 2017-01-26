@@ -79,7 +79,10 @@ uses
   SubStructUnit in 'Waveform\SubStructUnit.pas',
   WaveformAdapter in 'Waveform\WaveformAdapter.pas',
   formVerticalScaling in 'Forms\formVerticalScaling.pas' {VerticalScalingForm},
-  NetflixQualityCheck in 'Units\NetflixQualityCheck.pas';
+  NetflixQualityCheck in 'Units\NetflixQualityCheck.pas',
+  uLkJSON in 'Lib\uLkJSON.pas',
+  FfmpegHelper in 'Waveform\FfmpegHelper.pas',
+  formAudioStreams in 'Forms\formAudioStreams.pas' {AudioStreamsForm};
 
 {$R *.res}
 
@@ -138,6 +141,7 @@ begin
   Application.Title := 'Subtitle Workshop';
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TVerticalScalingForm, VerticalScalingForm);
+  Application.CreateForm(TAudioStreamsForm, AudioStreamsForm);
   Application.Run;
 
 end.

@@ -18,7 +18,7 @@ uses
     ifpii_controls, ifpii_std, ifpii_classes, ifpii_graphics, ifpii_forms, ifpii_stdctrls, ifpii_extctrls, ifpii_menus, ifpidateutils,
     ifpiir_controls, ifpiir_std, ifpiir_classes, ifpiir_graphics, ifpiir_forms, ifpiir_stdctrls, ifpiir_extctrls, ifpiir_menus, ifpidateutilsr,
   StrMan, FastStrings, WinShell, //DirectShow9, //WinShell added by adenry, DirectShow9 removed by adenry
-  WaveformAdapter, formVerticalScaling, Types, CommonTypes, NetflixQualityCheck;
+  WaveformAdapter, formVerticalScaling, formAudioStreams, Types, CommonTypes, NetflixQualityCheck, FFMPEGHelper;
 
 type
   TfrmMain = class(TForm)
@@ -1271,8 +1271,10 @@ type
     OutputSettingsFormats : array of TOutputSettingsFormats; //added by adenry
 
     // Waveform adapter
+    ffmpegHelper                : TFFMPEGHelper;
     WaveformAdapter             : TWaveformAdapter;
     waveformVerticalScalingForm : TVerticalScalingForm;
+    audioStreamsForm            : TAudioStreamsForm;
     previewSelected             : (psVideo, psWaveform, psNone);
 
     // ----------
@@ -3825,7 +3827,8 @@ begin
     //added by adenry: end
 
     // Waveform inititalization
-    WaveformAdapter := TWaveformAdapter.Create(pnlWAVDisplay, lstSubtitles);
+    ffmpegHelper    := TFFMPEGHelper.Create('C:/', 16000);
+    WaveformAdapter := TWaveformAdapter.Create(pnlWAVDisplay, lstSubtitles, ffmpegHelper);
     with WaveformAdapter do begin
       Displayer.OnSelectionChange       := WaveformSelectionChange;
       Displayer.OnSelectedRangeChange   := WaveformSelectedRangeChange;
@@ -10110,6 +10113,8 @@ begin
 
   if MovieFile <> '' then
     FreeFile;
+
+  WaveformAdapter.Close;
 end;
 // -----------------------------------------------------------------------------
 
@@ -14721,9 +14726,37 @@ end;
 // -----------------------------------------------------------------------------
 
 procedure TfrmMain.mnuWaveformOpenClick(Sender: TObject);
+var
+  streams: TAudioStreams;
 begin
   if (dlgLoadWaveform.Execute) and (dlgLoadWaveform.FileName <> '') then begin
-    WaveformAdapter.LoadWAV(dlgLoadWaveform.FileName);
+
+    if ffmpegHelper.IsWAVFile(dlgLoadWaveform.FileName) then begin
+      WaveformAdapter.Load(dlgLoadWaveform.FileName, []);
+    end
+    else begin
+      streams := ffmpegHelper.DetectAudioStreams(dlgLoadWaveform.FileName);
+
+      if Length(streams) = 0 then begin
+        ShowMessage('Can not find any audio stream');
+        Exit;
+      end
+      else
+      if Length(streams) = 1 then begin
+        WaveformAdapter.Load(dlgLoadWaveform.FileName, []);
+      end
+      else begin
+        if (audioStreamsForm = nil) then
+          audioStreamsForm := TAudioStreamsForm.Create(Self);
+        audioStreamsForm.SetStreams(streams);
+        audioStreamsForm.ShowModal;
+
+        if audioStreamsForm.ModalResult <> mrOk then Exit;
+
+        WaveformAdapter.Load(dlgLoadWaveform.FileName, audioStreamsForm.GetStreams);
+      end;
+    end;
+
     WaveformAdapter.SyncSubtitlesWithTree;
 
     UpdateWaveformEnabled;
@@ -14734,7 +14767,7 @@ end;
 
 procedure TfrmMain.mnuWaveformCloseClick(Sender: TObject);
 begin
-  WaveformAdapter.Clear;
+  WaveformAdapter.Close;
   UpdateWaveformEnabled;
 end;
 
