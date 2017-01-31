@@ -69,7 +69,7 @@ type
     function Encode(text: SubtitleString): WideString;
   public
     constructor Create(charset: Byte; utf8Encode: Boolean);
-    function BuildParagraph(subtitle: TSubtitleItem): IXMLNode;
+    function BuildParagraph(subtitle: TSubtitleItem; PNum: Integer): IXMLNode;
     function BuildParagraphs(subtitles: TSubtitles; From, UpTo: Integer): IXMLNodeArray;
   end;
 
@@ -298,7 +298,7 @@ begin
   {$ENDIF}
 end;
 
-function TParagraphBuilder.BuildParagraph(subtitle: TSubtitleItem): IXMLNode;
+function TParagraphBuilder.BuildParagraph(subtitle: TSubtitleItem; PNum: Integer): IXMLNode;
 var
   start, final: SubtitleString;
   tagProcessor: TTagProcessor;
@@ -308,6 +308,7 @@ begin
 
   Result := NewXMLDocument.CreateElement('p', '');
   with Result do begin
+    Attributes['xml:id']  := 'p' + IntToStr(PNum);
     Attributes['begin']   := start;
     Attributes['end']     := final;
     Attributes['region']  := 'bottomCenter';
@@ -325,7 +326,7 @@ var
 begin
   SetLength(Result, UpTo - From + 1);
   for i := From to UpTo do begin
-    Result[i] := BuildParagraph(subtitles[i]);
+    Result[i] := BuildParagraph(subtitles[i], i);
   end;
 end;
 
