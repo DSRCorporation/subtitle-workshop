@@ -76,10 +76,19 @@ end;
 function TFFMPEGHelper.JsonToAudioStream(json: TlkJSONobject): TAudioStream;
 begin
   Result.Index        := TlkJSONnumber(json.Field['index']).Value;
-  Result.CodecName    := TlkJSONstring(json.Field['codec_name']).Value;
-  Result.ChannelsNum  := TlkJSONnumber(json.Field['channels']).Value;
-  Result.SampleRate   := TlkJSONnumber(json.Field['sample_rate']).Value;
-  Result.BitRate      := TlkJSONnumber(json.Field['bit_rate']).Value;
+  Result.CodecName    := '';
+  Result.ChannelsNum  := 0;
+  Result.SampleRate   := 0;
+  Result.BitRate      := 0;
+
+  if Assigned(json.Field['codec_name']) then
+    Result.CodecName := TlkJSONnumber(json.Field['codec_name']).Value;
+  if Assigned(json.Field['channels']) then
+    Result.ChannelsNum := TlkJSONnumber(json.Field['channels']).Value;
+  if Assigned(json.Field['sample_rate']) then
+    Result.SampleRate := TlkJSONnumber(json.Field['sample_rate']).Value;
+  if Assigned(json.Field['bit_rate']) then
+    Result.BitRate := TlkJSONnumber(json.Field['bit_rate']).Value;
 end;
 
 function TFFMPEGHelper.ExtractWAVFromVideo(filename: String; streams: array of Integer): String;

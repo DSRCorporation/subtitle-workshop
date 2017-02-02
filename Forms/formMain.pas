@@ -3829,7 +3829,10 @@ begin
     //added by adenry: end
 
     // Waveform inititalization
-    ffmpegHelper    := TFFMPEGHelper.Create('C:/', 16000);
+    ffmpegHelper := TFFMPEGHelper.Create(
+      Ini.ReadString('Wave extraction', 'FFmpegToolPath', 'ffmpeg-3.2.2-win32-static\bin'),
+      Ini.ReadInteger('Wave extraction', 'SampleRate', 16000)
+    );
     WaveformAdapter := TWaveformAdapter.Create(pnlWAVDisplay, lstSubtitles, ffmpegHelper);
     with WaveformAdapter do begin
       Displayer.OnSelectionChange       := WaveformSelectionChange;
