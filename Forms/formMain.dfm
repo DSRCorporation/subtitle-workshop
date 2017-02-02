@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
   Tag = -1
-  Left = 708
-  Top = 63
+  Left = 317
+  Top = 150
   AutoScroll = False
   Caption = 'Subtitle Workshop'
   ClientHeight = 555
@@ -14090,7 +14090,7 @@ object frmMain: TfrmMain
   end
   object dlgLoadWaveform: TOpenDialog
     DefaultExt = 'wav'
-    Filter = 'WAV files|*.wav'
+    Filter = 'WAV files|*.wav|All files|*.*'
     Left = 872
     Top = 88
   end

@@ -14,9 +14,11 @@ uses
   WAVDisplayerUnit,
   Renderer,
   SubStructUnit,
+  FFMPEGHelper,
   CommonTypes;
 
 type
+
 
   // Adapter for simple usage TWAVDisplayer bound with TVirtualStringTree
   TWaveformAdapter = class
@@ -29,11 +31,15 @@ type
     FShowSubtitleText   : Boolean;
     FSafetyOffset       : Integer;
 
+    FFfmpegHelper       : TFFMPEGHelper;
+
+    FWAVFilename        : String;
+    FWAVTemp            : Boolean;
+    
     procedure InitDisplayer(parentPanel: TPanel);
     procedure InitRenderer;
     function HasNodeChanged(node: PVirtualNode): Boolean;
     procedure UpdateSceneChanges;
-
   protected
     procedure OnCustomDrawRange(Sender: TObject; ACanvas: TCanvas; Range: TRange; Rect: TRect);
     procedure SelectNode(node: PVirtualNode);
@@ -42,12 +48,12 @@ type
     procedure SetSafetyOffset(offset: Integer);
     procedure PlaySubtitle(next: Boolean);
   public
-    constructor Create(parentPanel: TPanel; sourceTree: TVirtualStringTree);
+    constructor Create(parentPanel: TPanel; sourceTree: TVirtualStringTree; ffmpegHelper: TFFMPEGHelper);
     destructor Destroy; override;
     
-    procedure Clear;
+    procedure Close;
     procedure ClearSubtitles;
-    procedure LoadWAV(filename: WideString);
+    procedure Load(filename: WideString; streams: array of Integer);
     procedure AddSubtitle; overload;
     procedure AddSubtitle(node: PVirtualNode); overload;
     procedure SyncSubtitlesWithTree;
@@ -62,7 +68,7 @@ type
     procedure Stop;
     procedure PlayNextSubtitle;
     procedure PlayPrevSubtitle;
-
+    
     property Displayer: TWAVDisplayer read WAVDisplayer;
     property Renderer: TDShowRenderer read WAVRenderer;
     property SelectedNode: PVirtualNode read GetSelectedNode write SelectNode;
@@ -71,12 +77,13 @@ type
     property SafetyOffset: Integer read FSafetyOffset write SetSafetyOffset;
   end;
 
+  
 //------------------------------------------------------------------------------
 
 implementation
 
 uses
-  TreeViewHandle;
+  TreeViewHandle, TntSysUtils, MiscToolsUnit, uLkJSON, Dialogs;
   
 // Common utility routines
 
@@ -117,10 +124,12 @@ end;
 
 // TWaveformAdapter
 
-constructor TWaveformAdapter.Create(parentPanel: TPanel; sourceTree: TVirtualStringTree);
+constructor TWaveformAdapter.Create(parentPanel: TPanel; sourceTree: TVirtualStringTree; ffmpegHelper: TFFMPEGHelper);
 begin
-  FSourceTree := sourceTree;
-  FCharset    := DEFAULT_CHARSET;
+  FSourceTree   := sourceTree;
+  FCharset      := DEFAULT_CHARSET;
+
+  FFfmpegHelper := ffmpegHelper;
 
   InitDisplayer(parentPanel);
 end;
@@ -164,15 +173,23 @@ begin
   WAVDisplayer.SetRenderer(WAVRenderer);
 end;
 
-procedure TWaveformAdapter.Clear;
+procedure TWaveformAdapter.Close;
 begin
   ClearSubtitles;
   with WAVDisplayer do begin
-//    Enabled := False;
     Close;
     Invalidate;
     VerticalScaling := 100;
   end;
+
+  if Assigned(WAVRenderer) and WAVRenderer.IsOpen then WAVRenderer.Close;
+
+  if FWAVFilename <> '' then begin
+    if FWAVTemp then SysUtils.DeleteFile(FWAVFilename);
+  end;
+
+  FWAVFilename := '';
+  FWAVTemp     := False;
 end;
 
 procedure TWaveformAdapter.ClearSubtitles;
@@ -187,15 +204,23 @@ begin
   FSceneChangeWrapper.SetSceneChangeList(emptyArray);
 end;
 
-procedure TWaveformAdapter.LoadWAV(filename: WideString);
+procedure TWaveformAdapter.Load(filename: WideString; streams: array of Integer);
 var
   loadWAV: Boolean;
 begin
-  loadWAV := WAVDisplayer.LoadWAV(filename);
+  Close;
+
+  FWAVTemp := not FFfmpegHelper.IsWAVFile(filename);
+  if FWAVTemp then
+    FWAVFilename := FFfmpegHelper.ExtractWAVFromVideo(filename, streams)
+  else
+    FWAVFilename := filename;
+
+  loadWAV := WAVDisplayer.LoadWAV(FWAVFilename);
 
   if loadWAV then begin
     InitRenderer;
-    WAVRenderer.Open(filename);
+    WAVRenderer.Open(FWAVFilename);
 
     WAVDisplayer.Enabled := True;
     WAVDisplayer.SetPageSizeMs(WAVDisplayer.Length div 4);
@@ -382,8 +407,6 @@ begin
 end;
 
 procedure TWaveformAdapter.PlayPause;
-var
-  range: TSubtitleRange;
 begin
   with WAVDisplayer do begin
     AutoScrolling := True;

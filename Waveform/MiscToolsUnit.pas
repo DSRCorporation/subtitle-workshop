@@ -126,6 +126,9 @@ type
   procedure SetCheckedState(const checkBox : TCheckBox; const check : Boolean); overload;
   procedure SetCheckedState(const checkBox : TTntCheckBox; const check : Boolean); overload;
 
+  function GetTempDirectory: String;
+  function ExecuteCommand(CommandLine: string; Work: string = 'C:\'): string;
+  
 type
   MyTTntStringList = class(TTntStringList)
   public
@@ -1505,5 +1508,74 @@ begin
 end;
 
 // -----------------------------------------------------------------------------
+
+function GetTempDirectory: String;
+var
+ tempFolder: array[0..MAX_PATH] of Char;
+begin
+  GetTempPath(MAX_PATH, @tempFolder);
+  result := StrPas(tempFolder);
+end;
+
+// -----------------------------------------------------------------------------
+
+
+function ExecuteCommand(CommandLine: string; Work: string = 'C:\'): string;
+var
+  SecAtrrs: TSecurityAttributes;
+  StartupInfo: TStartupInfo;
+  ProcessInfo: TProcessInformation;
+  StdOutPipeRead, StdOutPipeWrite: THandle;
+  WasOK: Boolean;
+  pCommandLine: array[0..255] of AnsiChar;
+  BytesRead: Cardinal;
+  WorkDir: string;
+  Handle: Boolean;
+begin
+  Result := '';
+  with SecAtrrs do begin
+    nLength := SizeOf(SecAtrrs);
+    bInheritHandle := True;
+    lpSecurityDescriptor := nil;
+  end;
+  CreatePipe(StdOutPipeRead, StdOutPipeWrite, @SecAtrrs, 0);
+  try
+    with StartupInfo do
+    begin
+      FillChar(StartupInfo, SizeOf(StartupInfo), 0);
+      cb := SizeOf(StartupInfo);
+      dwFlags := STARTF_USESHOWWINDOW or STARTF_USESTDHANDLES;
+      wShowWindow := SW_HIDE;
+      hStdInput := GetStdHandle(STD_INPUT_HANDLE); // don't redirect stdin
+      hStdOutput := StdOutPipeWrite;
+      hStdError := StdOutPipeWrite;
+    end;
+    WorkDir := Work;
+    Handle := CreateProcess(nil, PChar('cmd.exe /C ' + CommandLine),
+                            nil, nil, True, 0, nil,
+                            PChar(WorkDir), StartupInfo, ProcessInfo);
+    CloseHandle(StdOutPipeWrite);
+    if Handle then
+      try
+        repeat
+          WasOK := windows.ReadFile(StdOutPipeRead, pCommandLine, 255, BytesRead, nil);
+          if BytesRead > 0 then
+          begin
+            pCommandLine[BytesRead] := #0;
+            Result := Result + pCommandLine;
+          end;
+        until not WasOK or (BytesRead = 0);
+        WaitForSingleObject(ProcessInfo.hProcess, INFINITE);
+      finally
+        CloseHandle(ProcessInfo.hThread);
+        CloseHandle(ProcessInfo.hProcess);
+      end;
+  finally
+    CloseHandle(StdOutPipeRead);
+  end;
+end;
+
+// -----------------------------------------------------------------------------
+
 end.
 // -----------------------------------------------------------------------------
