@@ -14755,6 +14755,13 @@ begin
       WaveformAdapter.Load(dlgLoadWaveform.FileName, []);
     end
     else begin
+      if not ffmpegHelper.ToolDetected then
+      begin
+        ShowMessage('FFmpeg was not found in your system.' +
+          ' Please install it manually or use FFmpeg that comes with Subtitle Workshop.');
+        Exit;  
+      end;
+
       streams := ffmpegHelper.DetectAudioStreams(dlgLoadWaveform.FileName);
 
       if Length(streams) = 0 then begin
