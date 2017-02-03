@@ -57,11 +57,6 @@ begin
   begin
     FToolPath := toolPath;
     FToolDetected := True;
-  end
-  else if FileExists('ffmpeg') then
-  begin
-    FToolPath := '';
-    FToolDetected := True;
   end else
   begin
     FToolPath := '';

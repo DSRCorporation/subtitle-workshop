@@ -48,6 +48,9 @@ SetOverwrite on
 !define LICENSEPATH "..\Bin"
 OutFile "${PRODUCT_SHORTNAME}_${VERSION}_${BUILD_NUM}_installer.exe"
 
+; FFmpeg folder name
+!define FFMPEGFOLDER "ffmpeg-3.2.2-win32-static"
+
 !define MUI_FINISHPAGE_LINK ${WEBSITE}
 !define MUI_FINISHPAGE_LINK_LOCATION ${WEBSITE}
 
@@ -81,6 +84,9 @@ LicenseLangString gpllicense ${LANG_RUSSIAN} "${LICENSEPATH}\gpl-3.0.txt"
 LangString TITLE_MainFiles ${LANG_ENGLISH} "Main files"
 LangString TITLE_MainFiles ${LANG_BULGARIAN} "Основни файлове"
 LangString TITLE_MainFiles ${LANG_RUSSIAN} "Основные файлы"
+LangString TITLE_FFTools ${LANG_ENGLISH} "FFmpeg tools"
+LangString TITLE_FFTools ${LANG_BULGARIAN} "Инструменти FFmpeg"
+LangString TITLE_FFTools ${LANG_RUSSIAN} "Инструменты FFmpeg"
 LangString TITLE_Manual ${LANG_ENGLISH} "Manual"
 LangString TITLE_Manual ${LANG_BULGARIAN} "Ръководство"
 LangString TITLE_Manual ${LANG_RUSSIAN} "Руководство пользователя"
@@ -107,6 +113,9 @@ LangString TITLE_QuickLaunchShortCuts ${LANG_RUSSIAN} "Быстрый запуск"
 LangString DESC_MainFiles ${LANG_ENGLISH} "Installs ${PRODUCT}'s core files."
 LangString DESC_MainFiles ${LANG_BULGARIAN} "Инсталира основните файлове на ${PRODUCT}."
 LangString DESC_MainFiles ${LANG_RUSSIAN} "Установка основных файлов ${PRODUCT}."
+LangString DESC_FFTools ${LANG_ENGLISH} "Installs FFmpeg utilities that used for extraction of audiowave."
+LangString DESC_FFTools ${LANG_BULGARIAN} "Инсталира FFmpeg инструменти"
+LangString DESC_FFTools ${LANG_RUSSIAN} "Установка инструментов FFmpeg, которые используются для извлечения формы звуковой волны из видео."
 LangString DESC_Manual ${LANG_ENGLISH} "Installs the manual in the selected languages."
 LangString DESC_Manual ${LANG_BULGARIAN} "Инсталира ръководството в избраните езици."
 LangString DESC_Manual ${LANG_RUSSIAN} "Установка руководства пользователя для выбранных языков."
@@ -257,6 +266,13 @@ SectionEnd
 
 ;--------------------------------------------------------------------
 
+Section $(TITLE_FFTools) FFmpeg
+  SetOutPath "$INSTDIR\${FFMPEGFOLDER}"
+    File /r "${FILESPATH}\${FFMPEGFOLDER}\*.*"
+SectionEnd
+
+;--------------------------------------------------------------------
+
 SubSection $(TITLE_Manual) Manual
 	
   Section $(TITLE_ManualEnglish) ManualEnglish
@@ -353,6 +369,7 @@ FunctionEnd
 ; Descriptions
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
   !insertmacro MUI_DESCRIPTION_TEXT ${MainFiles} $(DESC_MainFiles)
+  !insertmacro MUI_DESCRIPTION_TEXT ${FFmpeg} $(DESC_FFTools)
   !insertmacro MUI_DESCRIPTION_TEXT ${Manual} $(DESC_Manual)
   !insertmacro MUI_DESCRIPTION_TEXT ${CustomFormats} $(DESC_CustomFormats)
   !insertmacro MUI_DESCRIPTION_TEXT ${LangFiles} $(DESC_LangFiles)

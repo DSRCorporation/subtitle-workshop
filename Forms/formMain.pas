@@ -14757,8 +14757,7 @@ begin
     else begin
       if not ffmpegHelper.ToolDetected then
       begin
-        ShowMessage('FFmpeg was not found in your system.' +
-          ' Please install it manually or use FFmpeg that comes with Subtitle Workshop.');
+        ShowMessage('FFmpeg was not found in your system. Please refer to README.md.');
         Exit;  
       end;
 
