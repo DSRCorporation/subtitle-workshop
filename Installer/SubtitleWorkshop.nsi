@@ -314,6 +314,8 @@ SectionEnd
 SubSection $(TITLE_ShortCuts) ShortCuts
 
   Section $(TITLE_StartMenuShortCuts) StartMenuShortCuts
+    SetOutPath "$INSTDIR"
+
     CreateDirectory "$SMPROGRAMS\${PRODUCT}"
 
     CreateDirectory "$SMPROGRAMS\${PRODUCT}\Help"
@@ -333,10 +335,12 @@ SubSection $(TITLE_ShortCuts) ShortCuts
   SectionEnd
 
   Section $(TITLE_DesktopShortCuts) DesktopShortCuts
+    SetOutPath "$INSTDIR"
     CreateShortCut "$DESKTOP\${PRODUCT}.lnk" "$INSTDIR\${PRODUCT_EXENAME}" "" "$INSTDIR\${PRODUCT_EXENAME}" 0
   SectionEnd
 
   Section $(TITLE_QuickLaunchShortCuts) QuickLaunchShortCuts
+    SetOutPath "$INSTDIR"
     CreateShortCut "$QUICKLAUNCH\${PRODUCT}.lnk" "$INSTDIR\${PRODUCT_EXENAME}" "" "$INSTDIR\${PRODUCT_EXENAME}" 0
   SectionEnd
 
@@ -414,6 +418,7 @@ Section "Uninstall"
   RMDir  "$INSTDIR\CustomFormats\"  
   Delete "$INSTDIR\Help\*.*"
   RMDir  "$INSTDIR\Help\"
+  RMDir /r "$INSTDIR\${FFMPEGFOLDER}"
   Delete "$SMPROGRAMS\${PRODUCT}\*.*"
   Delete "$SMPROGRAMS\${PRODUCT}\Help\*.*"
   RMDir  "$SMPROGRAMS\${PRODUCT}\Help"
