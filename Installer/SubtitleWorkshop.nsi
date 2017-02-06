@@ -9,8 +9,8 @@
 !define PRODUCT_SHORTNAME "SubtitleWorkshop"
 !define PRODUCT_EXENAME "subtitleworkshop.exe"
 !define VER_MAJOR 6
-!define VER_MINOR "0b"
-!define BUILD_NUM 131121
+!define VER_MINOR "0c"
+!define BUILD_NUM 131347
 !define VERSION "${VER_MAJOR}.${VER_MINOR}"
 !define VERSION_FULL "${VERSION} (build ${BUILD_NUM})"
 !define WEBSITE "http://subworkshop.sf.net/"
@@ -48,6 +48,9 @@ SetOverwrite on
 !define LICENSEPATH "..\Bin"
 OutFile "${PRODUCT_SHORTNAME}_${VERSION}_${BUILD_NUM}_installer.exe"
 
+; FFmpeg folder name
+!define FFMPEGFOLDER "ffmpeg-3.2.2-win32-static"
+
 !define MUI_FINISHPAGE_LINK ${WEBSITE}
 !define MUI_FINISHPAGE_LINK_LOCATION ${WEBSITE}
 
@@ -81,6 +84,9 @@ LicenseLangString gpllicense ${LANG_RUSSIAN} "${LICENSEPATH}\gpl-3.0.txt"
 LangString TITLE_MainFiles ${LANG_ENGLISH} "Main files"
 LangString TITLE_MainFiles ${LANG_BULGARIAN} "Основни файлове"
 LangString TITLE_MainFiles ${LANG_RUSSIAN} "Основные файлы"
+LangString TITLE_FFTools ${LANG_ENGLISH} "FFmpeg tools"
+LangString TITLE_FFTools ${LANG_BULGARIAN} "Инструменти FFmpeg"
+LangString TITLE_FFTools ${LANG_RUSSIAN} "Инструменты FFmpeg"
 LangString TITLE_Manual ${LANG_ENGLISH} "Manual"
 LangString TITLE_Manual ${LANG_BULGARIAN} "Ръководство"
 LangString TITLE_Manual ${LANG_RUSSIAN} "Руководство пользователя"
@@ -107,6 +113,9 @@ LangString TITLE_QuickLaunchShortCuts ${LANG_RUSSIAN} "Быстрый запуск"
 LangString DESC_MainFiles ${LANG_ENGLISH} "Installs ${PRODUCT}'s core files."
 LangString DESC_MainFiles ${LANG_BULGARIAN} "Инсталира основните файлове на ${PRODUCT}."
 LangString DESC_MainFiles ${LANG_RUSSIAN} "Установка основных файлов ${PRODUCT}."
+LangString DESC_FFTools ${LANG_ENGLISH} "Installs FFmpeg utilities that used for extraction of audiowave."
+LangString DESC_FFTools ${LANG_BULGARIAN} "Инсталира FFmpeg инструменти"
+LangString DESC_FFTools ${LANG_RUSSIAN} "Установка инструментов FFmpeg, которые используются для извлечения формы звуковой волны из видео."
 LangString DESC_Manual ${LANG_ENGLISH} "Installs the manual in the selected languages."
 LangString DESC_Manual ${LANG_BULGARIAN} "Инсталира ръководството в избраните езици."
 LangString DESC_Manual ${LANG_RUSSIAN} "Установка руководства пользователя для выбранных языков."
@@ -257,6 +266,13 @@ SectionEnd
 
 ;--------------------------------------------------------------------
 
+Section $(TITLE_FFTools) FFmpeg
+  SetOutPath "$INSTDIR\${FFMPEGFOLDER}"
+    File /r "${FILESPATH}\${FFMPEGFOLDER}\*.*"
+SectionEnd
+
+;--------------------------------------------------------------------
+
 SubSection $(TITLE_Manual) Manual
 	
   Section $(TITLE_ManualEnglish) ManualEnglish
@@ -298,6 +314,8 @@ SectionEnd
 SubSection $(TITLE_ShortCuts) ShortCuts
 
   Section $(TITLE_StartMenuShortCuts) StartMenuShortCuts
+    SetOutPath "$INSTDIR"
+
     CreateDirectory "$SMPROGRAMS\${PRODUCT}"
 
     CreateDirectory "$SMPROGRAMS\${PRODUCT}\Help"
@@ -317,10 +335,12 @@ SubSection $(TITLE_ShortCuts) ShortCuts
   SectionEnd
 
   Section $(TITLE_DesktopShortCuts) DesktopShortCuts
+    SetOutPath "$INSTDIR"
     CreateShortCut "$DESKTOP\${PRODUCT}.lnk" "$INSTDIR\${PRODUCT_EXENAME}" "" "$INSTDIR\${PRODUCT_EXENAME}" 0
   SectionEnd
 
   Section $(TITLE_QuickLaunchShortCuts) QuickLaunchShortCuts
+    SetOutPath "$INSTDIR"
     CreateShortCut "$QUICKLAUNCH\${PRODUCT}.lnk" "$INSTDIR\${PRODUCT_EXENAME}" "" "$INSTDIR\${PRODUCT_EXENAME}" 0
   SectionEnd
 
@@ -353,6 +373,7 @@ FunctionEnd
 ; Descriptions
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
   !insertmacro MUI_DESCRIPTION_TEXT ${MainFiles} $(DESC_MainFiles)
+  !insertmacro MUI_DESCRIPTION_TEXT ${FFmpeg} $(DESC_FFTools)
   !insertmacro MUI_DESCRIPTION_TEXT ${Manual} $(DESC_Manual)
   !insertmacro MUI_DESCRIPTION_TEXT ${CustomFormats} $(DESC_CustomFormats)
   !insertmacro MUI_DESCRIPTION_TEXT ${LangFiles} $(DESC_LangFiles)
@@ -397,6 +418,7 @@ Section "Uninstall"
   RMDir  "$INSTDIR\CustomFormats\"  
   Delete "$INSTDIR\Help\*.*"
   RMDir  "$INSTDIR\Help\"
+  RMDir /r "$INSTDIR\${FFMPEGFOLDER}"
   Delete "$SMPROGRAMS\${PRODUCT}\*.*"
   Delete "$SMPROGRAMS\${PRODUCT}\Help\*.*"
   RMDir  "$SMPROGRAMS\${PRODUCT}\Help"

@@ -1,5 +1,20 @@
 SUBTITLE WORKSHOP VERSION HISTORY
 
+==========================================================================================================
+Changes in version 6.0c (build 131347) since version 6.0b (build 131121)
+==========================================================================================================
+
+* Audio Preview Panel added - (show/hide from "Waveform: Waveform preview mode").
+	--> WAV format support added.
+	--> Added support of extraction audio from video.
+* WAVEFORM menu added.
+* Netflix Quality Check added in the TOOLBAR and the TOOL menu.
+	--> Whitespace check added.
+	--> Glyph check added.
+* Improved TTML support.
+	--> UTF-8 encoding support added.
+	--> Encoding detection added.
+	--> Netflix TTML format added.
 
 ==========================================================================================================
 Changes in version 6.0b (build 131121) since version 6.0a (build 130825)
@@ -457,7 +472,7 @@ Changes in version 6.0 (build 130814) since version 2.51
 		--> Subtitles having "Bad Values" are no longer marked as subtitles having "Too short duration".	
 		--> When removing text before colon, if there's a dash before the colon it will not be removed now (e.g. "Sir?|- PICARD: Engage!" will be converted to "Sir?|- Engage!" instead of "Sir?|Engage!").
 		--> The ""-" in subtitles with one line" error is now detected even if there are spaces in front of the dash.
-		--> Errors that consider dialogue dashes (like "Dash on first line", "Dash in subtitles with one line", and "Dialogue on one line") now detect a total of four different dashes: "-" (0045 - normal dash / figure dash), "–" (0150 - en dash), "—" (0151 - em dash), "­" (0173).
+		--> Errors that consider dialogue dashes (like "Dash on first line", "Dash in subtitles with one line", and "Dialogue on one line") now detect a total of four different dashes: "-" (0045 - normal dash / figure dash), "ï¿½" (0150 - en dash), "ï¿½" (0151 - em dash), "ï¿½" (0173).
 		--> OCR Scripts can now be used only to find items by not defining a ReplaceBy value in the ERROR tag.
 	--> FUNCTIONS:
 		--> "Edit: Texts: Divide lines..." and "Edit: Texts: Fast divide lines" automatically remove dialogue dashes now.
@@ -473,7 +488,7 @@ Changes in version 6.0 (build 130814) since version 2.51
 		--> "Edit: Texts: Fast smart line adjust" now only modifies the Text or the Translation (when only one subtitle is selected), depending on the focused field - "Text" or "Translation" - or on the focused column in the Subtitles List.
 		--> "Edit: Texts: Fast smart line adjust" now doesn't toggle variants when multiple subtitles are selected.
 		--> The translation is now copied to every new line, when using an effect from "Edit: Subtitles: Effects".
-		--> Functions that look for dialogue dashes (like "Unbreak subtitles", "Smart Line Adjust", and "Delete unnecessary links") now detect a total of four different dashes: "-" (0045 - normal dash / figure dash), "–" (0150 - en dash), "—" (0151 - em dash), "­" (0173).		
+		--> Functions that look for dialogue dashes (like "Unbreak subtitles", "Smart Line Adjust", and "Delete unnecessary links") now detect a total of four different dashes: "-" (0045 - normal dash / figure dash), "ï¿½" (0150 - en dash), "ï¿½" (0151 - em dash), "ï¿½" (0173).		
 	--> MISC:
 		--> "Undo" of "Input FPS" and "FPS" changes now returns the exact previous timing values.	
 		--> When associating file types with Subtitle Workshop in "Settings: Settings: File types", unassociated file types are automatically associated with their previously associated program now.	

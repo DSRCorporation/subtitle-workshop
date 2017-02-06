@@ -117,10 +117,25 @@ begin
 end;
 
 function BuildCaption(stream: TAudioStream): String;
+var
+  Params: TStringList;
+  OddCommaPos: Integer;
 begin
   with stream do begin
-    Result := Format('Stream #%d: %s, %d channels, %d Hz, %d kb/s',
-                      [Index, CodecName, ChannelsNum, SampleRate, Round(BitRate/1000)]);
+    Result := Format('Stream #%d:', [Index]);
+    OddCommaPos := Length(Result);
+
+    if stream.CodecName <> '' then
+      Result := Result + Format(', %s', [CodecName]);
+    if stream.ChannelsNum <> 0 then
+      Result := Result + Format(', %d channels', [ChannelsNum]);
+    if stream.SampleRate <> 0 then
+      Result := Result + Format(', %d Hz', [SampleRate]);
+    if stream.BitRate <> 0 then
+      Result := Result + Format(', %d kb/s', [Round(BitRate/1000)]);
+
+    if Length(Result) > OddCommaPos then
+      Delete(Result, OddCommaPos + 1, 1);  
   end;
 end;
 

@@ -27,8 +27,9 @@ type
   
   TFFMPEGHelper = class
   private
-    FToolPath   : String;
-    FSampleRate : Integer;
+    FToolPath     : String;
+    FToolDetected : Boolean;
+    FSampleRate   : Integer;
     
     function BuildAmergeMapArgs(streams: array of Integer): String;
     function BuildTempPath(filename: String; extension: String): String;
@@ -40,6 +41,8 @@ type
     function ExtractWAVFromVideo(filename: String; streams: array of Integer): String;
     function DetectAudioStreams(filename: String): TAudioStreams;
     function IsWAVFile(filename: String): Boolean;
+
+    property ToolDetected: Boolean read FToolDetected;
   end;
 
 implementation
@@ -50,7 +53,16 @@ uses
 
 constructor TFFMPEGHelper.Create(toolPath: String; sampleRate: Integer);
 begin
-  FToolPath   := toolPath;
+  if FileExists(IncludeTrailingPathDelimiter(toolPath) + 'ffmpeg.exe') then
+  begin
+    FToolPath := toolPath;
+    FToolDetected := True;
+  end else
+  begin
+    FToolPath := '';
+    FToolDetected := False;
+  end;
+
   FSampleRate := sampleRate;
 end;
 
@@ -76,10 +88,19 @@ end;
 function TFFMPEGHelper.JsonToAudioStream(json: TlkJSONobject): TAudioStream;
 begin
   Result.Index        := TlkJSONnumber(json.Field['index']).Value;
-  Result.CodecName    := TlkJSONstring(json.Field['codec_name']).Value;
-  Result.ChannelsNum  := TlkJSONnumber(json.Field['channels']).Value;
-  Result.SampleRate   := TlkJSONnumber(json.Field['sample_rate']).Value;
-  Result.BitRate      := TlkJSONnumber(json.Field['bit_rate']).Value;
+  Result.CodecName    := '';
+  Result.ChannelsNum  := 0;
+  Result.SampleRate   := 0;
+  Result.BitRate      := 0;
+
+  if Assigned(json.Field['codec_name']) then
+    Result.CodecName := TlkJSONnumber(json.Field['codec_name']).Value;
+  if Assigned(json.Field['channels']) then
+    Result.ChannelsNum := TlkJSONnumber(json.Field['channels']).Value;
+  if Assigned(json.Field['sample_rate']) then
+    Result.SampleRate := TlkJSONnumber(json.Field['sample_rate']).Value;
+  if Assigned(json.Field['bit_rate']) then
+    Result.BitRate := TlkJSONnumber(json.Field['bit_rate']).Value;
 end;
 
 function TFFMPEGHelper.ExtractWAVFromVideo(filename: String; streams: array of Integer): String;

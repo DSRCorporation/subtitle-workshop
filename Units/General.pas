@@ -18,8 +18,8 @@ uses
 
 const
   ID_PROGRAM      = 'Subtitle Workshop';
-  ID_VERSION      = '6.0b';
-  ID_BUILD        = '131121';
+  ID_VERSION      = '6.0c';
+  ID_BUILD        = '131347';
   ID_FULLVERSION  = ID_VERSION + ' (build ' + ID_BUILD + ')';
   ID_EMAIL        = 'subtitleworkshop@gmail.com';
   ID_WEBPAGE      = 'http://subworkshop.sf.net';

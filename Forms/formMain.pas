@@ -3829,7 +3829,10 @@ begin
     //added by adenry: end
 
     // Waveform inititalization
-    ffmpegHelper    := TFFMPEGHelper.Create('C:/', 16000);
+    ffmpegHelper := TFFMPEGHelper.Create(
+      Ini.ReadString('Wave extraction', 'FFmpegToolPath', 'ffmpeg-3.2.2-win32-static\bin'),
+      Ini.ReadInteger('Wave extraction', 'SampleRate', 16000)
+    );
     WaveformAdapter := TWaveformAdapter.Create(pnlWAVDisplay, lstSubtitles, ffmpegHelper);
     with WaveformAdapter do begin
       Displayer.OnSelectionChange       := WaveformSelectionChange;
@@ -14752,6 +14755,12 @@ begin
       WaveformAdapter.Load(dlgLoadWaveform.FileName, []);
     end
     else begin
+      if not ffmpegHelper.ToolDetected then
+      begin
+        ShowMessage('FFmpeg was not found in your system. Please refer to README.md.');
+        Exit;  
+      end;
+
       streams := ffmpegHelper.DetectAudioStreams(dlgLoadWaveform.FileName);
 
       if Length(streams) = 0 then begin
