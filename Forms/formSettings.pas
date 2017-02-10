@@ -269,6 +269,12 @@ type
     lbledtSafetyZoneOffset: TLabeledEdit;
     udSafetyZoneOffset: TUpDown;
     chkShowSceneChange: TCheckBox;
+    pgeWaveExtraction: TTabSheet;
+    lblFFTolls: TLabel;
+    edtFFPath: TEdit;
+    btnFFBrowse: TButton;
+    lbledtSampleRate: TLabeledEdit;
+    udSampleRate: TUpDown;
     procedure FormCreate(Sender: TObject);
     procedure tvSettingsClick(Sender: TObject);
     procedure tvSettingsKeyUp(Sender: TObject; var Key: Word;
@@ -320,6 +326,7 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure lbledtSafetyZoneOffsetKeyPress(Sender: TObject;
       var Key: Char);
+    procedure btnFFBrowseClick(Sender: TObject);
   private
     procedure SetLanguage;
     procedure UpdateSubSamplePos;
@@ -401,6 +408,9 @@ begin
       tvSettings.Items[tvSettings.Items.Count-4].MakeVisible;
       tvSettings.Items.Add(nil, ReadString('Settings Form', '149', 'Waveform'));
       tvSettings.Items[tvSettings.Items.Count-1].ImageIndex := 13;
+      tvSettings.Items[tvSettings.Items.Count-1].MakeVisible;
+      tvSettings.Items.Add(nil, ReadString('Settings Form', '154', 'Wave extraction'));
+      tvSettings.Items[tvSettings.Items.Count-1].ImageIndex := 14;
       tvSettings.Items[tvSettings.Items.Count-1].MakeVisible;
       //added by adenry: end
 
@@ -668,6 +678,13 @@ begin
       chkShowSubtitleText.Caption               := ReadString('Settings Form', '151', 'Show subtitle text');
       chkShowSceneChange.Caption                := ReadString('Settings Form', '152', 'Show scene change');
 
+      // ------------------ //
+      //   Wave extraction  //
+      // ------------------ //
+      lblFFTolls.Caption                        := ReadString('Settings Form', '155', 'FFmpeg tools path:');
+      btnFFBrowse.Caption                       := ReadString('Settings Form', '156', 'Browse');
+      lbledtSampleRate.EditLabel.Caption        := ReadString('Settings Form', '157', 'Sample rate:');
+      
       // ------------------ //
       //      Set font      //
       // ------------------ //
@@ -1192,6 +1209,11 @@ begin
     chkShowSceneChange.Checked      := Ini.ReadBool('Waveform', 'ShowSceneChange', True);
     udSafetyZoneOffset.Position     := Ini.ReadInteger('Waveform', 'SafetyZoneOffset', 150);
 
+    // --------------------------------- //
+    //            Wave extraction        //
+    // --------------------------------- //
+    edtFFPath.Text := Ini.ReadString('Wave extraction', 'FFmpegToolPath', 'ffmpeg-3.2.2-win32-static\bin');
+    udSampleRate.Position := Ini.ReadInteger('Wave extraction', 'SampleRate', 1600);
 
   if Assigned(Items) then FreeAndNil(Items);    // added by Bdzl
 
@@ -1764,6 +1786,13 @@ begin
     end;
 
     // --------------------------------- //
+    //              Wave extraction      //
+    // --------------------------------- //
+    Ini.WriteString('Wave extraction', 'FFmpegToolPath', edtFFPath.Text);
+    Ini.WriteInteger('Wave extraction', 'SampleRate', udSampleRate.Position);
+    frmMain.ffmpegHelper.SetSettings(edtFFPath.Text, udSampleRate.Position);
+
+    // --------------------------------- //
 
     if frmMain.OrgFile <> '' then
     begin
@@ -2112,6 +2141,16 @@ begin
   if not (Key in [#8, '0'..'9']) then begin
     // Discard the key
     Key := #0;
+  end;
+end;
+
+procedure TfrmSettings.btnFFBrowseClick(Sender: TObject);
+begin
+  dlgBrowse.Filter := 'FFmpeg (ffmpeg.exe)|ffmpeg.exe';
+
+  if (dlgBrowse.Execute) and (dlgBrowse.FileName <> '') then
+  begin
+    edtFFPath.Text := ExtractFilePath(dlgBrowse.FileName);
   end;
 end;
 

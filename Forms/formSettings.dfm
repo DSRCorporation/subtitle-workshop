@@ -1,6 +1,6 @@
 object frmSettings: TfrmSettings
-  Left = 489
-  Top = 209
+  Left = 895
+  Top = 67
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'frmSettings'
@@ -33,7 +33,7 @@ object frmSettings: TfrmSettings
     Top = 64
     Width = 369
     Height = 441
-    ActivePage = pgeWaveform
+    ActivePage = pgeWaveExtraction
     Style = tsButtons
     TabOrder = 4
     object pgeGeneral: TTabSheet
@@ -574,7 +574,7 @@ object frmSettings: TfrmSettings
         Width = 145
         Height = 21
         Style = csDropDownList
-        ItemHeight = 0
+        ItemHeight = 13
         TabOrder = 0
       end
       object gbCharsets: TGroupBox
@@ -603,7 +603,7 @@ object frmSettings: TfrmSettings
           Width = 145
           Height = 21
           Style = csDropDownList
-          ItemHeight = 0
+          ItemHeight = 13
           TabOrder = 0
         end
         object cmbOrgCharset: TComboBox
@@ -612,7 +612,7 @@ object frmSettings: TfrmSettings
           Width = 145
           Height = 21
           Style = csDropDownList
-          ItemHeight = 0
+          ItemHeight = 13
           TabOrder = 1
         end
         object chkShowInMainForm: TCheckBox
@@ -649,7 +649,7 @@ object frmSettings: TfrmSettings
         Width = 241
         Height = 21
         Style = csDropDownList
-        ItemHeight = 0
+        ItemHeight = 13
         TabOrder = 0
       end
       object chkLstFormatsToShow: TCheckListBox
@@ -1484,7 +1484,7 @@ object frmSettings: TfrmSettings
         Height = 21
         Style = csDropDownList
         Enabled = False
-        ItemHeight = 0
+        ItemHeight = 13
         Sorted = True
         TabOrder = 1
       end
@@ -1569,7 +1569,7 @@ object frmSettings: TfrmSettings
         Width = 169
         Height = 21
         Style = csDropDownList
-        ItemHeight = 0
+        ItemHeight = 13
         TabOrder = 3
       end
       object chkSmartResize: TCheckBox
@@ -1808,7 +1808,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 0
+          ItemHeight = 13
           TabOrder = 0
         end
         object cmbShowColAlign: TComboBox
@@ -1817,7 +1817,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 0
+          ItemHeight = 13
           TabOrder = 1
         end
         object cmbHideColAlign: TComboBox
@@ -1826,7 +1826,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 0
+          ItemHeight = 13
           TabOrder = 2
         end
         object cmbDurColAlign: TComboBox
@@ -1835,7 +1835,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 0
+          ItemHeight = 13
           TabOrder = 3
         end
         object cmbTransColAlign: TComboBox
@@ -1844,7 +1844,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 0
+          ItemHeight = 13
           TabOrder = 4
         end
         object cmbTextColAlign: TComboBox
@@ -1853,7 +1853,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 0
+          ItemHeight = 13
           TabOrder = 5
         end
         object cmbDurColStyle: TComboBox
@@ -1862,7 +1862,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 0
+          ItemHeight = 13
           TabOrder = 6
         end
         object cmbHideColStyle: TComboBox
@@ -1871,7 +1871,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 0
+          ItemHeight = 13
           TabOrder = 7
         end
         object cmbShowColStyle: TComboBox
@@ -1880,7 +1880,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 0
+          ItemHeight = 13
           TabOrder = 8
         end
         object cmbNumColStyle: TComboBox
@@ -1889,7 +1889,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 0
+          ItemHeight = 13
           TabOrder = 9
         end
         object cmbPauseColAlign: TComboBox
@@ -1898,7 +1898,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 0
+          ItemHeight = 13
           TabOrder = 10
         end
         object cmbPauseColStyle: TComboBox
@@ -1907,7 +1907,7 @@ object frmSettings: TfrmSettings
           Width = 105
           Height = 21
           Style = csDropDownList
-          ItemHeight = 0
+          ItemHeight = 13
           TabOrder = 11
         end
       end
@@ -2260,6 +2260,55 @@ object frmSettings: TfrmSettings
         Height = 17
         Caption = 'Show scene change'
         TabOrder = 4
+      end
+    end
+    object pgeWaveExtraction: TTabSheet
+      Caption = 'pgeWaveExtraction'
+      ImageIndex = 14
+      TabVisible = False
+      object lblFFTolls: TLabel
+        Left = 0
+        Top = 8
+        Width = 93
+        Height = 13
+        Caption = 'FFmpeg tools path:'
+      end
+      object edtFFPath: TEdit
+        Left = 0
+        Top = 24
+        Width = 361
+        Height = 21
+        TabOrder = 0
+      end
+      object btnFFBrowse: TButton
+        Left = 0
+        Top = 52
+        Width = 75
+        Height = 25
+        Caption = 'Browse'
+        TabOrder = 1
+        OnClick = btnFFBrowseClick
+      end
+      object lbledtSampleRate: TLabeledEdit
+        Left = 0
+        Top = 104
+        Width = 121
+        Height = 21
+        EditLabel.Width = 61
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Sample rate:'
+        TabOrder = 2
+      end
+      object udSampleRate: TUpDown
+        Left = 121
+        Top = 104
+        Width = 16
+        Height = 21
+        Associate = lbledtSampleRate
+        Min = 800
+        Max = 3200
+        Position = 800
+        TabOrder = 3
       end
     end
   end

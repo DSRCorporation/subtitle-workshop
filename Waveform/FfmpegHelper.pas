@@ -37,6 +37,8 @@ type
     function JsonToAudioStream(json: TlkJSONobject): TAudioStream;
   public
     constructor Create(toolPath: String; sampleRate: Integer);
+
+    procedure SetSettings(toolPath: String; sampleRate: Integer);
     
     function ExtractWAVFromVideo(filename: String; streams: array of Integer): String;
     function DetectAudioStreams(filename: String): TAudioStreams;
@@ -52,6 +54,11 @@ uses
   MiscToolsUnit;
 
 constructor TFFMPEGHelper.Create(toolPath: String; sampleRate: Integer);
+begin
+  SetSettings(toolPath, sampleRate);
+end;
+
+procedure TFFMPEGHelper.SetSettings(toolPath: String; sampleRate: Integer);
 begin
   toolPath := ExpandFileName(toolPath);
   if  FileExists(IncludeTrailingPathDelimiter(toolPath) + 'ffmpeg.exe') and

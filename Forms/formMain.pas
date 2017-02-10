@@ -14757,7 +14757,7 @@ begin
     else begin
       if not ffmpegHelper.ToolDetected then
       begin
-        ShowMessage('FFmpeg was not found in your system. Please refer to README.md.');
+        ShowMessage('FFmpeg was not found in your system. Please refer to settings to locate it manually.');
         Exit;  
       end;
 

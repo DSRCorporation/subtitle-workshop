@@ -543,7 +543,13 @@ SRF=Subtitle Report File
 151=Safety zone offset:
 152=Show subtitle text
 153=Show scene change
-
+;-------------------------;
+;     Wave extraction     ;
+;-------------------------;
+154=Wave extraction
+155=FFmpeg tools path:
+156=Browse
+157=Sample rate:
 
 [Output settings]
 01=Output settings
