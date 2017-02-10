@@ -14090,7 +14090,6 @@ object frmMain: TfrmMain
   end
   object dlgLoadWaveform: TOpenDialog
     DefaultExt = 'wav'
-    FileName = 'C:\@Develop\Video\Hibernation.2012.WEB-DLRip-AVC.mkv'
     Filter = 
       'WAV files|*.wav|Video files|*.AVI;*.AVS;*.DAT;*.FLC;*.FLI;*.MKV;' +
       '*.MOV;*.MP4;*.MPG|All files|*.*'

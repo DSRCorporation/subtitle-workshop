@@ -38,4 +38,5 @@ Thumbs.db
 *.~pas
 *.~dpr
 *.~dfm
+*.~ddp
 *.swp

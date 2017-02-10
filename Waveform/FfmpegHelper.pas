@@ -53,7 +53,9 @@ uses
 
 constructor TFFMPEGHelper.Create(toolPath: String; sampleRate: Integer);
 begin
-  if FileExists(IncludeTrailingPathDelimiter(toolPath) + 'ffmpeg.exe') then
+  toolPath := ExpandFileName(toolPath);
+  if  FileExists(IncludeTrailingPathDelimiter(toolPath) + 'ffmpeg.exe') and
+      FileExists(IncludeTrailingPathDelimiter(toolPath) + 'ffprobe.exe')then
   begin
     FToolPath := toolPath;
     FToolDetected := True;
