@@ -1,6 +1,6 @@
 object frmSettings: TfrmSettings
-  Left = 895
-  Top = 67
+  Left = 902
+  Top = 151
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'frmSettings'
@@ -33,7 +33,7 @@ object frmSettings: TfrmSettings
     Top = 64
     Width = 369
     Height = 441
-    ActivePage = pgeWaveExtraction
+    ActivePage = pgeWaveform
     Style = tsButtons
     TabOrder = 4
     object pgeGeneral: TTabSheet
@@ -2215,6 +2215,13 @@ object frmSettings: TfrmSettings
       Caption = 'pgeWaveform'
       ImageIndex = 13
       TabVisible = False
+      object lblFFTolls: TLabel
+        Left = 0
+        Top = 136
+        Width = 93
+        Height = 13
+        Caption = 'FFmpeg tools path:'
+      end
       object chkMouseAntiOverlapping: TCheckBox
         Left = 0
         Top = 16
@@ -2261,54 +2268,43 @@ object frmSettings: TfrmSettings
         Caption = 'Show scene change'
         TabOrder = 4
       end
-    end
-    object pgeWaveExtraction: TTabSheet
-      Caption = 'pgeWaveExtraction'
-      ImageIndex = 14
-      TabVisible = False
-      object lblFFTolls: TLabel
-        Left = 0
-        Top = 8
-        Width = 93
-        Height = 13
-        Caption = 'FFmpeg tools path:'
-      end
-      object edtFFPath: TEdit
-        Left = 0
-        Top = 24
-        Width = 361
-        Height = 21
-        TabOrder = 0
-      end
-      object btnFFBrowse: TButton
-        Left = 0
-        Top = 52
-        Width = 75
-        Height = 25
-        Caption = 'Browse'
-        TabOrder = 1
-        OnClick = btnFFBrowseClick
-      end
       object lbledtSampleRate: TLabeledEdit
         Left = 0
-        Top = 104
+        Top = 232
         Width = 121
         Height = 21
         EditLabel.Width = 61
         EditLabel.Height = 13
         EditLabel.Caption = 'Sample rate:'
-        TabOrder = 2
+        TabOrder = 5
+        Text = '800'
       end
       object udSampleRate: TUpDown
         Left = 121
-        Top = 104
+        Top = 232
         Width = 16
         Height = 21
         Associate = lbledtSampleRate
-        Min = 800
-        Max = 3200
-        Position = 800
-        TabOrder = 3
+        Min = 8000
+        Max = 32000
+        Position = 8000
+        TabOrder = 6
+      end
+      object btnFFBrowse: TButton
+        Left = 0
+        Top = 180
+        Width = 75
+        Height = 25
+        Caption = 'Browse'
+        TabOrder = 7
+        OnClick = btnFFBrowseClick
+      end
+      object edtFFPath: TEdit
+        Left = 0
+        Top = 152
+        Width = 361
+        Height = 21
+        TabOrder = 8
       end
     end
   end

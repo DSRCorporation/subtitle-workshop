@@ -229,7 +229,7 @@ FunctionEnd
 InstallDir "$PROGRAMFILES\${PRODUCT}"
 
 ; For removing Start Menu shortcut in Windows 7
-RequestExecutionLevel user
+RequestExecutionLevel admin
 
 ; -------------------------------- ;
 ;         Files to install         ;
