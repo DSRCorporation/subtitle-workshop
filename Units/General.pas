@@ -18,7 +18,7 @@ uses
 
 const
   ID_PROGRAM      = 'Subtitle Workshop';
-  ID_VERSION      = '6.0c';
+  ID_VERSION      = '7.0';
   ID_BUILD        = '131347';
   ID_FULLVERSION  = ID_VERSION + ' (build ' + ID_BUILD + ')';
   ID_EMAIL        = 'subtitleworkshop@gmail.com';
