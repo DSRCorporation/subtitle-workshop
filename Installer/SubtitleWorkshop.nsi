@@ -8,8 +8,8 @@
 !define PRODUCT "Subtitle Workshop"
 !define PRODUCT_SHORTNAME "SubtitleWorkshop"
 !define PRODUCT_EXENAME "subtitleworkshop.exe"
-!define VER_MAJOR 6
-!define VER_MINOR "0c"
+!define VER_MAJOR 7
+!define VER_MINOR "0"
 !define BUILD_NUM 131347
 !define VERSION "${VER_MAJOR}.${VER_MINOR}"
 !define VERSION_FULL "${VERSION} (build ${BUILD_NUM})"
@@ -229,7 +229,7 @@ FunctionEnd
 InstallDir "$PROGRAMFILES\${PRODUCT}"
 
 ; For removing Start Menu shortcut in Windows 7
-RequestExecutionLevel user
+RequestExecutionLevel admin
 
 ; -------------------------------- ;
 ;         Files to install         ;

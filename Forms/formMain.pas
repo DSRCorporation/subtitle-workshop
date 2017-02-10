@@ -3830,8 +3830,8 @@ begin
 
     // Waveform inititalization
     ffmpegHelper := TFFMPEGHelper.Create(
-      Ini.ReadString('Wave extraction', 'FFmpegToolPath', 'ffmpeg-3.2.2-win32-static\bin'),
-      Ini.ReadInteger('Wave extraction', 'SampleRate', 16000)
+      Ini.ReadString('Waveform', 'FFmpegToolPath', 'ffmpeg-3.2.2-win32-static\bin'),
+      Ini.ReadInteger('Waveform', 'SampleRate', 16000)
     );
     WaveformAdapter := TWaveformAdapter.Create(pnlWAVDisplay, lstSubtitles, ffmpegHelper);
     with WaveformAdapter do begin
@@ -14757,7 +14757,7 @@ begin
     else begin
       if not ffmpegHelper.ToolDetected then
       begin
-        ShowMessage('FFmpeg was not found in your system. Please refer to README.md.');
+        ShowMessage('FFmpeg was not found in your system. Please refer to settings to locate it manually.');
         Exit;  
       end;
 
