@@ -82,7 +82,8 @@ uses
   NetflixQualityCheck in 'Units\NetflixQualityCheck.pas',
   uLkJSON in 'Lib\uLkJSON.pas',
   FfmpegHelper in 'Waveform\FfmpegHelper.pas',
-  formAudioStreams in 'Forms\formAudioStreams.pas' {AudioStreamsForm};
+  formAudioStreams in 'Forms\formAudioStreams.pas' {AudioStreamsForm},
+  formExecutionProgress in 'Forms\formExecutionProgress.pas' {frmExecutionProgress};
 
 {$R *.res}
 
@@ -142,6 +143,7 @@ begin
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TVerticalScalingForm, VerticalScalingForm);
   Application.CreateForm(TAudioStreamsForm, AudioStreamsForm);
+  Application.CreateForm(TfrmExecutionProgress, frmExecutionProgress);
   Application.Run;
 
 end.

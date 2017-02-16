@@ -34,6 +34,7 @@ type
     function BuildAmergeMapArgs(streams: array of Integer): String;
     function BuildTempPath(filename: String; extension: String): String;
     procedure Execute(command: String; args: array of const);
+    procedure ExecuteWithMessage(command: String; args: array of const; Msg: String);
     function JsonToAudioStream(json: TlkJSONobject): TAudioStream;
   public
     constructor Create(toolPath: String; sampleRate: Integer);
@@ -94,6 +95,11 @@ begin
  ExecuteCommand(Format(command, args), FToolPath);
 end;
 
+procedure TFFMPEGHelper.ExecuteWithMessage(command: String; args: array of const; Msg: String);
+begin
+ ExecuteCommandWithMessage(Format(command, args), FToolPath, Msg);
+end;
+
 function TFFMPEGHelper.JsonToAudioStream(json: TlkJSONobject): TAudioStream;
 begin
   Result.Index        := TlkJSONnumber(json.Field['index']).Value;
@@ -114,22 +120,24 @@ end;
 
 function TFFMPEGHelper.ExtractWAVFromVideo(filename: String; streams: array of Integer): String;
 var
-  tmpWavPath  : String;
+  tmpWavPath    : String;
+const
+  Msg = 'Extracting audio. Please wait...';
 begin
   tmpWavPath := BuildTempPath(filename, '.wav');
 
   if (Length(streams) = 0) then
-    Execute('ffmpeg -hide_banner -y -vn -i "%s" -ar %d -f wav "%s"',
-            [filename, FSampleRate, tmpWavPath])
+    ExecuteWithMessage('ffmpeg.exe -hide_banner -y -vn -i "%s" -ar %d -f wav "%s"',
+            [filename, FSampleRate, tmpWavPath], Msg)
   else
   if (Length(streams) = 1) then
-    Execute('ffmpeg -hide_banner -y -vn -i "%s" -c:%d copy -ar %d -f wav "%s"',
-            [filename, streams[0], FSampleRate, tmpWavPath])
+    ExecuteWithMessage('ffmpeg.exe -hide_banner -y -vn -i "%s" -c:%d copy -ar %d -f wav "%s"',
+            [filename, streams[0], FSampleRate, tmpWavPath], Msg)
   else
-    Execute('ffmpeg -hide_banner -y -vn -i "%s" -filter_complex "%samerge=inputs=%d[aout]" -map "[aout]" -ar %d -f wav "%s"',
-            [filename, BuildAmergeMapArgs(streams), Length(streams), FSampleRate, tmpWavPath]);
+    ExecuteWithMessage('ffmpeg.exe -hide_banner -y -vn -i "%s" -filter_complex "%samerge=inputs=%d[aout]" -map "[aout]" -ar %d -f wav "%s"',
+            [filename, BuildAmergeMapArgs(streams), Length(streams), FSampleRate, tmpWavPath], Msg);
 
-  Result := tmpWavPath;
+    Result := tmpWavPath
 end;
 
 function TFFMPEGHelper.DetectAudioStreams(filename: String): TAudioStreams;
