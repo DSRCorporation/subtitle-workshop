@@ -131,7 +131,7 @@ begin
             [filename, FSampleRate, tmpWavPath], Msg)
   else
   if (Length(streams) = 1) then
-    ExecuteWithMessage('ffmpeg.exe -hide_banner -y -vn -i "%s" -c:%d copy -ar %d -f wav "%s"',
+    ExecuteWithMessage('ffmpeg -hide_banner -y -vn -i "%s" -map 0:%d -c:a:0 pcm_s16le -ar %d -f wav "%s"',
             [filename, streams[0], FSampleRate, tmpWavPath], Msg)
   else
     ExecuteWithMessage('ffmpeg.exe -hide_banner -y -vn -i "%s" -filter_complex "%samerge=inputs=%d[aout]" -map "[aout]" -ar %d -f wav "%s"',

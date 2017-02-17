@@ -14779,7 +14779,7 @@ begin
 
         if audioStreamsForm.ModalResult <> mrOk then Exit;
 
-        WaveformAdapter.Load(dlgLoadWaveform.FileName, audioStreamsForm.GetStreams);
+        WaveformAdapter.Load(dlgLoadWaveform.FileName, audioStreamsForm.SelectedStreams);
       end;
     end;
 
