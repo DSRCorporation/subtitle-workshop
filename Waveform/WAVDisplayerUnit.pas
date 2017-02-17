@@ -365,6 +365,7 @@ type
     property Selection : TRange read FSelection;
     property KaraokeSelectedIndex : Integer read FSelectedKaraokeIndex;
     property KaraokeSelectedRange : TRange read FSelectedKaraokeRange;
+    property IsMouseDown : Boolean read FMouseIsDown;
 
   published
     { Published declarations }

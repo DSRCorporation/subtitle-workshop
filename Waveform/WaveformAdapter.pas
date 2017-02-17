@@ -346,7 +346,7 @@ begin
 
     if Assigned(range) then begin
       WAVDisplayer.SelectedRange := range;
-      if AdjustView then
+      if AdjustView and not WAVDisplayer.IsMouseDown then
       begin
         WAVDisplayer.SetPositionMs(range.StartTime - WAVDisplayer.PageSize div 4);
       end;  
