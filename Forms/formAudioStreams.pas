@@ -26,13 +26,17 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
+    FSelectedStreams: TStreamIndexes;
+
     function IsAllSelected: Boolean;
     function IsAnySelected: Boolean;
     procedure UpdateOKEnabled;
+    function GetStreams: TStreamIndexes;
   public
     { Public declarations }
     procedure SetStreams(streams: TAudioStreams);
-    function GetStreams: TStreamIndexes;
+
+    property SelectedStreams: TStreamIndexes read FSelectedStreams;
   end;
 
 var
@@ -54,12 +58,14 @@ end;
 
 procedure TAudioStreamsForm.btnOKClick(Sender: TObject);
 begin
+  FSelectedStreams := GetStreams;
   Close;
   ModalResult := mrOK;
 end;
 
 procedure TAudioStreamsForm.btnCancelClick(Sender: TObject);
 begin
+  FSelectedStreams := GetStreams;
   Close;
   ModalResult := mrCancel;
 end;
