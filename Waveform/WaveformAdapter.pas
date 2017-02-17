@@ -43,7 +43,6 @@ type
     procedure UpdateSceneChanges;
   protected
     procedure OnCustomDrawRange(Sender: TObject; ACanvas: TCanvas; Range: TRange; Rect: TRect);
-    procedure SelectNode(node: PVirtualNode);
     function GetSelectedNode: PVirtualNode;
     procedure SetCharset(charset: Byte);
     procedure SetSafetyOffset(offset: Integer);
@@ -51,7 +50,7 @@ type
   public
     constructor Create(parentPanel: TPanel; sourceTree: TVirtualStringTree; ffmpegHelper: TFFMPEGHelper);
     destructor Destroy; override;
-    
+
     procedure Close;
     procedure ClearSubtitles;
     procedure Load(filename: WideString; streams: array of Integer);
@@ -69,10 +68,11 @@ type
     procedure Stop;
     procedure PlayNextSubtitle;
     procedure PlayPrevSubtitle;
+    procedure SelectNode(node: PVirtualNode; AdjustView: Boolean = False);
     
     property Displayer: TWAVDisplayer read WAVDisplayer;
     property Renderer: TDShowRenderer read WAVRenderer;
-    property SelectedNode: PVirtualNode read GetSelectedNode write SelectNode;
+    property SelectedNode: PVirtualNode read GetSelectedNode;
     property Charset: Byte read FCharset write SetCharset;
     property ShowSubtitleText: Boolean read FShowSubtitleText write FShowSubtitleText;
     property ShowSubtitleDuration: Boolean read FShowSubtitleDuration write FShowSubtitleDuration;
@@ -333,7 +333,7 @@ begin
   end;
 end;
 
-procedure TWaveformAdapter.SelectNode(node: PVirtualNode);
+procedure TWaveformAdapter.SelectNode(node: PVirtualNode; AdjustView: Boolean = False);
 var
   range   : TSubtitleRange;
   subtitle: PSubtitleItem;
@@ -346,7 +346,10 @@ begin
 
     if Assigned(range) then begin
       WAVDisplayer.SelectedRange := range;
-//      WAVDisplayer.SetPositionMs(range.StartTime - WAVDisplayer.PageSize div 4);
+      if AdjustView then
+      begin
+        WAVDisplayer.SetPositionMs(range.StartTime - WAVDisplayer.PageSize div 4);
+      end;  
     end;
   end else
     WAVDisplayer.ClearSelection;

@@ -2492,6 +2492,12 @@ begin
             LeftSnap := FindCorrectedSnappingPoint(LeftBorder, ARangeList);
             RightSnap := FindCorrectedSnappingPoint(RightBorder, ARangeList);
 
+            if LeftBorder < 0 then
+            begin
+               LeftSnap := 0;
+               RightSnap := -1;
+            end;
+
             if (LeftSnap = -1) and (RightSnap = -1) then
             begin
               LeftSnap := LeftBorder;

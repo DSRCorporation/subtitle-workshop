@@ -14337,7 +14337,7 @@ begin
     then
       RefreshTimes;
 
-  WaveformAdapter.SelectedNode := Node;
+  WaveformAdapter.SelectNode(Node, True);
 
   UpdateWaveformEnabled;
 end;
