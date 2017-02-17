@@ -29,6 +29,7 @@ type
     FSceneChangeWrapper : TSceneChangeWrapper;
     FCharset            : Byte;
     FShowSubtitleText   : Boolean;
+    FShowSubtitleDuration : Boolean;
     FSafetyOffset       : Integer;
 
     FFfmpegHelper       : TFFMPEGHelper;
@@ -74,6 +75,7 @@ type
     property SelectedNode: PVirtualNode read GetSelectedNode write SelectNode;
     property Charset: Byte read FCharset write SetCharset;
     property ShowSubtitleText: Boolean read FShowSubtitleText write FShowSubtitleText;
+    property ShowSubtitleDuration: Boolean read FShowSubtitleDuration write FShowSubtitleDuration;
     property SafetyOffset: Integer read FSafetyOffset write SetSafetyOffset;
   end;
 
@@ -483,6 +485,10 @@ begin
     if (FShowSubtitleText) then
     begin
 		  CanvasDrawText(ACanvas, Rect, TSubtitleRange(Range).Text, False, False);
+    end;
+
+    if (FShowSubtitleDuration) then
+    begin
 		  CanvasDrawText(ACanvas, Rect, TimeToString(TRange(Range).StopTime - TRange(Range).StartTime), False, True);
     end;
 

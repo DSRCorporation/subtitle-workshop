@@ -274,6 +274,7 @@ type
     btnFFBrowse: TButton;
     edtFFPath: TEdit;
     lblFFTolls: TLabel;
+    chkShowSubtitleDuration: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure tvSettingsClick(Sender: TObject);
     procedure tvSettingsKeyUp(Sender: TObject; var Key: Word;
@@ -671,8 +672,9 @@ begin
       // ------------------ //
       chkMouseAntiOverlapping.Caption           := ReadString('Settings Form', '150', 'Enable mouse anti-overlapping');
       lbledtSafetyZoneOffset.EditLabel.Caption  := ReadString('Settings Form', '151', 'Safety zone offset:');
-      chkShowSubtitleText.Caption               := ReadString('Settings Form', '151', 'Show subtitle text');
-      chkShowSceneChange.Caption                := ReadString('Settings Form', '152', 'Show scene change');
+      chkShowSubtitleText.Caption               := ReadString('Settings Form', '152', 'Show subtitle text');
+      chkShowSubtitleDuration.Caption           := ReadString('Settings Form', '153', 'Show subtitle duration');
+      chkShowSceneChange.Caption                := ReadString('Settings Form', '154', 'Show scene change');
 
       lblFFTolls.Caption                        := ReadString('Settings Form', '155', 'FFmpeg tools path:');
       btnFFBrowse.Caption                       := ReadString('Settings Form', '156', 'Browse');
@@ -1199,6 +1201,7 @@ begin
     // --------------------------------- //
     chkMouseAntiOverlapping.Checked := Ini.ReadBool('Waveform', 'MouseAntiOverlapping', False);
     chkShowSubtitleText.Checked     := Ini.ReadBool('Waveform', 'ShowSubtitleText', True);
+    chkShowSubtitleDuration.Checked := Ini.ReadBool('Waveform', 'ShowSubtitleDuration', True);
     chkShowSceneChange.Checked      := Ini.ReadBool('Waveform', 'ShowSceneChange', True);
     udSafetyZoneOffset.Position     := Ini.ReadInteger('Waveform', 'SafetyZoneOffset', 150);
 
@@ -1763,6 +1766,7 @@ begin
     // --------------------------------- //
     Ini.WriteBool('Waveform', 'MouseAntiOverlapping', chkMouseAntiOverlapping.Checked);
     Ini.WriteBool('Waveform', 'ShowSubtitleText', chkShowSubtitleText.Checked);
+    Ini.WriteBool('Waveform', 'ShowSubtitleDuration', chkShowSubtitleDuration.Checked);
     Ini.WriteBool('Waveform', 'ShowSceneChange', chkShowSceneChange.Checked);
     Ini.WriteInteger('Waveform', 'SafetyZoneOffset', udSafetyZoneOffset.Position);
 
@@ -1771,6 +1775,7 @@ begin
       Displayer.SceneChangeEnabled          := chkShowSceneChange.Checked;
       SafetyOffset      := udSafetyZoneOffset.Position;
       ShowSubtitleText  := chkShowSubtitleText.Checked;
+      ShowSubtitleDuration := chkShowSubtitleDuration.Checked;
 
       Displayer.UpdateView([uvfRange]);
     end;

@@ -1,6 +1,6 @@
 object frmSettings: TfrmSettings
-  Left = 902
-  Top = 151
+  Left = 510
+  Top = 164
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'frmSettings'
@@ -2217,7 +2217,7 @@ object frmSettings: TfrmSettings
       TabVisible = False
       object lblFFTolls: TLabel
         Left = 0
-        Top = 136
+        Top = 160
         Width = 93
         Height = 13
         Caption = 'FFmpeg tools path:'
@@ -2262,7 +2262,7 @@ object frmSettings: TfrmSettings
       end
       object chkShowSceneChange: TCheckBox
         Left = 0
-        Top = 112
+        Top = 136
         Width = 361
         Height = 17
         Caption = 'Show scene change'
@@ -2270,14 +2270,14 @@ object frmSettings: TfrmSettings
       end
       object lbledtSampleRate: TLabeledEdit
         Left = 0
-        Top = 232
+        Top = 256
         Width = 121
         Height = 21
         EditLabel.Width = 61
         EditLabel.Height = 13
         EditLabel.Caption = 'Sample rate:'
         TabOrder = 5
-        Text = '800'
+        Text = '8,000'
       end
       object udSampleRate: TUpDown
         Left = 121
@@ -2292,7 +2292,7 @@ object frmSettings: TfrmSettings
       end
       object btnFFBrowse: TButton
         Left = 0
-        Top = 180
+        Top = 204
         Width = 75
         Height = 25
         Caption = 'Browse'
@@ -2301,10 +2301,18 @@ object frmSettings: TfrmSettings
       end
       object edtFFPath: TEdit
         Left = 0
-        Top = 152
+        Top = 176
         Width = 361
         Height = 21
         TabOrder = 8
+      end
+      object chkShowSubtitleDuration: TCheckBox
+        Left = 0
+        Top = 112
+        Width = 361
+        Height = 17
+        Caption = 'Show subtitle duration'
+        TabOrder = 9
       end
     end
   end

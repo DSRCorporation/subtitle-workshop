@@ -542,7 +542,8 @@ SRF=Subtitle Report File
 150=Enable mouse anti-overlapping
 151=Safety zone offset:
 152=Show subtitle text
-153=Show scene change
+153=Show subtitle duration
+154=Show scene change
 ;-------------------------;
 ;     Wave extraction     ;
 ;-------------------------;
