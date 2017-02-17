@@ -414,7 +414,7 @@ begin
       Result := Node;
 
       WaveformAdapter.AddSubtitle(Node);
-      WaveformAdapter.SelectedNode := Node;
+      WaveformAdapter.SelectNode(Node);
     end;
   end;
 end;

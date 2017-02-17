@@ -3846,6 +3846,7 @@ begin
       Displayer.SceneChangeEnabled          := Ini.ReadBool('Waveform', 'ShowSceneChange', True);
       SafetyOffset      := Ini.ReadInteger('Waveform', 'SafetyZoneOffset', 150);
       ShowSubtitleText  := Ini.ReadBool('Waveform', 'ShowSubtitleText', True);
+      ShowSubtitleDuration  := Ini.ReadBool('Waveform', 'ShowSubtitleDuration', True);
     end;
 
     // Waveform popup menu
@@ -14336,7 +14337,7 @@ begin
     then
       RefreshTimes;
 
-  WaveformAdapter.SelectedNode := Node;
+  WaveformAdapter.SelectNode(Node, True);
 
   UpdateWaveformEnabled;
 end;

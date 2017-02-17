@@ -29,6 +29,7 @@ type
     FSceneChangeWrapper : TSceneChangeWrapper;
     FCharset            : Byte;
     FShowSubtitleText   : Boolean;
+    FShowSubtitleDuration : Boolean;
     FSafetyOffset       : Integer;
 
     FFfmpegHelper       : TFFMPEGHelper;
@@ -42,7 +43,6 @@ type
     procedure UpdateSceneChanges;
   protected
     procedure OnCustomDrawRange(Sender: TObject; ACanvas: TCanvas; Range: TRange; Rect: TRect);
-    procedure SelectNode(node: PVirtualNode);
     function GetSelectedNode: PVirtualNode;
     procedure SetCharset(charset: Byte);
     procedure SetSafetyOffset(offset: Integer);
@@ -50,7 +50,7 @@ type
   public
     constructor Create(parentPanel: TPanel; sourceTree: TVirtualStringTree; ffmpegHelper: TFFMPEGHelper);
     destructor Destroy; override;
-    
+
     procedure Close;
     procedure ClearSubtitles;
     procedure Load(filename: WideString; streams: array of Integer);
@@ -68,12 +68,14 @@ type
     procedure Stop;
     procedure PlayNextSubtitle;
     procedure PlayPrevSubtitle;
+    procedure SelectNode(node: PVirtualNode; AdjustView: Boolean = False);
     
     property Displayer: TWAVDisplayer read WAVDisplayer;
     property Renderer: TDShowRenderer read WAVRenderer;
-    property SelectedNode: PVirtualNode read GetSelectedNode write SelectNode;
+    property SelectedNode: PVirtualNode read GetSelectedNode;
     property Charset: Byte read FCharset write SetCharset;
     property ShowSubtitleText: Boolean read FShowSubtitleText write FShowSubtitleText;
+    property ShowSubtitleDuration: Boolean read FShowSubtitleDuration write FShowSubtitleDuration;
     property SafetyOffset: Integer read FSafetyOffset write SetSafetyOffset;
   end;
 
@@ -83,7 +85,7 @@ type
 implementation
 
 uses
-  TreeViewHandle, TntSysUtils, MiscToolsUnit, uLkJSON, Dialogs;
+  TreeViewHandle, TntSysUtils, MiscToolsUnit, uLkJSON, Dialogs, USubtitlesFunctions;
   
 // Common utility routines
 
@@ -331,7 +333,7 @@ begin
   end;
 end;
 
-procedure TWaveformAdapter.SelectNode(node: PVirtualNode);
+procedure TWaveformAdapter.SelectNode(node: PVirtualNode; AdjustView: Boolean = False);
 var
   range   : TSubtitleRange;
   subtitle: PSubtitleItem;
@@ -344,7 +346,10 @@ begin
 
     if Assigned(range) then begin
       WAVDisplayer.SelectedRange := range;
-//      WAVDisplayer.SetPositionMs(range.StartTime - WAVDisplayer.PageSize div 4);
+      if AdjustView and not WAVDisplayer.IsMouseDown then
+      begin
+        WAVDisplayer.SetPositionMs(range.StartTime - WAVDisplayer.PageSize div 4);
+      end;  
     end;
   end else
     WAVDisplayer.ClearSelection;
@@ -472,16 +477,24 @@ const MINIMAL_SPACE : Integer = 25;
 var WAVZoneHeight : Integer;
     AlignBottom : Boolean;
 begin
-  if (not FShowSubtitleText) then Exit;
-
   InflateRect(Rect, -TEXT_MARGINS, -TEXT_MARGINS);
+  
   if (Rect.Right - Rect.Left) > MINIMAL_SPACE then begin
     ACanvas.Font.Charset := FCharset;
 
-    WAVZoneHeight := WAVDisplayer.Height - WAVDisplayer.RulerHeight;
-    AlignBottom := (Rect.Top > WAVZoneHeight div 2);
-    ACanvas.Font.Color := ACanvas.Pen.Color;
-    CanvasDrawText(ACanvas, Rect, TSubtitleRange(Range).Text, False, AlignBottom);
+	  WAVZoneHeight := WAVDisplayer.Height - WAVDisplayer.RulerHeight;
+	  ACanvas.Font.Color := ACanvas.Pen.Color;
+
+    if (FShowSubtitleText) then
+    begin
+		  CanvasDrawText(ACanvas, Rect, TSubtitleRange(Range).Text, False, False);
+    end;
+
+    if (FShowSubtitleDuration) then
+    begin
+		  CanvasDrawText(ACanvas, Rect, TimeToString(TRange(Range).StopTime - TRange(Range).StartTime), False, True);
+    end;
+
   end;
 end;
 

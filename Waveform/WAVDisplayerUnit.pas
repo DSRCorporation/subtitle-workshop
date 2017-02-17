@@ -215,7 +215,7 @@ type
     FIsDragging : Boolean;
     FPosStartDrag : Integer;
     FSelectedRangeStartDrag : TRange;
-    FSelectionStartDrag : TRange;
+    FDragLimit : TRange;
 
     FDisplayRuler : Boolean;
     FDisplayRulerHeight : Integer;
@@ -365,6 +365,7 @@ type
     property Selection : TRange read FSelection;
     property KaraokeSelectedIndex : Integer read FSelectedKaraokeIndex;
     property KaraokeSelectedRange : TRange read FSelectedKaraokeRange;
+    property IsMouseDown : Boolean read FMouseIsDown;
 
   published
     { Published declarations }
@@ -1123,7 +1124,7 @@ begin
   FNeedToSortSelectedSub := False;
 
   FSelectedRangeStartDrag := TRange.Create;
-  FSelectionStartDrag := TRange.Create;
+  FDragLimit := TRange.Create;
 
   FLengthMs := 0;
   FSceneChangeStartOffset := 130;
@@ -2079,10 +2080,28 @@ begin
     begin
       FIsDragging := True;
 
-      FSelectionStartDrag.StartTime := FSelection.StartTime;
-      FSelectionStartDrag.StopTime := FSelection.StopTime;
       FSelectedRangeStartDrag.StartTime := FSelectedRange.StartTime;
       FSelectedRangeStartDrag.StopTime := FSelectedRange.StopTime;
+
+      FDragLimit.StartTime := -1;
+      FDragLimit.StopTime := -1;
+
+      if FEnableMouseAntiOverlapping then
+      begin
+        i := ARangeList.FindInsertPos(NewCursorPos, -1);
+
+        if (i >= 0) then
+        begin
+          if (i > 1) then
+          begin
+            FDragLimit.StartTime := ARangeList[i - 2].StopTime + 1;
+          end;
+          if(i < ARangeList.Count) then
+          begin
+            FDragLimit.StopTime := ARangeList[i].StartTime - 1;
+          end;
+        end;
+      end;
 
       Exit;
     end else
@@ -2213,6 +2232,9 @@ begin
       // Convert in screen coordinate
       OffsetRect(ClipSubRect, ClientOrigin.X, ClientOrigin.Y);
       ClipCursor(@ClipSubRect);
+
+      FDragLimit.StartTime := FMinSelTime;
+      FDragLimit.StopTime := FMaxSelTime;
     end;
 
     if (FCursorMs <> NewCursorPos) and (FDynamicEditMode = demNone) then
@@ -2491,6 +2513,29 @@ begin
 
             LeftSnap := FindCorrectedSnappingPoint(LeftBorder, ARangeList);
             RightSnap := FindCorrectedSnappingPoint(RightBorder, ARangeList);
+
+            if LeftBorder < 0 then
+            begin
+               LeftSnap := 0;
+               RightSnap := -1;
+            end;
+
+
+            if (FDragLimit.StartTime <> -1) and
+              ((LeftBorder < FDragLimit.StartTime) or
+                ((LeftSnap <> -1) and (LeftSnap < FDragLimit.StartTime))) then
+            begin
+              LeftSnap := FDragLimit.StartTime;
+              RightSnap := -1;
+            end;
+
+            if (FDragLimit.StopTime <> -1) and
+              ((RightBorder > FDragLimit.StopTime) or
+                ((RightSnap <> -1) and (RightSnap > FDragLimit.StopTime))) then
+            begin
+              LeftSnap := -1;
+              RightSnap := FDragLimit.StopTime;
+            end;
 
             if (LeftSnap = -1) and (RightSnap = -1) then
             begin
