@@ -216,6 +216,9 @@ begin
   else
     FWAVFilename := filename;
 
+  if FWAVFilename = '' then
+    Exit;
+
   loadWAV := WAVDisplayer.LoadWAV(FWAVFilename);
 
   if loadWAV then begin
