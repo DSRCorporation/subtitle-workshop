@@ -83,7 +83,7 @@ type
 implementation
 
 uses
-  TreeViewHandle, TntSysUtils, MiscToolsUnit, uLkJSON, Dialogs;
+  TreeViewHandle, TntSysUtils, MiscToolsUnit, uLkJSON, Dialogs, USubtitlesFunctions;
   
 // Common utility routines
 
@@ -472,16 +472,20 @@ const MINIMAL_SPACE : Integer = 25;
 var WAVZoneHeight : Integer;
     AlignBottom : Boolean;
 begin
-  if (not FShowSubtitleText) then Exit;
-
   InflateRect(Rect, -TEXT_MARGINS, -TEXT_MARGINS);
+  
   if (Rect.Right - Rect.Left) > MINIMAL_SPACE then begin
     ACanvas.Font.Charset := FCharset;
 
-    WAVZoneHeight := WAVDisplayer.Height - WAVDisplayer.RulerHeight;
-    AlignBottom := (Rect.Top > WAVZoneHeight div 2);
-    ACanvas.Font.Color := ACanvas.Pen.Color;
-    CanvasDrawText(ACanvas, Rect, TSubtitleRange(Range).Text, False, AlignBottom);
+	  WAVZoneHeight := WAVDisplayer.Height - WAVDisplayer.RulerHeight;
+	  ACanvas.Font.Color := ACanvas.Pen.Color;
+
+    if (FShowSubtitleText) then
+    begin
+		  CanvasDrawText(ACanvas, Rect, TSubtitleRange(Range).Text, False, False);
+		  CanvasDrawText(ACanvas, Rect, TimeToString(TRange(Range).StopTime - TRange(Range).StartTime), False, True);
+    end;
+
   end;
 end;
 
