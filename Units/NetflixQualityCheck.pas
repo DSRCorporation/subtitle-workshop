@@ -180,6 +180,9 @@ function IsWhiteSpace(Str: string; Pos: Integer; var SpaceSize: Integer): Boolea
 begin
   Result := false;
 
+  if Pos > Length(Str) then
+    Exit;
+
   if (Str[Pos] = ' ') or (Str[Pos] = #10) then
   begin
     Result := true;
@@ -197,6 +200,43 @@ begin
   end;
 end;
 
+procedure WhiteSpaceReportParagraph(ParagraphNode: PVirtualNode; var Report: string; Pos: Integer);
+var
+  Timecode, Context, Comment: string;
+begin
+  Timecode := TimeToString(GetStartTime(ParagraphNode), FULL_TIMECODE);
+  Context := UTF8Encode(EscapeCSV(GetStringContext(GetSubText(ParagraphNode), Pos, CONTEXT_RADIUS)));
+  Comment := Format(WhiteSpaceCheckReport, [Pos]);
+  NetflixQCReportAddWarning(Report, Timecode, Context, Comment);
+end;
+
+function CheckLineEndings(ParagraphNode: PVirtualNode; var Report: string): Boolean;
+var
+  CurrentText: string;
+  i, j: Integer;
+begin
+  Result := True;
+  CurrentText := GetSubText(ParagraphNode);
+
+  if IsWhiteSpace(CurrentText, 1, i) and (not IsWhiteSpace(CurrentText, 1 + i, j)) then
+  begin
+    WhiteSpaceReportParagraph(ParagraphNode, Report, 1);
+    Result := False;
+  end;
+
+  if (not IsWhiteSpace(CurrentText, Length(CurrentText) - 1, i)) and IsWhiteSpace(CurrentText, Length(CurrentText), j) then
+  begin
+    WhiteSpaceReportParagraph(ParagraphNode, Report, Length(CurrentText));
+    Result := False;
+  end;
+
+  if (not IsWhiteSpace(CurrentText, Length(CurrentText) - 2, i)) and IsWhiteSpace(CurrentText, Length(CurrentText) - 1, j) and (j = 2) then
+  begin
+    WhiteSpaceReportParagraph(ParagraphNode, Report, 1);
+    Result := False;
+  end;
+end;
+
 function CheckWhiteSpacesInLine(ParagraphNode: PVirtualNode; var Report: string): Boolean;
 var
   CurrentText: string;
@@ -206,13 +246,18 @@ var
   CharsSkip: Integer;
   SkipWhileSpaceRest: Boolean;
   i: Integer;
-  Timecode, Context, Comment: string;
 begin
-  CurrentText := GetSubText(ParagraphNode);    
+  CurrentText := GetSubText(ParagraphNode);
   IsPreviousCharSpace := false;
   SkipWhileSpaceRest := false;
   PreviousCharPos := 0;
   Result := true;
+
+  if not CheckLineEndings(ParagraphNode, Report) then
+  begin
+    Result := false;
+  end;
+
   i := 1;
   while i <= Length(CurrentText) do
   begin
@@ -229,10 +274,7 @@ begin
     else
     if IsPreviousCharSpace and IsCurrentCharSpace then
     begin
-      Timecode := TimeToString(GetStartTime(ParagraphNode), FULL_TIMECODE);
-      Context := UTF8Encode(EscapeCSV(GetStringContext(CurrentText, i, CONTEXT_RADIUS)));
-      Comment := Format(WhiteSpaceCheckReport, [PreviousCharPos]);
-      NetflixQCReportAddWarning(Report, Timecode, Context, Comment);
+      WhiteSpaceReportParagraph(ParagraphNode, Report, PreviousCharPos);
 
       Result := false;
       SkipWhileSpaceRest := true;
