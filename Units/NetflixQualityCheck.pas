@@ -17,7 +17,7 @@ procedure NetflixQualityCheckerLoadLanguage(LF: TIniFile);
 implementation
 
 uses Dialogs, formMain, TreeViewHandle, VirtualTrees, Classes, SysUtils,
-  Functions, USubtitlesFunctions, Windows, Math;
+  Functions, USubtitlesFunctions, Windows, Math, Forms, StdCtrls, Controls, ShellAPI;
 
 type
   TGlyphArray = Array of Integer;
@@ -287,6 +287,39 @@ begin
   end;
 end;
 
+
+function ShowMessageLocateFile(Msg: String; FilePath: string): Integer;
+var
+  DlgMsg: TForm;
+  i: Integer;
+  Button: TButton;
+  BtnIndex: Integer;
+begin
+  DlgMsg := createMessageDialog(msg, mtInformation, [mbCancel, mbOK]);
+
+  BtnIndex := 0;
+  for i := 0 to DlgMsg.componentcount - 1 Do
+  begin
+    if (DlgMsg.components[i] is Tbutton) then
+    Begin
+      Button := Tbutton(DlgMsg.components[i]);
+
+      if BtnIndex = 0 then
+      begin
+        Button.Width := Button.Width + 50;
+        Button.Left := Button.Left - 50;
+        Button.Caption := 'Show in explorer';
+      end;
+      
+      inc(BtnIndex);
+    end;
+  end;
+
+  if DlgMsg.Showmodal = mrOk then
+    ShellExecute(0, nil, 'explorer.exe', PChar(Format('/select,"%s"', [FilePath])), nil, SW_SHOWNORMAL);
+end;
+
+
 procedure PerformNetflixQualityCheck(ShowSuccessMessages: Boolean);
 var
   GlyphCheckReport: string;
@@ -296,7 +329,11 @@ var
 
   Messages: TStringList;
   CurrentFileName: string;
+
+  FirstReportPath: string;
+  DialogResult: Integer;
 begin
+  FirstReportPath := '';
   Messages := TStringList.Create;
   if frmMain.OrgFile <> '' then
   begin
@@ -322,6 +359,10 @@ begin
     if not SaveString(GlyphCheckReport, GlyphCheckReportPath) then
     begin
       Messages.Add(SavingError);
+    end
+    else if FirstReportPath = '' then
+    begin
+      FirstReportPath := GlyphCheckReportPath;
     end;
   end;
 
@@ -340,13 +381,27 @@ begin
     if not SaveString(WhiteSpaceCheckReport, WhiteSpaceCheckReportPath) then
     begin
       Messages.Add(SavingError);
+    end
+    else if FirstReportPath = '' then
+    begin
+      FirstReportPath := WhiteSpaceCheckReportPath;
     end;
   end;
 
-  if Messages.Count > 0 then
+  if Messages.Count = 0 then
+  begin
+    Exit;
+  end;
+
+  if FirstReportPath = '' then  // No report saved -> show just message
   begin
     ShowMessage(Messages.Text);
+  end
+  else  // At least one report was saved -> show "locate" butoon
+  begin
+    ShowMessageLocateFile(Messages.Text, FirstReportPath);
   end;
+
 end;
 
 end.
