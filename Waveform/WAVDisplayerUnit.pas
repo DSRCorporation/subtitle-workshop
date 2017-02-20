@@ -2937,27 +2937,22 @@ end;
 
 //------------------------------------------------------------------------------
 
-function Single2SmallInt(Value : Single) : SmallInt;
-var i : Integer;
-begin
-  i := Round(Value * 32767);
-  if (i > 32767) then i := 32767;
-  if (i < -32768) then i := -32768;
-  Result := i;
-end;
-
 procedure TWAVDisplayer.CreatePeakTab(WAVFile : TWAVFile);
 var
     Buffer8 : TByteDynArray;
     Buffer16 : TSmallIntDynArray;
-    Buffer32 : TSingleDynArray;
-    i, j : Integer;
-    PeakMax, PeakMin : SmallInt;
+    Buffer32 : array of LongInt;
+    Value24 : LongInt;
+    
     PeakMax8, PeakMin8 : Byte;
-    PeakMax32, PeakMin32 : Single;
+    PeakMax, PeakMin : SmallInt;
+    PeakMax32, PeakMin32 : LongInt;
     PeakMaxMax, PeakMinMin : SmallInt;
+
     MaxAbsoluteValue : Integer;
     NormFactor : Double;
+
+    i, j : Integer;
 begin
   if Assigned(FOnPeakFileCreation) then
     FOnPeakFileCreation(Self,pfcevtStart,0);
@@ -2969,23 +2964,21 @@ begin
   FPeakTab := nil;
   SetLength(FPeakTab, FPeakTabSize);
 
-// WAV Data format  Maximum value    Minimum value	    Midpoint value
-//     8-bit PCM	  255 (0xFF)       0	                128 (0x80)
-//     16-bit PCM	  32,767 (0x7FFF)  - 32,768 (0x8000)	0
+  // WAV Data format  - pcm_u8, pcm_s16le, pcm_s24le, pcm_s32le
 
-  PeakMaxMax := -32768;
-  PeakMinMin := 32767;
+  PeakMaxMax := Low(SmallInt);
+  PeakMinMin := High(SmallInt);
 
   if (WAVFile.BitsPerSample = 8) then
   begin
-    // Allocate the small buffer
+    // Allocate the Byte buffer
     SetLength(Buffer8, FSamplesPerPeak * WAVFile.Channels);
     for i:=0 to FPeakTabSize-1 do
     begin
-      ZeroMemory(Buffer8, FSamplesPerPeak * SizeOf(Shortint) * WAVFile.Channels);
-      WAVFile.Read(Buffer8, FSamplesPerPeak * SizeOf(Shortint) * WAVFile.Channels);
-      PeakMax8 := 0;
-      PeakMin8 := 255;
+      ZeroMemory(Buffer8, FSamplesPerPeak * SizeOf(Byte) * WAVFile.Channels);
+      WAVFile.Read(Buffer8, FSamplesPerPeak * SizeOf(Byte) * WAVFile.Channels);
+      PeakMax8 := Low(Byte);
+      PeakMin8 := High(Byte);
       for j:=0 to (FSamplesPerPeak * WAVFile.Channels)-1 do
       begin
         if Buffer8[j] > PeakMax8 then
@@ -3011,14 +3004,14 @@ begin
   end
   else if (WAVFile.BitsPerSample = 16) then
   begin
-    // Allocate the small buffer
+    // Allocate the SmallInt buffer
     SetLength(Buffer16, FSamplesPerPeak * WAVFile.Channels);
     for i:=0 to FPeakTabSize-1 do
     begin
       ZeroMemory(Buffer16, FSamplesPerPeak * SizeOf(SmallInt) * WAVFile.Channels);
       WAVFile.Read(Buffer16, FSamplesPerPeak * SizeOf(SmallInt) * WAVFile.Channels);
-      PeakMax := -32768;
-      PeakMin := 32767;
+      PeakMax := Low(SmallInt);
+      PeakMin := High(SmallInt);
       for j:=0 to (FSamplesPerPeak * WAVFile.Channels)-1 do
       begin
         if Buffer16[j] > PeakMax then
@@ -3038,16 +3031,50 @@ begin
         FOnPeakFileCreation(Self, pfcevtProgress,(i*100) div Integer(FPeakTabSize));
     end;
   end
+  else if (WAVFile.BitsPerSample = 24) then
+  begin
+    // Allocate the Byte buffer
+    SetLength(Buffer8, FSamplesPerPeak * WAVFile.Channels * 3);
+    for i:=0 to FPeakTabSize-1 do
+    begin
+      ZeroMemory(Buffer8, FSamplesPerPeak * SizeOf(Byte) * WAVFile.Channels * 3);
+      WAVFile.Read(Buffer8, FSamplesPerPeak * SizeOf(Byte) * WAVFile.Channels * 3);
+      PeakMax32 := Low(LongInt);
+      PeakMin32 := High(LongInt);
+      for j:=0 to (FSamplesPerPeak * WAVFile.Channels)-1 do
+      begin
+        Value24 := LongInt(Buffer8[j*3] shl 8) or LongInt(Buffer8[j*3 + 1] shl 16) or LongInt(Buffer8[j*3 + 2] shl 24);
+        if Value24 > PeakMax32 then
+          PeakMax32 := Value24;
+        if Value24 < PeakMin32 then
+          PeakMin32 := Value24;
+      end;
+      // Convert 32 bits to 16 bits integer
+      PeakMax := (PeakMax32 shr 16);
+      PeakMin := (PeakMin32 shr 16);
+
+      FPeakTab[i].Max := PeakMax;
+      FPeakTab[i].Min := PeakMin;
+
+      if PeakMax > PeakMaxMax then
+        PeakMaxMax := PeakMax;
+      if PeakMin < PeakMinMin then
+        PeakMinMin := PeakMin;
+
+      if Assigned(FOnPeakFileCreation) then
+        FOnPeakFileCreation(Self, pfcevtProgress,(i*100) div Integer(FPeakTabSize));
+    end;
+  end
   else if (WAVFile.BitsPerSample = 32) then
   begin
     // Allocate the small buffer
     SetLength(Buffer32, FSamplesPerPeak * WAVFile.Channels);
     for i:=0 to FPeakTabSize-1 do
     begin
-      ZeroMemory(Buffer32, FSamplesPerPeak * SizeOf(SmallInt) * WAVFile.Channels);
-      WAVFile.Read(Buffer32, FSamplesPerPeak * SizeOf(Single) * WAVFile.Channels);
-      PeakMax32 := -1.0;
-      PeakMin32 := 1.0;
+      ZeroMemory(Buffer32, FSamplesPerPeak * SizeOf(LongInt) * WAVFile.Channels);
+      WAVFile.Read(Buffer32, FSamplesPerPeak * SizeOf(LongInt) * WAVFile.Channels);
+      PeakMax32 := Low(LongInt);
+      PeakMin32 := High(LongInt);
       for j:=0 to (FSamplesPerPeak * WAVFile.Channels)-1 do
       begin
         if Buffer32[j] > PeakMax32 then
@@ -3055,9 +3082,9 @@ begin
         if Buffer32[j] < PeakMin32 then
           PeakMin32 := Buffer32[j];
       end;
-      // Convert 32 bits float to 16 bits integer
-      PeakMax := Single2SmallInt(PeakMax32);
-      PeakMin := Single2SmallInt(PeakMin32);
+      // Convert 32 bits to 16 bits integer
+      PeakMax := (PeakMax32 shr 16);
+      PeakMin := (PeakMin32 shr 16);
 
       FPeakTab[i].Max := PeakMax;
       FPeakTab[i].Min := PeakMin;
@@ -3073,11 +3100,17 @@ begin
   end;
   // Calc. normalize factor
   MaxAbsoluteValue := Max(Abs(PeakMaxMax), Abs(PeakMinMin));
-  NormFactor := 32768.0 / MaxAbsoluteValue;
-  // Normalize peak tab
-  NormalizePeakTab(NormFactor);
+
+  if MaxAbsoluteValue <> 0 then begin
+    NormFactor := 32768.0 / MaxAbsoluteValue;
+    // Normalize peak tab
+    NormalizePeakTab(NormFactor);
+  end;
+
   Buffer8 := nil;
   Buffer16 := nil;
+  Buffer32 := nil;
+
   if Assigned(FOnPeakFileCreation) then
     FOnPeakFileCreation(Self,pfcevtStop,0);
 end;
