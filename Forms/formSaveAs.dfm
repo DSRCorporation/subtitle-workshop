@@ -1,6 +1,6 @@
 object frmSaveAs: TfrmSaveAs
-  Left = 283
-  Top = 561
+  Left = 309
+  Top = 773
   AutoScroll = False
   BorderIcons = [biSystemMenu]
   Caption = 'frmSaveAs'
@@ -48,13 +48,14 @@ object frmSaveAs: TfrmSaveAs
     ReadOnly = True
     SortType = stText
     TabOrder = 0
+    OnClick = lstFormatsClick
     OnDblClick = lstFormatsDblClick
     OnKeyDown = lstFormatsKeyDown
   end
   object btnCustomFormat: TButton
     Left = 8
     Top = 180
-    Width = 225
+    Width = 121
     Height = 25
     Caption = 'Custom format'
     TabOrder = 2
@@ -69,6 +70,17 @@ object frmSaveAs: TfrmSaveAs
     Caption = '&Cancel'
     ModalResult = 2
     TabOrder = 3
+  end
+  object btnOk: TButton
+    Left = 152
+    Top = 180
+    Width = 81
+    Height = 25
+    Cancel = True
+    Caption = '&Ok'
+    ModalResult = 1
+    TabOrder = 4
+    OnClick = btnOkClick
   end
   object dlgSave: TSaveDialog
     Options = [ofHideReadOnly, ofPathMustExist, ofEnableSizing]
