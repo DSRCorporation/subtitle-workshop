@@ -17,7 +17,7 @@ procedure NetflixQualityCheckerLoadLanguage(LF: TIniFile);
 implementation
 
 uses Dialogs, formMain, TreeViewHandle, VirtualTrees, Classes, SysUtils,
-  Functions, USubtitlesFunctions, Windows, Math;
+  Functions, USubtitlesFunctions, Windows, Math, Forms, StdCtrls, Controls, ShellAPI;
 
 type
   TGlyphArray = Array of Integer;
@@ -35,7 +35,10 @@ var
 	WhiteSpaceCheckReport: string;
   SavingError: string;
 
-  
+  UntitledSubtitle: string;
+  OpenFileLocation: string;
+
+
 // Language loder
 
 procedure NetflixQualityCheckerLoadLanguage(LF: TIniFile);
@@ -54,6 +57,9 @@ begin
     'Invalid white space found at column %d.');
 	SavingError := LF.ReadString('Netflix quality check', 'SavingError',
     'Cannt save report.');
+
+  UntitledSubtitle := 'untitledSubtitle';
+  OpenFileLocation := 'Open file location'; 
 end;
 
 
@@ -87,7 +93,7 @@ function EscapeCSV(Str: string): string;
 begin
   Result := Str;
   Result := StringReplace(Result, '"', '""', [rfReplaceAll]);
-  Result := StringReplace(Result, #13#10, #10, [rfReplaceAll]);
+  Result := StringReplace(Result, #13, '\r', [rfReplaceAll]);
   Result := StringReplace(Result, #10, '\n', [rfReplaceAll]);
   Result := Format('"%s"', [Result]);
 end;
@@ -180,6 +186,9 @@ function IsWhiteSpace(Str: string; Pos: Integer; var SpaceSize: Integer): Boolea
 begin
   Result := false;
 
+  if Pos > Length(Str) then
+    Exit;
+
   if (Str[Pos] = ' ') or (Str[Pos] = #10) then
   begin
     Result := true;
@@ -197,6 +206,113 @@ begin
   end;
 end;
 
+
+function IsPunctuationChar(Chr: Char): Boolean;
+begin
+  if Chr in ['!', '?', ')', '.', ','] then
+    Result := true
+  else
+    Result := false;
+end;
+
+
+procedure WhiteSpaceReportParagraph(ParagraphNode: PVirtualNode; var Report: string; Pos: Integer);
+var
+  Timecode, Context, Comment: string;
+begin
+  Timecode := TimeToString(GetStartTime(ParagraphNode), FULL_TIMECODE);
+
+  Context := EscapeCSV(GetStringContext(GetSubText(ParagraphNode), Pos, CONTEXT_RADIUS));
+  Context := UTF8Encode(StringToWideStringEx(context, CharSetToCodePage(GetOrgCharset)));
+
+  Comment := Format(WhiteSpaceCheckReport, [Pos]);
+  NetflixQCReportAddWarning(Report, Timecode, Context, Comment);
+end;
+
+
+function CheckWhiteSpacesBeforePunctuation(ParagraphNode: PVirtualNode; var Report: string): Boolean;
+var
+  CurrentText: string;
+  WhiteSpaceSize: Integer;
+  i: Integer;
+
+  IsCurrentCharSpace: Boolean;
+  IsSecondCharSpace: Boolean;
+  IsThirdCharSpace: Boolean;
+
+  ThirdCharPos: Integer;
+begin
+  Result := True;
+  CurrentText := GetSubText(ParagraphNode);
+
+  for i := 1 to Length(CurrentText) - 1 do
+  begin
+    IsCurrentCharSpace := IsWhiteSpace(CurrentText, i, WhiteSpaceSize);
+
+    if IsCurrentCharSpace then
+      Continue;
+
+    IsSecondCharSpace := IsWhiteSpace(CurrentText, i + 1, WhiteSpaceSize);
+
+    if not IsSecondCharSpace then
+      Continue;
+
+    ThirdCharPos := i + 1 + WhiteSpaceSize;
+
+    if (ThirdCharPos <= Length(CurrentText)) and
+      IsPunctuationChar(CurrentText[ThirdCharPos]) then
+    begin
+      WhiteSpaceReportParagraph(ParagraphNode, Report, i + 1);
+      Result := False;
+    end;    
+  end;
+end;
+
+
+function CheckLineEndings(ParagraphNode: PVirtualNode; var Report: string): Boolean;
+var
+  CurrentText: string;
+  i, j: Integer;
+begin
+  Result := True;
+  CurrentText := GetSubText(ParagraphNode);
+
+  if Length(CurrentText) = 0 then
+    Exit;
+
+  if (Length(CurrentText) = 1) and IsWhiteSpace(CurrentText, 1, i) then
+  begin
+    WhiteSpaceReportParagraph(ParagraphNode, Report, 1);
+    Result := False;
+    Exit;
+  end;
+
+  if (Length(CurrentText) = 2) and IsWhiteSpace(CurrentText, 1, i) and (i = 2) then
+  begin
+    WhiteSpaceReportParagraph(ParagraphNode, Report, 1);
+    Result := False;
+    Exit;
+  end;
+
+  if IsWhiteSpace(CurrentText, 1, i) and (not IsWhiteSpace(CurrentText, 1 + i, j)) then
+  begin
+    WhiteSpaceReportParagraph(ParagraphNode, Report, 1);
+    Result := False;
+  end;
+
+  if (not IsWhiteSpace(CurrentText, Length(CurrentText) - 1, i)) and IsWhiteSpace(CurrentText, Length(CurrentText), j) then
+  begin
+    WhiteSpaceReportParagraph(ParagraphNode, Report, Length(CurrentText));
+    Result := False;
+  end;
+
+  if (not IsWhiteSpace(CurrentText, Length(CurrentText) - 2, i)) and IsWhiteSpace(CurrentText, Length(CurrentText) - 1, j) and (j = 2) then
+  begin
+    WhiteSpaceReportParagraph(ParagraphNode, Report, 1);
+    Result := False;
+  end;
+end;
+
 function CheckWhiteSpacesInLine(ParagraphNode: PVirtualNode; var Report: string): Boolean;
 var
   CurrentText: string;
@@ -206,13 +322,23 @@ var
   CharsSkip: Integer;
   SkipWhileSpaceRest: Boolean;
   i: Integer;
-  Timecode, Context, Comment: string;
 begin
-  CurrentText := GetSubText(ParagraphNode);    
+  CurrentText := GetSubText(ParagraphNode);
   IsPreviousCharSpace := false;
   SkipWhileSpaceRest := false;
   PreviousCharPos := 0;
   Result := true;
+
+  if not CheckLineEndings(ParagraphNode, Report) then
+  begin
+    Result := false;
+  end;
+
+  if not CheckWhiteSpacesBeforePunctuation(ParagraphNode, Report) then
+  begin
+    Result := false;
+  end;
+
   i := 1;
   while i <= Length(CurrentText) do
   begin
@@ -229,10 +355,7 @@ begin
     else
     if IsPreviousCharSpace and IsCurrentCharSpace then
     begin
-      Timecode := TimeToString(GetStartTime(ParagraphNode), FULL_TIMECODE);
-      Context := UTF8Encode(EscapeCSV(GetStringContext(CurrentText, i, CONTEXT_RADIUS)));
-      Comment := Format(WhiteSpaceCheckReport, [PreviousCharPos]);
-      NetflixQCReportAddWarning(Report, Timecode, Context, Comment);
+      WhiteSpaceReportParagraph(ParagraphNode, Report, PreviousCharPos);
 
       Result := false;
       SkipWhileSpaceRest := true;
@@ -287,6 +410,39 @@ begin
   end;
 end;
 
+
+function ShowMessageLocateFile(Msg: String; FilePath: string): Integer;
+var
+  DlgMsg: TForm;
+  i: Integer;
+  Button: TButton;
+  BtnIndex: Integer;
+begin
+  DlgMsg := createMessageDialog(msg, mtInformation, [mbCancel, mbOK]);
+
+  BtnIndex := 0;
+  for i := 0 to DlgMsg.componentcount - 1 Do
+  begin
+    if (DlgMsg.components[i] is Tbutton) then
+    Begin
+      Button := Tbutton(DlgMsg.components[i]);
+
+      if BtnIndex = 0 then
+      begin
+        Button.Width := Button.Width + 50;
+        Button.Left := Button.Left - 50;
+        Button.Caption :=  OpenFileLocation;
+      end;
+      
+      inc(BtnIndex);
+    end;
+  end;
+
+  if DlgMsg.Showmodal = mrOk then
+    ShellExecute(0, nil, 'explorer.exe', PChar(Format('/select,"%s"', [FilePath])), nil, SW_SHOWNORMAL);
+end;
+
+
 procedure PerformNetflixQualityCheck(ShowSuccessMessages: Boolean);
 var
   GlyphCheckReport: string;
@@ -296,7 +452,11 @@ var
 
   Messages: TStringList;
   CurrentFileName: string;
+
+  FirstReportPath: string;
+  DialogResult: Integer;
 begin
+  FirstReportPath := '';
   Messages := TStringList.Create;
   if frmMain.OrgFile <> '' then
   begin
@@ -304,7 +464,7 @@ begin
   end
   else
   begin
-    CurrentFileName := 'untitledSubtitle';
+    CurrentFileName := UntitledSubtitle;
   end;
 
   NetflixQCReportAddHeader(GlyphCheckReport);
@@ -322,6 +482,10 @@ begin
     if not SaveString(GlyphCheckReport, GlyphCheckReportPath) then
     begin
       Messages.Add(SavingError);
+    end
+    else if FirstReportPath = '' then
+    begin
+      FirstReportPath := GlyphCheckReportPath;
     end;
   end;
 
@@ -340,13 +504,27 @@ begin
     if not SaveString(WhiteSpaceCheckReport, WhiteSpaceCheckReportPath) then
     begin
       Messages.Add(SavingError);
+    end
+    else if FirstReportPath = '' then
+    begin
+      FirstReportPath := WhiteSpaceCheckReportPath;
     end;
   end;
 
-  if Messages.Count > 0 then
+  if Messages.Count = 0 then
+  begin
+    Exit;
+  end;
+
+  if FirstReportPath = '' then  // No report saved -> show just message
   begin
     ShowMessage(Messages.Text);
+  end
+  else  // At least one report was saved -> show "locate" butoon
+  begin
+    ShowMessageLocateFile(Messages.Text, FirstReportPath);
   end;
+
 end;
 
 end.
