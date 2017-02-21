@@ -23,6 +23,7 @@ type
     btnCustomFormat: TButton;
     btnCancel: TButton;
     ImageList: TImageList;
+    btnOk: TButton;
     procedure FormCreate(Sender: TObject);
     procedure chkAllFormatsClick(Sender: TObject);
     procedure lstFormatsDblClick(Sender: TObject);
@@ -30,10 +31,13 @@ type
       Shift: TShiftState);
     procedure btnCustomFormatClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure FormResize(Sender: TObject); //added by adenry
+    procedure FormResize(Sender: TObject);
+    procedure btnOkClick(Sender: TObject);
+    procedure lstFormatsClick(Sender: TObject); //added by adenry
   private
     procedure AddCustomFormats;
     procedure SetLanguage;
+    procedure UpdateOkEnabled;
   public
     SaveTranslation: Boolean;
   end;
@@ -50,6 +54,13 @@ uses
   formMain, formCustomFormats, formOutputSettings;
 
 {$R *.dfm}
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmSaveAs.UpdateOkEnabled;
+begin
+  btnOk.Enabled := lstFormats.ItemIndex <> -1;
+end;
 
 // -----------------------------------------------------------------------------
 
@@ -114,6 +125,8 @@ begin
   if TotalFormats = 0 then Exit;
   lstFormats.Clear;
 
+  UpdateOkEnabled;
+
   Ini := TIniFile.Create(IniRoot);
   //added by adenry: begin
   Width:=Ini.ReadInteger('Save', 'Width', 337);
@@ -177,6 +190,7 @@ begin
     AddCustomFormats;
 
   Ini.Free;
+  UpdateOkEnabled;
 end;
 
 // -----------------------------------------------------------------------------
@@ -351,6 +365,8 @@ procedure TfrmSaveAs.lstFormatsKeyDown(Sender: TObject; var Key: Word;
 begin
   if Key = VK_RETURN then
     lstFormatsDblClick(Sender);
+
+  UpdateOkEnabled;    
 end;
 
 // -----------------------------------------------------------------------------
@@ -386,6 +402,8 @@ begin
   btnCustomFormat.Top := ClientHeight - 8 - btnCustomFormat.Height;
   btnCancel.Top := btnCustomFormat.Top;
   btnCancel.Left := ClientWidth - 8 - btnCancel.Width;
+  btnOk.Top := btnCustomFormat.Top;
+  btnOk.Left := ClientWidth - 8 - btnCancel.Width - 8 - btnOk.Width;
   chkAllFormats.Top := btnCustomFormat.Top - 8 - chkAllFormats.Height;
   chkAllFormats.Width := ClientWidth - 16;
   lstFormats.Width := ClientWidth - 16;
@@ -395,5 +413,15 @@ end;
 //added by adenry: end
 
 // -----------------------------------------------------------------------------
+
+procedure TfrmSaveAs.btnOkClick(Sender: TObject);
+begin
+  lstFormatsDblClick(Sender);
+end;
+
+procedure TfrmSaveAs.lstFormatsClick(Sender: TObject);
+begin
+  UpdateOkEnabled;
+end;
 
 end.
