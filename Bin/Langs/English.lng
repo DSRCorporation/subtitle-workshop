@@ -1304,10 +1304,11 @@ SRF=Subtitle Report File
 05=Subtitle number %d:||"%s" is a one-line subtitle and starts with "-".||Do you want to delete the "-" at the beginning?
 
 [Netflix quality check]
-GlyphCheckSuccessfull=Character validation successful.
-GlyphCheckFailed=Character validation failed. Refer to the Netflix Glyph List for valid characters. Please see the full report here: %s.
+GlyphCheckSuccessfull=Character validation has been successful.
+GlyphCheckFailed=Character validation has failed.
 GlyphCheckReport=Invalid character %s found at column %d.
-WhiteSpaceCheckSuccessfull=White space validation successful.
-WhiteSpaceCheckFailed=White space validation failed. Please see the full report here: %s.
+WhiteSpaceCheckSuccessfull=White space validation has been successful.
+WhiteSpaceCheckFailed=White space validation has failed.
 WhiteSpaceCheckReport=Invalid white space found at column %d.
-SavingError=Cannt save report.
+ReportPrompt=Please see full report here: %s.
+SavingError=Report cannot be saved.
