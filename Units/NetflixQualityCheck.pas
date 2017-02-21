@@ -35,7 +35,10 @@ var
 	WhiteSpaceCheckReport: string;
   SavingError: string;
 
-  
+  UntitledSubtitle: string;
+  OpenFileLocation: string;
+
+
 // Language loder
 
 procedure NetflixQualityCheckerLoadLanguage(LF: TIniFile);
@@ -54,6 +57,9 @@ begin
     'Invalid white space found at column %d.');
 	SavingError := LF.ReadString('Netflix quality check', 'SavingError',
     'Cannt save report.');
+
+  UntitledSubtitle := 'untitledSubtitle';
+  OpenFileLocation := 'Open file location'; 
 end;
 
 
@@ -87,7 +93,7 @@ function EscapeCSV(Str: string): string;
 begin
   Result := Str;
   Result := StringReplace(Result, '"', '""', [rfReplaceAll]);
-  Result := StringReplace(Result, #13#10, #10, [rfReplaceAll]);
+  Result := StringReplace(Result, #13, '\r', [rfReplaceAll]);
   Result := StringReplace(Result, #10, '\n', [rfReplaceAll]);
   Result := Format('"%s"', [Result]);
 end;
@@ -200,15 +206,68 @@ begin
   end;
 end;
 
+
+function IsPunctuationChar(Chr: Char): Boolean;
+begin
+  if Chr in ['!', '?', ')', '.', ','] then
+    Result := true
+  else
+    Result := false;
+end;
+
+
 procedure WhiteSpaceReportParagraph(ParagraphNode: PVirtualNode; var Report: string; Pos: Integer);
 var
   Timecode, Context, Comment: string;
 begin
   Timecode := TimeToString(GetStartTime(ParagraphNode), FULL_TIMECODE);
-  Context := UTF8Encode(EscapeCSV(GetStringContext(GetSubText(ParagraphNode), Pos, CONTEXT_RADIUS)));
+
+  Context := EscapeCSV(GetStringContext(GetSubText(ParagraphNode), Pos, CONTEXT_RADIUS));
+  Context := UTF8Encode(StringToWideStringEx(context, CharSetToCodePage(GetOrgCharset)));
+
   Comment := Format(WhiteSpaceCheckReport, [Pos]);
   NetflixQCReportAddWarning(Report, Timecode, Context, Comment);
 end;
+
+
+function CheckWhiteSpacesBeforePunctuation(ParagraphNode: PVirtualNode; var Report: string): Boolean;
+var
+  CurrentText: string;
+  WhiteSpaceSize: Integer;
+  i: Integer;
+
+  IsCurrentCharSpace: Boolean;
+  IsSecondCharSpace: Boolean;
+  IsThirdCharSpace: Boolean;
+
+  ThirdCharPos: Integer;
+begin
+  Result := True;
+  CurrentText := GetSubText(ParagraphNode);
+
+  for i := 1 to Length(CurrentText) - 1 do
+  begin
+    IsCurrentCharSpace := IsWhiteSpace(CurrentText, i, WhiteSpaceSize);
+
+    if IsCurrentCharSpace then
+      Continue;
+
+    IsSecondCharSpace := IsWhiteSpace(CurrentText, i + 1, WhiteSpaceSize);
+
+    if not IsSecondCharSpace then
+      Continue;
+
+    ThirdCharPos := i + 1 + WhiteSpaceSize;
+
+    if (ThirdCharPos <= Length(CurrentText)) and
+      IsPunctuationChar(CurrentText[ThirdCharPos]) then
+    begin
+      WhiteSpaceReportParagraph(ParagraphNode, Report, i + 1);
+      Result := False;
+    end;    
+  end;
+end;
+
 
 function CheckLineEndings(ParagraphNode: PVirtualNode; var Report: string): Boolean;
 var
@@ -217,6 +276,23 @@ var
 begin
   Result := True;
   CurrentText := GetSubText(ParagraphNode);
+
+  if Length(CurrentText) = 0 then
+    Exit;
+
+  if (Length(CurrentText) = 1) and IsWhiteSpace(CurrentText, 1, i) then
+  begin
+    WhiteSpaceReportParagraph(ParagraphNode, Report, 1);
+    Result := False;
+    Exit;
+  end;
+
+  if (Length(CurrentText) = 2) and IsWhiteSpace(CurrentText, 1, i) and (i = 2) then
+  begin
+    WhiteSpaceReportParagraph(ParagraphNode, Report, 1);
+    Result := False;
+    Exit;
+  end;
 
   if IsWhiteSpace(CurrentText, 1, i) and (not IsWhiteSpace(CurrentText, 1 + i, j)) then
   begin
@@ -254,6 +330,11 @@ begin
   Result := true;
 
   if not CheckLineEndings(ParagraphNode, Report) then
+  begin
+    Result := false;
+  end;
+
+  if not CheckWhiteSpacesBeforePunctuation(ParagraphNode, Report) then
   begin
     Result := false;
   end;
@@ -350,7 +431,7 @@ begin
       begin
         Button.Width := Button.Width + 50;
         Button.Left := Button.Left - 50;
-        Button.Caption := 'Show in explorer';
+        Button.Caption :=  OpenFileLocation;
       end;
       
       inc(BtnIndex);
@@ -383,7 +464,7 @@ begin
   end
   else
   begin
-    CurrentFileName := 'untitledSubtitle';
+    CurrentFileName := UntitledSubtitle;
   end;
 
   NetflixQCReportAddHeader(GlyphCheckReport);
