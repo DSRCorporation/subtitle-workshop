@@ -491,7 +491,6 @@ type
     pnlWAVDisplay: TPanel;
     pnlWaveformVideo: TPanel;
     dlgLoadWaveform: TOpenDialog;
-    // TODO: move captions to lang file
     // Popup menu
     mnuWaveformPopupMenu: TPopupMenu;
     mnuWaveformOpen: TMenuItem;
@@ -543,6 +542,7 @@ type
     btnZoomSelection: TSWButton;
     btnZoomAll: TSWButton;
     btnZoomVertical: TSWButton;
+    
     mnuNetflixQualityCheck: TMenuItem;
 
 
@@ -1051,6 +1051,10 @@ type
     procedure CreateParams(var Params: TCreateParams); override;
 	  // Preview mode handling
     procedure SwitchPreviewMode(Sender: TObject);
+    procedure LoadWaveform;
+    procedure LoadVideo;
+    procedure ClosePreviews;
+    
     procedure UpdatePlaybackCntrlsVisible;
   private
     procedure WMCopyData(var Msg: TWMCOPYDATA); message WM_COPYDATA;
@@ -1277,7 +1281,12 @@ type
     WaveformAdapter             : TWaveformAdapter;
     waveformVerticalScalingForm : TVerticalScalingForm;
     audioStreamsForm            : TAudioStreamsForm;
+
+    // Waveform/Video preview common resources
     previewSelected             : (psVideo, psWaveform, psNone);
+    previewFilename             : String;
+    waveformLoaded              : Boolean;
+    videoLoaded                 : Boolean;
 
     // ----------
     procedure AppException(Sender: TObject; E: Exception); //moved here by adenry
@@ -3332,7 +3341,7 @@ begin
     //VolumeControls := Ini.ReadBool('Video preview', 'Show volume controls', True); //added by adenry
     //ShowVolumeControls(VolumeControls); //added by adenry
     FullScreenOnDblClick := Ini.ReadBool('Video preview', 'Full screen on double click', True); //added by adenry
-    PlayVideoOnLoad      := Ini.ReadBool('Video preview', 'Play video on load', True); //added by adenry
+    PlayVideoOnLoad      := Ini.ReadBool('Video preview', 'Play video on load', False); //added by adenry
     //added by adenry: begin
     VideoAspectRatio     := Ini.ReadFloat('Video preview', 'Video Aspect Ratio', -1.0);
     if SameValue(VideoAspectRatio, 4/3, EPSILON)   then mnuAR4_3.Checked   := True else
@@ -3842,7 +3851,7 @@ begin
 
       Charset := OrgCharset;
 
-      Displayer.EnableMouseAntiOverlapping  := Ini.ReadBool('Waveform', 'MouseAntiOverlapping', False);
+      Displayer.EnableMouseAntiOverlapping  := Ini.ReadBool('Waveform', 'MouseAntiOverlapping', True);
       Displayer.SceneChangeEnabled          := Ini.ReadBool('Waveform', 'ShowSceneChange', True);
       SafetyOffset      := Ini.ReadInteger('Waveform', 'SafetyZoneOffset', 150);
       ShowSubtitleText  := Ini.ReadBool('Waveform', 'ShowSubtitleText', True);
@@ -4709,19 +4718,41 @@ end;
 
 // -----------------------------------------------------------------------------
 
+procedure TfrmMain.LoadVideo;
+begin
+  if LoadMovie(dlgLoadFile.FileName) = False then
+    MsgBox(Format(ErrorMsg[05], [previewFileName]), BTN_OK, '', '', MB_ICONERROR, frmMain) else
+  begin
+  if mnuVideoPreviewMode.Checked = False then
+    SetVideoPreviewMode(True);
+  end;
+end;
+
+// -----------------------------------------------------------------------------
+
+procedure TfrmMain.ClosePreviews;
+begin
+  previewFilename := '';
+
+  // Close video preview
+  if FullScreen then ToggleFullScreen;
+  FreeFile;
+
+  // Close waveform
+  WaveformAdapter.Close;
+  UpdateWaveformEnabled;
+end;
+
+// -----------------------------------------------------------------------------
+
 procedure TfrmMain.mnuOpenMovieClick(Sender: TObject);
 begin
-  //dlgLoadFile.Filter := AllSupportedFiles + '|*.asf;*.avi;*.mp4;*.mkv;*.divx;*.mp3;*.mpg;*.mpeg;*.m1v;*.ogm;*.ogg;*.qt;*.vob;*.wav;*.wmv|' + 'ASF (*.asf)|*.asf|AVI (*.avi)|*.avi|OGM (*.ogm)|*.ogm|OGG (*.ogg)|*.ogg|Matroska (*.mkv)|*.mkv|DivX (*.mp4; *.divx)|*.mp4; ' + '*.divx|MP3 (*.mp3)|*.mp3|MPEG (*.mpg; *.mpeg; *.m1v)|*.mpg; *.mpeg; *.m1v|QuickTime (*.qt)|*.qt|VOB (*.vob)|*.vob|WAV (*.wav)|*.wmv|WMV (*.wmv)|*.wmv'; //removed by adenry
   dlgLoadFile.Filter := GetVideoFilesFilterString; //added by adenry
   if (dlgLoadFile.Execute) and (dlgLoadFile.FileName <> '') then
   begin
-    //AudioStreamNum := 0; //added by adenry
-    if LoadMovie(dlgLoadFile.FileName) = False then
-      MsgBox(Format(ErrorMsg[05], [dlgLoadFile.FileName]), BTN_OK, '', '', MB_ICONERROR, frmMain) else
-    begin
-      if mnuVideoPreviewMode.Checked = False then
-        SetVideoPreviewMode(True);
-    end;
+    ClosePreviews;
+    previewFilename := dlgLoadFile.FileName;
+    LoadVideo;
   end;
   dlgLoadFile.Filter := SubtitleAPI.FillDialogFilter(AllSupportedFiles) + ID_SRF + '|' + ID_PLAINTEXT;
 end;
@@ -4730,8 +4761,7 @@ end;
 
 procedure TfrmMain.mnuCloseMovieClick(Sender: TObject);
 begin
-  if FullScreen then ToggleFullScreen; //added by adenry
-  FreeFile;
+  ClosePreviews;
 end;
 
 // -----------------------------------------------------------------------------
@@ -12481,8 +12511,16 @@ begin
   SetVideoPreviewMode(previewSelected <> psNone);
 
   case previewSelected of
-    psVideo     : EnableVPCtrls(Player.Initialized);
-    psWaveform  : UpdateWaveformVolume;
+    psVideo     : begin
+                    if (previewFilename <> '') and not Player.Initialized then
+                      LoadVideo;
+                    EnableVPCtrls(Player.Initialized);
+                  end;
+    psWaveform  : begin
+                    if (previewFilename <> '') and not WaveformAdapter.Displayer.IsPeakDataLoaded then
+                      LoadWaveform;
+                    UpdateWaveformVolume;
+                  end;
   end;
 
   UpdatePlaybackCntrlsVisible;
@@ -14742,51 +14780,61 @@ end;
 
 // -----------------------------------------------------------------------------
 
+procedure TfrmMain.LoadWaveform;
+var
+  streams: TAudioStreams;
+begin
+  if ffmpegHelper.IsWAVFile(previewFilename) then begin
+    WaveformAdapter.Load(previewFilename, []);
+  end
+  else begin
+    if not ffmpegHelper.ToolDetected then
+    begin
+      ShowMessage('FFmpeg was not found in your system. Please refer to settings to locate it manually.');
+      Exit;
+    end;
+
+    streams := ffmpegHelper.DetectAudioStreams(previewFilename);
+
+    if Length(streams) = 0 then begin
+      ShowMessage('Can not find any audio stream');
+      Exit;
+    end
+    else
+    if Length(streams) = 1 then begin
+      WaveformAdapter.Load(previewFilename, []);
+    end
+    else begin
+      if (audioStreamsForm = nil) then
+        audioStreamsForm := TAudioStreamsForm.Create(Self);
+      audioStreamsForm.SetStreams(streams);
+      audioStreamsForm.ShowModal;
+
+      if audioStreamsForm.ModalResult <> mrOk then Exit;
+
+      WaveformAdapter.Load(previewFilename, audioStreamsForm.SelectedStreams);
+    end;
+  end;
+
+  WaveformAdapter.SyncSubtitlesWithTree;
+
+  UpdateWaveformEnabled;
+end;
+
+// -----------------------------------------------------------------------------
+
 // Popup menu
 
 // -----------------------------------------------------------------------------
 
 procedure TfrmMain.mnuWaveformOpenClick(Sender: TObject);
-var
-  streams: TAudioStreams;
 begin
   if (dlgLoadWaveform.Execute) and (dlgLoadWaveform.FileName <> '') then begin
 
-    if ffmpegHelper.IsWAVFile(dlgLoadWaveform.FileName) then begin
-      WaveformAdapter.Load(dlgLoadWaveform.FileName, []);
-    end
-    else begin
-      if not ffmpegHelper.ToolDetected then
-      begin
-        ShowMessage('FFmpeg was not found in your system. Please refer to settings to locate it manually.');
-        Exit;  
-      end;
+    ClosePreviews;
 
-      streams := ffmpegHelper.DetectAudioStreams(dlgLoadWaveform.FileName);
-
-      if Length(streams) = 0 then begin
-        ShowMessage('Can not find any audio stream');
-        Exit;
-      end
-      else
-      if Length(streams) = 1 then begin
-        WaveformAdapter.Load(dlgLoadWaveform.FileName, []);
-      end
-      else begin
-        if (audioStreamsForm = nil) then
-          audioStreamsForm := TAudioStreamsForm.Create(Self);
-        audioStreamsForm.SetStreams(streams);
-        audioStreamsForm.ShowModal;
-
-        if audioStreamsForm.ModalResult <> mrOk then Exit;
-
-        WaveformAdapter.Load(dlgLoadWaveform.FileName, audioStreamsForm.SelectedStreams);
-      end;
-    end;
-
-    WaveformAdapter.SyncSubtitlesWithTree;
-
-    UpdateWaveformEnabled;
+    previewFilename := dlgLoadWaveform.FileName;
+    LoadWaveform;
   end;
 end;
 
@@ -14794,8 +14842,7 @@ end;
 
 procedure TfrmMain.mnuWaveformCloseClick(Sender: TObject);
 begin
-  WaveformAdapter.Close;
-  UpdateWaveformEnabled;
+  ClosePreviews;
 end;
 
 // -----------------------------------------------------------------------------
