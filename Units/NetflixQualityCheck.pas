@@ -33,6 +33,7 @@ var
 	WhiteSpaceCheckSuccessfull: string;
 	WhiteSpaceCheckFailed: string;
 	WhiteSpaceCheckReport: string;
+  ReportPrompt: string;
   SavingError: string;
 
   UntitledSubtitle: string;
@@ -44,19 +45,21 @@ var
 procedure NetflixQualityCheckerLoadLanguage(LF: TIniFile);
 begin
  	GlyphCheckSuccessfull := LF.ReadString('Netflix quality check', 'GlyphCheckSuccessfull',
-    'Character validation successful.');
+    'Character validation has been successful.');
 	GlyphCheckFailed := LF.ReadString('Netflix quality check', 'GlyphCheckFailed',
-    'Character validation failed. Refer to the Netflix Glyph List for valid characters. Please see the full report here: %s.');
+    'Character validation has failed.');
 	GlyphCheckReport := LF.ReadString('Netflix quality check', 'GlyphCheckReport',
     'Invalid character %s found at column %d.');
 	WhiteSpaceCheckSuccessfull := LF.ReadString('Netflix quality check', 'WhiteSpaceCheckSuccessfull',
-    'White space validation successful.');
+    'White space validation has been successful.');
 	WhiteSpaceCheckFailed := LF.ReadString('Netflix quality check', 'WhiteSpaceCheckFailed',
-    'White space validation failed. Please see the full report here: %s.');
+    'White space validation has failed.');
 	WhiteSpaceCheckReport := LF.ReadString('Netflix quality check', 'WhiteSpaceCheckReport',
     'Invalid white space found at column %d.');
+	ReportPrompt := LF.ReadString('Netflix quality check', 'ReportPrompt',
+    'Please see full report here: %s.');
 	SavingError := LF.ReadString('Netflix quality check', 'SavingError',
-    'Cannt save report.');
+    'Report cannot be saved.');
 
   UntitledSubtitle := 'untitledSubtitle';
   OpenFileLocation := 'Open file location'; 
@@ -445,10 +448,8 @@ end;
 
 procedure PerformNetflixQualityCheck(ShowSuccessMessages: Boolean);
 var
-  GlyphCheckReport: string;
-  GlyphCheckReportPath: string;
-  WhiteSpaceCheckReport: string;
-  WhiteSpaceCheckReportPath: string;
+  Report: string;
+  ReportPath: string;
 
   Messages: TStringList;
   CurrentFileName: string;
@@ -459,58 +460,58 @@ begin
   FirstReportPath := '';
   Messages := TStringList.Create;
   if frmMain.OrgFile <> '' then
-  begin
-    CurrentFileName := ChangeFileExt(ExtractFileName(frmMain.OrgFile), '');
-  end
+    CurrentFileName := ChangeFileExt(ExtractFileName(frmMain.OrgFile), '')
   else
-  begin
     CurrentFileName := UntitledSubtitle;
-  end;
 
-  NetflixQCReportAddHeader(GlyphCheckReport);
-  if PerformNetflixGlyphCheck(GlyphCheckReport) then
+
+  Report := '';
+  NetflixQCReportAddHeader(Report);
+  
+  if PerformNetflixGlyphCheck(Report) then
   begin
     if ShowSuccessMessages then
-    begin
       Messages.Add(GlyphCheckSuccessfull);
-    end;
   end
   else
   begin
-    GlyphCheckReportPath := GetTempPathStr() + CurrentFileName + '_NetflixGlyphCheck.csv';
-    Messages.Add(Format(GlyphCheckFailed, [GlyphCheckReportPath]));
-    if not SaveString(GlyphCheckReport, GlyphCheckReportPath) then
-    begin
-      Messages.Add(SavingError);
-    end
-    else if FirstReportPath = '' then
-    begin
-      FirstReportPath := GlyphCheckReportPath;
-    end;
-  end;
+    ReportPath := GetTempPathStr() + CurrentFileName + '_NetflixGlyphCheck.csv';
 
-  NetflixQCReportAddHeader(WhiteSpaceCheckReport);
-  if PerformNetflixWhiteSpaceCheck(WhiteSpaceCheckReport) then
+    if SaveString(Report, ReportPath) then
+    begin
+      Messages.Add(Format(GlyphCheckFailed + ' ' + ReportPrompt, [ReportPath]));
+
+      if FirstReportPath = '' then
+        FirstReportPath := ReportPath;
+    end    
+    else  
+      Messages.Add(GlyphCheckFailed + ' ' + SavingError);
+  end;
+  
+
+  Report := '';
+  NetflixQCReportAddHeader(Report);
+
+  if PerformNetflixWhiteSpaceCheck(Report) then
   begin
     if ShowSuccessMessages then
-    begin
       Messages.Add(WhiteSpaceCheckSuccessfull);
-    end;
   end
   else
   begin
-    WhiteSpaceCheckReportPath := GetTempPathStr() + CurrentFileName + '_NetflixWhiteSpaceCheck.csv';
-    Messages.Add(Format(WhiteSpaceCheckFailed, [WhiteSpaceCheckReportPath]));
-    if not SaveString(WhiteSpaceCheckReport, WhiteSpaceCheckReportPath) then
-    begin
-      Messages.Add(SavingError);
-    end
-    else if FirstReportPath = '' then
-    begin
-      FirstReportPath := WhiteSpaceCheckReportPath;
-    end;
-  end;
+    ReportPath := GetTempPathStr() + CurrentFileName + '_NetflixWhiteSpaceCheck.csv';
 
+    if SaveString(Report, ReportPath) then
+    begin
+      Messages.Add(Format(WhiteSpaceCheckFailed + ' ' + ReportPrompt, [ReportPath]));
+
+      if FirstReportPath = '' then
+        FirstReportPath := ReportPath;
+    end
+    else
+      Messages.Add(WhiteSpaceCheckFailed + ' ' + SavingError);
+  end;
+  
   if Messages.Count = 0 then
   begin
     Exit;
