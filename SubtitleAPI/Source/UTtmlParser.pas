@@ -265,9 +265,11 @@ end;
 function TTtmlParser.ParseTTML(subFile: TSubtitleFile; subtitles: TSubtitles; var DetectedEncoding: String): Boolean;
 var
   tag: AnsiString;
+  divLevel: Integer;
 begin
   Result  := False;
   FState  := [xsNone];
+  divLevel := 0;
   ClearSubtitle;
 
   FSpanStack := TStack.Create;
@@ -284,7 +286,10 @@ begin
 
       case CurPartType of
         ptStartTag  : if tag = 'div' then
-                       Include(FState, xsSubtitleHeader)
+                      begin
+                       Include(FState, xsSubtitleHeader);
+                       inc(divLevel);
+                      end
                       else
                       if tag = 'p' then
                       begin
@@ -330,7 +335,11 @@ begin
                       end
                       else
                       if tag = 'div' then
-                        Exclude(FState, xsSubtitleHeader)
+                      begin
+                        dec(divLevel);
+                        if divLevel <= 0 then
+                          Exclude(FState, xsSubtitleHeader);
+                      end
                       else
                       if tag = 'body' then
                         Break;
