@@ -110,6 +110,7 @@ begin
     DeclareNamespace('tts', TTML_STYLING_NS_URI);
     DeclareNamespace('ttm', TTML_METADATA_NS_URI);
     DeclareNamespace('ttp', TTML_PARAMETER_NS_URI);
+    Attributes['xml:lang']  := 'en';
   end;
 end;
 
