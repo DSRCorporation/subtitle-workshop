@@ -4,7 +4,7 @@
 // Copyright: See Subtitle API's copyright information
 // File Description: I-Author Script subtitle format saving functionality
 
-function SubtitlesToFile_IAUTHOR(Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_IAUTHOR(Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1): Boolean;
 var
   tmpSubFile : TSubtitleFile;
   tmpTiempo  : Single;

@@ -1,6 +1,6 @@
 object frmSaveAs: TfrmSaveAs
-  Left = 309
-  Top = 773
+  Left = 362
+  Top = 439
   AutoScroll = False
   BorderIcons = [biSystemMenu]
   Caption = 'frmSaveAs'
@@ -82,7 +82,7 @@ object frmSaveAs: TfrmSaveAs
     TabOrder = 4
     OnClick = btnOkClick
   end
-  object dlgSave: TSaveDialog
+  object dlgSave: TTntSaveDialog
     Options = [ofHideReadOnly, ofPathMustExist, ofEnableSizing]
     Left = 128
     Top = 64

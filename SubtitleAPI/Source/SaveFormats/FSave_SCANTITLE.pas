@@ -5,7 +5,7 @@
 // File Description: Scanlite subtitle format saving functionality
 
 // by Bedazzle 2005.11.18 start
-function SubtitlesToFile_SCANTITLE(Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_SCANTITLE(Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1): Boolean;
 var
   tmpSubFile : TSubtitleFile;
   i, Count   : Integer;

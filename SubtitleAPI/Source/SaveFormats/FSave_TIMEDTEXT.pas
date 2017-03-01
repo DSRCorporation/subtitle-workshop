@@ -4,7 +4,7 @@
 // Copyright: See Subtitle API's copyright information
 // File Description: Timed Text subtitle format saving functionality
 
-function SubtitlesToFile_TIMEDTEXT(Subtitles: TSubtitles; const FileName: String; const charset: Byte = DEFAULT_CHARSET; const utf8: Boolean = False; const Netflix: Boolean = False; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_TIMEDTEXT(Subtitles: TSubtitles; const FileName: WideString; const charset: Byte = DEFAULT_CHARSET; const utf8: Boolean = False; const Netflix: Boolean = False; From: Integer = -1; UpTo: Integer = -1): Boolean;
 var
   tmpSubFile  : TSubtitleFile;
   doc         : TTtmlDocument;

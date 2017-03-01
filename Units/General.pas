@@ -12,6 +12,8 @@ uses
   Forms, Windows, Classes, SysUtils, Controls, StdCtrls, Mask, Menus, IniFiles, Dialogs, Graphics, Messages, ClipBrd, ExtCtrls, Math, //Dialogs, Graphics, Messages, ClipBrd, ExtCtrls, Math added by adenry
   VirtualTrees,
   FastStrings,
+  TntSysUtils,
+  TntClasses,
   USubtitleAPI, CommonTypes;
 
 // -----------------------------------------------------------------------------
@@ -114,13 +116,13 @@ const
 // ---------------
 // File handling
 // ---------------
-function LoadSubtitle(const FileName: String; FPS: Single; SubtitleFormat: Integer = 0; TranslatedFile: Boolean = False; EnableControls: Boolean = True): Boolean; //procedure converted to a function by adenry
-function LoadPlainText(const FileName: String; Translation: Boolean = False): Boolean; //procedure converted to a function by adenry //Translation added by adenry
-function LoadSRF(const FileName: String; Translation: Boolean = False): Boolean; // URUSoft Subtitle Report file //procedure converted to a function by adenry //Translation added by adenry
+function LoadSubtitle(const FileName: WideString; FPS: Single; SubtitleFormat: Integer = 0; TranslatedFile: Boolean = False; EnableControls: Boolean = True): Boolean; //procedure converted to a function by adenry
+function LoadPlainText(const FileName: WideString; Translation: Boolean = False): Boolean; //procedure converted to a function by adenry //Translation added by adenry
+function LoadSRF(const FileName: WideString; Translation: Boolean = False): Boolean; // URUSoft Subtitle Report file //procedure converted to a function by adenry //Translation added by adenry
 // ---------------
 function SaveFile(FileName: WideString; FormatIndex: Integer; FPS: Single; Charset: Byte): Boolean;
-procedure SaveMarking(markingFile, subFile: String); //added by adenry
-procedure LoadMarking(markingFile: String); //added by adenry
+procedure SaveMarking(markingFile, subFile: WideString); //added by adenry
+procedure LoadMarking(markingFile: WideString); //added by adenry
 // ---------------
 procedure ReadTextsAndTimesFromFile(FileName: String; SubFormat: Integer; Times, Texts: Boolean);
 procedure LoadProject(const FileName: String);
@@ -221,7 +223,7 @@ uses
 
 // -----------------------------------------------------------------------------
 
-function LoadSubtitle(const FileName: String; FPS: Single; SubtitleFormat: Integer = 0; TranslatedFile: Boolean = False; EnableControls: Boolean = True): Boolean; //procedure converted to a function by adenry
+function LoadSubtitle(const FileName: WideString; FPS: Single; SubtitleFormat: Integer = 0; TranslatedFile: Boolean = False; EnableControls: Boolean = True): Boolean; //procedure converted to a function by adenry
   //const Exts: array[1..15] of String = ('asf', 'avi', 'avs', 'divx', 'flv', 'm1v', 'mov', 'mp4', 'mpeg', 'mpg', 'mkv', 'ogm', 'qt', 'vob', 'wmv'); //avs, mov, and flv added by adenry //removed by adenry
   procedure FixOverlap;
   var
@@ -251,7 +253,7 @@ begin
 //added by aenry: begin
 Result := False;
 //check if the file exists
-if FileExists(FileName) = FALSE then
+if WideFileExists(FileName) = FALSE then
 begin
   MsgBox(Format(ErrorMsg[27], [FileName]), BTN_OK, '', '', MB_ICONERROR, frmMain);
 end else
@@ -483,7 +485,14 @@ begin
   if not TranslatedFile then
     ComboBox := frmMain.cmbOrgCharset
   else
-    ComboBox := frmMain.cmbTransCharset;  
+    ComboBox := frmMain.cmbTransCharset;
+
+  // Select Default encoding if not set
+  if Encoding ='' then begin
+    ComboBox.ItemIndex := 1;
+    ComboBox.OnSelect(ComboBox);
+    Exit;
+  end;
 
   for I := 0 to ComboBox.Items.Count do
   begin
@@ -503,9 +512,9 @@ end;
 
 // -----------------------------------------------------------------------------
 
-function LoadPlainText(const FileName: String; Translation: Boolean = False): Boolean; //procedure converted to a function by adenry //Translation added by adenry
+function LoadPlainText(const FileName: WideString; Translation: Boolean = False): Boolean; //procedure converted to a function by adenry //Translation added by adenry
 var
-  PlainTxt    : TStringList;
+  PlainTxt    : TTntStringList;
   Node        : PVirtualNode;
   i           : Integer;
   InitialTime : Integer;
@@ -515,7 +524,7 @@ begin
 
   InitialTime := 0;
   FinalTime   := frmMain.DefaultSubDuration; //1000 replaced with frmMain.DefaultSubDuration by adenry
-  PlainTxt    := TStringList.Create;
+  PlainTxt    := TTntStringList.Create;
 
   if Translation = FALSE then      //added by adenry
     if CloseSub = False then exit;
@@ -582,7 +591,7 @@ end;
 
 // -----------------------------------------------------------------------------
 
-function LoadSRF(const FileName: String; Translation: Boolean = False): Boolean; //procedure converted to a function by adenry //Translation added by adenry
+function LoadSRF(const FileName: WideString; Translation: Boolean = False): Boolean; //procedure converted to a function by adenry //Translation added by adenry
 var
   Ini  : TIniFile;
   i    : Integer;
@@ -785,7 +794,7 @@ end;
 // -----------------------------------------------------------------------------
 
 //added by adenry: begin
-procedure LoadMarking(markingFile: String);
+procedure LoadMarking(markingFile: WideString);
 var
   Ini         : TIniFile;
   Data        : PSubtitleItem;
@@ -810,7 +819,7 @@ end;
 // -----------------------------------------------------------------------------
 
 //added by adenry: begin
-procedure SaveMarking(markingFile, subFile: String);
+procedure SaveMarking(markingFile, subFile: WideString);
 var
   Ini   : TIniFile;
   Node  : PVirtualNode;
@@ -819,7 +828,7 @@ var
 begin
   if ((markingFile <> '') and (subFile <> '')) then
   begin
-    Ini := TIniFile.Create(markingFile);
+    Ini := TInifile.Create(markingFile);
     Ini.EraseSection('URUSoft Subtitle Report File');
     Ini.WriteString('URUSoft Subtitle Report File','File', subFile);
     Node := frmMain.lstSubtitles.GetFirst;
@@ -1530,13 +1539,13 @@ end;
 function SaveFile(FileName: WideString; FormatIndex: Integer; FPS: Single; Charset: Byte): Boolean;
 begin
   Result := False;
-  if FileExists(FileName) = False then
+  if WideFileExists(FileName) = False then
   begin
     SubtitleAPI.SaveSubtitle(FileName, FormatIndex, FPS, Charset);
     Result := True;
   end else
   begin
-    if FileIsReadOnly(FileName) = False then
+    if WideFileIsReadOnly(FileName) = False then
     begin
       SubtitleAPI.SaveSubtitle(FileName, FormatIndex, FPS, Charset);
       Result := True;

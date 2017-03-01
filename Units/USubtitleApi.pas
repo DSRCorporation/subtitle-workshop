@@ -20,7 +20,7 @@ type
   TSubtitleApi = class
   private
     FInstance: Integer;
-    function MyFileExists(const Name: String): Boolean;
+    function MyFileExists(const Name: WideString): Boolean;
     function GetModuleVersion: Integer;
     function GetModuleDescription: String;
     function GetSupportedFormatsCount: Integer;
@@ -44,11 +44,11 @@ type
     destructor Destroy; override;
     function Initialize(DLLFileName: String): Boolean;
     function UnInitialize: Boolean;
-    function LoadSubtitle(FileName: String; FPS: Single; Charset: Byte; var DetectedEncoding: String; FormatIndex: Integer = 0; Append: Boolean = False; ReCalcTimeValues: Boolean = True): Boolean; Overload;
-    function LoadSubtitle(FileName: String; FPS: Single; Charset: Byte; FormatIndex: Integer = 0; Append: Boolean = False; ReCalcTimeValues: Boolean = True): Boolean; Overload;
+    function LoadSubtitle(FileName: WideString; FPS: Single; Charset: Byte; var DetectedEncoding: String; FormatIndex: Integer = 0; Append: Boolean = False; ReCalcTimeValues: Boolean = True): Boolean; Overload;
+    function LoadSubtitle(FileName: WideString; FPS: Single; Charset: Byte; FormatIndex: Integer = 0; Append: Boolean = False; ReCalcTimeValues: Boolean = True): Boolean; Overload;
     procedure CreateNewSubtitle;
     function GetFileFormat(FileName: String): Integer;
-    function SaveSubtitle(FileName: String; FormatIndex: Integer; FPS: Single; Charset: Byte = DEFAULT_CHARSET; FromIndex: Integer = -1; ToIndex: Integer = -1): Boolean;
+    function SaveSubtitle(FileName: WideString; FormatIndex: Integer; FPS: Single; Charset: Byte = DEFAULT_CHARSET; FromIndex: Integer = -1; ToIndex: Integer = -1): Boolean;
     function CloseSubtitle: Boolean;
     function AddSubtitle(InitialTime, FinalTime: Integer; Text: String): Integer;
     function InsertSubtitle(Index, InitialTime, FinalTime: Integer; Text: String): Boolean;
@@ -117,14 +117,14 @@ end;
 
 // -----------------------------------------------------------------------------
 
-function TSubtitleApi.MyFileExists(const Name: String): Boolean;
+function TSubtitleApi.MyFileExists(const Name: WideString): Boolean;
 var
   ErrorMode : UINT;
   Attrib    : Integer;
 begin
   ErrorMode := SetErrorMode(SEM_FAILCRITICALERRORS);
   Try
-    Attrib := GetFileAttributes(PChar(Name));
+    Attrib := GetFileAttributesW(PWideChar(Name));
     Result := (Attrib <> -1) And (Attrib And $00000010 = 0);
   Finally
     SetErrorMode(ErrorMode);
@@ -224,9 +224,9 @@ end;
 
 // -----------------------------------------------------------------------------
 
-function TSubtitleApi.LoadSubtitle(FileName: String; FPS: Single; Charset: Byte; var DetectedEncoding: String; FormatIndex: Integer = 0; Append: Boolean = False; ReCalcTimeValues: Boolean = True): Boolean;
+function TSubtitleApi.LoadSubtitle(FileName: WideString; FPS: Single; Charset: Byte; var DetectedEncoding: String; FormatIndex: Integer = 0; Append: Boolean = False; ReCalcTimeValues: Boolean = True): Boolean;
 var
-  LoadSubFile: function(FileName: PChar; FPS: Single; FormatIndex: Integer; Append, ReCalcTimeValues: LongBool; Charset: Byte; DetectedEncoding: PChar): LongBool; stdcall;
+  LoadSubFile: function(FileName: PWideChar; FPS: Single; FormatIndex: Integer; Append, ReCalcTimeValues: LongBool; Charset: Byte; DetectedEncoding: PChar): LongBool; stdcall;
   Buf: array [0..255] of Char;
 begin
   Result := False;
@@ -234,14 +234,14 @@ begin
   Begin
     LoadSubFile := GetProcAddress(FInstance, 'LoadSubtitleFile');
     If @LoadSubFile <> NIL Then
-      Result := LoadSubFile(PChar(FileName), FPS, FormatIndex, Append, ReCalcTimeValues, Charset, Buf); //FormatIndex = 0 is automatic format detection
+      Result := LoadSubFile(PWideChar(FileName), FPS, FormatIndex, Append, ReCalcTimeValues, Charset, Buf); //FormatIndex = 0 is automatic format detection
     DetectedEncoding := StrPas(Buf);
   End;
 end;
 
 // -----------------------------------------------------------------------------
 
-function TSubtitleApi.LoadSubtitle(FileName: String; FPS: Single; Charset: Byte; FormatIndex: Integer = 0; Append: Boolean = False; ReCalcTimeValues: Boolean = True): Boolean;
+function TSubtitleApi.LoadSubtitle(FileName: WideString; FPS: Single; Charset: Byte; FormatIndex: Integer = 0; Append: Boolean = False; ReCalcTimeValues: Boolean = True): Boolean;
 var
   DetectedEncoding: String;
 begin
@@ -280,9 +280,9 @@ end;
 
 // -----------------------------------------------------------------------------
 
-function TSubtitleApi.SaveSubtitle(FileName: String; FormatIndex: Integer; FPS: Single; Charset: Byte = DEFAULT_CHARSET; FromIndex: Integer = -1; ToIndex: Integer = -1): Boolean;
+function TSubtitleApi.SaveSubtitle(FileName: WideString; FormatIndex: Integer; FPS: Single; Charset: Byte = DEFAULT_CHARSET; FromIndex: Integer = -1; ToIndex: Integer = -1): Boolean;
 var
-  SaveSubFile: function(FileName: PChar; FormatIndex: Integer; FPS: Single; Charset: Byte; FromIndex, ToIndex: Integer): LongBool; stdcall;
+  SaveSubFile: function(FileName: PWideChar; FormatIndex: Integer; FPS: Single; Charset: Byte; FromIndex, ToIndex: Integer): LongBool; stdcall;
 begin
   Result := False;
 
@@ -290,7 +290,7 @@ begin
   Begin
     SaveSubFile := GetProcAddress(FInstance, 'SaveSubtitleFile');
     If @SaveSubFile <> NIL Then
-      Result := SaveSubFile(PChar(FileName), FormatIndex, FPS, Charset, FromIndex, ToIndex);
+      Result := SaveSubFile(PWideChar(FileName), FormatIndex, FPS, Charset, FromIndex, ToIndex);
   End;
 end;
 

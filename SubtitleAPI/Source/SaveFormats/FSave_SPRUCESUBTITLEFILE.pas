@@ -4,7 +4,7 @@
 // Copyright: See Subtitle API's copyright information
 // File Description: Spruce Subtitle File subtitle format saving functionality
 
-function SubtitlesToFile_SPRUCESUBTITLEFILE(Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_SPRUCESUBTITLEFILE(Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1): Boolean;
 //const
 //  SPFInfo : Array[0..63] of Byte =
 //  ($80, $80, $80, $00, $00, $00, $00, $00, $00, $00, $00, $00, $FF, $FF, $FF, $00,

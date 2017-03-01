@@ -4,7 +4,7 @@
 // Copyright: See Subtitle API's copyright information
 // File Description: SubRip subtitle format saving functionality
 
-function SubtitlesToFile_SUBRIP(Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_SUBRIP(Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1): Boolean;
 
   function ConvertFromSWTags(Text: String): String;
   begin

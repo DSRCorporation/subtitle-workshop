@@ -310,7 +310,7 @@ end;
 //                               File handling                                //
 // -------------------------------------------------------------------------- //
 
-function LoadSubtitleFile(FileName: PChar; FPS: Single; FormatIndex: Integer; Append, ReCalcTimeValues: LongBool; Charset: Byte; DetectedEncoding: PChar): LongBool; stdcall;
+function LoadSubtitleFile(FileName: PWideChar; FPS: Single; FormatIndex: Integer; Append, ReCalcTimeValues: LongBool; Charset: Byte; DetectedEncoding: PChar): LongBool; stdcall;
 var
   Tmp: String;
 begin
@@ -346,7 +346,7 @@ end;
 
 // -----------------------------------------------------------------------------
 
-function SaveSubtitleFile(FileName: PChar; FormatIndex: Integer; FPS: Single; Charset: Byte; FromIndex, ToIndex: Integer): LongBool; stdcall;
+function SaveSubtitleFile(FileName: PWideChar; FormatIndex: Integer; FPS: Single; Charset: Byte; FromIndex, ToIndex: Integer): LongBool; stdcall;
 begin
   Result := LongBool(SubtitlesToFile(Subtitles, FileName, FPS, Charset, TSubtitleFormats(FormatIndex), FromIndex, ToIndex));
 end;

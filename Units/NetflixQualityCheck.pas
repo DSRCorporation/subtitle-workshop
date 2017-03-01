@@ -17,7 +17,7 @@ procedure NetflixQualityCheckerLoadLanguage(LF: TIniFile);
 implementation
 
 uses Dialogs, formMain, TreeViewHandle, VirtualTrees, Classes, SysUtils,
-  Functions, USubtitlesFunctions, Windows, Math, Forms, StdCtrls, Controls, ShellAPI;
+  Functions, USubtitlesFunctions, Windows, Math, Forms, StdCtrls, Controls, ShellAPI, TntClasses, TntSysUtils, MiscToolsUnit;
 
 type
   TGlyphArray = Array of Integer;
@@ -36,8 +36,8 @@ var
   ReportPrompt: string;
   SavingError: string;
 
-  UntitledSubtitle: string;
-  OpenFileLocation: string;
+  UntitledSubtitle: WideString;
+  OpenFileLocation: WideString;
 
 
 // Language loder
@@ -389,18 +389,10 @@ end;
 
 // Quality check
 
-function GetTempPathStr(): string;
-var
-  TempFolderBuf: array[0..MAX_PATH] of Char;
-begin
-  GetTempPath(MAX_PATH, @TempFolderBuf);
-  Result := StrPas(TempFolderBuf);
-end;
-
-function SaveString(Str: string; FileName: string): Boolean;
+function SaveString(Str: string; FileName: WideString): Boolean;
 begin
   Result := true;
-  with TStringList.Create do
+  with TTntStringList.Create do
   try
     try
       Add(Str);
@@ -414,15 +406,18 @@ begin
 end;
 
 
-function ShowMessageLocateFile(Msg: String; FilePath: string): Integer;
+function ShowMessageLocateFile(Msg: String; FilePath: WideString): Integer;
 var
   DlgMsg: TForm;
+  explorer: WideString;
   i: Integer;
   Button: TButton;
   BtnIndex: Integer;
 begin
   DlgMsg := createMessageDialog(msg, mtInformation, [mbCancel, mbOK]);
 
+  explorer := 'explorer.exe';
+  
   BtnIndex := 0;
   for i := 0 to DlgMsg.componentcount - 1 Do
   begin
@@ -442,25 +437,25 @@ begin
   end;
 
   if DlgMsg.Showmodal = mrOk then
-    ShellExecute(0, nil, 'explorer.exe', PChar(Format('/select,"%s"', [FilePath])), nil, SW_SHOWNORMAL);
+    ShellExecuteW(0, nil, PWideChar(explorer), PWideChar(WideFormat('/select,"%s"', [FilePath])), nil, SW_SHOWNORMAL);
 end;
 
 
 procedure PerformNetflixQualityCheck(ShowSuccessMessages: Boolean);
 var
   Report: string;
-  ReportPath: string;
+  ReportPath: WideString;
 
   Messages: TStringList;
-  CurrentFileName: string;
+  CurrentFileName: WideString;
 
-  FirstReportPath: string;
+  FirstReportPath: WideString;
   DialogResult: Integer;
 begin
   FirstReportPath := '';
   Messages := TStringList.Create;
   if frmMain.OrgFile <> '' then
-    CurrentFileName := ChangeFileExt(ExtractFileName(frmMain.OrgFile), '')
+    CurrentFileName := WideChangeFileExt(WideExtractFileName(frmMain.OrgFile), '')
   else
     CurrentFileName := UntitledSubtitle;
 
@@ -475,7 +470,7 @@ begin
   end
   else
   begin
-    ReportPath := GetTempPathStr() + CurrentFileName + '_NetflixGlyphCheck.csv';
+    ReportPath := GetTemporaryFolder + CurrentFileName + '_NetflixGlyphCheck.csv';
 
     if SaveString(Report, ReportPath) then
     begin
@@ -499,7 +494,7 @@ begin
   end
   else
   begin
-    ReportPath := GetTempPathStr() + CurrentFileName + '_NetflixWhiteSpaceCheck.csv';
+    ReportPath := GetTemporaryFolder + CurrentFileName + '_NetflixWhiteSpaceCheck.csv';
 
     if SaveString(Report, ReportPath) then
     begin

@@ -4,7 +4,7 @@
 // Copyright: See Subtitle API's copyright information
 // File Description: YouTube subtitle format saving functionality
 
-function SubtitlesToFile_YOUTUBE(Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_YOUTUBE(Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1): Boolean;
 var
   tmpSubFile : TSubtitleFile;
   i : Integer;

@@ -6,7 +6,7 @@
 
 // by Bedazzle 2007.01.27 start
 // modified by adenry to use XASAttributes instead of TXASSave form 2013.08.09
-function SubtitlesToFile_ADVANCEDSUBTITLESXAS(Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_ADVANCEDSUBTITLESXAS(Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1): Boolean;
 var
   tmpSubFile : TSubtitleFile;
   tmpStr     : String;

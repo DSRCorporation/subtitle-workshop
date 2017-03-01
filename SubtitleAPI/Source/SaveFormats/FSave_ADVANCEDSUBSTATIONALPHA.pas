@@ -4,7 +4,7 @@
 // Copyright: See Subtitle API's copyright information
 // File Description: Advanced SubStation Alpha subtitle format saving functionality
 
-function SubtitlesToFile_ADVANCEDSUBSTATIONALPHA(Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_ADVANCEDSUBSTATIONALPHA(Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1): Boolean;
 const
   Format = 'Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding';
 

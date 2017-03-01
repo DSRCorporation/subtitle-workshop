@@ -13,75 +13,75 @@ interface
 uses
   Windows, Dialogs, Controls,
   Classes, //added by adenry 2013.04.11 - for TStringList
-  USubtitlesRead, USubtitleFile, USubtitlesFunctions, UTimedTextUtils, UTagFinder, FastStrings, SysUtils;
+  USubtitlesRead, USubtitleFile, USubtitlesFunctions, UTimedTextUtils, UTagFinder, FastStrings, SysUtils, TntSysUtils;
 
 //function RemoveSWTags                            (Text: String; Bold, Italic, Underline: Boolean; Color: Boolean = True): String; //moved to USubtitlesFunctions by adenry 2013.04.11
-function SubtitlesToFile                         (Subtitles: TSubtitles; const FileName: String; const FPS: Single; const Charset: Byte; const SubtitleFormat: TSubtitleFormats; From: Integer = -1; UpTo: Integer = -1): Boolean;
-function SubtitlesToFile_ADOBEENCOREDVD          (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
-function SubtitlesToFile_ADOBEENCOREDVDNTSC      (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean; //added by adenry 2013.04.11
-function SubtitlesToFile_ADOBEENCOREDVDPAL       (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean; //added by adenry 2013.04.11
-function SubtitlesToFile_ADVANCEDSUBSTATIONALPHA (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_ADVANCEDSUBTITLESXAS    (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;    // by Bedazzle 2007.01.26
-function SubtitlesToFile_AQTITLE                 (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
-function SubtitlesToFile_CAPTIONS32              (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_CAPTIONSDAT             (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_CAPTIONSDATTEXT         (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_CAPTIONSINC             (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_CAVENA                  (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_CHEETAH                 (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_CPC600                  (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_DKS                     (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_DVDJUNIOR               (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_DVDSUBTITLESYSTEM       (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_DVDSUBTITLE             (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_FABSUBTITLER            (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
-function SubtitlesToFile_IAUTHOR                 (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_INSCRIBERCG             (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_JACOSUB                 (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_KARAOKELYRICSLRC        (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_KARAOKELYRICSVKT        (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_MACDVDSTUDIOPRO         (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
-function SubtitlesToFile_MACSUB                  (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
-function SubtitlesToFile_MICRODVD                (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
-function SubtitlesToFile_MPLAYER                 (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
-function SubtitlesToFile_MPLAYER2                (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_MPSUB                   (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_OVRSCRIPT               (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_PANIMATOR               (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_PHILIPSSVCD             (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_PHOENIXJAPANIMATION     (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
-function SubtitlesToFile_PINNACLEIMPRESSION      (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
-function SubtitlesToFile_POWERDIVX               (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_POWERPIXEL              (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_QUICKTIMETEXT           (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_REALTIME                (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_SAMI                    (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_SASAMISCRIPT            (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_SBT                     (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_SCANTITLE               (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;  // by Bedazzle 2005.11.18
-function SubtitlesToFile_SOFNI                   (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_SOFTITLERRTF            (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_SONICDVD                (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
-function SubtitlesToFile_SONICSCENARIST          (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
-function SubtitlesToFile_SPRUCEDVDMAESTRO        (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
-function SubtitlesToFile_SPRUCESUBTITLEFILE      (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
-function SubtitlesToFile_SSTPLAYER               (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_SSTSCRIPT               (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_SUBCREATOR1X            (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_SUBRIP                  (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-//function SubtitlesToFile_SUBRIP_W                (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;  // by Bedazzle 2011.09.19
-function SubtitlesToFile_SUBSONIC                (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_SUBSTATIONALPHA         (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_SUBVIEWER1              (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_SUBVIEWER2              (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_TIMEDTEXT(Subtitles: TSubtitles; const FileName: String; const charset: Byte = DEFAULT_CHARSET; const utf8: Boolean = False; const Netflix: Boolean = False; From: Integer = -1; UpTo: Integer = -1): Boolean;//function SubtitlesToFile_TITLEVISIONTXT          (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_TMPLAYER                (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_TURBOTITLER             (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_ULEADDVDWORKSHOP2       (Subtitles: TSubtitles; const FileName: String; const FPS: Single; alternative: boolean; From: Integer = -1; UpTo: Integer = -1) : Boolean;
-function SubtitlesToFile_VIPLAY                  (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
-function SubtitlesToFile_WINCAPSTEXTTIMECODED    (Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;  // by Bedazzle 2007.07.04
-function SubtitlesToFile_YOUTUBE                 (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;  // by Bedazzle 2011.09.14
-function SubtitlesToFile_ZEROG                   (Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile                         (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; const Charset: Byte; const SubtitleFormat: TSubtitleFormats; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_ADOBEENCOREDVD          (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
+function SubtitlesToFile_ADOBEENCOREDVDNTSC      (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean; //added by adenry 2013.04.11
+function SubtitlesToFile_ADOBEENCOREDVDPAL       (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean; //added by adenry 2013.04.11
+function SubtitlesToFile_ADVANCEDSUBSTATIONALPHA (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_ADVANCEDSUBTITLESXAS    (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;    // by Bedazzle 2007.01.26
+function SubtitlesToFile_AQTITLE                 (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
+function SubtitlesToFile_CAPTIONS32              (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_CAPTIONSDAT             (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_CAPTIONSDATTEXT         (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_CAPTIONSINC             (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_CAVENA                  (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_CHEETAH                 (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_CPC600                  (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_DKS                     (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_DVDJUNIOR               (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_DVDSUBTITLESYSTEM       (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_DVDSUBTITLE             (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_FABSUBTITLER            (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
+function SubtitlesToFile_IAUTHOR                 (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_INSCRIBERCG             (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_JACOSUB                 (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_KARAOKELYRICSLRC        (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_KARAOKELYRICSVKT        (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_MACDVDSTUDIOPRO         (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
+function SubtitlesToFile_MACSUB                  (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
+function SubtitlesToFile_MICRODVD                (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
+function SubtitlesToFile_MPLAYER                 (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
+function SubtitlesToFile_MPLAYER2                (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_MPSUB                   (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_OVRSCRIPT               (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_PANIMATOR               (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_PHILIPSSVCD             (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_PHOENIXJAPANIMATION     (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
+function SubtitlesToFile_PINNACLEIMPRESSION      (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
+function SubtitlesToFile_POWERDIVX               (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_POWERPIXEL              (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_QUICKTIMETEXT           (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_REALTIME                (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_SAMI                    (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_SASAMISCRIPT            (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_SBT                     (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_SCANTITLE               (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;  // by Bedazzle 2005.11.18
+function SubtitlesToFile_SOFNI                   (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_SOFTITLERRTF            (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_SONICDVD                (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
+function SubtitlesToFile_SONICSCENARIST          (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
+function SubtitlesToFile_SPRUCEDVDMAESTRO        (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
+function SubtitlesToFile_SPRUCESUBTITLEFILE      (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
+function SubtitlesToFile_SSTPLAYER               (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_SSTSCRIPT               (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_SUBCREATOR1X            (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_SUBRIP                  (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+//function SubtitlesToFile_SUBRIP_W                (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;  // by Bedazzle 2011.09.19
+function SubtitlesToFile_SUBSONIC                (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_SUBSTATIONALPHA         (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_SUBVIEWER1              (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_SUBVIEWER2              (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_TIMEDTEXT               (Subtitles: TSubtitles; const FileName: WideString; const charset: Byte = DEFAULT_CHARSET; const utf8: Boolean = False; const Netflix: Boolean = False; From: Integer = -1; UpTo: Integer = -1): Boolean;//function SubtitlesToFile_TITLEVISIONTXT          (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_TMPLAYER                (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_TURBOTITLER             (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_ULEADDVDWORKSHOP2       (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; alternative: boolean; From: Integer = -1; UpTo: Integer = -1) : Boolean;
+function SubtitlesToFile_VIPLAY                  (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
+function SubtitlesToFile_WINCAPSTEXTTIMECODED    (Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;  // by Bedazzle 2007.07.04
+function SubtitlesToFile_YOUTUBE                 (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;  // by Bedazzle 2011.09.14
+function SubtitlesToFile_ZEROG                   (Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1)                    : Boolean;
 
 type
   TDVDSubtitleAttributes = record
@@ -236,7 +236,7 @@ implementation
 
 // -----------------------------------------------------------------------------
 
-function SubtitlesToFile(Subtitles: TSubtitles; const FileName: String; const FPS: Single; const Charset: Byte; const SubtitleFormat: TSubtitleFormats; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile(Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; const Charset: Byte; const SubtitleFormat: TSubtitleFormats; From: Integer = -1; UpTo: Integer = -1): Boolean;
 begin
   Result := False;
   if not Assigned(Subtitles) then exit;
@@ -244,7 +244,7 @@ begin
   if From = -1 then From := 0;
   if UpTo = -1 then UpTo := Subtitles.Count-1;
 
-  if FileExists(FileName) and FileIsReadOnly(FileName) then
+  if WideFileExists(FileName) and WideFileIsReadOnly(FileName) then
     Exit;
 
   if Subtitles.Count > 0 then

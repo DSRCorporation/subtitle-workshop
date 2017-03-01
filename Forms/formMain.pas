@@ -18,7 +18,8 @@ uses
     ifpii_controls, ifpii_std, ifpii_classes, ifpii_graphics, ifpii_forms, ifpii_stdctrls, ifpii_extctrls, ifpii_menus, ifpidateutils,
     ifpiir_controls, ifpiir_std, ifpiir_classes, ifpiir_graphics, ifpiir_forms, ifpiir_stdctrls, ifpiir_extctrls, ifpiir_menus, ifpidateutilsr,
   StrMan, FastStrings, WinShell, //DirectShow9, //WinShell added by adenry, DirectShow9 removed by adenry
-  WaveformAdapter, formVerticalScaling, formAudioStreams, Types, CommonTypes, NetflixQualityCheck, FFMPEGHelper;
+  WaveformAdapter, formVerticalScaling, formAudioStreams, Types, CommonTypes, NetflixQualityCheck, FFMPEGHelper,
+  TntDialogs;
 
 type
   TfrmMain = class(TForm)
@@ -111,7 +112,7 @@ type
     rdoFinalTime: TRadioButton;
     rdoBoth: TRadioButton;
     MiMenu: TMiMenu;
-    dlgLoadFile: TOpenDialog;
+    dlgLoadFile: TTntOpenDialog;
     tmrVideo: TTimer;
     N17: TMenuItem;
     mnuSubtitleToDisplay: TMenuItem;
@@ -490,7 +491,7 @@ type
     // Waveform controls and menus
     pnlWAVDisplay: TPanel;
     pnlWaveformVideo: TPanel;
-    dlgLoadWaveform: TOpenDialog;
+    dlgLoadWaveform: TTntOpenDialog;
     // Popup menu
     mnuWaveformPopupMenu: TPopupMenu;
     mnuWaveformOpen: TMenuItem;
@@ -1083,11 +1084,11 @@ type
     // -----------------//
     //   Loaded files   //
     // -----------------//
-    OrgFile       : String;
+    OrgFile       : WideString;
     OrgFormat     : Integer;
     //OrgModified   : Boolean; //turned into a property by BDZL
     OrgFileModified   : Boolean; //by BDZL
-    TransFile     : String;
+    TransFile     : WideString;
     TransFormat   : Integer;
     //TransModified : Boolean; //turned into a property by BDZL
     TransFileModified : Boolean; //by BDZL
@@ -1284,7 +1285,7 @@ type
 
     // Waveform/Video preview common resources
     previewSelected             : (psVideo, psWaveform, psNone);
-    previewFilename             : String;
+    previewFilename             : WideString;
     waveformLoaded              : Boolean;
     videoLoaded                 : Boolean;
 
@@ -5460,13 +5461,13 @@ end;
 
 procedure TfrmMain.mnuSaveProjectClick(Sender: TObject);
 var
-  dlgSaveProject : TSaveDialog;
+  dlgSaveProject : TTntSaveDialog;
   Ini            : TIniFile;
   OriginalFile   : String;
   TranslatedFile : String;
   MMovieFile     : String;
 begin
-  dlgSaveProject := TSaveDialog.Create(Application);
+  dlgSaveProject := TTntSaveDialog.Create(Application);
   try
     if OrgFile <> '' then
     begin
@@ -8571,7 +8572,7 @@ var
   Params   : String;
   Video    : String;
   Ext      : String;
-  FileName : String;
+  FileName : WideString;
   Temp     : array[0..MAX_PATH]of Char;
   Format   : Integer;
 begin

@@ -11,7 +11,7 @@ unit USubtitleFile;
 interface
 
 uses
-  SysUtils;
+  SysUtils, TntSysUtils, TntClasses;
 
 const
   MaxListSize = MaxInt Div 16;
@@ -37,9 +37,9 @@ type
   public
     constructor Create(FileName: String = ''; Trim: Boolean = True);
     destructor Destroy; override;
-    procedure LoadFromFile(FileName: String; Trim: Boolean = True);
+    procedure LoadFromFile(FileName: WideString; Trim: Boolean = True);
     // procedure SaveToFile(FileName: String);
-    procedure SaveToFile(FileName: String; LineBreaks: TTextLineBreakStyle = tlbsCRLF);
+    procedure SaveToFile(FileName: WideString; LineBreaks: TTntTextLineBreakStyle = tlbsCRLF);
     function Add(const S: {$IFDEF UTF8}WideString{$ELSE}String{$ENDIF}; Trim: Boolean = True): Integer;
     procedure Insert(Index: Integer; const S: {$IFDEF UTF8}WideString{$ELSE}String{$ENDIF}; Trim: Boolean = True);
     procedure Move(CurIndex, NewIndex: Integer);
@@ -101,6 +101,8 @@ type
 
 implementation
 
+uses TntWideStrings;
+
 // -----------------------------------------------------------------------------
 
 { TSubtitleFile }
@@ -131,55 +133,37 @@ end;
 
 // -----------------------------------------------------------------------------
 
-procedure TSubtitleFile.LoadFromFile(FileName: String; Trim: Boolean = True);
+procedure TSubtitleFile.LoadFromFile(FileName: WideString; Trim: Boolean = True);
 var
-  f : TextFile;
-  s : {$IFDEF UTF8}WideString{$ELSE}String{$ENDIF};
+  strings  : TTntStrings;
+  i: Integer;
 begin
   Clear;
 
-  {$I-}
-  AssignFile(f, FileName);
-  Try
-    Reset(f);
+  strings := TTntStringList.Create;
+  strings.LoadFromFile(FileName);
 
-    If IOResult = 0 Then
-      While Not Eof(f) Do
-      Begin
-        ReadLn(f, s);
-        Add(s, Trim);
-      End;
-  Finally
-    CloseFile(f);
-    {$I+}
-  End;
+  for i := 0 to strings.Count -1 do begin
+    Add(strings[i], Trim);
+  end;
 end;
 
 // -----------------------------------------------------------------------------
 
-procedure TSubtitleFile.SaveToFile(FileName: String; LineBreaks: TTextLineBreakStyle = tlbsCRLF);
+procedure TSubtitleFile.SaveToFile(FileName: WideString; LineBreaks: TTntTextLineBreakStyle = tlbsCRLF);
 var
-  f : TextFile;
+  strings  : TTntStrings;
   i : Integer;
 begin
   If FCount = 0 Then Exit;
 
-  {$I-}
-  AssignFile(f, FileName);
-  Try
-    SetLineBreakStyle(f, LineBreaks);   // LF or CRLF
+  strings := TTntStringList.Create;
 
-    ReWrite(f);
+  for i := 0 to FCount - 1 do begin
+    strings.Add(Get(i));
+  end;
 
-    If IOResult = 0 Then
-      For i := 0 To FCount-1 Do
-        WriteLn(f, Get(i));
-
-    Flush(f);
-  Finally
-    CloseFile(f);
-    {$I+}
-  End;
+  strings.SaveToFile(FileName);
 end;
 
 // -----------------------------------------------------------------------------

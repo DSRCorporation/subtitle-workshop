@@ -9579,7 +9579,7 @@ object frmMain: TfrmMain
     Left = 168
     Top = 160
   end
-  object dlgLoadFile: TOpenDialog
+  object dlgLoadFile: TTntOpenDialog
     Left = 32
     Top = 24
   end
@@ -14088,7 +14088,7 @@ object frmMain: TfrmMain
       end
     end
   end
-  object dlgLoadWaveform: TOpenDialog
+  object dlgLoadWaveform: TTntOpenDialog
     DefaultExt = 'wav'
     Filter = 
       'WAV files|*.wav|Video files|*.AVI;*.AVS;*.DAT;*.FLC;*.FLI;*.MKV;' +
