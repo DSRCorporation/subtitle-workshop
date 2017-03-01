@@ -115,7 +115,7 @@ AutoIncBuild=1
 MajorVer=1
 MinorVer=14
 Release=0
-Build=337
+Build=339
 Debug=0
 PreRelease=0
 Special=0
@@ -126,7 +126,7 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=URUWorks, Bedazzle, Andrey Spiridonov
 FileDescription=
-FileVersion=1.14.0.337
+FileVersion=1.14.0.339
 InternalName=
 LegalCopyright=
 LegalTrademarks=
