@@ -4,7 +4,7 @@
 // Copyright: See Subtitle API's copyright information
 // File Description: Wincaps text timecoded subtitle format saving functionality
 
-function SubtitlesToFile_WincapsTextTimecoded(Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_WincapsTextTimecoded(Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1): Boolean;
 var
   tmpSubFile : TSubtitleFile;
   Indice     : String;

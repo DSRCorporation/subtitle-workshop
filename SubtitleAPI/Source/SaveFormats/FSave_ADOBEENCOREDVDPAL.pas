@@ -5,7 +5,7 @@
 // File Description: Adobe Encore DVD PAL subtitle format saving functionality
 
 //added by adenry
-function SubtitlesToFile_ADOBEENCOREDVDPAL(Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
+function SubtitlesToFile_ADOBEENCOREDVDPAL(Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1) : Boolean;
 var
   tmpSubFile : TSubtitleFile;
   i, n       : Integer;

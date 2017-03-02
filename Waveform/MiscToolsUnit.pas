@@ -23,7 +23,7 @@ unit MiscToolsUnit;
 
 interface
 
-uses Classes, Graphics, Types, Richedit, TntComCtrls, TntClasses, StdCtrls, TntStdCtrls;
+uses Classes, Graphics, Types, Richedit, TntComCtrls, TntClasses, StdCtrls, TntStdCtrls, Windows;
 
 type
   TFileVersion = class
@@ -126,9 +126,12 @@ type
   procedure SetCheckedState(const checkBox : TCheckBox; const check : Boolean); overload;
   procedure SetCheckedState(const checkBox : TTntCheckBox; const check : Boolean); overload;
 
-  function GetTempDirectory: String;
-  function ExecuteCommand(CommandLine: string; Work: string = 'C:\'): string;
-  function ExecuteCommandWithMessage(CommandLine: string; Work: string; Msg: String): Boolean;
+
+type
+  TCommandHandle = function(ProcessInfo: TProcessInformation; StdOutPipeRead: THandle): WideString;
+
+  function ExecuteCommand(CommandLine: WideString; Work: WideString; CommandHandle: TCommandHandle): WideString; overload;
+  function ExecuteCommand(CommandLine: WideString; Work: WideString = 'C:\'): WideString; overload;
 
 type
   MyTTntStringList = class(TTntStringList)
@@ -138,8 +141,8 @@ type
 
 implementation
 
-uses SysUtils, Windows, Registry, ShlObj, StrUtils, TntSysUtils, TntWindows, VFW, TntSystem,
-  formExecutionProgress, Forms, Messages, TlHelp32, PsAPI;
+uses SysUtils, Registry, ShlObj, StrUtils, TntSysUtils, TntWindows, VFW, TntSystem,
+  Forms, Messages, TlHelp32, PsAPI;
 
 // -----------------------------------------------------------------------------
 
@@ -1511,27 +1514,24 @@ end;
 
 // -----------------------------------------------------------------------------
 
-function GetTempDirectory: String;
+function GetTempDirectory: WideString;
 var
- tempFolder: array[0..MAX_PATH] of Char;
+  TempFolderBuf: array[0..MAX_PATH] of WideChar;
 begin
-  GetTempPath(MAX_PATH, @tempFolder);
-  result := StrPas(tempFolder);
+  GetTempPathW(MAX_PATH, @TempFolderBuf);
+  Result := TempFolderBuf;
 end;
 
 // -----------------------------------------------------------------------------
 
-
-function ExecuteCommand(CommandLine: string; Work: string = 'C:\'): string;
+function ExecuteCommand(CommandLine: WideString; Work: WideString; CommandHandle: TCommandHandle): WideString;
 var
   SecAtrrs: TSecurityAttributes;
-  StartupInfo: TStartupInfo;
+  StartupInfo: TStartupInfoW;
   ProcessInfo: TProcessInformation;
   StdOutPipeRead, StdOutPipeWrite: THandle;
-  WasOK: Boolean;
-  pCommandLine: array[0..255] of AnsiChar;
-  BytesRead: Cardinal;
-  WorkDir: string;
+  WorkDir: WideString;
+  Command: WideString;
   Handle: Boolean;
 begin
   Result := '';
@@ -1553,21 +1553,14 @@ begin
       hStdError := StdOutPipeWrite;
     end;
     WorkDir := Work;
-    Handle := CreateProcess(nil, PChar('cmd.exe /C ' + CommandLine),
+    Command := 'cmd.exe /C ' + CommandLine;
+    Handle := CreateProcessW(nil, PWideChar(Command),
                             nil, nil, True, 0, nil,
-                            PChar(WorkDir), StartupInfo, ProcessInfo);
+                            PWideChar(WorkDir), StartupInfo, ProcessInfo);
     CloseHandle(StdOutPipeWrite);
     if Handle then
       try
-        repeat
-          WasOK := windows.ReadFile(StdOutPipeRead, pCommandLine, 255, BytesRead, nil);
-          if BytesRead > 0 then
-          begin
-            pCommandLine[BytesRead] := #0;
-            Result := Result + pCommandLine;
-          end;
-        until not WasOK or (BytesRead = 0);
-        WaitForSingleObject(ProcessInfo.hProcess, INFINITE);
+        CommandHandle(ProcessInfo, StdOutPipeRead);
       finally
         CloseHandle(ProcessInfo.hThread);
         CloseHandle(ProcessInfo.hProcess);
@@ -1577,57 +1570,28 @@ begin
   end;
 end;
 
-
-// -----------------------------------------------------------------------------
-
-
-function ExecuteCommandWithMessage(CommandLine: string; Work: string; Msg: String): Boolean;
+function DefaultHandleCommand(ProcessInfo: TProcessInformation; StdOutPipeRead: THandle): WideString;
 var
-  SecAtrrs: TSecurityAttributes;
-  StartupInfo: TStartupInfo;
-  ProcessInfo: TProcessInformation;
-  StdOutPipeRead, StdOutPipeWrite: THandle;
+  WasOK: Boolean;
   pCommandLine: array[0..255] of AnsiChar;
   BytesRead: Cardinal;
-  WorkDir: string;
-  Handle: Boolean;
-  FrmProgress: TfrmExecutionProgress;
-  
 begin
-  Result := False;
-  with SecAtrrs do begin
-    nLength := SizeOf(SecAtrrs);
-    bInheritHandle := True;
-    lpSecurityDescriptor := nil;
-  end;
-  CreatePipe(StdOutPipeRead, StdOutPipeWrite, @SecAtrrs, 0);
-  try
-    with StartupInfo do
-    begin
-      FillChar(StartupInfo, SizeOf(StartupInfo), 0);
-      cb := SizeOf(StartupInfo);
-      dwFlags := STARTF_USESHOWWINDOW or STARTF_USESTDHANDLES;
-      wShowWindow := SW_HIDE;
-      hStdInput := GetStdHandle(STD_INPUT_HANDLE); // don't redirect stdin
-      hStdOutput := StdOutPipeWrite;
-      hStdError := StdOutPipeWrite;
+  repeat
+    WasOK := Windows.ReadFile(StdOutPipeRead, pCommandLine, 255, BytesRead, nil);
+    if BytesRead > 0 then begin
+      pCommandLine[BytesRead] := #0;
+      Result := Result + pCommandLine;
     end;
-    WorkDir := Work;
-    Handle := CreateProcess(nil, PChar('cmd.exe /C ' + CommandLine + ' 2> nul'),
-                            nil, nil, True, 0, nil,
-                            PChar(WorkDir), StartupInfo, ProcessInfo);
-    CloseHandle(StdOutPipeWrite);
-    if Handle then
-      try
-        FrmProgress := TfrmExecutionProgress.Create(nil, Msg, ProcessInfo.hProcess);
-        FrmProgress.ShowModal;
-      finally
-        CloseHandle(ProcessInfo.hThread);
-        CloseHandle(ProcessInfo.hProcess);
-      end;
-  finally
-    CloseHandle(StdOutPipeRead);
-  end;
+  until not WasOK or (BytesRead = 0);
+  WaitForSingleObject(ProcessInfo.hProcess, INFINITE);
+end;
+
+function ExecuteCommand(CommandLine: WideString; Work: WideString = 'C:\'): WideString;
+var
+  CommandHandle: TCommandHandle;
+begin
+  CommandHandle := DefaultHandleCommand;
+  Result := ExecuteCommand(CommandLine, Work, CommandHandle);
 end;
 
 
@@ -1635,3 +1599,4 @@ end;
 
 end.
 // -----------------------------------------------------------------------------
+

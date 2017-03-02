@@ -10,7 +10,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, StdCtrls, Dialogs, ImgList, ComCtrls, IniFiles,
-  FastStrings;
+  FastStrings, TntDialogs;
 
 // -----------------------------------------------------------------------------
 
@@ -19,7 +19,7 @@ type
     chkAllFormats: TCheckBox;
     lstFormats: TListView;
     lblDblClick: TLabel;
-    dlgSave: TSaveDialog;
+    dlgSave: TTntSaveDialog;
     btnCustomFormat: TButton;
     btnCancel: TButton;
     ImageList: TImageList;
@@ -202,7 +202,7 @@ var
   FormatName : String;
   AllExts    : String;
   Ext        : String;
-  SubFile    : String;
+  SubFile    : WideString;
   SubFormat  : Integer;
   // Custom formats stuff
   // FormatName

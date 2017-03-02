@@ -5,7 +5,7 @@
 // File Description: Cavena subtitle format saving functionality
 
 // by Bedazzle 2007.05.13 start
-function SubtitlesToFile_CAVENA(Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_CAVENA(Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1): Boolean;
 var
   tmpSubFile : TSubtitleFile;
   i, Count   : Integer;

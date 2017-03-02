@@ -4,7 +4,7 @@
 // Copyright: See Subtitle API's copyright information
 // File Description: Ulead DVD Workshop 2.0 subtitle format saving functionality
 
-function SubtitlesToFile_ULEADDVDWORKSHOP2(Subtitles: TSubtitles; const FileName: String; const FPS: Single; alternative: boolean; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_ULEADDVDWORKSHOP2(Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; alternative: boolean; From: Integer = -1; UpTo: Integer = -1): Boolean;
 var
   tmpSubFile         : TSubtitleFile;
   i, count           : Integer;

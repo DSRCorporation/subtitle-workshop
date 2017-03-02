@@ -4,7 +4,7 @@
 // Copyright: See Subtitle API's copyright information
 // File Description: FAB Subtitler subtitle format saving functionality
 
-function SubtitlesToFile_FABSUBTITLER(Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_FABSUBTITLER(Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1): Boolean;
 var
   tmpSubFile  : TSubtitleFile;
   InitialTime : String;

@@ -4,7 +4,7 @@
 // Copyright: See Subtitle API's copyright information
 // File Description: MicroDVD subtitle format saving functionality
 
-function SubtitlesToFile_MICRODVD(Subtitles: TSubtitles; const FileName: String; const FPS: Single; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_MICRODVD(Subtitles: TSubtitles; const FileName: WideString; const FPS: Single; From: Integer = -1; UpTo: Integer = -1): Boolean;
 
   function ConvertFromSWTags(Text: String): String;
 

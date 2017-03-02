@@ -243,7 +243,7 @@ const
 
 //------------------------------------------------------------------------------
 
-function LoadSubtitle(var Subtitles: TSubtitles; const FileName: String; FPS: Single; Charset: Byte; var DetectedEncoding: String; SubtitleFormat: TSubtitleFormats = sfInvalid; Clear: Boolean = True; ReCalcTimeValues: Boolean = False): Boolean;
+function LoadSubtitle(var Subtitles: TSubtitles; const FileName: WideString; FPS: Single; Charset: Byte; var DetectedEncoding: String; SubtitleFormat: TSubtitleFormats = sfInvalid; Clear: Boolean = True; ReCalcTimeValues: Boolean = False): Boolean;
 procedure CloseSubtitle(var Subtitles: TSubtitles);
 function DisplaySubtitle(var Subtitles: TSubtitles; const Time: Integer): String;
 
@@ -344,7 +344,7 @@ uses UCheckFormat, LibXMLParser, Contnrs, UTtmlParser;
 
 //------------------------------------------------------------------------------
 
-function LoadSubtitle(var Subtitles: TSubtitles; const FileName: String; FPS: Single; Charset: Byte; var DetectedEncoding: String; SubtitleFormat: TSubtitleFormats = sfInvalid; Clear: Boolean = True; ReCalcTimeValues: Boolean = False): Boolean;
+function LoadSubtitle(var Subtitles: TSubtitles; const FileName: WideString; FPS: Single; Charset: Byte; var DetectedEncoding: String; SubtitleFormat: TSubtitleFormats = sfInvalid; Clear: Boolean = True; ReCalcTimeValues: Boolean = False): Boolean;
 var
   tmpSubFile: TSubtitleFile;
 begin

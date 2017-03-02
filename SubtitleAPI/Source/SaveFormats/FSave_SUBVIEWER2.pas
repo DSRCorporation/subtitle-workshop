@@ -4,7 +4,7 @@
 // Copyright: See Subtitle API's copyright information
 // File Description: SubViewer 2.0 subtitle format saving functionality
 
-function SubtitlesToFile_SUBVIEWER2(Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_SUBVIEWER2(Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1): Boolean;
   function GetSubViewer2FontStr(FontName: String; FontSize: Integer; Bold, Italic, Underline, StrikeOut: Boolean; Color: Integer): String;
   var
     StCol, StStyle, StSize, StFont : String;

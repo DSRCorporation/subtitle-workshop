@@ -4,7 +4,7 @@
 // Copyright: See Subtitle API's copyright information
 // File Description: Philips SVCD Designer subtitle format saving functionality
 
-function SubtitlesToFile_PHILIPSSVCD(Subtitles: TSubtitles; const FileName: String; From: Integer = -1; UpTo: Integer = -1): Boolean;
+function SubtitlesToFile_PHILIPSSVCD(Subtitles: TSubtitles; const FileName: WideString; From: Integer = -1; UpTo: Integer = -1): Boolean;
 var
   tmpSubFile : TSubtitleFile;
   i          : Integer;

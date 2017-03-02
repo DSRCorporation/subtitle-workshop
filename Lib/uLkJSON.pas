@@ -167,6 +167,8 @@ interface
 
 uses windows,
   SysUtils,
+  TntSysUtils,
+  TntClasses,
 {$IFNDEF KOL}
   classes,
 {$ELSE}
@@ -473,8 +475,8 @@ type
   TlkJSONstreamed = class(TlkJSON)
     class function LoadFromStream(src: TStream): TlkJSONbase;
     class procedure SaveToStream(obj: TlkJSONbase; dst: TStream);
-    class function LoadFromFile(srcname: string): TlkJSONbase;
-    class procedure SaveToFile(obj: TlkJSONbase; dstname: string);
+    class function LoadFromFile(srcname: WideString): TlkJSONbase;
+    class procedure SaveToFile(obj: TlkJSONbase; dstname: WideString);
   end;
 {$ENDIF}
 
@@ -2330,15 +2332,15 @@ end;
 { TlkJSONstreamed }
 {$IFNDEF KOL}
 
-class function TlkJSONstreamed.LoadFromFile(srcname: string):
+class function TlkJSONstreamed.LoadFromFile(srcname: WideString):
   TlkJSONbase;
 var
-  fs: TFileStream;
+  fs: TTntFileStream;
 begin
   result := nil;
-  if not FileExists(srcname) then exit;
+  if not WideFileExists(srcname) then exit;
   try
-    fs := TFileStream.Create(srcname, fmOpenRead);
+    fs := TTntFileStream.Create(srcname, fmOpenRead);
     result := LoadFromStream(fs);
   finally
     if Assigned(fs) then FreeAndNil(fs);
@@ -2360,13 +2362,13 @@ begin
 end;
 
 class procedure TlkJSONstreamed.SaveToFile(obj: TlkJSONbase;
-  dstname: string);
+  dstname: WideString);
 var
-  fs: TFileStream;
+  fs: TTntFileStream;
 begin
   if not assigned(obj) then exit;
   try
-    fs := TFileStream.Create(dstname, fmCreate);
+    fs := TTntFileStream.Create(dstname, fmCreate);
     SaveToStream(obj, fs);
   finally
     if Assigned(fs) then FreeAndNil(fs);

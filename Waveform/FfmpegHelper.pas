@@ -32,18 +32,18 @@ type
     FSampleRate   : Integer;
     
     function BuildAmergeMapArgs(streams: array of Integer): String;
-    function BuildTempPath(filename: String; extension: String): String;
-    procedure Execute(command: String; args: array of const);
-    procedure ExecuteWithMessage(command: String; args: array of const; Msg: String);
+    function BuildTempPath(filename: WideString; extension: String): WideString;
+    procedure Execute(command: WideString; args: array of const);
+    procedure ExecuteWithForm(command: WideString; args: array of const);
     function JsonToAudioStream(json: TlkJSONobject): TAudioStream;
   public
     constructor Create(toolPath: String; sampleRate: Integer);
 
     procedure SetSettings(toolPath: String; sampleRate: Integer);
     
-    function ExtractWAVFromVideo(filename: String; streams: array of Integer): String;
-    function DetectAudioStreams(filename: String): TAudioStreams;
-    function IsWAVFile(filename: String): Boolean;
+    function ExtractWAVFromVideo(filename: WideString; streams: array of Integer): String;
+    function DetectAudioStreams(filename: WideString): TAudioStreams;
+    function IsWAVFile(filename: WideString): Boolean;
 
     property ToolDetected: Boolean read FToolDetected;
   end;
@@ -52,7 +52,9 @@ implementation
 
 uses
   TntSysUtils,
-  MiscToolsUnit;
+  MiscToolsUnit,
+  Windows,
+  formExecutionProgress;
 
 constructor TFFMPEGHelper.Create(toolPath: String; sampleRate: Integer);
 begin
@@ -85,19 +87,29 @@ begin
     Result := Result + Format('[0:%d]', [streams[i]]);
 end;
 
-function TFFMPEGHelper.BuildTempPath(filename: String; extension: String): String;
+function TFFMPEGHelper.BuildTempPath(filename: WideString; extension: String): WideString;
 begin
-  Result := WideChangeFileExt(GetTempDirectory + ExtractFileName(filename), extension);
+  Result := WideChangeFileExt(GetTemporaryFolder + WideExtractFileName(filename), extension);
 end;
 
-procedure TFFMPEGHelper.Execute(command: String; args: array of const);
+procedure TFFMPEGHelper.Execute(command: WideString; args: array of const);
 begin
- ExecuteCommand(Format(command, args), FToolPath);
+ ExecuteCommand(WideFormat(command, args), FToolPath);
 end;
 
-procedure TFFMPEGHelper.ExecuteWithMessage(command: String; args: array of const; Msg: String);
+function ShowExecutionForm(ProcessInfo: TProcessInformation; StdOutPipeRead: THandle): WideString;
+var
+  FrmProgress: TfrmExecutionProgress;
+const
+  Msg = 'Extracting audio. Please wait...';
 begin
- ExecuteCommandWithMessage(Format(command, args), FToolPath, Msg);
+  FrmProgress := TfrmExecutionProgress.Create(nil, Msg, ProcessInfo.hProcess);
+  FrmProgress.ShowModal;
+end;
+
+procedure TFFMPEGHelper.ExecuteWithForm(command: WideString; args: array of const);
+begin
+ ExecuteCommand(WideFormat(command, args), FToolPath, ShowExecutionForm);
 end;
 
 function TFFMPEGHelper.JsonToAudioStream(json: TlkJSONobject): TAudioStream;
@@ -118,38 +130,36 @@ begin
     Result.BitRate := TlkJSONnumber(json.Field['bit_rate']).Value;
 end;
 
-function TFFMPEGHelper.ExtractWAVFromVideo(filename: String; streams: array of Integer): String;
+function TFFMPEGHelper.ExtractWAVFromVideo(filename: WideString; streams: array of Integer): String;
 var
-  tmpWavPath    : String;
-const
-  Msg = 'Extracting audio. Please wait...';
+  tmpWavPath    : WideString;
 begin
   tmpWavPath := BuildTempPath(filename, '.wav');
 
   if (Length(streams) = 0) then
-    ExecuteWithMessage('ffmpeg.exe -hide_banner -y -vn -i "%s" -ar %d -f wav "%s"',
-            [filename, FSampleRate, tmpWavPath], Msg)
+    ExecuteWithForm('ffmpeg.exe -hide_banner -y -vn -i "%s" -ar %d -f wav "%s"',
+            [filename, FSampleRate, tmpWavPath])
   else
   if (Length(streams) = 1) then
-    ExecuteWithMessage('ffmpeg.exe -hide_banner -y -vn -i "%s" -map 0:%d -c:a:0 pcm_s16le -ar %d -f wav "%s"',
-            [filename, streams[0], FSampleRate, tmpWavPath], Msg)
+    ExecuteWithForm('ffmpeg.exe -hide_banner -y -vn -i "%s" -map 0:%d -c:a:0 pcm_s16le -ar %d -f wav "%s"',
+            [filename, streams[0], FSampleRate, tmpWavPath])
   else
-    ExecuteWithMessage('ffmpeg.exe -hide_banner -y -vn -i "%s" -filter_complex "%samerge=inputs=%d[aout]" -map "[aout]" -ar %d -f wav "%s"',
-            [filename, BuildAmergeMapArgs(streams), Length(streams), FSampleRate, tmpWavPath], Msg);
+    ExecuteWithForm('ffmpeg.exe -hide_banner -y -vn -i "%s" -filter_complex "%samerge=inputs=%d[aout]" -map "[aout]" -ar %d -f wav "%s"',
+            [filename, BuildAmergeMapArgs(streams), Length(streams), FSampleRate, tmpWavPath]);
 
-    Result := tmpWavPath
+  Result := tmpWavPath
 end;
 
-function TFFMPEGHelper.DetectAudioStreams(filename: String): TAudioStreams;
+function TFFMPEGHelper.DetectAudioStreams(filename: WideString): TAudioStreams;
 var
   obj     : TlkJSONobject;
   streams : TlkJSONlist;
-  tmpJsonPath: String;
+  tmpJsonPath: WideString;
   i: Integer;
 begin
   tmpJsonPath := BuildTempPath(filename, '.json');
 
-  Execute('ffprobe -v error -select_streams a -show_entries stream=index,codec_name,channels,sample_rate,bit_rate,duration -of json "%s" > "%s"',
+  Execute('ffprobe -select_streams a -show_entries stream=index,codec_name,channels,sample_rate,bit_rate,duration -of json "%s" > "%s"',
           [filename, tmpJsonPath]);
 
   obj     := TlkJSONStreamed.LoadFromFile(tmpJsonPath) as TlkJsonObject;
@@ -165,9 +175,9 @@ begin
   SysUtils.DeleteFile(tmpJsonPath);
 end;
 
-function TFFMPEGHelper.IsWAVFile(filename: String): Boolean;
+function TFFMPEGHelper.IsWAVFile(filename: WideString): Boolean;
 begin
-  Result := UpperCase(ExtractFileExt(filename)) = '.WAV';
+  Result := UpperCase(WideExtractFileExt(filename)) = '.WAV';
 end;
 
 end.
