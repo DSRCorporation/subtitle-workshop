@@ -14376,7 +14376,8 @@ begin
     then
       RefreshTimes;
 
-  WaveformAdapter.SelectNode(Node, True);
+  if WaveformAdapter.Displayer.IsPeakDataLoaded then
+    WaveformAdapter.SelectNode(Node, True);
 
   UpdateWaveformEnabled;
 end;

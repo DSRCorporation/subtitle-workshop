@@ -76,7 +76,7 @@ implementation
 
 uses
   General, Functions, Undo, USubtitlesFunctions, VideoPreview, //USubtitleAPI, //VideoPreview added by adenry //USubtitleAPI removed by adenry
-  formMain;
+  formMain, WaveformAdapter;
 
 // -----------------------------------------------------------------------------
 
@@ -477,7 +477,10 @@ begin
         frmMain.OrgModified := True;
       UpdateSubSubtitleTextAfterNodeChange(Node); //added by adenry
 
-      frmMain.WaveformAdapter.UpdateSubtitle(Node);
+      with frmMain.WaveformAdapter do begin
+        if Displayer.IsPeakDataLoaded then
+          UpdateSubtitle(Node);
+      end;
     end;
   end;
 end;

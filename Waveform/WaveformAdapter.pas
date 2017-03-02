@@ -179,6 +179,7 @@ procedure TWaveformAdapter.Close;
 begin
   ClearSubtitles;
   with WAVDisplayer do begin
+    ClearSelection;
     Close;
     Invalidate;
     VerticalScaling := 100;
