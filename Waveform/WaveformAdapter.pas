@@ -43,6 +43,7 @@ type
     procedure UpdateSceneChanges;
   protected
     procedure OnCustomDrawRange(Sender: TObject; ACanvas: TCanvas; Range: TRange; Rect: TRect);
+    procedure OnCustomDrawSelection(Sender: TObject; ACanvas: TCanvas; Range: TRange; Rect: TRect);
     function GetSelectedNode: PVirtualNode;
     procedure SetCharset(charset: Byte);
     procedure SetSafetyOffset(offset: Integer);
@@ -151,6 +152,7 @@ begin
   WAVDisplayer := TWAVDisplayer.Create(nil);
 
   WAVDisplayer.OnCustomDrawRange := Self.OnCustomDrawRange;
+  WAVDisplayer.OnCustomDrawSelection := Self.OnCustomDrawSelection;
 
   with WAVDisplayer do begin
     Left    := 0;
@@ -490,6 +492,28 @@ begin
     begin
 		  CanvasDrawText(ACanvas, Rect, TSubtitleRange(Range).Text, False, False);
     end;
+
+    if (FShowSubtitleDuration) then
+    begin
+		  CanvasDrawText(ACanvas, Rect, TimeToString(TRange(Range).StopTime - TRange(Range).StartTime), False, True);
+    end;
+
+  end;
+end;
+
+procedure TWaveformAdapter.OnCustomDrawSelection(Sender: TObject; ACanvas: TCanvas; Range : TRange; Rect : TRect);
+const MINIMAL_SPACE : Integer = 25;
+      TEXT_MARGINS : Integer = 5;
+var WAVZoneHeight : Integer;
+    AlignBottom : Boolean;
+begin
+  InflateRect(Rect, -TEXT_MARGINS, -TEXT_MARGINS);
+  
+  if (Rect.Right - Rect.Left) > MINIMAL_SPACE then begin
+    ACanvas.Font.Charset := FCharset;
+
+	  WAVZoneHeight := WAVDisplayer.Height - WAVDisplayer.RulerHeight;
+	  ACanvas.Font.Color := ACanvas.Pen.Color;
 
     if (FShowSubtitleDuration) then
     begin

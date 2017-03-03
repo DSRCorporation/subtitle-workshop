@@ -200,6 +200,7 @@ type
     FOnKaraokeChanged : TKaraokeTimeChangedEvent;
     FOnSelectedKaraokeRange : TSelectedKaraokeRangeEvent;
     FOnCustomDrawRange: TCustomDrawRange;
+    FOnCustomDrawSelection: TCustomDrawRange;
     FOnRangeStartDblClick : TRangeTimeStampDblClickEvent;
     FOnRangeStopDblClick : TRangeTimeStampDblClickEvent;
 
@@ -384,6 +385,7 @@ type
     property OnKaraokeChanged : TKaraokeTimeChangedEvent read FOnKaraokeChanged write FOnKaraokeChanged;
     property OnSelectedKaraokeRange : TSelectedKaraokeRangeEvent read FOnSelectedKaraokeRange write FOnSelectedKaraokeRange;
     property OnCustomDrawRange : TCustomDrawRange read FOnCustomDrawRange write FOnCustomDrawRange;
+    property OnCustomDrawSelection : TCustomDrawRange read FOnCustomDrawSelection write FOnCustomDrawSelection;
     property OnRangeStartDblClick : TRangeTimeStampDblClickEvent read FOnRangeStartDblClick write FOnRangeStartDblClick;
     property OnRangeStopDblClick : TRangeTimeStampDblClickEvent read FOnRangeStopDblClick write FOnRangeStopDblClick;
 
@@ -1606,7 +1608,7 @@ end;
 procedure TWAVDisplayer.PaintSelection(ACanvas : TCanvas);
 var x1, x2 : Integer;
     CanvasHeight : Integer;
-    SelRect : TRect;
+    SelRect, CustomDrawRect : TRect;
 begin
   CanvasHeight := GetWavCanvasHeight;
 
@@ -1642,6 +1644,18 @@ begin
         SelRect.Bottom := SelRect.Bottom - FScrollBar.Height;
         if FDisplayRuler then
           SelRect.Bottom := SelRect.Bottom - FDisplayRulerHeight;
+
+        // Custom draw
+        if Assigned(FOnCustomDrawSelection) and ((x2 - x1) > 10)
+          and (not Assigned(SelectedRange)) then
+        begin
+          CustomDrawRect.Top := 0 + CanvasHeight div 10;
+          CustomDrawRect.Left := x1;
+          CustomDrawRect.Right := x2;
+          CustomDrawRect.Bottom := CanvasHeight - CanvasHeight div 10;
+          FOnCustomDrawSelection(Self, ACanvas, FSelection, CustomDrawRect);
+        end;
+
         InvertRect(ACanvas.Handle, SelRect);
       end;
     end;
