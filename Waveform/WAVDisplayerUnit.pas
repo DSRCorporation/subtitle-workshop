@@ -3953,7 +3953,9 @@ begin
   if Assigned(FRenderer) then
   begin
     FRenderer.Stop;
-    FRenderer := nil;
+    if FRenderer.ClassType.InheritsFrom(TDShowRenderer) then
+      TDShowRenderer(FRenderer).Close;
+    FreeAndNil(FRenderer);
   end;
 
   FPeakDataLoaded := False;

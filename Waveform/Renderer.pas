@@ -582,6 +582,8 @@ begin
   Result := False;
   if (filename = '') or (not WideFileExists(filename)) then
     Exit;
+
+  CoInitializeEx(nil, COINIT_MULTITHREADED);
   FLastResult := CoCreateInstance(TGUID(CLSID_FilterGraph), nil, CLSCTX_INPROC,
     TGUID(IID_IGraphBuilder), FGraphBuilder);
   GetLastErrorString;
@@ -649,6 +651,9 @@ end;
 function TDShowRenderer.PlayRange(Start, Stop : Cardinal; Loop : Boolean) : Boolean;
 var StopDummy : Int64;
 begin
+  if not Assigned(FMediaControl) then
+    Exit;
+    
   // First stop the graph in case it's running
   FMediaControl.Stop;
   if Assigned(FWaitThread) then
@@ -682,6 +687,9 @@ end;
 procedure TDShowRenderer.Pause;
 var FilterState : TFilterState;
 begin
+  if not Assigned(FMediaControl) then
+    Exit;
+
   FilterState := State_Stopped;
   FMediaControl.GetState(1000, FilterState);
   if FilterState = State_Running then
@@ -695,6 +703,9 @@ end;
 procedure TDShowRenderer.Resume;
 var FilterState : TFilterState;
 begin
+  if not Assigned(FMediaControl) then
+    Exit;
+    
   FilterState := State_Stopped; 
   FMediaControl.GetState(1000,FilterState);
   if FilterState = State_Paused then
@@ -755,6 +766,11 @@ end;
 function TDShowRenderer.GetPosition : Cardinal;
 var CurrentTime : Int64;
 begin
+  if not Assigned(FMediaSeeking) then begin
+    Result := 0;
+    Exit;
+  end;
+
   FMediaSeeking.GetCurrentPosition(CurrentTime);
   if (CurrentTime < 0) then
   begin
@@ -768,6 +784,11 @@ end;
 function TDShowRenderer.GetDuration : Cardinal;
 var Duration : Int64;
 begin
+  if not Assigned(FMediaSeeking) then begin
+    Result := 0;
+    Exit;
+  end;
+  
   FMediaSeeking.GetDuration(Duration);
   Result := Duration div 10000;
 end;
@@ -1065,7 +1086,7 @@ begin
     CoFreeLibrary(FHCustomVSFilterInst);
     FHCustomVSFilterInst := 0;
   end;
-
+  CoUninitialize;
 end;
 
 //------------------------------------------------------------------------------

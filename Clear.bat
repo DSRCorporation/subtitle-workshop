@@ -4,6 +4,7 @@ del Units\*.~*
 del Lib\*.~*
 del Lib\DirectX\*.~*
 del Forms\*.~*
+del Waveform\*.~*
 
 del SWComponents\*.~*
 del SWComponents\Sources\*.~*

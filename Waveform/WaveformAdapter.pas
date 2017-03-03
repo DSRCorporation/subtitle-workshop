@@ -140,7 +140,7 @@ destructor TWaveformAdapter.Destroy;
 begin
   FSourceTree := nil;
 
-  FreeAndNil(WAVRenderer);
+  Close;
   FreeAndNil(WAVDisplayer);
 
   inherited;
@@ -178,14 +178,13 @@ end;
 procedure TWaveformAdapter.Close;
 begin
   ClearSubtitles;
+
   with WAVDisplayer do begin
     ClearSelection;
     Close;
     Invalidate;
     VerticalScaling := 100;
   end;
-
-  if Assigned(WAVRenderer) and WAVRenderer.IsOpen then WAVRenderer.Close;
 
   if FWAVFilename <> '' then begin
     if FWAVTemp then SysUtils.DeleteFile(FWAVFilename);
