@@ -358,7 +358,9 @@ type
 
     procedure ClearPeakData;
     function IsPeakDataLoaded : Boolean;
-    procedure ShowVO(Show : Boolean);      
+    procedure ShowVO(Show : Boolean);
+
+    function IsNotPaused : Boolean; 
 
     property RangeList : TRangeList read FRangeList;
     property RangeListVO : TRangeList read FRangeListVO;
@@ -4124,13 +4126,11 @@ begin
   begin
     FUpdateCursorTimer.Enabled := False;
     FRenderer.Pause;
-    FIsPlaying := False;
   end
   else
   begin
     FUpdateCursorTimer.Enabled := True;
     FRenderer.Resume;
-    FIsPlaying := True;
   end;
 end;
 
@@ -4239,6 +4239,12 @@ begin
   end;
 end;
 
+//------------------------------------------------------------------------------
+
+function TWAVDisplayer.IsNotPaused : Boolean;
+begin
+  Result := FUpdateCursorTimer.Enabled;
+end;
 //------------------------------------------------------------------------------
 end.
 //------------------------------------------------------------------------------
