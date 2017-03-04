@@ -4124,11 +4124,13 @@ begin
   begin
     FUpdateCursorTimer.Enabled := False;
     FRenderer.Pause;
+    FIsPlaying := False;
   end
   else
   begin
     FUpdateCursorTimer.Enabled := True;
     FRenderer.Resume;
+    FIsPlaying := True;
   end;
 end;
 
