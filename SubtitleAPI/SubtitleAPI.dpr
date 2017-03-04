@@ -230,7 +230,7 @@ begin
     sfSubViewer2              : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.sub'; end;
     sfTimedText               : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.xml'; end;
     sfTimedTextUtf8           : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.xml'; end;    
-    sfTimedTextNetflix        : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.xml'; end;    
+    sfTimedTextNetflix        : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.dfxp'; end;    
     //sfTitlevisionTXT          : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.txt'; end;
     sfTMPlayer                : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.txt;*.sub'; end;
     sfTurboTitler             : begin Desc := TSubtitleFormatsName[Index]; Exts := '*.tts'; end;
