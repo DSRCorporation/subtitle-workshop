@@ -12513,14 +12513,24 @@ begin
 
   case previewSelected of
     psVideo     : begin
+                    if WaveformAdapter.Displayer.IsNotPaused then
+                      WaveformAdapter.PlayPause;
                     if (previewFilename <> '') and not Player.Initialized then
                       LoadVideo;
                     EnableVPCtrls(Player.Initialized);
                   end;
     psWaveform  : begin
+                    if Player.Initialized and Playing then
+                      Pause;
                     if (previewFilename <> '') and not WaveformAdapter.Displayer.IsPeakDataLoaded then
                       LoadWaveform;
                     UpdateWaveformVolume;
+                  end;
+    psNone      : begin
+                    if Player.Initialized and Playing then
+                      Pause;
+                    if WaveformAdapter.Displayer.IsNotPaused then
+                      WaveformAdapter.PlayPause;
                   end;
   end;
 
