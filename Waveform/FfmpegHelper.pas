@@ -93,23 +93,30 @@ begin
 end;
 
 procedure TFFMPEGHelper.Execute(command: WideString; args: array of const);
-begin
- ExecuteCommand(WideFormat(command, args), FToolPath);
-end;
-
-function ShowExecutionForm(ProcessInfo: TProcessInformation; StdOutPipeRead: THandle): WideString;
 var
-  FrmProgress: TfrmExecutionProgress;
-const
-  Msg = 'Extracting audio. Please wait...';
+  thread      : TExecuteExternalThread;
 begin
-  FrmProgress := TfrmExecutionProgress.Create(nil, Msg, ProcessInfo.hProcess);
-  FrmProgress.ShowModal;
+  thread := TExecuteExternalThread.Create(WideFormat(command, args), FToolPath);
+  thread.FreeOnTerminate := true;
+  thread.Resume;
+
+  WaitForSingleObject(thread.Handle, INFINITE);
 end;
 
 procedure TFFMPEGHelper.ExecuteWithForm(command: WideString; args: array of const);
+const
+  Msg = 'Extracting audio. Please wait...';
+var
+  FrmProgress : TfrmExecutionProgress;
+  thread      : TExecuteExternalThread;
 begin
- ExecuteCommand(WideFormat(command, args), FToolPath, ShowExecutionForm);
+  FrmProgress := TfrmExecutionProgress.Create(nil, Msg);
+
+  thread := TExecuteExternalThread.Create(WideFormat(command, args), FToolPath, FrmProgress.Handle);
+  thread.FreeOnTerminate := true;
+  thread.Resume;
+
+  FrmProgress.ShowModal;
 end;
 
 function TFFMPEGHelper.JsonToAudioStream(json: TlkJSONobject): TAudioStream;
@@ -159,7 +166,7 @@ var
 begin
   tmpJsonPath := BuildTempPath(filename, '.json');
 
-  Execute('ffprobe -select_streams a -show_entries stream=index,codec_name,channels,sample_rate,bit_rate,duration -of json "%s" > "%s"',
+  Execute('ffprobe -hide_banner -select_streams a -show_entries stream=index,codec_name,channels,sample_rate,bit_rate,duration -of json "%s" > "%s"',
           [filename, tmpJsonPath]);
 
   obj     := TlkJSONStreamed.LoadFromFile(tmpJsonPath) as TlkJsonObject;
