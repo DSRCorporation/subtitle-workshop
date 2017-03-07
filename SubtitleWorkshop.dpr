@@ -83,7 +83,8 @@ uses
   uLkJSON in 'Lib\uLkJSON.pas',
   FfmpegHelper in 'Waveform\FfmpegHelper.pas',
   formAudioStreams in 'Forms\formAudioStreams.pas' {AudioStreamsForm},
-  formExecutionProgress in 'Forms\formExecutionProgress.pas' {frmExecutionProgress};
+  formExecutionProgress in 'Forms\formExecutionProgress.pas' {frmExecutionProgress},
+  formNetflixQcResult in 'Forms\formNetflixQcResult.pas' {frmNetflixQcResult};
 
 {$R *.res}
 
