@@ -12,6 +12,8 @@ var
   encoding    : SubtitleString;
   i           : Integer;
 begin
+  CoInitialize(nil);
+  
   Result := True;
 
   if utf8 then
