@@ -4,23 +4,22 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ComCtrls, StdCtrls;
+  Dialogs, ComCtrls, StdCtrls, MiscToolsUnit;
 
 type
   TfrmExecutionProgress = class(TForm)
     lblMsg: TLabel;
-    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormActivate(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     { Private declarations }
     FCanClose: Boolean;
-    FProcessHandle: Cardinal;
     FMessage: string;
-    
-    procedure WaitForProcess();
   public
     { Public declarations }
-    constructor Create(AOwner: TComponent; Msg: String; hProcess: Cardinal);
+    constructor Create(AOwner: TComponent; Msg: String);
+    procedure UpdateProgress(var msg: TMessage); message WM_UPDATE_PROGRESS;
+    procedure ForcedClose(var msg: TMessage); message WM_CLOSE_EX;
   end;
 
 var
@@ -30,49 +29,41 @@ implementation
 
 {$R *.dfm}
 
-constructor TfrmExecutionProgress.Create(AOwner: TComponent; Msg: String; hProcess: Cardinal);
+constructor TfrmExecutionProgress.Create(AOwner: TComponent; Msg: String);
 begin
   Inherited Create(AOwner);
   FMessage := Msg;
   lblMsg.Caption := Msg;
   FCanClose := False;
-  FProcessHandle := hProcess;
 end;
 
-procedure TfrmExecutionProgress.WaitForProcess();
+procedure TfrmExecutionProgress.UpdateProgress(var msg: TMessage);
 var
-  TimePassed: Integer;
   ProgressState: String;
-const
-  WaitInterval = 50;
 begin
-  TimePassed := 0;
-  while WaitForSingleObject(FProcessHandle, WaitInterval) = WAIT_TIMEOUT do
-  begin
-    Application.ProcessMessages;
-    TimePassed := TimePassed + WaitInterval;
-    
-    case TimePassed div 1000 mod 3 of
-      0: ProgressState := '/';
-      1: ProgressState := '-';
-      2: ProgressState := '\';
-    end;  
-
-    lblMsg.Caption := FMessage + ' ' + ProgressState;
+  case msg.WParam mod 3 of
+    0: ProgressState := '/';
+    1: ProgressState := '-';
+    2: ProgressState := '\';
   end;
+  lblMsg.Caption := FMessage + ' ' + ProgressState;
+end;
+
+procedure TfrmExecutionProgress.ForcedClose(var msg: TMessage);
+begin
   FCanClose := True;
-  PostMessage(Self.Handle, wm_close, 0, 0);
+  Close;
+end;
+
+procedure TfrmExecutionProgress.FormActivate(Sender: TObject);
+begin
+  Application.ProcessMessages;
 end;
 
 procedure TfrmExecutionProgress.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
   CanClose := FCanClose;
-end;
-
-procedure TfrmExecutionProgress.FormActivate(Sender: TObject);
-begin
-  WaitForProcess();
 end;
 
 end.

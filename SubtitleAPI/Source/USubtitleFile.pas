@@ -11,7 +11,7 @@ unit USubtitleFile;
 interface
 
 uses
-  SysUtils, TntSysUtils, TntClasses;
+  SysUtils, TntSysUtils, Classes, TntClasses;
 
 const
   MaxListSize = MaxInt Div 16;
@@ -152,18 +152,19 @@ end;
 
 procedure TSubtitleFile.SaveToFile(FileName: WideString; LineBreaks: TTntTextLineBreakStyle = tlbsCRLF);
 var
-  strings  : TTntStrings;
-  i : Integer;
+  fileStream  : TTntFileStream;
+  textStr     : {$IFDEF UTF8}WideString{$ELSE}String{$ENDIF};
 begin
   If FCount = 0 Then Exit;
 
-  strings := TTntStringList.Create;
+  textStr := GetTextStr;
 
-  for i := 0 to FCount - 1 do begin
-    strings.Add(Get(i));
+  fileStream := TTntFileStream.Create(FileName, fmCreate);
+  try
+    fileStream.WriteBuffer(PChar(textStr)^, Length(textStr) * SizeOf(Char));
+  finally
+    fileStream.Free;
   end;
-
-  strings.SaveToFile(FileName);
 end;
 
 // -----------------------------------------------------------------------------

@@ -391,18 +391,20 @@ end;
 // Quality check
 
 function SaveString(Str: string; FileName: WideString): Boolean;
+var
+  fileStream: TTntFileStream;
 begin
   Result := true;
-  with TTntStringList.Create do
+  fileStream := TTntFileStream.Create(FileName, fmCreate);
+
   try
     try
-      Add(Str);
-      SaveToFile(FileName);
+      fileStream.WriteBuffer(PChar(str)^, Length(str) * SizeOf(Char));
     except
       Result := false;
     end;
   finally
-    Free;
+    fileStream.Free;
   end;
 end;
 

@@ -142,10 +142,6 @@ begin
   Application.Initialize;
   Application.Title := 'Subtitle Workshop';
   Application.CreateForm(TfrmMain, frmMain);
-  Application.CreateForm(TVerticalScalingForm, VerticalScalingForm);
-  Application.CreateForm(TAudioStreamsForm, AudioStreamsForm);
-  Application.CreateForm(TfrmExecutionProgress, frmExecutionProgress);
-  Application.CreateForm(TfrmNetflixQcResult, frmNetflixQcResult);
   Application.Run;
 
 end.
