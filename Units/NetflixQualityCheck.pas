@@ -395,16 +395,20 @@ var
   fileStream: TTntFileStream;
 begin
   Result := true;
-  fileStream := TTntFileStream.Create(FileName, fmCreate);
 
   try
     try
+      fileStream := TTntFileStream.Create(FileName, fmCreate);
       fileStream.WriteBuffer(PChar(str)^, Length(str) * SizeOf(Char));
     except
       Result := false;
     end;
   finally
-    fileStream.Free;
+    try
+      fileStream.Free;
+    except
+      Result := false;
+    end;
   end;
 end;
 
