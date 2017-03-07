@@ -14,14 +14,13 @@ object frmExecutionProgress: TfrmExecutionProgress
   FormStyle = fsStayOnTop
   OldCreateOrder = False
   Position = poMainFormCenter
-  OnActivate = FormActivate
   OnCloseQuery = FormCloseQuery
   PixelsPerInch = 96
   TextHeight = 13
   object lblMsg: TLabel
     Left = 16
     Top = 16
-    Width = 281
+    Width = 138
     Height = 13
     Caption = 'Please wait, extracting audio.'
   end
