@@ -17,7 +17,8 @@ procedure NetflixQualityCheckerLoadLanguage(LF: TIniFile);
 implementation
 
 uses Dialogs, formMain, TreeViewHandle, VirtualTrees, Classes, SysUtils,
-  Functions, USubtitlesFunctions, Windows, Math, Forms, StdCtrls, Controls, ShellAPI, TntClasses, TntSysUtils, MiscToolsUnit;
+  Functions, USubtitlesFunctions, Windows, Math, Forms, StdCtrls, Controls,
+  ShellAPI, TntClasses, TntSysUtils, MiscToolsUnit, formNetflixQcResult;
 
 type
   TGlyphArray = Array of Integer;
@@ -406,54 +407,25 @@ begin
 end;
 
 
-function ShowMessageLocateFile(Msg: String; FilePath: WideString): Integer;
-var
-  DlgMsg: TForm;
-  explorer: WideString;
-  i: Integer;
-  Button: TButton;
-  BtnIndex: Integer;
-begin
-  DlgMsg := createMessageDialog(msg, mtInformation, [mbCancel, mbOK]);
-
-  explorer := 'explorer.exe';
-  
-  BtnIndex := 0;
-  for i := 0 to DlgMsg.componentcount - 1 Do
-  begin
-    if (DlgMsg.components[i] is Tbutton) then
-    Begin
-      Button := Tbutton(DlgMsg.components[i]);
-
-      if BtnIndex = 0 then
-      begin
-        Button.Width := Button.Width + 50;
-        Button.Left := Button.Left - 50;
-        Button.Caption :=  OpenFileLocation;
-      end;
-      
-      inc(BtnIndex);
-    end;
-  end;
-
-  if DlgMsg.Showmodal = mrOk then
-    ShellExecuteW(0, nil, PWideChar(explorer), PWideChar(WideFormat('/select,"%s"', [FilePath])), nil, SW_SHOWNORMAL);
-end;
-
-
 procedure PerformNetflixQualityCheck(ShowSuccessMessages: Boolean);
 var
   Report: string;
   ReportPath: WideString;
 
-  Messages: TStringList;
+  WsChkMessage: WideString;
+  WsChkReportPath: WideString;
+  GlyphChkMessage: WideString;
+  GlyphChkReportPath: WideString;
+
+  IsAllSuccess: Boolean;
   CurrentFileName: WideString;
 
   FirstReportPath: WideString;
-  DialogResult: Integer;
+  ResultForm: TfrmNetflixQcResult;
 begin
   FirstReportPath := '';
-  Messages := TStringList.Create;
+  IsAllSuccess := True;
+
   if frmMain.OrgFile <> '' then
     CurrentFileName := WideChangeFileExt(WideExtractFileName(frmMain.OrgFile), '')
   else
@@ -461,66 +433,65 @@ begin
 
 
   Report := '';
+  GlyphChkReportPath := '';
   NetflixQCReportAddHeader(Report);
-  
+
   if PerformNetflixGlyphCheck(Report) then
   begin
-    if ShowSuccessMessages then
-      Messages.Add(GlyphCheckSuccessfull);
+    GlyphChkMessage := GlyphCheckSuccessfull;
   end
   else
   begin
+    IsAllSuccess := False;
     ReportPath := GetTemporaryFolder + CurrentFileName + '_NetflixGlyphCheck.csv';
 
     if SaveString(Report, ReportPath) then
     begin
-      Messages.Add(Format(GlyphCheckFailed + ' ' + ReportPrompt, [ReportPath]));
-
-      if FirstReportPath = '' then
-        FirstReportPath := ReportPath;
-    end    
-    else  
-      Messages.Add(GlyphCheckFailed + ' ' + SavingError);
-  end;
-  
-
-  Report := '';
-  NetflixQCReportAddHeader(Report);
-
-  if PerformNetflixWhiteSpaceCheck(Report) then
-  begin
-    if ShowSuccessMessages then
-      Messages.Add(WhiteSpaceCheckSuccessfull);
-  end
-  else
-  begin
-    ReportPath := GetTemporaryFolder + CurrentFileName + '_NetflixWhiteSpaceCheck.csv';
-
-    if SaveString(Report, ReportPath) then
-    begin
-      Messages.Add(Format(WhiteSpaceCheckFailed + ' ' + ReportPrompt, [ReportPath]));
+      GlyphChkMessage := Format(GlyphCheckFailed + ' ' + ReportPrompt, [ReportPath]);
+      GlyphChkReportPath := ReportPath;
 
       if FirstReportPath = '' then
         FirstReportPath := ReportPath;
     end
     else
-      Messages.Add(WhiteSpaceCheckFailed + ' ' + SavingError);
+      GlyphChkMessage := GlyphCheckFailed + ' ' + SavingError;
   end;
-  
-  if Messages.Count = 0 then
+
+
+  Report := '';
+  WsChkReportPath := '';
+  NetflixQCReportAddHeader(Report);
+
+  if PerformNetflixWhiteSpaceCheck(Report) then
+  begin
+    WsChkMessage := WhiteSpaceCheckSuccessfull;
+  end
+  else
+  begin
+    IsAllSuccess := False;
+    ReportPath := GetTemporaryFolder + CurrentFileName + '_NetflixWhiteSpaceCheck.csv';
+
+    if SaveString(Report, ReportPath) then
+    begin
+      WsChkMessage := Format(WhiteSpaceCheckFailed + ' ' + ReportPrompt, [ReportPath]);
+      WsChkReportPath := ReportPath;
+
+      if FirstReportPath = '' then
+        FirstReportPath := ReportPath;
+    end
+    else
+      WsChkMessage := WhiteSpaceCheckFailed + ' ' + SavingError;
+  end;
+
+  if (not ShowSuccessMessages) and IsAllSuccess then
   begin
     Exit;
   end;
 
-  if FirstReportPath = '' then  // No report saved -> show just message
-  begin
-    ShowMessage(Messages.Text);
-  end
-  else  // At least one report was saved -> show "locate" butoon
-  begin
-    ShowMessageLocateFile(Messages.Text, FirstReportPath);
-  end;
-
+  ResultForm := TfrmNetflixQcResult.Create(nil,
+    GlyphChkMessage, GlyphChkReportPath,
+    WsChkMessage, WsChkReportPath, FirstReportPath);
+  ResultForm.ShowModal;
 end;
 
 end.
