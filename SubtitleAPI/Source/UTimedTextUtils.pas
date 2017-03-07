@@ -6,6 +6,7 @@ uses
   SysUtils,
   Classes,
   Windows,
+  ActiveX,
   XMLIntf,
   XMLDoc,
   USubtitleFile,
@@ -41,6 +42,7 @@ type
     function GetXML: TStrings;
   public
     constructor Create(encoding: SubtitleString; title: SubtitleString);
+    destructor Destroy; override;
     procedure AppendParagraphs(nodes: IXMLNodeArray);
     property XML: TStrings read GetXML;
   end;
@@ -90,6 +92,12 @@ begin
   BuildRoot;
   BuildHead;
   BuildBody;
+end;
+
+destructor TTtmlDocument.Destroy;
+begin
+  FDocument := nil;
+  inherited;
 end;
 
 procedure TTtmlDocument.BuildProlog;
