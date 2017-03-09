@@ -19,7 +19,6 @@ uses
 
 type
 
-
   // Adapter for simple usage TWAVDisplayer bound with TVirtualStringTree
   TWaveformAdapter = class
   private
@@ -34,7 +33,7 @@ type
 
     FFfmpegHelper       : TFFMPEGHelper;
 
-    FWAVFilename        : String;
+    FWAVFilename        : WideString;
     FWAVTemp            : Boolean;
     
     procedure InitDisplayer(parentPanel: TPanel);
@@ -189,7 +188,7 @@ begin
   end;
 
   if FWAVFilename <> '' then begin
-    if FWAVTemp then SysUtils.DeleteFile(FWAVFilename);
+    if FWAVTemp then WideDeleteFile(FWAVFilename);
   end;
 
   FWAVFilename := '';

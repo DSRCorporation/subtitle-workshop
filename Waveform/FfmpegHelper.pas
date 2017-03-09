@@ -41,7 +41,7 @@ type
 
     procedure SetSettings(toolPath: String; sampleRate: Integer);
     
-    function ExtractWAVFromVideo(filename: WideString; streams: array of Integer): String;
+    function ExtractWAVFromVideo(filename: WideString; streams: array of Integer): WideString;
     function DetectAudioStreams(filename: WideString): TAudioStreams;
     function IsWAVFile(filename: WideString): Boolean;
 
@@ -137,7 +137,7 @@ begin
     Result.BitRate := TlkJSONnumber(json.Field['bit_rate']).Value;
 end;
 
-function TFFMPEGHelper.ExtractWAVFromVideo(filename: WideString; streams: array of Integer): String;
+function TFFMPEGHelper.ExtractWAVFromVideo(filename: WideString; streams: array of Integer): WideString;
 var
   tmpWavPath    : WideString;
 begin
@@ -179,7 +179,7 @@ begin
 
   obj.Free;
 
-  SysUtils.DeleteFile(tmpJsonPath);
+  WideDeleteFile(tmpJsonPath);
 end;
 
 function TFFMPEGHelper.IsWAVFile(filename: WideString): Boolean;
