@@ -1,10 +1,12 @@
 These versions of Subtitle Workshop and Subtitle API are developed with Delphi 7.
 
-Extraction of audio wave from video requires FFmpeg tools. By deafult Subtatle Workshop uses portable static build that comes with installation.
+Extraction of audio wave from video requires FFmpeg tools. By default Subtitle Workshop uses portable static build that comes with installation.
 If you already have FFmpeg, you can cancel installation of the corresponding component and add the following lines to the end of configuration file:
 
 [Wave extraction]
 FFmpegToolPath=path_to_bin_folder
+
+NOTICE: 3.0-static build comes with installation is the latest Zeranoe major static FFmpeg build, compatible with Windows XP.
 
 Additional components Subtitle Workshop requires:
 - SWComponents (included in source, see "SWComponents" directory)

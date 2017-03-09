@@ -49,7 +49,7 @@ SetOverwrite on
 OutFile "${PRODUCT_SHORTNAME}_${VERSION}_${BUILD_NUM}_installer.exe"
 
 ; FFmpeg folder name
-!define FFMPEGFOLDER "ffmpeg-3.2.2-win32-static"
+!define FFMPEGFOLDER "ffmpeg-3.0-win32-static"
 
 !define MUI_FINISHPAGE_LINK ${WEBSITE}
 !define MUI_FINISHPAGE_LINK_LOCATION ${WEBSITE}
