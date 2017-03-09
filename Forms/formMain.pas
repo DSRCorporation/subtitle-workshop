@@ -3840,7 +3840,7 @@ begin
 
     // Waveform inititalization
     ffmpegHelper := TFFMPEGHelper.Create(
-      Ini.ReadString('Waveform', 'FFmpegToolPath', 'ffmpeg-3.2.2-win32-static\bin'),
+      Ini.ReadString('Waveform', 'FFmpegToolPath', 'ffmpeg-3.0-win32-static\bin'),
       Ini.ReadInteger('Waveform', 'SampleRate', 16000)
     );
     WaveformAdapter := TWaveformAdapter.Create(pnlWAVDisplay, lstSubtitles, ffmpegHelper);

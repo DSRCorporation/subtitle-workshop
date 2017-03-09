@@ -1205,7 +1205,7 @@ begin
     chkShowSceneChange.Checked      := Ini.ReadBool('Waveform', 'ShowSceneChange', True);
     udSafetyZoneOffset.Position     := Ini.ReadInteger('Waveform', 'SafetyZoneOffset', 150);
 
-    edtFFPath.Text := Ini.ReadString('Waveform', 'FFmpegToolPath', 'ffmpeg-3.2.2-win32-static\bin');
+    edtFFPath.Text := Ini.ReadString('Waveform', 'FFmpegToolPath', 'ffmpeg-3.0-win32-static\bin');
     udSampleRate.Position := Ini.ReadInteger('Waveform', 'SampleRate', 16000);
 
   if Assigned(Items) then FreeAndNil(Items);    // added by Bdzl
