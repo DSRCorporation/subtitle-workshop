@@ -18,7 +18,7 @@ implementation
 
 uses Dialogs, formMain, TreeViewHandle, VirtualTrees, Classes, SysUtils,
   Functions, USubtitlesFunctions, Windows, Math, Forms, StdCtrls, Controls,
-  ShellAPI, TntClasses, TntSysUtils, MiscToolsUnit, formNetflixQcResult;
+  ShellAPI, TntClasses, TntSystem, TntSysUtils, MiscToolsUnit, formNetflixQcResult;
 
 type
   TGlyphArray = Array of Integer;
@@ -399,6 +399,7 @@ begin
   try
     try
       fileStream := TTntFileStream.Create(FileName, fmCreate);
+      fileStream.WriteBuffer(PChar(UTF8_BOM)^, SizeOf(UTF8_BOM));
       fileStream.WriteBuffer(PChar(str)^, Length(str) * SizeOf(Char));
     except
       Result := false;
