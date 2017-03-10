@@ -13,13 +13,21 @@ type
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     { Private declarations }
-    FCanClose: Boolean;
-    FMessage: string;
+    FMessage        : WideString;
+    FProcessHandle  : THandle;
+    FCancelled      : Boolean;
+    FFinished       : Boolean;
+  protected
+    procedure CancelExecution;
+    procedure SetProcessHandle(var msg: TMessage);  message WM_EET_SET_PROCESS_HANDLE;
+    procedure UpdateProgress(var msg: TMessage);    message WM_EET_UPDATE_PROGRESS;
+    procedure FinishExection(var msg: TMessage);    message WM_EET_PROCESS_FINISHED;
+
   public
     { Public declarations }
-    constructor Create(AOwner: TComponent; Msg: String);
-    procedure UpdateProgress(var msg: TMessage); message WM_UPDATE_PROGRESS;
-    procedure ForcedClose(var msg: TMessage); message WM_CLOSE_EX;
+    constructor Create(AOwner: TComponent; Msg: WideString);
+    
+    function ExecutionCancelled: Boolean;
   end;
 
 var
@@ -29,12 +37,25 @@ implementation
 
 {$R *.dfm}
 
-constructor TfrmExecutionProgress.Create(AOwner: TComponent; Msg: String);
+constructor TfrmExecutionProgress.Create(AOwner: TComponent; Msg: WideString);
 begin
   Inherited Create(AOwner);
-  FMessage := Msg;
-  lblMsg.Caption := Msg;
-  FCanClose := False;
+  FMessage        := Msg;
+  lblMsg.Caption  := Msg;
+  
+  FCancelled  := False;
+  FFinished   := False;
+end;
+
+procedure TfrmExecutionProgress.CancelExecution;
+begin
+  TerminateProcess(FProcessHandle, NO_ERROR);
+  FCancelled := True;
+end;
+
+procedure TfrmExecutionProgress.SetProcessHandle(var msg: TMessage);
+begin
+  FProcessHandle := msg.WParam;
 end;
 
 procedure TfrmExecutionProgress.UpdateProgress(var msg: TMessage);
@@ -49,10 +70,15 @@ begin
   lblMsg.Caption := FMessage + ' ' + ProgressState;
 end;
 
-procedure TfrmExecutionProgress.ForcedClose(var msg: TMessage);
+procedure TfrmExecutionProgress.FinishExection(var msg: TMessage);
 begin
-  FCanClose := True;
+  FFinished := True;
   Close;
+end;
+
+function TfrmExecutionProgress.ExecutionCancelled: Boolean;
+begin
+  Result := FCancelled;
 end;
 
 procedure TfrmExecutionProgress.FormActivate(Sender: TObject);
@@ -63,7 +89,7 @@ end;
 procedure TfrmExecutionProgress.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
-  CanClose := FCanClose;
+  if not FFinished then CancelExecution;
 end;
 
 end.

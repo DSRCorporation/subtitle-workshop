@@ -34,7 +34,7 @@ type
     function BuildAmergeMapArgs(streams: array of Integer): String;
     function BuildTempPath(filename: WideString; extension: String): WideString;
     procedure Execute(command: WideString; args: array of const);
-    procedure ExecuteWithForm(command: WideString; args: array of const);
+    function ExecuteWithForm(command: WideString; filename: WideString; args: array of const): Boolean;
     function JsonToAudioStream(json: TlkJSONobject): TAudioStream;
   public
     constructor Create(toolPath: String; sampleRate: Integer);
@@ -103,7 +103,7 @@ begin
   WaitForSingleObject(thread.Handle, INFINITE);
 end;
 
-procedure TFFMPEGHelper.ExecuteWithForm(command: WideString; args: array of const);
+function TFFMPEGHelper.ExecuteWithForm(command: WideString; filename: WideString; args: array of const): Boolean;
 const
   Msg = 'Extracting audio. Please wait...';
 var
@@ -112,11 +112,15 @@ var
 begin
   FrmProgress := TfrmExecutionProgress.Create(nil, Msg);
 
-  thread := TExecuteExternalThread.Create(WideFormat(command, args), FToolPath, FrmProgress.Handle);
+  thread := TExecuteExternalThread.Create(WideFormat(command, args), FToolPath, False, FrmProgress.Handle);
   thread.FreeOnTerminate := true;
   thread.Resume;
 
   FrmProgress.ShowModal;
+
+  Result := not FrmProgress.ExecutionCancelled;
+
+  if not Result and WideFileExists(filename) then WideDeleteFile(filename);
 end;
 
 function TFFMPEGHelper.JsonToAudioStream(json: TlkJSONobject): TAudioStream;
@@ -139,22 +143,27 @@ end;
 
 function TFFMPEGHelper.ExtractWAVFromVideo(filename: WideString; streams: array of Integer): WideString;
 var
-  tmpWavPath    : WideString;
+  tmpWavPath  : WideString;
+  extracted   : Boolean;
 begin
-  tmpWavPath := BuildTempPath(filename, '.wav');
+  tmpWavPath  := BuildTempPath(filename, '.wav');
+  extracted   := False;
 
   if (Length(streams) = 0) then
-    ExecuteWithForm('ffmpeg.exe -hide_banner -y -vn -i "%s" -ar %d -f wav "%s"',
-            [filename, FSampleRate, tmpWavPath])
+    extracted := ExecuteWithForm('ffmpeg.exe -hide_banner -y -vn -i "%s" -ar %d -f wav "%s"',
+                                tmpWavPath, [filename, FSampleRate, tmpWavPath])
   else
   if (Length(streams) = 1) then
-    ExecuteWithForm('ffmpeg.exe -hide_banner -y -vn -i "%s" -map 0:%d -c:a:0 pcm_s16le -ar %d -f wav "%s"',
-            [filename, streams[0], FSampleRate, tmpWavPath])
+    extracted := ExecuteWithForm('ffmpeg.exe -hide_banner -y -vn -i "%s" -map 0:%d -c:a:0 pcm_s16le -ar %d -f wav "%s"',
+                                tmpWavPath, [filename, streams[0], FSampleRate, tmpWavPath])
   else
-    ExecuteWithForm('ffmpeg.exe -hide_banner -y -vn -i "%s" -filter_complex "%samerge=inputs=%d[aout]" -map "[aout]" -ar %d -f wav "%s"',
-            [filename, BuildAmergeMapArgs(streams), Length(streams), FSampleRate, tmpWavPath]);
+    extracted := ExecuteWithForm('ffmpeg.exe -hide_banner -y -vn -i "%s" -filter_complex "%samerge=inputs=%d[aout]" -map "[aout]" -ar %d -f wav "%s"',
+                                tmpWavPath, [filename, BuildAmergeMapArgs(streams), Length(streams), FSampleRate, tmpWavPath]);
 
-  Result := tmpWavPath
+  if not extracted then
+    Result := ''
+  else
+    Result := tmpWavPath
 end;
 
 function TFFMPEGHelper.DetectAudioStreams(filename: WideString): TAudioStreams;
