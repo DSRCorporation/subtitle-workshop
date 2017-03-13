@@ -109,15 +109,20 @@ const
 var
   FrmProgress : TfrmExecutionProgress;
   thread      : TExecuteExternalThread;
+  UseCmdLine  : Boolean;
 begin
   FrmProgress := TfrmExecutionProgress.Create(nil, Msg);
 
-  thread := TExecuteExternalThread.Create(WideFormat(command, args), FToolPath, False, FrmProgress.Handle);
+  // For older versions of Windows cmd line must be used for launch FFmpeg
+  UseCmdLine := SysUtils.Win32MajorVersion <= 5;
+  
+  thread := TExecuteExternalThread.Create(WideFormat(command, args), FToolPath, UseCmdLine, FrmProgress.Handle);
   thread.FreeOnTerminate := true;
   thread.Resume;
 
   FrmProgress.ShowModal;
-
+  WaitForSingleObject(thread.Handle, INFINITE);
+  
   Result := not FrmProgress.ExecutionCancelled;
 
   if not Result and WideFileExists(filename) then WideDeleteFile(filename);
