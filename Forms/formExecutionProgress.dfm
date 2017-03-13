@@ -3,8 +3,8 @@ object frmExecutionProgress: TfrmExecutionProgress
   Top = 244
   BorderStyle = bsToolWindow
   Caption = 'Execution progress'
-  ClientHeight = 47
-  ClientWidth = 308
+  ClientHeight = 43
+  ClientWidth = 325
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,6 +15,9 @@ object frmExecutionProgress: TfrmExecutionProgress
   OldCreateOrder = False
   Position = poMainFormCenter
   OnCloseQuery = FormCloseQuery
+  DesignSize = (
+    325
+    43)
   PixelsPerInch = 96
   TextHeight = 13
   object lblMsg: TLabel
@@ -23,5 +26,16 @@ object frmExecutionProgress: TfrmExecutionProgress
     Width = 138
     Height = 13
     Caption = 'Please wait, extracting audio.'
+  end
+  object btnCancel: TButton
+    Left = 241
+    Top = 8
+    Width = 75
+    Height = 25
+    Anchors = [akTop, akRight, akBottom]
+    Cancel = True
+    Caption = 'Cancel'
+    TabOrder = 0
+    OnClick = btnCancelClick
   end
 end

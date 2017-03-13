@@ -9,8 +9,10 @@ uses
 type
   TfrmExecutionProgress = class(TForm)
     lblMsg: TLabel;
+    btnCancel: TButton;
     procedure FormActivate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure btnCancelClick(Sender: TObject);
   private
     { Private declarations }
     FMessage        : WideString;
@@ -90,6 +92,11 @@ procedure TfrmExecutionProgress.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
   if not FFinished then CancelExecution;
+end;
+
+procedure TfrmExecutionProgress.btnCancelClick(Sender: TObject);
+begin
+  Close;
 end;
 
 end.
