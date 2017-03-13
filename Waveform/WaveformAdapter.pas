@@ -53,7 +53,7 @@ type
 
     procedure Close;
     procedure ClearSubtitles;
-    procedure Load(filename: WideString; streams: array of Integer);
+    function Load(filename: WideString; streams: array of Integer): Boolean;
     procedure AddSubtitle; overload;
     procedure AddSubtitle(node: PVirtualNode); overload;
     procedure SyncSubtitlesWithTree;
@@ -207,10 +207,10 @@ begin
   FSceneChangeWrapper.SetSceneChangeList(emptyArray);
 end;
 
-procedure TWaveformAdapter.Load(filename: WideString; streams: array of Integer);
-var
-  loadWAV: Boolean;
+function TWaveformAdapter.Load(filename: WideString; streams: array of Integer): Boolean;
 begin
+  Result := False;
+
   Close;
 
   FWAVTemp := not FFfmpegHelper.IsWAVFile(filename);
@@ -219,12 +219,11 @@ begin
   else
     FWAVFilename := filename;
 
-  if FWAVFilename = '' then
-    Exit;
+  if FWAVFilename = '' then Exit;
 
-  loadWAV := WAVDisplayer.LoadWAV(FWAVFilename);
+  Result := WAVDisplayer.LoadWAV(FWAVFilename);
 
-  if loadWAV then begin
+  if Result then begin
     InitRenderer;
     WAVRenderer.Open(FWAVFilename);
 

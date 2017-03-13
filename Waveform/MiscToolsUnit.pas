@@ -128,19 +128,20 @@ type
 
 
 const
-  WM_UPDATE_PROGRESS  = WM_USER + 101;
-  WM_CLOSE_EX         = WM_USER + 102;
-  
+  WM_EET_UPDATE_PROGRESS    = WM_USER + 101;
+  WM_EET_SET_PROCESS_HANDLE = WM_USER + 102;
+  WM_EET_PROCESS_FINISHED   = WM_USER + 103;
+
 type
   TExecuteExternalThread = class(TThread)
   private
+    FUseCmdLine : Boolean;
     FCommandLine: WideString;
     FWorkDir    : WideString;
     FMsgHandle  : HWnd;
     FOutput     : WideString;
   public
-    constructor Create(CommandLine: WideString; WorkDir: WideString; MsgHandle: HWnd); overload;
-    constructor Create(CommandLine: WideString; WorkDir: WideString); overload;
+    constructor Create(CommandLine: WideString; WorkDir: WideString; UseCmdLine: Boolean = True; MsgHandle: HWnd = 0);
     procedure Execute; override;
     function GetOutput: WideString;
   end;
@@ -1526,17 +1527,13 @@ end;
 
 // -----------------------------------------------------------------------------
 
-constructor TExecuteExternalThread.Create(CommandLine: WideString; WorkDir: WideString; MsgHandle: HWnd);
+constructor TExecuteExternalThread.Create(CommandLine: WideString; WorkDir: WideString; UseCmdLine: Boolean = True; MsgHandle: HWnd = 0);
 begin
   FCommandLine  := CommandLine;
   FWorkDir      := WorkDir;
   FMsgHandle    := MsgHandle;
+  FUseCmdLine   := UseCmdLine;
   inherited Create(true);
-end;
-
-constructor TExecuteExternalThread.Create(CommandLine: WideString; WorkDir: WideString);
-begin
-  Create(CommandLine, WorkDir, 0);
 end;
 
 procedure TExecuteExternalThread.Execute;
@@ -1572,7 +1569,11 @@ begin
     end;
 
     WorkDir := FWorkDir;
-    CommandLine := 'cmd.exe /C ' + FCommandLine;
+    if FUseCmdLine then
+      CommandLine := 'cmd.exe /C '
+    else
+      CommandLine := '';
+    CommandLine := CommandLine + FCommandLine;
 
     Handle := CreateProcessW(nil, PWideChar(CommandLine),
                             nil, nil, True, 0, nil,
@@ -1581,21 +1582,21 @@ begin
     
     if Handle then
       try
+        if FMsgHandle <> 0 then PostMessage(FMsgHandle, WM_EET_SET_PROCESS_HANDLE, ProcessInfo.hProcess, 0);
+
         i := 0;
         repeat
           WasOK := Windows.ReadFile(StdOutPipeRead, pCommandLine, 255, BytesRead, nil);
           if BytesRead > 0 then begin
             pCommandLine[BytesRead] := #0;
             FOutput := FOutput + pCommandLine;
-            if FMsgHandle <> 0 then
-              PostMessage(FMsgHandle, WM_UPDATE_PROGRESS, i, 0);
+            if FMsgHandle <> 0 then PostMessage(FMsgHandle, WM_EET_UPDATE_PROGRESS, i, 0);
             Inc(i);
           end;
         until not WasOK or (BytesRead = 0);
         WaitForSingleObject(ProcessInfo.hProcess, INFINITE);
-        if FMsgHandle <> 0 then begin
-          PostMessage(FMsgHandle, WM_CLOSE_EX, 0, 0);
-        end;
+
+        if FMsgHandle <> 0 then PostMessage(FMsgHandle, WM_EET_PROCESS_FINISHED, 0, 0);
       finally
         CloseHandle(ProcessInfo.hThread);
         CloseHandle(ProcessInfo.hProcess);
