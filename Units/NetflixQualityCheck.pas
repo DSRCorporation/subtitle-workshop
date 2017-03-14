@@ -161,7 +161,7 @@ var
   Timecode, Context, Comment: string;
 begin
   AllowedGlyphs := LoadNetflixAllowedGlyphs;
-  CodePage := CharSetToCodePage(GetOrgCharset);
+  CodePage := TreeViewHandle.CharSetToCodePage(GetOrgCharset);
   Result := true;
   ParagraphNode := frmMain.lstSubtitles.GetFirst;
   while Assigned(ParagraphNode) do
