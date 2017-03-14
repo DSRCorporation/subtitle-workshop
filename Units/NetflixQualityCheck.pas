@@ -227,7 +227,7 @@ begin
   Timecode := TimeToString(GetStartTime(ParagraphNode), FULL_TIMECODE);
 
   Context := EscapeCSV(GetStringContext(GetSubText(ParagraphNode), Pos, CONTEXT_RADIUS));
-  Context := UTF8Encode(StringToWideStringEx(context, CharSetToCodePage(GetOrgCharset)));
+  Context := UTF8Encode(StringToWideStringEx(context, TreeViewHandle.CharSetToCodePage(GetOrgCharset)));
 
   Comment := Format(WhiteSpaceCheckReport, [Pos]);
   NetflixQCReportAddWarning(Report, Timecode, Context, Comment);
