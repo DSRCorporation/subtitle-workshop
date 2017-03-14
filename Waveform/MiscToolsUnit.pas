@@ -135,15 +135,21 @@ const
 type
   TExecuteExternalThread = class(TThread)
   private
-    FUseCmdLine : Boolean;
-    FCommandLine: WideString;
-    FWorkDir    : WideString;
-    FMsgHandle  : HWnd;
-    FOutput     : WideString;
+    FApplicationName  : WideString;
+    FCommandLine      : WideString;
+    FWorkDir          : WideString;
+    FUseCmd           : Boolean;
+    FMsgHandle        : HWnd;
+    FOutput           : String;
+  protected
+    function ReadOutput(StdOutPipeRead: THandle): Boolean;
+    procedure HandleMessage(Msg: UINT; wParam: WPARAM = 0);
+    function BuildAppName: PWideChar;
+    function BuildCommandLine: PWideChar;
   public
-    constructor Create(CommandLine: WideString; WorkDir: WideString; UseCmdLine: Boolean = True; MsgHandle: HWnd = 0);
+    constructor Create(CommandLine: WideString; WorkDir: WideString; ApplicationName: WideString = ''; UseCmd: Boolean = True; MsgHandle: HWnd = 0);
     procedure Execute; override;
-    function GetOutput: WideString;
+    property Output: String read FOutput;
   end;
 
 type
@@ -1527,13 +1533,57 @@ end;
 
 // -----------------------------------------------------------------------------
 
-constructor TExecuteExternalThread.Create(CommandLine: WideString; WorkDir: WideString; UseCmdLine: Boolean = True; MsgHandle: HWnd = 0);
+constructor TExecuteExternalThread.Create(CommandLine: WideString; WorkDir: WideString; ApplicationName: WideString = ''; UseCmd: Boolean = True; MsgHandle: HWnd = 0);
 begin
-  FCommandLine  := CommandLine;
-  FWorkDir      := WorkDir;
-  FMsgHandle    := MsgHandle;
-  FUseCmdLine   := UseCmdLine;
+  FCommandLine      := CommandLine;
+  FWorkDir          := WorkDir;
+  FApplicationName  := ApplicationName;
+  FMsgHandle        := MsgHandle;
+  FUseCmd           := UseCmd;
   inherited Create(true);
+end;
+
+function TExecuteExternalThread.ReadOutput(StdOutPipeRead: THandle): Boolean;
+var
+  WasOK: Boolean;
+  pCommandLine: array[0..255] of AnsiChar;
+  BytesRead: Cardinal;
+begin
+  WasOK := Windows.ReadFile(StdOutPipeRead, pCommandLine, 255, BytesRead, nil);
+  if BytesRead > 0 then begin
+    pCommandLine[BytesRead] := #0;
+    FOutput := FOutput + pCommandLine;
+  end;
+  Result := WasOK and (BytesRead > 0);
+end;
+
+procedure TExecuteExternalThread.HandleMessage(Msg: UINT; wParam: WPARAM = 0);
+begin
+  if FMsgHandle <> 0 then PostMessage(FMsgHandle, Msg, wParam, 0);
+end;
+
+function TExecuteExternalThread.BuildAppName: PWideChar;
+var
+  ApplicationName: WideString;
+begin
+  Result := nil;
+  if FApplicationName = '' then Exit;
+
+  ApplicationName := WideIncludeTrailingPathDelimiter(FWorkDir) + FApplicationName;
+  Result := PWideChar(ApplicationName);
+end;
+
+function TExecuteExternalThread.BuildCommandLine: PWideChar;
+var
+  CommandLine: WideString;
+begin
+  if FUseCmd then
+    CommandLine := 'cmd.exe /C '
+  else
+    CommandLine := '';
+
+  CommandLine := CommandLine + FCommandLine;
+  Result := PWideChar(CommandLine);
 end;
 
 procedure TExecuteExternalThread.Execute;
@@ -1542,12 +1592,7 @@ var
   StartupInfo: TStartupInfoW;
   ProcessInfo: TProcessInformation;
   StdOutPipeRead, StdOutPipeWrite: THandle;
-  WorkDir: WideString;
-  CommandLine: WideString;
   Handle: Boolean;
-  WasOK: Boolean;
-  pCommandLine: array[0..255] of AnsiChar;
-  BytesRead: Cardinal;
   i: Integer;
 begin
   with SecAtrrs do begin
@@ -1555,7 +1600,9 @@ begin
     bInheritHandle := True;
     lpSecurityDescriptor := nil;
   end;
+
   CreatePipe(StdOutPipeRead, StdOutPipeWrite, @SecAtrrs, 0);
+  
   try
     with StartupInfo do
     begin
@@ -1568,35 +1615,23 @@ begin
       hStdError := StdOutPipeWrite;
     end;
 
-    WorkDir := FWorkDir;
-    if FUseCmdLine then
-      CommandLine := 'cmd.exe /C '
-    else
-      CommandLine := '';
-    CommandLine := CommandLine + FCommandLine;
-
-    Handle := CreateProcessW(nil, PWideChar(CommandLine),
+    Handle := CreateProcessW(BuildAppName, BuildCommandLine,
                             nil, nil, True, 0, nil,
-                            PWideChar(WorkDir), StartupInfo, ProcessInfo);
+                            PWideChar(FWorkDir), StartupInfo, ProcessInfo);
     CloseHandle(StdOutPipeWrite);
     
     if Handle then
       try
-        if FMsgHandle <> 0 then PostMessage(FMsgHandle, WM_EET_SET_PROCESS_HANDLE, ProcessInfo.hProcess, 0);
+        HandleMessage(WM_EET_SET_PROCESS_HANDLE, ProcessInfo.hProcess);
 
         i := 0;
-        repeat
-          WasOK := Windows.ReadFile(StdOutPipeRead, pCommandLine, 255, BytesRead, nil);
-          if BytesRead > 0 then begin
-            pCommandLine[BytesRead] := #0;
-            FOutput := FOutput + pCommandLine;
-            if FMsgHandle <> 0 then PostMessage(FMsgHandle, WM_EET_UPDATE_PROGRESS, i, 0);
-            Inc(i);
-          end;
-        until not WasOK or (BytesRead = 0);
+        while ReadOutput(StdOutPipeRead) do begin
+          HandleMessage(WM_EET_UPDATE_PROGRESS, i);
+          Inc(i);
+        end;
         WaitForSingleObject(ProcessInfo.hProcess, INFINITE);
 
-        if FMsgHandle <> 0 then PostMessage(FMsgHandle, WM_EET_PROCESS_FINISHED, 0, 0);
+        HandleMessage(WM_EET_PROCESS_FINISHED);
       finally
         CloseHandle(ProcessInfo.hThread);
         CloseHandle(ProcessInfo.hProcess);
@@ -1604,11 +1639,6 @@ begin
   finally
     CloseHandle(StdOutPipeRead);
   end;
-end;
-
-function TExecuteExternalThread.GetOutput: WideString;
-begin
-  Result := FOutput;
 end;
 
 // -----------------------------------------------------------------------------

@@ -27,7 +27,7 @@ type
   
   TFFMPEGHelper = class
   private
-    FToolPath     : String;
+    FToolPath     : WideString;
     FToolDetected : Boolean;
     FSampleRate   : Integer;
     
@@ -37,9 +37,9 @@ type
     function ExecuteWithForm(command: WideString; filename: WideString; args: array of const): Boolean;
     function JsonToAudioStream(json: TlkJSONobject): TAudioStream;
   public
-    constructor Create(toolPath: String; sampleRate: Integer);
+    constructor Create(toolPath: WideString; sampleRate: Integer);
 
-    procedure SetSettings(toolPath: String; sampleRate: Integer);
+    procedure SetSettings(toolPath: WideString; sampleRate: Integer);
     
     function ExtractWAVFromVideo(filename: WideString; streams: array of Integer): WideString;
     function DetectAudioStreams(filename: WideString): TAudioStreams;
@@ -56,16 +56,16 @@ uses
   Windows,
   formExecutionProgress;
 
-constructor TFFMPEGHelper.Create(toolPath: String; sampleRate: Integer);
+constructor TFFMPEGHelper.Create(toolPath: WideString; sampleRate: Integer);
 begin
   SetSettings(toolPath, sampleRate);
 end;
 
-procedure TFFMPEGHelper.SetSettings(toolPath: String; sampleRate: Integer);
+procedure TFFMPEGHelper.SetSettings(toolPath: WideString; sampleRate: Integer);
 begin
-  toolPath := ExpandFileName(toolPath);
-  if  FileExists(IncludeTrailingPathDelimiter(toolPath) + 'ffmpeg.exe') and
-      FileExists(IncludeTrailingPathDelimiter(toolPath) + 'ffprobe.exe')then
+  toolPath := WideExpandFileName(toolPath);
+  if  WideFileExists(WideIncludeTrailingPathDelimiter(toolPath) + 'ffmpeg.exe') and
+      WideFileExists(WideIncludeTrailingPathDelimiter(toolPath) + 'ffprobe.exe')then
   begin
     FToolPath := toolPath;
     FToolDetected := True;
@@ -109,20 +109,27 @@ const
 var
   FrmProgress : TfrmExecutionProgress;
   thread      : TExecuteExternalThread;
-  UseCmdLine  : Boolean;
+  UseCmd      : Boolean;
+  appName     : WideString;
 begin
   FrmProgress := TfrmExecutionProgress.Create(nil, Msg);
 
-  // For older versions of Windows cmd line must be used for launch FFmpeg
-  UseCmdLine := SysUtils.Win32MajorVersion <= 5;
+  UseCmd := SysUtils.Win32MajorVersion <= 5;
+
+  if UseCmd then begin
+    appName := '';
+    command := 'ffmpeg.exe' + ' ' + command;
+  end else begin
+    appName := 'ffmpeg.exe';
+  end;
   
-  thread := TExecuteExternalThread.Create(WideFormat(command, args), FToolPath, UseCmdLine, FrmProgress.Handle);
+  thread := TExecuteExternalThread.Create(WideFormat(command, args), FToolPath, appName, UseCmd, FrmProgress.Handle);
   thread.FreeOnTerminate := true;
   thread.Resume;
 
   FrmProgress.ShowModal;
-  WaitForSingleObject(thread.Handle, INFINITE);
-  
+  WaitForSingleObject(thread.Handle, 1000);
+
   Result := not FrmProgress.ExecutionCancelled;
 
   if not Result and WideFileExists(filename) then WideDeleteFile(filename);
@@ -152,17 +159,16 @@ var
   extracted   : Boolean;
 begin
   tmpWavPath  := BuildTempPath(filename, '.wav');
-  extracted   := False;
 
   if (Length(streams) = 0) then
-    extracted := ExecuteWithForm('ffmpeg.exe -hide_banner -y -vn -i "%s" -ar %d -f wav "%s"',
+    extracted := ExecuteWithForm('-hide_banner -y -vn -i "%s" -ar %d -f wav "%s"',
                                 tmpWavPath, [filename, FSampleRate, tmpWavPath])
   else
   if (Length(streams) = 1) then
-    extracted := ExecuteWithForm('ffmpeg.exe -hide_banner -y -vn -i "%s" -map 0:%d -c:a:0 pcm_s16le -ar %d -f wav "%s"',
+    extracted := ExecuteWithForm('-hide_banner -y -vn -i "%s" -map 0:%d -c:a:0 pcm_s16le -ar %d -f wav "%s"',
                                 tmpWavPath, [filename, streams[0], FSampleRate, tmpWavPath])
   else
-    extracted := ExecuteWithForm('ffmpeg.exe -hide_banner -y -vn -i "%s" -filter_complex "%samerge=inputs=%d[aout]" -map "[aout]" -ar %d -f wav "%s"',
+    extracted := ExecuteWithForm('-hide_banner -y -vn -i "%s" -filter_complex "%samerge=inputs=%d[aout]" -map "[aout]" -ar %d -f wav "%s"',
                                 tmpWavPath, [filename, BuildAmergeMapArgs(streams), Length(streams), FSampleRate, tmpWavPath]);
 
   if not extracted then
