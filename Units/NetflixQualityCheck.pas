@@ -312,7 +312,7 @@ begin
 
   if (not IsWhiteSpace(CurrentText, Length(CurrentText) - 2, i)) and IsWhiteSpace(CurrentText, Length(CurrentText) - 1, j) and (j = 2) then
   begin
-    WhiteSpaceReportParagraph(ParagraphNode, Report, 1);
+    WhiteSpaceReportParagraph(ParagraphNode, Report, Length(CurrentText) - 1);
     Result := False;
   end;
 end;
