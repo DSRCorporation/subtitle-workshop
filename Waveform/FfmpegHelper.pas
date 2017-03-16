@@ -161,7 +161,7 @@ begin
   tmpWavPath  := BuildTempPath(filename, '.wav');
 
   if (Length(streams) = 0) then
-    extracted := ExecuteWithForm('-hide_banner -y -vn -i "%s" -ar %d -f wav "%s"',
+    extracted := ExecuteWithForm('-hide_banner -y -vn -i "%s" -ar %d -ac 2 -f wav "%s"',
                                 tmpWavPath, [filename, FSampleRate, tmpWavPath])
   else
   if (Length(streams) = 1) then
